@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swu.ai.mapper.TbMenuMapper">
+  <resultMap id="BaseResultMap" type="com.swu.ai.entity.TbMenu">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="Id" jdbcType="INTEGER" property="id" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_remark" jdbcType="VARCHAR" property="menuRemark" />
+    <result column="menu_parent_id" jdbcType="INTEGER" property="menuParentId" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="create_user" jdbcType="INTEGER" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="INTEGER" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+</mapper>
