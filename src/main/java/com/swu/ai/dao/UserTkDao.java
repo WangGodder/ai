@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * -------------------------------------------------
  *
- * @ Author  :       pengj
- * @ date    :       2018/12/18 17:19
+ * @ Author  :       彭健彪
+ * @ date    :       2019/2/27 11:00
  * @ IDE     :       PyCharm
  * @ GitHub  :       https://github.com/JackyPJB
  * @ Contact :       pengjianbiao@hotmail.com
@@ -21,4 +21,6 @@ public interface UserTkDao {
     Object selectByExample(Example example);
 
     List<UserTk> findAll();
+
+    boolean regUser(String uerId, String pwd);
 }

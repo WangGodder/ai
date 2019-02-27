@@ -4,71 +4,49 @@ import javax.persistence.*;
 
 @Table(name = "user_tk")
 public class UserTk {
-    /**
-     * id
-     */
-    @Id
-    private Integer id;
+    private Long id;
 
-    /**
-     * 密码
-     */
     private String pwd;
 
-    /**
-     * 用户
-     */
     private String userid;
 
     /**
-     * 获取id
-     *
-     * @return id - id
+     * @return id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     /**
-     * 设置id
-     *
-     * @param id id
+     * @param id
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * 获取密码
-     *
-     * @return pwd - 密码
+     * @return pwd
      */
     public String getPwd() {
         return pwd;
     }
 
     /**
-     * 设置密码
-     *
-     * @param pwd 密码
+     * @param pwd
      */
     public void setPwd(String pwd) {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 
     /**
-     * 获取用户
-     *
-     * @return userid - 用户
+     * @return userid
      */
     public String getUserid() {
         return userid;
     }
 
     /**
-     * 设置用户
-     *
-     * @param userid 用户
+     * @param userid
      */
     public void setUserid(String userid) {
         this.userid = userid == null ? null : userid.trim();

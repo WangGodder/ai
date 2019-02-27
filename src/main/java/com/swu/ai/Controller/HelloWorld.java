@@ -3,7 +3,6 @@ package com.swu.ai.Controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.swu.ai.dao.UserTkDao;
-import com.swu.ai.entity.User;
 import com.swu.ai.entity.UserTk;
 import com.swu.ai.service.RegService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,11 +64,11 @@ public class HelloWorld {
 
     @RequestMapping("/json")
     @ResponseBody
-    User getjson() {
-        User user = new User();
-        user.setId("sss");
-        user.setPwd("sdfsdf");
-        return user;
+    UserTk getjson() {
+        UserTk userTk = new UserTk();
+        userTk.setPwd("dsfdsf");
+        userTk.setUserid("dsfdsf");
+        return userTk;
     }
 
     @RequestMapping("/reg")
@@ -116,6 +115,10 @@ public class HelloWorld {
         int pageSize = 5;
         PageHelper.startPage(page, pageSize);
         List<UserTk> allUser = userTkDao.findAll();
+        System.out.println(allUser);
+        for (UserTk userTk : allUser) {
+            System.out.println(userTk);
+        }
         return new PageInfo<>(allUser);
     }
 

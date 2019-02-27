@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface UserTkMapper extends BaseMapper<UserTk> {
     List<UserTk> findUserTkAll();
+
 }

@@ -36,4 +36,14 @@ public class UserTkDaoImpl implements UserTkDao {
         return userTkMapper.findUserTkAll();
     }
 
+    @Override
+    public boolean regUser(String userId, String pwd){
+        boolean r;
+        UserTk userTk = new UserTk();
+        userTk.setPwd(pwd);
+        userTk.setUserid(userId);
+        r = userTkMapper.insertSelective(userTk) > 0;
+        return r;
+    }
+
 }

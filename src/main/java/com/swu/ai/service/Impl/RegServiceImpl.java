@@ -1,7 +1,7 @@
-package com.swu.ai.service;
+package com.swu.ai.service.Impl;
 
-import com.swu.ai.dao.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.swu.ai.dao.UserTkDao;
+import com.swu.ai.service.RegService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,10 +16,10 @@ public class RegServiceImpl implements RegService {
         this.userDao = userDao;
     }*/
     @Resource
-    private UserDao userDao;
+    private UserTkDao userTkDao;
 
     @Override
     public boolean regUser(String uerId, String pwd){
-        return userDao.regUser(uerId,pwd);
+        return userTkDao.regUser(uerId,pwd);
     }
 }

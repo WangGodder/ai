@@ -19,10 +19,9 @@ import tk.mybatis.mapper.common.*;
 public interface BaseMapper<T> extends
         // TODO: 2018/12/18
         Mapper<T>,//Mapper<T> extends BaseMapper<T>, ExampleMapper<T>, RowBoundsMapper<T>, Marker
-        MySqlMapper<T>,// MySqlMapper<T> extends InsertListMapper<T>, InsertUseGeneratedKeysMapper<T>
-        IdsMapper<T>,//IdsMapper<T> extends SelectByIdsMapper<T>, DeleteByIdsMapper<T>
-        ConditionMapper<T>,//ConditionMapper<T> extends SelectByConditionMapper<T>, SelectCountByConditionMapper<T>, DeleteByConditionMapper<T>, UpdateByConditionMapper<T>, UpdateByConditionSelectiveMapper<T>
-        SqlServerMapper<T>//SqlServerMapper<T> extends InsertMapper<T>, InsertSelectiveMapper<T>
+        MySqlMapper<T>// MySqlMapper<T> extends InsertListMapper<T>, InsertUseGeneratedKeysMapper<T>
+//        IdsMapper<T>,//IdsMapper<T> extends SelectByIdsMapper<T>, DeleteByIdsMapper<T>
+//        ConditionMapper<T>//ConditionMapper<T> extends SelectByConditionMapper<T>, SelectCountByConditionMapper<T>, DeleteByConditionMapper<T>, UpdateByConditionMapper<T>, UpdateByConditionSelectiveMapper<T>
 {
     //TODO
     //FIXME 特别注意，该接口不能被扫描到，否则会出错

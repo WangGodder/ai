@@ -37,6 +37,7 @@
         </javaClientGenerator>
 
         <table schema="" tableName="user_tk"></table>
+        <table schema="" tableName="user"></table>
 
     </context>
 </generatorConfiguration>
