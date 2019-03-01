@@ -36,8 +36,7 @@
                              targetProject="src/main/java">
         </javaClientGenerator>
 
-        <table schema="" tableName="user_tk"></table>
-        <table schema="" tableName="user"></table>
+        <table schema="" tableName="finger_result_v0"></table>
 
     </context>
 </generatorConfiguration>
