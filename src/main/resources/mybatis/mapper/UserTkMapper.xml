@@ -10,6 +10,9 @@
     <result column="userid" jdbcType="VARCHAR" property="userid" />
   </resultMap>
       <select id="findUserTkAll" resultMap="BaseResultMap">
-      select * from user_tk
-</select>
+          select * from user_tk
+      </select>
+      <select id="getUserByUserIdAndPwd" resultType="com.swu.ai.entity.UserTk" parameterType="java.util.Map">
+          select * from user_tk where userid = #{userId} and pwd = #{pwd}
+      </select>
 </mapper>

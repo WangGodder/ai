@@ -1,0 +1,18 @@
+#main {
+    text-align: center; /*让div内部文字居中*/
+    width: 1100px;
+    margin: auto;
+}
+
+body
+table
+tr
+td {
+    padding: 0;
+}
+
+.top {
+    border: #1E9FFF 1px solid;
+    width: 1106px;
+    height: 150px;
+}

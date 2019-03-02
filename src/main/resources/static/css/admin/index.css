@@ -1,0 +1,77 @@
+#main {
+    text-align: center; /*让div内部文字居中*/
+    width: 1100px;
+    margin: auto;
+}
+
+body
+table
+tr
+td {
+    padding: 0;
+}
+
+.top {
+    border: #1E9FFF 1px solid;
+    padding-top: 50px;
+    margin-bottom: 5px;
+    width: 1106px;
+    height: 150px;
+}
+
+.middle {
+    border: #1E9FFF 1px solid;
+    width: 1106px;
+    height: 500px;
+    margin-bottom: 5px;
+}
+
+.bottom {
+    border: #1E9FFF 1px solid;
+    width: 1106px;
+    height: 50px;
+    padding-top: 10px;
+    margin-bottom: 5px;
+}
+
+.middle .left {
+    float: left;
+    border: #2B2E37 1px solid;
+    width: 20%;
+    height: 490px;
+    padding: 2px;
+    margin: 2px;
+
+}
+
+.middle .right {
+    float: left;
+    border: #2B2E37 1px solid;
+    width: 78%;
+    height: 490px;
+    padding: 2px;
+    margin-top: 2px;
+    margin-left: 5px;
+
+}
+
+.middle .right table tr td {
+    text-align: left !important;
+}
+
+.warn {
+    padding: 20px;
+    width: 300px;
+}
+
+a {
+    cursor: pointer;
+}
+
+.unShow {
+    display: none;
+}
+
+.show {
+    display: block;
+}

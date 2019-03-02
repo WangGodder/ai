@@ -22,5 +22,7 @@ public interface UserTkDao {
 
     List<UserTk> findAll();
 
+    UserTk getUserByUserIdAndPwd(String userId,String pwd);
+
     boolean regUser(String uerId, String pwd);
 }

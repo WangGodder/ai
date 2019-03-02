@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * -------------------------------------------------
@@ -44,6 +46,14 @@ public class UserTkDaoImpl implements UserTkDao {
         userTk.setUserid(userId);
         r = userTkMapper.insertSelective(userTk) > 0;
         return r;
+    }
+
+    @Override
+    public UserTk getUserByUserIdAndPwd(String userId,String pwd){
+        Map map = new HashMap();
+        map.put("userId",userId);
+        map.put("pwd",pwd);
+        return userTkMapper.getUserByUserIdAndPwd(map);
     }
 
 }

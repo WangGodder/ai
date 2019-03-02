@@ -1,0 +1,26 @@
+
+.canvasDir_class {
+    width: 45%;
+    margin: 2%;
+    padding: 1%;
+    border: black solid 1px;
+    display: inline-block;
+    color: gray;
+}
+
+.top_placeholder {
+    height: 50px;
+}
+
+.optionsDiv_class {
+    display: block;
+}
+
+.ChartComponent {
+    border: black 1px solid;
+    width: 40%;
+}
+
+#chartContainer {
+    margin-top: 4%;
+}
