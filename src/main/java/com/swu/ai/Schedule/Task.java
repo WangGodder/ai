@@ -50,5 +50,6 @@ public class Task {
     public void logTime2() {
         String USER_REDIS_SESSION = "USER_REDIS_SESSION";
         logger.info("定时任务，获取redis的值：" + redis.get(USER_REDIS_SESSION + ":" + "user"));
+
     }
 }
