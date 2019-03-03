@@ -43,7 +43,7 @@
     <result column="parttimesell" jdbcType="INTEGER" property="parttimesell" />
     <result column="development" jdbcType="INTEGER" property="development" />
     <result column="manamger" jdbcType="INTEGER" property="manamger" />
-    <result column="admin" jdbcType="INTEGER" property="admin" />
+    <result column="administrator" jdbcType="INTEGER" property="administrator" />
     <result column="sell" jdbcType="INTEGER" property="sell" />
     <result column="doctor" jdbcType="INTEGER" property="doctor" />
     <result column="master" jdbcType="INTEGER" property="master" />
@@ -85,7 +85,64 @@
     <result column="supportprovince" jdbcType="INTEGER" property="supportprovince" />
     <result column="supportnation" jdbcType="INTEGER" property="supportnation" />
   </resultMap>
-  <insert id="insertCompanyInput" parameterType="CompanyInput"></insert>
+  <insert id="insertCompanyInput" parameterType="CompanyInput" useGeneratedKeys="true">
+    insert into company_input (companyname, year,
+                               quarter, ticketincomesoftware, ticketincomehardware,
+                               ticketincomeconsult, ticketincomeother, contractincomesoftware,
+                               contractincomehardware, contractincomeconsult,
+                               contractincomeother, incometaxable, incometaxdeduction,
+                               pensonaltaxable, pensonaltaxdecution, addvaluetaxable,
+                               addvaluetaxdecution, stockfinancevc, stockfinancegovenment,
+                               stockfinancepensonal, debtfinancebank, debtfinanceli,
+                               debtfinancecompany, debtfinancepensonal,
+                               currentasset, nocurrentasset, currentdebt,
+                               nocurrentdebt, firstfinancevalue, lastfinancevalue,
+                               currentfinancevalue, parttimedevelopment,
+                               parttimemanager, parttimeadmin, parttimesell,
+                               development, manamger, administrator,
+                               sell, doctor, master, bachelor,
+                               applypatentinvent, applypatentindustry,
+                               applypatentdesign, patentinvent, patentindustry,
+                               patentdesign, applyauthorsoftware, applyauthorother,
+                               authorsoftware, authorother, servicepatent,
+                               serviceskill, servicesell, salaryhigh,
+                               salarymiddle, salarylow, persell,
+                               pertax, trainmanage, trainlegal,
+                               trainskill, consultmanage, consultlegal,
+                               consultskill, awarddistrict, awardcity,
+                               awardprovince, awardnation, comfirmdistrict,
+                               comfirmcity, comfirmprovince, comfirmnation,
+                               supportdistrict, supportcity, supportprovince,
+                               supportnation)
+    values (#{companyname,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER},
+            #{quarter,jdbcType=INTEGER}, #{ticketincomesoftware,jdbcType=DOUBLE}, #{ticketincomehardware,jdbcType=DOUBLE},
+            #{ticketincomeconsult,jdbcType=DOUBLE}, #{ticketincomeother,jdbcType=DOUBLE}, #{contractincomesoftware,jdbcType=DOUBLE},
+            #{contractincomehardware,jdbcType=DOUBLE}, #{contractincomeconsult,jdbcType=DOUBLE},
+            #{contractincomeother,jdbcType=DOUBLE}, #{incometaxable,jdbcType=DOUBLE}, #{incometaxdeduction,jdbcType=DOUBLE},
+            #{pensonaltaxable,jdbcType=DOUBLE}, #{pensonaltaxdecution,jdbcType=DOUBLE}, #{addvaluetaxable,jdbcType=DOUBLE},
+            #{addvaluetaxdecution,jdbcType=DOUBLE}, #{stockfinancevc,jdbcType=DOUBLE}, #{stockfinancegovenment,jdbcType=DOUBLE},
+            #{stockfinancepensonal,jdbcType=DOUBLE}, #{debtfinancebank,jdbcType=DOUBLE}, #{debtfinanceli,jdbcType=DOUBLE},
+            #{debtfinancecompany,jdbcType=DOUBLE}, #{debtfinancepensonal,jdbcType=DOUBLE},
+            #{currentasset,jdbcType=DOUBLE}, #{nocurrentasset,jdbcType=DOUBLE}, #{currentdebt,jdbcType=DOUBLE},
+            #{nocurrentdebt,jdbcType=DOUBLE}, #{firstfinancevalue,jdbcType=DOUBLE}, #{lastfinancevalue,jdbcType=DOUBLE},
+            #{currentfinancevalue,jdbcType=DOUBLE}, #{parttimedevelopment,jdbcType=INTEGER},
+            #{parttimemanager,jdbcType=INTEGER}, #{parttimeadmin,jdbcType=INTEGER}, #{parttimesell,jdbcType=INTEGER},
+            #{development,jdbcType=INTEGER}, #{manamger,jdbcType=INTEGER}, #{administrator,jdbcType=INTEGER},
+            #{sell,jdbcType=INTEGER}, #{doctor,jdbcType=INTEGER}, #{master,jdbcType=INTEGER},
+            #{bachelor,jdbcType=INTEGER}, #{applypatentinvent,jdbcType=INTEGER}, #{applypatentindustry,jdbcType=INTEGER},
+            #{applypatentdesign,jdbcType=INTEGER}, #{patentinvent,jdbcType=INTEGER}, #{patentindustry,jdbcType=INTEGER},
+            #{patentdesign,jdbcType=INTEGER}, #{applyauthorsoftware,jdbcType=INTEGER}, #{applyauthorother,jdbcType=INTEGER},
+            #{authorsoftware,jdbcType=INTEGER}, #{authorother,jdbcType=INTEGER}, #{servicepatent,jdbcType=INTEGER},
+            #{serviceskill,jdbcType=INTEGER}, #{servicesell,jdbcType=INTEGER}, #{salaryhigh,jdbcType=DOUBLE},
+            #{salarymiddle,jdbcType=DOUBLE}, #{salarylow,jdbcType=DOUBLE}, #{persell,jdbcType=DOUBLE},
+            #{pertax,jdbcType=DOUBLE}, #{trainmanage,jdbcType=INTEGER}, #{trainlegal,jdbcType=INTEGER},
+            #{trainskill,jdbcType=INTEGER}, #{consultmanage,jdbcType=INTEGER}, #{consultlegal,jdbcType=INTEGER},
+            #{consultskill,jdbcType=INTEGER}, #{awarddistrict,jdbcType=INTEGER}, #{awardcity,jdbcType=INTEGER},
+            #{awardprovince,jdbcType=INTEGER}, #{awardnation,jdbcType=INTEGER}, #{comfirmdistrict,jdbcType=INTEGER},
+            #{comfirmcity,jdbcType=INTEGER}, #{comfirmprovince,jdbcType=INTEGER}, #{comfirmnation,jdbcType=INTEGER},
+            #{supportdistrict,jdbcType=INTEGER}, #{supportcity,jdbcType=INTEGER}, #{supportprovince,jdbcType=INTEGER},
+            #{supportnation,jdbcType=INTEGER})
+  </insert>
   <select id="findAllCompanyInput" resultType="CompanyInput"></select>
   <select id="findCompanyInputByYear" resultType="CompanyInput" parameterType="java.util.Map">
     select * from company_input where #{begin_year} &lt;= year &lt;= #{end_year} and #{begin_quarter} &lt;= quarter &lt;= #{end_quarter};
