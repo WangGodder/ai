@@ -9,6 +9,7 @@ import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.service.FingerService;
 import com.swu.ai.service.RegService;
 import com.swu.ai.util.ExcelData;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -26,9 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * -------------------------------------------------
@@ -90,8 +95,6 @@ public class FingerResultController {
     public JsonResult evaluation(HttpServletRequest request, HttpServletResponse response, @RequestParam("loadFile") MultipartFile file) throws IOException {
 
         List<String[]> list = ExcelData.getExcelData(file);
-        HttpSession session = request.getSession();
-//        session.setAttribute("user","mhp");
         return JsonResult.success(list);
     }
 
@@ -102,62 +105,66 @@ public class FingerResultController {
      * @return
      */
     @RequestMapping(value = "downloadFile/")
-    public String downloadExcel(HttpServletRequest request,HttpServletResponse response) {
+    public Object downloadExcel(HttpServletRequest request,HttpServletResponse response) {
 
 
 
-        //1.创建Excel工作薄对象
-        HSSFWorkbook wb = new HSSFWorkbook();
-        //2.创建Excel工作表对象
-        HSSFSheet sheet = wb.createSheet("new Sheet");
-        //3.创建Excel工作表的行
-        HSSFRow row = sheet.createRow(6);
-        //4.创建单元格样式
-        CellStyle cellStyle =wb.createCellStyle();
-        // 设置这些样式
-        cellStyle.setFillForegroundColor(HSSFColor.SKY_BLUE.index);
-        cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-        cellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-        cellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-        cellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
-        cellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
-        cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        try {
+            String filePath = "E:/人才企业指数评估模板.xlsx";// 如 E:/test.docx
 
+            // You must tell the browser the file type you are going to send
+            // for example application/pdf, text/plain, text/html, image/jpg
+            String fileType = "text/plain";//纯文本
+            response.setContentType(fileType);
 
+            String fileName = "";
+            int pos = 0;
+            if( (pos = filePath.lastIndexOf("/")) > 0 ) {
+                fileName = filePath.substring(pos + 1, filePath.length());//截取文件名字
+            } else { fileName = filePath;} //没有父文件夹，如"1.txt"
 
-        //5.创建Excel工作表指定行的单元格
-        row.createCell(0).setCellStyle(cellStyle);
-        //6.设置Excel工作表的值
-        row.createCell(0).setCellValue("aaaa");
+            //设置响应头
+            //适应中文文件名
 
-        row.createCell(1).setCellStyle(cellStyle);
-        row.createCell(1).setCellValue("bbbb");
+            String agent = (String)request.getHeader("USER-AGENT");
+            if(agent != null && agent.toLowerCase().indexOf("firefox") > 0)
+            {
+                fileName = "=?UTF-8?B?" + (new String(Base64.encodeBase64(fileName.getBytes("UTF-8")))) + "?=";
+            }
+            else
+            {
+                fileName =  java.net.URLEncoder.encode(fileName, "UTF-8");
+            }
 
+            response.addHeader("Content-Disposition", "attachment; filename=" + fileName);
 
-        //设置sheet名称和单元格内容
-        wb.setSheetName(0,"第一张工作表");
+            // Assume file name is retrieved from database
+            // For example D:\\file\\test.pdf
+            File my_file = new File(filePath);
+            System.out.println("要下载文件:" + my_file);
+            if( !my_file.exists()){
+                throw new Exception("文件不存在");
+            }
 
-        //启动资源管理器
-        String filename = "MHP.xls";//设置下载时客户端Excel的名称
-        response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-disposition", "attachment;filename=" + filename);
-
-        // 最后一步，将文件存到指定位置
-        try
-        {
-//            FileOutputStream fout = new FileOutputStream("E:/students.xls");
-            OutputStream outputStream = response.getOutputStream();
-            wb.write(outputStream);
-            outputStream.flush();
-            outputStream.close();
-        }
-        catch (Exception e)
-        {
+            // This should send the file to browser
+            OutputStream out = response.getOutputStream();
+            FileInputStream in = new FileInputStream(my_file);
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = in.read(buffer)) > 0){
+                out.write(buffer, 0, length);
+            }
+            in.close();
+            out.flush();
+            System.out.println("下载成功: " );
+            return null;
+        } catch (Exception e) {
+            // TODO 自动生成的 catch 块
             e.printStackTrace();
+            Map<String, String> map=new HashMap<String, String>();//返回成功、失败信息
+            map.put("status", "false");
+            map.put("reason", e.getMessage());
+            return map;
         }
-        return null;
     }
-
-
-
 }
