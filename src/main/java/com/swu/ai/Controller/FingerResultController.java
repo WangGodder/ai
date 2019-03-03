@@ -1,11 +1,14 @@
 package com.swu.ai.Controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.swu.ai.Base.BaseResult;
 import com.swu.ai.Result.FingerResult;
 import com.swu.ai.Result.JsonResult;
 import com.swu.ai.dao.UserTkDao;
+import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.service.CompanyService;
 import com.swu.ai.service.FingerService;
 import com.swu.ai.service.RegService;
 import com.swu.ai.util.ExcelData;
@@ -53,10 +56,12 @@ import java.util.Map;
 @RequestMapping(value = "/user/")
 public class FingerResultController {
     private final FingerService fingerService;
+    private final CompanyService companyService;
 
     @Autowired
-    public FingerResultController(FingerService fingerService) {
+    public FingerResultController(FingerService fingerService,CompanyService companyService) {
         this.fingerService = fingerService;
+        this.companyService = companyService;
     }
 
     @RequestMapping("getFingerRes/")
@@ -166,5 +171,11 @@ public class FingerResultController {
             map.put("reason", e.getMessage());
             return map;
         }
+    }
+
+    @RequestMapping(value = "insertCompanyInfo/")
+    public JsonResult insertCompanyInfo(List<CompanyInput> list){
+        Boolean r = companyService.insertCompanyInfo(list);
+        return JsonResult.success();
     }
 }

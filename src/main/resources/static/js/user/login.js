@@ -21,7 +21,7 @@
             },
 
             initResult: function (json) {
-                var user = json.data.userName;
+                var user = json.data.userid;
                 if (user != null) {
                     window.location = "/user/index/";
                 }
