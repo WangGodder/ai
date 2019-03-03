@@ -86,4 +86,8 @@
     <result column="supportnation" jdbcType="INTEGER" property="supportnation" />
   </resultMap>
   <insert id="insertCompanyInput" parameterType="CompanyInput"></insert>
+  <select id="findAllCompanyInput" resultType="CompanyInput"></select>
+  <select id="findCompanyInputByYear" resultType="CompanyInput" parameterType="java.util.Map">
+    select * from company_input where #{begin_year} &lt;= year &lt;= #{end_year} and #{begin_quarter} &lt;= quarter &lt;= #{end_quarter};
+  </select>
 </mapper>
