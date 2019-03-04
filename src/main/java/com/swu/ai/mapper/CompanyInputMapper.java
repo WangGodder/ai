@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
-    List<CompanyInput> findAllCompanyInput();
-    List<CompanyInput> findCompanyInputByTime(Map<String, Integer> timeMap);
+//    List<CompanyInput> findAllCompanyInput();
+//    List<CompanyInput> findCompanyInputByTime(Map<String, Integer> timeMap);
     boolean insertCompanyInput(CompanyInput companyInput);
 
     List<VoFingerResult> findFingerByYearAndQuarter(CompanyInput companyInput);

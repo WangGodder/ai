@@ -1,6 +1,6 @@
 package com.swu.ai.dao.Impl;
 
-import com.swu.ai.dao.CompanyDao;
+import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.mapper.CompanyInputMapper;
@@ -15,11 +15,11 @@ import java.util.List;
  * @date 2019/3/3 22:14
  */
 @Repository
-public class CompanyInputDaoImpl implements CompanyDao {
+public class CompanyInputDaoImpl implements CompanyInputDao {
     private final CompanyInputMapper companyInputMapper;
 
     @Autowired
-    public CompanyDaoImpl(CompanyInputMapper companyInputMapper) {
+    public CompanyInputDaoImpl(CompanyInputMapper companyInputMapper) {
         this.companyInputMapper = companyInputMapper;
     }
 
