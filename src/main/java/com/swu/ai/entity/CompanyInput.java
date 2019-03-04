@@ -198,7 +198,7 @@ public class CompanyInput {
     /**
      * g行政人数
      */
-    private Integer admin;
+    private Integer administrator;
 
     /**
      * x销售人数
@@ -1083,19 +1083,19 @@ public class CompanyInput {
     /**
      * 获取g行政人数
      *
-     * @return admin - g行政人数
+     * @return administrator - g行政人数
      */
-    public Integer getAdmin() {
-        return admin;
+    public Integer administrator() {
+        return administrator;
     }
 
     /**
      * 设置g行政人数
      *
-     * @param admin g行政人数
+     * @param administrator g行政人数
      */
-    public void setAdmin(Integer admin) {
-        this.admin = admin;
+    public void administrator(Integer administrator) {
+        this.administrator = administrator;
     }
 
     /**

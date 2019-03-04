@@ -9,7 +9,7 @@ import java.util.List;
  * @author mhp
  * @date 2019/3/3 22:12
  */
-public interface CompanyDao {
+public interface CompanyInputDao {
     boolean insertCompanyInfo(List<CompanyInput> list);
 
     List<VoFingerResult> findAllByYearAndQuarter(Integer year, Integer quarter);

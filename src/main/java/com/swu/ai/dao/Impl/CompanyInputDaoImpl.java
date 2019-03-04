@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2019/3/3 22:14
  */
 @Repository
-public class CompanyDaoImpl implements CompanyDao {
+public class CompanyInputDaoImpl implements CompanyDao {
     private final CompanyInputMapper companyInputMapper;
 
     @Autowired
@@ -25,7 +25,11 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public boolean insertCompanyInfo(List<CompanyInput> list) {
-        return false;
+        boolean result = true;
+        for (CompanyInput companyInput : list) {
+            result &= companyInputMapper.insertCompanyInput(companyInput);
+        }
+        return result;
     }
 
     @Override
