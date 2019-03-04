@@ -690,6 +690,55 @@ public class FingerResultV0 {
     private Double fingerBrandTalentCountry;
 
     /**
+     * 初始化三级指标后，计算所有指标
+     */
+    public void evaluate() {
+        this.fingerSaleInvoice = this.fingerSaleInvoiceSoft * 2 + this.fingerSaleInvoiceHard * 2.5 + this.fingerSaleInvoiceConsultation + this.fingerSaleInvoiceSoft * 0.5;
+        this.fingerSaleContract = this.fingerSaleContractSoft * 2 + this.fingerSaleContractHard * 2.5 + this.fingerSaleContractConsultation + this.fingerSaleContractOther * 0.5;
+        this.fingerSale = this.fingerSaleInvoice * 5 + this.fingerSaleContract;
+
+        this.fingerTaxCorporate = this.fingerTaxCorporateTaxable + this.fingerTaxCorporateRelief * 2;
+        this.fingerTaxIndividual = this.fingerTaxIndividualRelief + this.fingerTaxIndividualRelief * 2;
+        this.fingerTaxAdded = this.fingerTaxAddedTaxable + this.fingerTaxAddedRelief * 2;
+        this.fingerTax = this.fingerTaxCorporate * 3 + this.fingerTaxIndividual * 2 + this.fingerTaxAdded * 4;
+
+        this.fingerFinanceStock = this.fingerFinanceStockRisk * 3 + this.fingerFinanceStockGov * 2 + this.fingerFinanceStockPerson;
+        this.fingerFinanceDebt = this.fingerFinanceDebtBank * 3 + this.fingerFinanceDebtLending * 2 + this.fingerFinanceDebtNew * 2 + this.fingerFinanceDebtPerson;
+        this.fingerFinance = this.fingerFinanceStock * 4 + this.fingerFinanceDebt;
+
+        this.fingerValuationAssets = this.fingerValuationAssetsCirculating * 4 + this.fingerValuationAssetsUncirculating * 3 + this.fingerValuationAssetsDebtCirculating * 1 + this.fingerValuationAssetsDebtUncirculating * 2;
+        this.fingerValuationActual = this.fingerValuationActualFirst * 2 + this.fingerValuationActualLatest * 3 + this.fingerValuationActualWant * 0.0000001;
+        this.fingerValuation = this.fingerValuationAssets * 4 + this.fingerValuationActual;
+
+        this.fingerHrPartime = this.fingerHrPartimeDev + this.fingerHrPartimeManage + this.fingerHrPartimeAdmin + this.fingerHrPartimeSaler;
+        this.fingerHrFulltime = this.fingerHrFulltimeDev * 3 + this.fingerHrFulltimeSenior * 4 + this.fingerHrFulltimeAdmin + this.fingerHrFulltimeSaler * 2;
+        this.fingerHrEducated = this.fingerHrEducatedDoc * 3 + this.fingerHrEducatedMaster * 2 + this.fingerHrBachelor;
+        this.fingerHr = this.fingerHrPartime + this.fingerHrFulltime * 3 + this.fingerHrEducated * 4;
+
+        this.fingerInnovatePatentApply = this.fingerInnovatePatentApplyInvention * 3 + this.fingerInnovatePatentApplyUtility * 2 + this.fingerInnovatePatentApplyAppear;
+        this.fingerInnovatePatentGrant = this.fingerInnovatePatentGrantInvention * 3 + this.fingerInnovatePatentGrantUtility * 2 + this.fingerInnovatePatentGrantAppear;
+        this.fingerInnovateCopyrightApply = this.fingerInnovateCopyrightApplySoft * 2 + this.fingerInnovateCopyrightApplyUnsoft;
+        this.fingerInnovateCopyrightGrant = this.fingerInnovateCopyrightGrantSoft * 2 + this.fingerInnovateCopyrightGrantUnsoft;
+        this.fingerInnovateNewProduct = this.fingerInnovateNewProductPatent * 2 + this.fingerInnovateNewProductTech + this.fingerInnovateNewProductBus;
+        this.fingerInnovate = this.fingerInnovatePatentApply * 2 + this.fingerInnovatePatentGrant * 4 + this.fingerInnovateCopyrightApply * 2 + this.fingerInnovateCopyrightGrant * 3 + this.fingerInnovateNewProduct * 4;
+
+        this.fingerSalaryStaff = this.fingerSalaryStaffUp10 + this.fingerSalaryStaff510 + this.fingerSalaryStaffDown5;
+        this.fingerSalaryStaffContribution = this.fingerSalaryStaffContributionMeansale + this.fingerSalaryStaffContributionMeantax * 2;
+        this.fingerSalary = this.fingerSalaryStaff + this.fingerSalaryStaffContribution * 4;
+
+        this.fingerLearnTrain = this.fingerLearnTrainManage + this.fingerLearnTrainPolicy + this.fingerLearnTrainSkill;
+        this.fingerLearnConslted = this.fingerLearnConsltedManage + this.fingerLearnTrainPolicy + this.fingerLearnTrainSkill;
+        this.fingerLearn = this.fingerLearnTrain * 3 + this.fingerLearnConslted * 4;
+
+        this.fingerBrandReward = this.fingerBrandRewardArea * 1 + this.fingerBrandRewardCity * 2 + this.fingerBrandRewardProvince * 3 + this.fingerBrandRewardCountry * 5;
+        this.fingerBrandRecognition = this.fingerBrandRecognitionArea * 1 + this.fingerBrandRecognitionCity * 2 + this.fingerBrandRecognitionProvince * 3 + this.fingerBrandRecognitionCountry * 5;
+        this.fingerBrandTalent = this.fingerBrandTalentArea * 1 + this.fingerBrandTalentCity * 2 + this.fingerBrandTalentProvince * 3 + this.fingerBrandTalentCountry * 5;
+        this.fingerBrand = this.fingerBrandReward * 2 + this.fingerBrandRecognition * 3 + this.fingerBrandTalent * 2;
+
+        this.fingerAll = this.fingerSale * 5 + this.fingerTax * 2 + this.fingerFinance * 0.5 + this.fingerValuation + this.fingerHr * 3 + this.fingerInnovate * 4 + this.fingerSalary * 2 + this.fingerLearn * 2 + this.fingerBrand * 4;
+    }
+
+    /**
      * @return id
      */
     public Long getId() {
