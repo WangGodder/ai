@@ -9,5 +9,7 @@ import java.util.Map;
 public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
     List<CompanyInput> findAllCompanyInput();
     List<CompanyInput> findCompanyInputByTime(Map<String, Integer> timeMap);
+    List<CompanyInput> findCompanyInputByCompanyName(String companyname);
+    CompanyInput findCompanyInputById(Long id);
     boolean insertCompanyInput(CompanyInput companyInput);
 }

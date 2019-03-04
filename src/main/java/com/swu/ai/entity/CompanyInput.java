@@ -1831,7 +1831,7 @@ public class CompanyInput {
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
-        for (int i = 1; i < fields.length; i++) {
+        for (int i = 1; i < fields.length && iterator.hasNext(); i++) {
             fields[i].setAccessible(true);
             try {
                 if (fields[i].getGenericType() == Integer.class) {
