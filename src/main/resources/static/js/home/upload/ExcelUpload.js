@@ -4,6 +4,12 @@ let ExcelUpload = {
         download_template : function () {
 
         },
+        initResult: function () {
+            sv2.warn("下载成功")
+        },
+        errorHandle:function () {
+            sv2.warn("下载失败");
+        },
         submit: function () {
             $('submit-btn').attr('disabled', true);
             // upload
@@ -33,7 +39,7 @@ let ExcelUpload = {
         "<form enctype=\"multipart/form-data\" id=\"uploadForm\"name=\"uploadForm\" method=\"post\">\n" +
         "<div id=\"upload-excel\" class=\"jumbotron \">\n" +
         "        <label for=\"excel-input\" class=\"text-left h3\">上传Excel文件</label>\n" +
-        "        <div id=\"download-template\" v-on:click=\"download_template()\" class=\"btn btn-warning btn-lg\">Excel模板下载</div>\n" +
+        "        <a href=\"/user/downloadFile/\" class=\"btn btn-warning btn-lg\"> Excel模板下载</a>\n" +
         "        <div class=\"input-group input-group-lg\">\n" +
         "            <span class=\"input-group-addon\">文件路径</span>\n" +
         "            <input id=\"excel-input\" type=\"file\" class=\"form-control\" name=\"file\" multiple>\n" +

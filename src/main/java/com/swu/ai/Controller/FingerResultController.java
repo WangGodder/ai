@@ -136,9 +136,6 @@ public class FingerResultController {
 
         try {
             String filePath = "E:/人才企业指数评估模板.xlsx";// 如 E:/test.docx
-
-            // You must tell the browser the file type you are going to send
-            // for example application/pdf, text/plain, text/html, image/jpg
             String fileType = "text/plain";//纯文本
             response.setContentType(fileType);
 
