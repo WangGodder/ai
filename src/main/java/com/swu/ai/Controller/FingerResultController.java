@@ -12,6 +12,7 @@ import com.swu.ai.service.CompanyService;
 import com.swu.ai.service.FingerService;
 import com.swu.ai.service.RegService;
 import com.swu.ai.util.ExcelData;
+import com.swu.ai.vo.VoFingerResult;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -59,7 +60,7 @@ public class FingerResultController {
     private final CompanyService companyService;
 
     @Autowired
-    public FingerResultController(FingerService fingerService,CompanyService companyService) {
+    public FingerResultController(FingerService fingerService, CompanyService companyService) {
         this.fingerService = fingerService;
         this.companyService = companyService;
     }
@@ -79,7 +80,7 @@ public class FingerResultController {
                                  @RequestParam(value = "companyId", required = false, defaultValue = "-1") Long companyId,
                                  @RequestParam(value = "companyPlate", required = false, defaultValue = "all") String companyPlate) {
         List<FingerResultV0> res = fingerService.getFingerResult(year, periodType, denominatorType, companyId, companyPlate);
-        System.out.println("res"+ res);
+        System.out.println("res" + res);
         FingerResult fingerResult = new FingerResult();
         fingerResult.setRes(res);
         fingerResult.setCode("200");
@@ -87,8 +88,27 @@ public class FingerResultController {
         return fingerResult;
     }
 
+    @RequestMapping("getFingerRes2/")
+    @ResponseBody
+    /*
+    companyId 公司ID 默认是-1表示所有
+    companyPlate 公司所属板块 默认是 all 表示所有
+    year 年份 默认是 2018
+    quarter 全年还是季度 ： 1 一季度 2 二季度 3三季度 4四季度 默认是 1
+    denominatorType 分母类型：mean平均值，max最大值，min最小值，极差值range 这一项是必选，默认是mean
+    */
+    JsonResult getFingerResult2(@RequestParam(value = "year", required = false, defaultValue = "2018") Integer year,
+                                @RequestParam(value = "quarter", required = false, defaultValue = "1") Integer quarter,
+//                                 @RequestParam(value = "denominatorType", required = false, defaultValue = "mean") String denominatorType,
+//                                @RequestParam(value = "companyPlate", required = false, defaultValue = "all") String companyPlate,
+                                @RequestParam(value = "companyId", required = false, defaultValue = "-1") Long companyId) {
+        List<VoFingerResult> res = fingerService.getFingerResult2(year, quarter, companyId);
+        return JsonResult.success(res);
+    }
+
     /**
      * 解析excel内容
+     *
      * @param request
      * @param response
      * @param file
@@ -105,13 +125,13 @@ public class FingerResultController {
 
     /**
      * 下载excel模板
+     *
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "downloadFile/")
-    public Object downloadExcel(HttpServletRequest request,HttpServletResponse response) {
-
+    public Object downloadExcel(HttpServletRequest request, HttpServletResponse response) {
 
 
         try {
@@ -124,21 +144,20 @@ public class FingerResultController {
 
             String fileName = "";
             int pos = 0;
-            if( (pos = filePath.lastIndexOf("/")) > 0 ) {
+            if ((pos = filePath.lastIndexOf("/")) > 0) {
                 fileName = filePath.substring(pos + 1, filePath.length());//截取文件名字
-            } else { fileName = filePath;} //没有父文件夹，如"1.txt"
+            } else {
+                fileName = filePath;
+            } //没有父文件夹，如"1.txt"
 
             //设置响应头
             //适应中文文件名
 
-            String agent = (String)request.getHeader("USER-AGENT");
-            if(agent != null && agent.toLowerCase().indexOf("firefox") > 0)
-            {
+            String agent = (String) request.getHeader("USER-AGENT");
+            if (agent != null && agent.toLowerCase().indexOf("firefox") > 0) {
                 fileName = "=?UTF-8?B?" + (new String(Base64.encodeBase64(fileName.getBytes("UTF-8")))) + "?=";
-            }
-            else
-            {
-                fileName =  java.net.URLEncoder.encode(fileName, "UTF-8");
+            } else {
+                fileName = java.net.URLEncoder.encode(fileName, "UTF-8");
             }
 
             response.addHeader("Content-Disposition", "attachment; filename=" + fileName);
@@ -147,7 +166,7 @@ public class FingerResultController {
             // For example D:\\file\\test.pdf
             File my_file = new File(filePath);
             System.out.println("要下载文件:" + my_file);
-            if( !my_file.exists()){
+            if (!my_file.exists()) {
                 throw new Exception("文件不存在");
             }
 
@@ -156,17 +175,17 @@ public class FingerResultController {
             FileInputStream in = new FileInputStream(my_file);
             byte[] buffer = new byte[4096];
             int length;
-            while ((length = in.read(buffer)) > 0){
+            while ((length = in.read(buffer)) > 0) {
                 out.write(buffer, 0, length);
             }
             in.close();
             out.flush();
-            System.out.println("下载成功: " );
+            System.out.println("下载成功: ");
             return null;
         } catch (Exception e) {
             // TODO 自动生成的 catch 块
             e.printStackTrace();
-            Map<String, String> map=new HashMap<String, String>();//返回成功、失败信息
+            Map<String, String> map = new HashMap<String, String>();//返回成功、失败信息
             map.put("status", "false");
             map.put("reason", e.getMessage());
             return map;
@@ -174,7 +193,7 @@ public class FingerResultController {
     }
 
     @RequestMapping(value = "insertCompanyInfo/")
-    public JsonResult insertCompanyInfo(List<CompanyInput> list){
+    public JsonResult insertCompanyInfo(List<CompanyInput> list) {
         Boolean r = companyService.insertCompanyInfo(list);
         return JsonResult.success();
     }

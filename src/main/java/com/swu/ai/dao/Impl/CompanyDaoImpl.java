@@ -2,12 +2,12 @@ package com.swu.ai.dao.Impl;
 
 import com.swu.ai.dao.CompanyDao;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.mapper.CompanyInputMapper;
+import com.swu.ai.vo.VoFingerResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,11 +16,27 @@ import java.util.List;
  */
 @Repository
 public class CompanyDaoImpl implements CompanyDao {
+    private final CompanyInputMapper companyInputMapper;
+
     @Autowired
-    CompanyInputMapper companyInputMapper;
+    public CompanyDaoImpl(CompanyInputMapper companyInputMapper) {
+        this.companyInputMapper = companyInputMapper;
+    }
 
     @Override
     public boolean insertCompanyInfo(List<CompanyInput> list) {
         return false;
+    }
+
+    @Override
+    public List<VoFingerResult> findAllByYearAndQuarter(Integer year, Integer quarter) {
+        CompanyInput companyInput = new CompanyInput();
+        companyInput.setYear(year);
+        companyInput.setQuarter(quarter);
+        List<VoFingerResult> fingerResultV0List = companyInputMapper.findFingerByYearAndQuarter(companyInput);
+        for(FingerResultV0 fingerResultV0:fingerResultV0List){
+            fingerResultV0.evaluate();
+        }
+        return fingerResultV0List;
     }
 }

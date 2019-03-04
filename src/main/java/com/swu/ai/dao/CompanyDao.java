@@ -1,6 +1,7 @@
 package com.swu.ai.dao;
 
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
 
@@ -10,4 +11,7 @@ import java.util.List;
  */
 public interface CompanyDao {
     boolean insertCompanyInfo(List<CompanyInput> list);
+
+    List<VoFingerResult> findAllByYearAndQuarter(Integer year, Integer quarter);
+
 }

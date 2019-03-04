@@ -1,93 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.swu.ai.mapper.CompanyInputMapper">
-  <resultMap id="BaseResultMap" type="com.swu.ai.entity.CompanyInput">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="companyname" jdbcType="VARCHAR" property="companyname" />
-    <result column="year" jdbcType="INTEGER" property="year" />
-    <result column="quarter" jdbcType="INTEGER" property="quarter" />
-    <result column="ticketincomesoftware" jdbcType="DOUBLE" property="ticketincomesoftware" />
-    <result column="ticketincomehardware" jdbcType="DOUBLE" property="ticketincomehardware" />
-    <result column="ticketincomeconsult" jdbcType="DOUBLE" property="ticketincomeconsult" />
-    <result column="ticketincomeother" jdbcType="DOUBLE" property="ticketincomeother" />
-    <result column="contractincomesoftware" jdbcType="DOUBLE" property="contractincomesoftware" />
-    <result column="contractincomehardware" jdbcType="DOUBLE" property="contractincomehardware" />
-    <result column="contractincomeconsult" jdbcType="DOUBLE" property="contractincomeconsult" />
-    <result column="contractincomeother" jdbcType="DOUBLE" property="contractincomeother" />
-    <result column="incometaxable" jdbcType="DOUBLE" property="incometaxable" />
-    <result column="incometaxdeduction" jdbcType="DOUBLE" property="incometaxdeduction" />
-    <result column="pensonaltaxable" jdbcType="DOUBLE" property="pensonaltaxable" />
-    <result column="pensonaltaxdecution" jdbcType="DOUBLE" property="pensonaltaxdecution" />
-    <result column="addvaluetaxable" jdbcType="DOUBLE" property="addvaluetaxable" />
-    <result column="addvaluetaxdecution" jdbcType="DOUBLE" property="addvaluetaxdecution" />
-    <result column="stockfinancevc" jdbcType="DOUBLE" property="stockfinancevc" />
-    <result column="stockfinancegovenment" jdbcType="DOUBLE" property="stockfinancegovenment" />
-    <result column="stockfinancepensonal" jdbcType="DOUBLE" property="stockfinancepensonal" />
-    <result column="debtfinancebank" jdbcType="DOUBLE" property="debtfinancebank" />
-    <result column="debtfinanceli" jdbcType="DOUBLE" property="debtfinanceli" />
-    <result column="debtfinancecompany" jdbcType="DOUBLE" property="debtfinancecompany" />
-    <result column="debtfinancepensonal" jdbcType="DOUBLE" property="debtfinancepensonal" />
-    <result column="currentasset" jdbcType="DOUBLE" property="currentasset" />
-    <result column="nocurrentasset" jdbcType="DOUBLE" property="nocurrentasset" />
-    <result column="currentdebt" jdbcType="DOUBLE" property="currentdebt" />
-    <result column="nocurrentdebt" jdbcType="DOUBLE" property="nocurrentdebt" />
-    <result column="firstfinancevalue" jdbcType="DOUBLE" property="firstfinancevalue" />
-    <result column="lastfinancevalue" jdbcType="DOUBLE" property="lastfinancevalue" />
-    <result column="currentfinancevalue" jdbcType="DOUBLE" property="currentfinancevalue" />
-    <result column="parttimedevelopment" jdbcType="INTEGER" property="parttimedevelopment" />
-    <result column="parttimemanager" jdbcType="INTEGER" property="parttimemanager" />
-    <result column="parttimeadmin" jdbcType="INTEGER" property="parttimeadmin" />
-    <result column="parttimesell" jdbcType="INTEGER" property="parttimesell" />
-    <result column="development" jdbcType="INTEGER" property="development" />
-    <result column="manamger" jdbcType="INTEGER" property="manamger" />
-    <result column="admin" jdbcType="INTEGER" property="admin" />
-    <result column="sell" jdbcType="INTEGER" property="sell" />
-    <result column="doctor" jdbcType="INTEGER" property="doctor" />
-    <result column="master" jdbcType="INTEGER" property="master" />
-    <result column="bachelor" jdbcType="INTEGER" property="bachelor" />
-    <result column="applypatentinvent" jdbcType="INTEGER" property="applypatentinvent" />
-    <result column="applypatentindustry" jdbcType="INTEGER" property="applypatentindustry" />
-    <result column="applypatentdesign" jdbcType="INTEGER" property="applypatentdesign" />
-    <result column="patentinvent" jdbcType="INTEGER" property="patentinvent" />
-    <result column="patentindustry" jdbcType="INTEGER" property="patentindustry" />
-    <result column="patentdesign" jdbcType="INTEGER" property="patentdesign" />
-    <result column="applyauthorsoftware" jdbcType="INTEGER" property="applyauthorsoftware" />
-    <result column="applyauthorother" jdbcType="INTEGER" property="applyauthorother" />
-    <result column="authorsoftware" jdbcType="INTEGER" property="authorsoftware" />
-    <result column="authorother" jdbcType="INTEGER" property="authorother" />
-    <result column="servicepatent" jdbcType="INTEGER" property="servicepatent" />
-    <result column="serviceskill" jdbcType="INTEGER" property="serviceskill" />
-    <result column="servicesell" jdbcType="INTEGER" property="servicesell" />
-    <result column="salaryhigh" jdbcType="DOUBLE" property="salaryhigh" />
-    <result column="salarymiddle" jdbcType="DOUBLE" property="salarymiddle" />
-    <result column="salarylow" jdbcType="DOUBLE" property="salarylow" />
-    <result column="persell" jdbcType="DOUBLE" property="persell" />
-    <result column="pertax" jdbcType="DOUBLE" property="pertax" />
-    <result column="trainmanage" jdbcType="INTEGER" property="trainmanage" />
-    <result column="trainlegal" jdbcType="INTEGER" property="trainlegal" />
-    <result column="trainskill" jdbcType="INTEGER" property="trainskill" />
-    <result column="consultmanage" jdbcType="INTEGER" property="consultmanage" />
-    <result column="consultlegal" jdbcType="INTEGER" property="consultlegal" />
-    <result column="consultskill" jdbcType="INTEGER" property="consultskill" />
-    <result column="awarddistrict" jdbcType="INTEGER" property="awarddistrict" />
-    <result column="awardcity" jdbcType="INTEGER" property="awardcity" />
-    <result column="awardprovince" jdbcType="INTEGER" property="awardprovince" />
-    <result column="awardnation" jdbcType="INTEGER" property="awardnation" />
-    <result column="comfirmdistrict" jdbcType="INTEGER" property="comfirmdistrict" />
-    <result column="comfirmcity" jdbcType="INTEGER" property="comfirmcity" />
-    <result column="comfirmprovince" jdbcType="INTEGER" property="comfirmprovince" />
-    <result column="comfirmnation" jdbcType="INTEGER" property="comfirmnation" />
-    <result column="supportdistrict" jdbcType="INTEGER" property="supportdistrict" />
-    <result column="supportcity" jdbcType="INTEGER" property="supportcity" />
-    <result column="supportprovince" jdbcType="INTEGER" property="supportprovince" />
-    <result column="supportnation" jdbcType="INTEGER" property="supportnation" />
-  </resultMap>
-  <insert id="insertCompanyInput" parameterType="CompanyInput"></insert>
-  <select id="findAllCompanyInput" resultType="CompanyInput"></select>
-  <select id="findCompanyInputByYear" resultType="CompanyInput" parameterType="java.util.Map">
+    <resultMap id="BaseResultMap" type="com.swu.ai.entity.CompanyInput">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="companyname" jdbcType="VARCHAR" property="companyname"/>
+        <result column="year" jdbcType="INTEGER" property="year"/>
+        <result column="quarter" jdbcType="INTEGER" property="quarter"/>
+        <result column="ticketincomesoftware" jdbcType="DOUBLE" property="ticketincomesoftware"/>
+        <result column="ticketincomehardware" jdbcType="DOUBLE" property="ticketincomehardware"/>
+        <result column="ticketincomeconsult" jdbcType="DOUBLE" property="ticketincomeconsult"/>
+        <result column="ticketincomeother" jdbcType="DOUBLE" property="ticketincomeother"/>
+        <result column="contractincomesoftware" jdbcType="DOUBLE" property="contractincomesoftware"/>
+        <result column="contractincomehardware" jdbcType="DOUBLE" property="contractincomehardware"/>
+        <result column="contractincomeconsult" jdbcType="DOUBLE" property="contractincomeconsult"/>
+        <result column="contractincomeother" jdbcType="DOUBLE" property="contractincomeother"/>
+        <result column="incometaxable" jdbcType="DOUBLE" property="incometaxable"/>
+        <result column="incometaxdeduction" jdbcType="DOUBLE" property="incometaxdeduction"/>
+        <result column="pensonaltaxable" jdbcType="DOUBLE" property="pensonaltaxable"/>
+        <result column="pensonaltaxdecution" jdbcType="DOUBLE" property="pensonaltaxdecution"/>
+        <result column="addvaluetaxable" jdbcType="DOUBLE" property="addvaluetaxable"/>
+        <result column="addvaluetaxdecution" jdbcType="DOUBLE" property="addvaluetaxdecution"/>
+        <result column="stockfinancevc" jdbcType="DOUBLE" property="stockfinancevc"/>
+        <result column="stockfinancegovenment" jdbcType="DOUBLE" property="stockfinancegovenment"/>
+        <result column="stockfinancepensonal" jdbcType="DOUBLE" property="stockfinancepensonal"/>
+        <result column="debtfinancebank" jdbcType="DOUBLE" property="debtfinancebank"/>
+        <result column="debtfinanceli" jdbcType="DOUBLE" property="debtfinanceli"/>
+        <result column="debtfinancecompany" jdbcType="DOUBLE" property="debtfinancecompany"/>
+        <result column="debtfinancepensonal" jdbcType="DOUBLE" property="debtfinancepensonal"/>
+        <result column="currentasset" jdbcType="DOUBLE" property="currentasset"/>
+        <result column="nocurrentasset" jdbcType="DOUBLE" property="nocurrentasset"/>
+        <result column="currentdebt" jdbcType="DOUBLE" property="currentdebt"/>
+        <result column="nocurrentdebt" jdbcType="DOUBLE" property="nocurrentdebt"/>
+        <result column="firstfinancevalue" jdbcType="DOUBLE" property="firstfinancevalue"/>
+        <result column="lastfinancevalue" jdbcType="DOUBLE" property="lastfinancevalue"/>
+        <result column="currentfinancevalue" jdbcType="DOUBLE" property="currentfinancevalue"/>
+        <result column="parttimedevelopment" jdbcType="INTEGER" property="parttimedevelopment"/>
+        <result column="parttimemanager" jdbcType="INTEGER" property="parttimemanager"/>
+        <result column="parttimeadmin" jdbcType="INTEGER" property="parttimeadmin"/>
+        <result column="parttimesell" jdbcType="INTEGER" property="parttimesell"/>
+        <result column="development" jdbcType="INTEGER" property="development"/>
+        <result column="manamger" jdbcType="INTEGER" property="manamger"/>
+        <result column="admin" jdbcType="INTEGER" property="admin"/>
+        <result column="sell" jdbcType="INTEGER" property="sell"/>
+        <result column="doctor" jdbcType="INTEGER" property="doctor"/>
+        <result column="master" jdbcType="INTEGER" property="master"/>
+        <result column="bachelor" jdbcType="INTEGER" property="bachelor"/>
+        <result column="applypatentinvent" jdbcType="INTEGER" property="applypatentinvent"/>
+        <result column="applypatentindustry" jdbcType="INTEGER" property="applypatentindustry"/>
+        <result column="applypatentdesign" jdbcType="INTEGER" property="applypatentdesign"/>
+        <result column="patentinvent" jdbcType="INTEGER" property="patentinvent"/>
+        <result column="patentindustry" jdbcType="INTEGER" property="patentindustry"/>
+        <result column="patentdesign" jdbcType="INTEGER" property="patentdesign"/>
+        <result column="applyauthorsoftware" jdbcType="INTEGER" property="applyauthorsoftware"/>
+        <result column="applyauthorother" jdbcType="INTEGER" property="applyauthorother"/>
+        <result column="authorsoftware" jdbcType="INTEGER" property="authorsoftware"/>
+        <result column="authorother" jdbcType="INTEGER" property="authorother"/>
+        <result column="servicepatent" jdbcType="INTEGER" property="servicepatent"/>
+        <result column="serviceskill" jdbcType="INTEGER" property="serviceskill"/>
+        <result column="servicesell" jdbcType="INTEGER" property="servicesell"/>
+        <result column="salaryhigh" jdbcType="DOUBLE" property="salaryhigh"/>
+        <result column="salarymiddle" jdbcType="DOUBLE" property="salarymiddle"/>
+        <result column="salarylow" jdbcType="DOUBLE" property="salarylow"/>
+        <result column="persell" jdbcType="DOUBLE" property="persell"/>
+        <result column="pertax" jdbcType="DOUBLE" property="pertax"/>
+        <result column="trainmanage" jdbcType="INTEGER" property="trainmanage"/>
+        <result column="trainlegal" jdbcType="INTEGER" property="trainlegal"/>
+        <result column="trainskill" jdbcType="INTEGER" property="trainskill"/>
+        <result column="consultmanage" jdbcType="INTEGER" property="consultmanage"/>
+        <result column="consultlegal" jdbcType="INTEGER" property="consultlegal"/>
+        <result column="consultskill" jdbcType="INTEGER" property="consultskill"/>
+        <result column="awarddistrict" jdbcType="INTEGER" property="awarddistrict"/>
+        <result column="awardcity" jdbcType="INTEGER" property="awardcity"/>
+        <result column="awardprovince" jdbcType="INTEGER" property="awardprovince"/>
+        <result column="awardnation" jdbcType="INTEGER" property="awardnation"/>
+        <result column="comfirmdistrict" jdbcType="INTEGER" property="comfirmdistrict"/>
+        <result column="comfirmcity" jdbcType="INTEGER" property="comfirmcity"/>
+        <result column="comfirmprovince" jdbcType="INTEGER" property="comfirmprovince"/>
+        <result column="comfirmnation" jdbcType="INTEGER" property="comfirmnation"/>
+        <result column="supportdistrict" jdbcType="INTEGER" property="supportdistrict"/>
+        <result column="supportcity" jdbcType="INTEGER" property="supportcity"/>
+        <result column="supportprovince" jdbcType="INTEGER" property="supportprovince"/>
+        <result column="supportnation" jdbcType="INTEGER" property="supportnation"/>
+    </resultMap>
+
+    <insert id="insertCompanyInput" parameterType="CompanyInput"></insert>
+    <select id="findAllCompanyInput" resultType="CompanyInput"></select>
+    <select id="findCompanyInputByYear" resultType="CompanyInput" parameterType="java.util.Map">
     select * from company_input where #{begin_year} &lt;= year &lt;= #{end_year} and #{begin_quarter} &lt;= quarter &lt;= #{end_quarter};
   </select>
+    <select id="findFingerByYearAndQuarter" resultType="com.swu.ai.vo.VoFingerResult"
+            parameterType="com.swu.ai.entity.CompanyInput">
+select `id`,`quarter`,`companyname` companyName,`year`,
+`ticketincomesoftware`/(SELECT SUM(`ticketincomesoftware`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})finger_sale_invoice_soft,
+`ticketincomehardware`/(SELECT SUM(`ticketincomehardware`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_sale_invoice_hard,
+`ticketincomeconsult`/(SELECT SUM(`ticketincomeconsult`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_sale_invoice_consultation,
+`ticketincomeother`/(SELECT SUM(`ticketincomeother`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_sale_invoice_other,
+`contractincomesoftware`/(SELECT SUM(`contractincomesoftware`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_sale_contract_soft,
+`contractincomehardware`/(SELECT SUM(`contractincomehardware`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_sale_contract_hard,
+`contractincomeconsult`/(SELECT SUM(`contractincomeconsult`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_sale_contract_consultation,
+`contractincomeother`/(SELECT SUM(`contractincomeother`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_sale_contract_other ,
+`incometaxable`/(SELECT SUM(`incometaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_tax_corporate_taxable,
+`incometaxdeduction`/(SELECT SUM(`incometaxdeduction`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_tax_corporate_relief,
+`pensonaltaxable`/(SELECT SUM(`pensonaltaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_tax_individual_taxable,
+`pensonaltaxdecution`/(SELECT SUM(`pensonaltaxdecution`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_tax_individual_relief,
+`addvaluetaxable`/(SELECT SUM(`addvaluetaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_tax_added_taxable,
+`addvaluetaxdecution`/(SELECT SUM(`addvaluetaxdecution`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_tax_added_relief,
+`stockfinancevc`/(SELECT SUM(`stockfinancevc`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_finance_stock_risk,
+`stockfinancegovenment`/(SELECT SUM(`stockfinancegovenment`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_finance_stock_gov,
+`stockfinancepensonal`/(SELECT SUM(`stockfinancepensonal`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_finance_stock_person,
+`debtfinancebank`/(SELECT SUM(`debtfinancebank`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_finance_debt_bank,
+`debtfinanceli`/(SELECT SUM(`debtfinanceli`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_finance_debt_new,
+`debtfinancecompany`/(SELECT SUM(`debtfinancecompany`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_finance_debt_lending,
+`debtfinancepensonal`/(SELECT SUM(`debtfinancepensonal`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_finance_debt_person,
+`currentasset`/(SELECT SUM(`currentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_valuation_assets_circulating,
+`nocurrentasset`/(SELECT SUM(`nocurrentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_valuation_assets_uncirculating,
+`currentdebt`/(SELECT SUM(`currentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_valuation_assets_debt_circulating,
+`nocurrentdebt`/(SELECT SUM(`nocurrentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_valuation_assets_debt_uncirculating,
+`firstfinancevalue`/(SELECT SUM(`firstfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_valuation_actual_first,
+`lastfinancevalue`/(SELECT SUM(`lastfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_valuation_actual_latest,
+`currentfinancevalue`/(SELECT SUM(`currentfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_valuation_actual_want,
+`parttimedevelopment`/(SELECT SUM(`parttimedevelopment`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_hr_partime_dev,
+`parttimemanager`/(SELECT SUM(`parttimemanager`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_hr_partime_manage,
+`parttimeadmin`/(SELECT SUM(`parttimeadmin`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_hr_partime_admin,
+`parttimesell`/(SELECT SUM(`parttimesell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_hr_partime_saler,
+`development`/(SELECT SUM(`development`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_hr_fulltime_dev,
+`manamger`/(SELECT SUM(`manamger`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_hr_fulltime_senior,
+`admin`/(SELECT SUM(`admin`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_hr_fulltime_admin,
+`sell`/(SELECT SUM(`sell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_hr_fulltime_saler,
+`doctor`/(SELECT SUM(`doctor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_hr_educated_doc,
+`master`/(SELECT SUM(`master`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_hr_educated_master,
+`bachelor`/(SELECT SUM(`bachelor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_hr_bachelor,
+`applypatentinvent`/(SELECT SUM(`applypatentinvent`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_patent_apply_invention,
+`applypatentindustry`/(SELECT SUM(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_patent_apply_utility,
+`applypatentindustry`/(SELECT SUM(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_innovate_patent_apply_appear,
+`patentinvent`/(SELECT SUM(`patentinvent`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_patent_grant_invention,
+`patentindustry`/(SELECT SUM(`patentindustry`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_patent_grant_utility,
+`patentdesign`/(SELECT SUM(`patentdesign`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_innovate_patent_grant_appear,
+`applyauthorsoftware`/(SELECT SUM(`applyauthorsoftware`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_innovate_copyright_apply_soft,
+`applyauthorother`/(SELECT SUM(`applyauthorother`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_copyright_apply_unsoft,
+`authorsoftware`/(SELECT SUM(`authorsoftware`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_copyright_grant_soft,
+`authorother`/(SELECT SUM(`authorother`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_innovate_copyright_grant_unsoft,
+`servicepatent`/(SELECT SUM(`servicepatent`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_new_product_patent,
+`serviceskill`/(SELECT SUM(`serviceskill`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_innovate_new_product_tech,
+`servicesell`/(SELECT SUM(`servicesell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_innovate_new_product_bus,
+`salaryhigh`/(SELECT SUM(`salaryhigh`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_salary_staff_up_10,
+`salarymiddle`/(SELECT SUM(`salarymiddle`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_salary_staff_5_10,
+`salarylow`/(SELECT SUM(`salarylow`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_salary_staff_down_5,
+`persell`/(SELECT SUM(`persell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_salary_staff_contribution_meansale,
+`pertax`/(SELECT SUM(`pertax`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_salary_staff_contribution_meantax,
+`trainmanage`/(SELECT SUM(`trainmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_learn_train_manage,
+`trainlegal`/(SELECT SUM(`trainlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_learn_train_policy,
+`trainskill`/(SELECT SUM(`trainskill`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_learn_train_skill,
+`consultmanage`/(SELECT SUM(`consultmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_learn_conslted_manage,
+`consultlegal`/(SELECT SUM(`consultlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_learn_conslted_policy,
+`consultskill`/(SELECT SUM(`consultskill`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_learn_conslted_skill,
+`awarddistrict`/(SELECT SUM(`awarddistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_reward_area,
+`awardcity`/(SELECT SUM(`awardcity`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_reward_city,
+`awardprovince`/(SELECT SUM(`awardprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_brand_reward_province,
+`awardnation`/(SELECT SUM(`awardnation`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_reward_country,
+`comfirmdistrict`/(SELECT SUM(`comfirmdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})   finger_brand_recognition_area ,
+`comfirmcity`/(SELECT SUM(`comfirmcity`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_recognition_city,
+`comfirmprovince`/(SELECT SUM(`comfirmprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_brand_recognition_province,
+`comfirmnation`/(SELECT SUM(`comfirmnation`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_recognition_country,
+`supportdistrict`/(SELECT SUM(`supportdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_talent_area,
+`supportcity`/(SELECT SUM(`supportcity`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_talent_city,
+`supportprovince`/(SELECT SUM(`supportprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter}) finger_brand_talent_province,
+`supportnation`/(SELECT SUM(`supportnation`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})  finger_brand_talent_country
+from company_input WHERE year = #{year} and quarter = #{quarter}
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.swu.ai.service;
 
 import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface FingerService {
     denominator_type 分母类型：mean平均值，max最大值，min最小值，极差值range 这一项是必选，默认是mean
     */
     List<FingerResultV0> getFingerResult(Integer year, String periodType, String denominatorType, Long companyId, String companyPlate);
+
+    List<VoFingerResult> getFingerResult2(Integer year, Integer quarter, Long companyId);
+
 }

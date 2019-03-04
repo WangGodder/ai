@@ -3,6 +3,7 @@ package com.swu.ai.Controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.swu.ai.dao.UserTkDao;
+import com.swu.ai.entity.Ss;
 import com.swu.ai.entity.UserTk;
 import com.swu.ai.service.RegService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,4 +123,13 @@ public class HelloWorld {
         return new PageInfo<>(allUser);
     }
 
+    @RequestMapping("/moren")
+    @ResponseBody
+    Ss moren(@RequestParam(value = "a", required = false,defaultValue = "-1")long a, long b, long c) {
+        Ss ss = new Ss();
+        ss.setA(a);
+        ss.setB(b);
+        ss.setC(c);
+        return ss;
+    }
 }

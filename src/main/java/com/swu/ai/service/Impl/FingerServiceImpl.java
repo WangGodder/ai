@@ -1,8 +1,10 @@
 package com.swu.ai.service.Impl;
 
+import com.swu.ai.dao.CompanyDao;
 import com.swu.ai.dao.FingerDao;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.service.FingerService;
+import com.swu.ai.vo.VoFingerResult;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,10 +26,16 @@ import java.util.List;
 public class FingerServiceImpl implements FingerService {
     @Resource
     private FingerDao fingerDao;
+    @Resource
+    private CompanyDao companyDao;
 
     @Override
     public List<FingerResultV0> getFingerResult(Integer year, String periodType, String denominatorType, Long companyId, String companyPlate){
         return fingerDao.findAllResultByCondition(year, periodType, denominatorType, companyId, companyPlate);
+    }
 
+    @Override
+    public List<VoFingerResult> getFingerResult2(Integer year, Integer quarter, Long companyId){
+        return companyDao.findAllByYearAndQuarter(year,quarter);
     }
 }

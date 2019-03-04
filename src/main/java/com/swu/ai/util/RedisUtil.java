@@ -1,4 +1,4 @@
-package com.swu.ai.Util;
+package com.swu.ai.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
