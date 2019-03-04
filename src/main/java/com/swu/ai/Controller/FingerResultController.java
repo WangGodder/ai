@@ -111,15 +111,15 @@ public class FingerResultController {
      *
      * @param request
      * @param response
-     * @param file
+     * @param files
      * @return
      * @throws IOException
      */
     @RequestMapping(value = "evaluation/")
     @ResponseBody
-    public JsonResult evaluation(HttpServletRequest request, HttpServletResponse response, @RequestParam("loadFile") MultipartFile file) throws IOException {
-
-        List<String[]> list = ExcelData.getExcelData(file);
+    public JsonResult evaluation(HttpServletRequest request, HttpServletResponse response, @RequestParam("file") MultipartFile[] files) throws IOException {
+        System.out.println(files[1].getName());
+        List<String[]> list = ExcelData.getExcelData(files[0]);
         return JsonResult.success(list);
     }
 
