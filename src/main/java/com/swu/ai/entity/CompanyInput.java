@@ -2,8 +2,10 @@ package com.swu.ai.entity;
 
 import javax.persistence.*;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Table(name = "company_input")
 public class CompanyInput {
@@ -28,377 +30,377 @@ public class CompanyInput {
     /**
      * 开票软件收入
      */
-    private Double ticketincomesoftware;
+    private Double ticketincomesoftware = new Double(0);
 
     /**
      * 开票硬件收入
      */
-    private Double ticketincomehardware;
+    private Double ticketincomehardware = new Double(0);
 
     /**
      * 开票咨询收入
      */
-    private Double ticketincomeconsult;
+    private Double ticketincomeconsult = new Double(0);
 
     /**
      * 开票其他收入
      */
-    private Double ticketincomeother;
+    private Double ticketincomeother = new Double(0);
 
     /**
      * 合同软件收入
      */
-    private Double contractincomesoftware;
+    private Double contractincomesoftware = new Double(0);
 
     /**
      * 合同硬件收入
      */
-    private Double contractincomehardware;
+    private Double contractincomehardware = new Double(0);
 
     /**
      * 合同咨询收入
      */
-    private Double contractincomeconsult;
+    private Double contractincomeconsult = new Double(0);
 
     /**
      * 合同其他收入
      */
-    private Double contractincomeother;
+    private Double contractincomeother = new Double(0);
 
     /**
      * 所得税
      */
-    private Double incometaxable;
+    private Double incometaxable = new Double(0);
 
     /**
      * 所得税减免
      */
-    private Double incometaxdeduction;
+    private Double incometaxdeduction = new Double(0);
 
     /**
      * 个人所得税
      */
-    private Double pensonaltaxable;
+    private Double pensonaltaxable = new Double(0);
 
     /**
      * 个人所得税减免
      */
-    private Double pensonaltaxdecution;
+    private Double pensonaltaxdecution = new Double(0);
 
     /**
      * 附加税
      */
-    private Double addvaluetaxable;
+    private Double addvaluetaxable = new Double(0);
 
     /**
      * 附加税减免
      */
-    private Double addvaluetaxdecution;
+    private Double addvaluetaxdecution = new Double(0);
 
     /**
      * 股权风投
      */
-    private Double stockfinancevc;
+    private Double stockfinancevc = new Double(0);
 
     /**
      * 股权政府企业
      */
-    private Double stockfinancegovenment;
+    private Double stockfinancegovenment = new Double(0);
 
     /**
      * 股权个人
      */
-    private Double stockfinancepensonal;
+    private Double stockfinancepensonal = new Double(0);
 
     /**
      * 债务银行
      */
-    private Double debtfinancebank;
+    private Double debtfinancebank = new Double(0);
 
     /**
      * 债务新型借贷机构
      */
-    private Double debtfinanceli;
+    private Double debtfinanceli = new Double(0);
 
     /**
      * 债务公司拆解
      */
-    private Double debtfinancecompany;
+    private Double debtfinancecompany = new Double(0);
 
     /**
      * z债务个人
      */
-    private Double debtfinancepensonal;
+    private Double debtfinancepensonal = new Double(0);
 
     /**
      * l流动资产
      */
-    private Double currentasset;
+    private Double currentasset = new Double(0);
 
     /**
      * f非流动资产
      */
-    private Double nocurrentasset;
+    private Double nocurrentasset = new Double(0);
 
     /**
      * l流动借债
      */
-    private Double currentdebt;
+    private Double currentdebt = new Double(0);
 
     /**
      * f非流动借债
      */
-    private Double nocurrentdebt;
+    private Double nocurrentdebt = new Double(0);
 
     /**
      * s首次融资估值
      */
-    private Double firstfinancevalue;
+    private Double firstfinancevalue = new Double(0);
 
     /**
      * z最后一次融资估值
      */
-    private Double lastfinancevalue;
+    private Double lastfinancevalue = new Double(0);
 
     /**
      * x现在融资估值
      */
-    private Double currentfinancevalue;
+    private Double currentfinancevalue = new Double(0);
 
     /**
      * 兼职研发
      */
-    private Integer parttimedevelopment;
+    private Integer parttimedevelopment = new Integer(0);
 
     /**
      * j兼职管理
      */
-    private Integer parttimemanager;
+    private Integer parttimemanager = new Integer(0);
 
     /**
      * j兼职行政
      */
-    private Integer parttimeadmin;
+    private Integer parttimeadmin = new Integer(0);
 
     /**
      * j兼职销售
      */
-    private Integer parttimesell;
+    private Integer parttimesell = new Integer(0);
 
     /**
      * k开发人数
      */
-    private Integer development;
+    private Integer development = new Integer(0);
 
     /**
      * g管理人数
      */
-    private Integer manamger;
+    private Integer manamger = new Integer(0);
 
     /**
      * g行政人数
      */
-    private Integer administrator;
+    private Integer administrator = new Integer(0);
 
     /**
      * x销售人数
      */
-    private Integer sell;
+    private Integer sell = new Integer(0);
 
     /**
      * 博士人数
      */
-    private Integer doctor;
+    private Integer doctor = new Integer(0);
 
     /**
      * 硕士人数
      */
-    private Integer master;
+    private Integer master = new Integer(0);
 
     /**
      * 学士人数
      */
-    private Integer bachelor;
+    private Integer bachelor = new Integer(0);
 
     /**
      * 申请专利 发明
      */
-    private Integer applypatentinvent;
+    private Integer applypatentinvent = new Integer(0);
 
     /**
      * 申请专利 实业
      */
-    private Integer applypatentindustry;
+    private Integer applypatentindustry = new Integer(0);
 
     /**
      * 申请专利 设计
      */
-    private Integer applypatentdesign;
+    private Integer applypatentdesign = new Integer(0);
 
     /**
      * 获取专利 研发
      */
-    private Integer patentinvent;
+    private Integer patentinvent = new Integer(0);
 
     /**
      * 获取专利 实业
      */
-    private Integer patentindustry;
+    private Integer patentindustry = new Integer(0);
 
     /**
      * 获取专利 设计
      */
-    private Integer patentdesign;
+    private Integer patentdesign = new Integer(0);
 
     /**
      * 申请著作权 软件
      */
-    private Integer applyauthorsoftware;
+    private Integer applyauthorsoftware = new Integer(0);
 
     /**
      * 申请著作权 非软件
      */
-    private Integer applyauthorother;
+    private Integer applyauthorother = new Integer(0);
 
     /**
      * 著作权 软件
      */
-    private Integer authorsoftware;
+    private Integer authorsoftware = new Integer(0);
 
     /**
      * 著作权 非软件
      */
-    private Integer authorother;
+    private Integer authorother = new Integer(0);
 
     /**
      * 新产品服务数 专利类
      */
-    private Integer servicepatent;
+    private Integer servicepatent = new Integer(0);
 
     /**
      * 新产品服务数 专用技术
      */
-    private Integer serviceskill;
+    private Integer serviceskill = new Integer(0);
 
     /**
      * 新产品服务数 商业模式
      */
-    private Integer servicesell;
+    private Integer servicesell = new Integer(0);
 
     /**
      * >10000工资总数
      */
-    private Double salaryhigh;
+    private Double salaryhigh = new Double(0);
 
     /**
      * 5000-10000工资总数
      */
-    private Double salarymiddle;
+    private Double salarymiddle = new Double(0);
 
     /**
      * <5000工资总和
      */
-    private Double salarylow;
+    private Double salarylow = new Double(0);
 
     /**
      * 人均销售
      */
-    private Double persell;
+    private Double persell = new Double(0);
 
     /**
      * 人均纳税
      */
-    private Double pertax;
+    private Double pertax = new Double(0);
 
     /**
      * 参加训练次数 管理
      */
-    private Integer trainmanage;
+    private Integer trainmanage = new Integer(0);
 
     /**
      * 参加训练次数 法规
      */
-    private Integer trainlegal;
+    private Integer trainlegal = new Integer(0);
 
     /**
      * 参加训练次数 技能
      */
-    private Integer trainskill;
+    private Integer trainskill = new Integer(0);
 
     /**
      * 参与咨询次数 管理
      */
-    private Integer consultmanage;
+    private Integer consultmanage = new Integer(0);
 
     /**
      * 参与咨询次数 法规
      */
-    private Integer consultlegal;
+    private Integer consultlegal = new Integer(0);
 
     /**
      * 参与咨询次数 技能
      */
-    private Integer consultskill;
+    private Integer consultskill = new Integer(0);
 
     /**
      * 获奖次数 区级
      */
-    private Integer awarddistrict;
+    private Integer awarddistrict = new Integer(0);
 
     /**
      * 获奖次数 市级
      */
-    private Integer awardcity;
+    private Integer awardcity = new Integer(0);
 
     /**
      * 获奖次数 省级
      */
-    private Integer awardprovince;
+    private Integer awardprovince = new Integer(0);
 
     /**
      * 获奖次数 国家级
      */
-    private Integer awardnation;
+    private Integer awardnation = new Integer(0);
 
     /**
      * 认定次数 区级
      */
-    private Integer comfirmdistrict;
+    private Integer comfirmdistrict = new Integer(0);
 
     /**
      * 认定次数 市级
      */
-    private Integer comfirmcity;
+    private Integer comfirmcity = new Integer(0);
 
     /**
      * 认定次数 省级
      */
-    private Integer comfirmprovince;
+    private Integer comfirmprovince = new Integer(0);
 
     /**
      * 认定次数 国家级
      */
-    private Integer comfirmnation;
+    private Integer comfirmnation = new Integer(0);
 
     /**
      * 人才资助 区级
      */
-    private Integer supportdistrict;
+    private Integer supportdistrict = new Integer(0);
 
     /**
      * 人才资助 市级
      */
-    private Integer supportcity;
+    private Integer supportcity = new Integer(0);
 
     /**
      * 人才资助 省级
      */
-    private Integer supportprovince;
+    private Integer supportprovince = new Integer(0);
 
     /**
      * 人才资助 国家级
      */
-    private Integer supportnation;
+    private Integer supportnation = new Integer(0);
 
     /**
      * @return id
@@ -1818,14 +1820,101 @@ public class CompanyInput {
         this.supportnation = supportnation;
     }
 
+    @Override
+    public String toString() {
+        return "CompanyInput{" +
+                "id=" + id +
+                ", companyname='" + companyname + '\'' +
+                ", year=" + year +
+                ", quarter=" + quarter +
+                ", ticketincomesoftware=" + ticketincomesoftware +
+                ", ticketincomehardware=" + ticketincomehardware +
+                ", ticketincomeconsult=" + ticketincomeconsult +
+                ", ticketincomeother=" + ticketincomeother +
+                ", contractincomesoftware=" + contractincomesoftware +
+                ", contractincomehardware=" + contractincomehardware +
+                ", contractincomeconsult=" + contractincomeconsult +
+                ", contractincomeother=" + contractincomeother +
+                ", incometaxable=" + incometaxable +
+                ", incometaxdeduction=" + incometaxdeduction +
+                ", pensonaltaxable=" + pensonaltaxable +
+                ", pensonaltaxdecution=" + pensonaltaxdecution +
+                ", addvaluetaxable=" + addvaluetaxable +
+                ", addvaluetaxdecution=" + addvaluetaxdecution +
+                ", stockfinancevc=" + stockfinancevc +
+                ", stockfinancegovenment=" + stockfinancegovenment +
+                ", stockfinancepensonal=" + stockfinancepensonal +
+                ", debtfinancebank=" + debtfinancebank +
+                ", debtfinanceli=" + debtfinanceli +
+                ", debtfinancecompany=" + debtfinancecompany +
+                ", debtfinancepensonal=" + debtfinancepensonal +
+                ", currentasset=" + currentasset +
+                ", nocurrentasset=" + nocurrentasset +
+                ", currentdebt=" + currentdebt +
+                ", nocurrentdebt=" + nocurrentdebt +
+                ", firstfinancevalue=" + firstfinancevalue +
+                ", lastfinancevalue=" + lastfinancevalue +
+                ", currentfinancevalue=" + currentfinancevalue +
+                ", parttimedevelopment=" + parttimedevelopment +
+                ", parttimemanager=" + parttimemanager +
+                ", parttimeadmin=" + parttimeadmin +
+                ", parttimesell=" + parttimesell +
+                ", development=" + development +
+                ", manamger=" + manamger +
+                ", administrator=" + administrator +
+                ", sell=" + sell +
+                ", doctor=" + doctor +
+                ", master=" + master +
+                ", bachelor=" + bachelor +
+                ", applypatentinvent=" + applypatentinvent +
+                ", applypatentindustry=" + applypatentindustry +
+                ", applypatentdesign=" + applypatentdesign +
+                ", patentinvent=" + patentinvent +
+                ", patentindustry=" + patentindustry +
+                ", patentdesign=" + patentdesign +
+                ", applyauthorsoftware=" + applyauthorsoftware +
+                ", applyauthorother=" + applyauthorother +
+                ", authorsoftware=" + authorsoftware +
+                ", authorother=" + authorother +
+                ", servicepatent=" + servicepatent +
+                ", serviceskill=" + serviceskill +
+                ", servicesell=" + servicesell +
+                ", salaryhigh=" + salaryhigh +
+                ", salarymiddle=" + salarymiddle +
+                ", salarylow=" + salarylow +
+                ", persell=" + persell +
+                ", pertax=" + pertax +
+                ", trainmanage=" + trainmanage +
+                ", trainlegal=" + trainlegal +
+                ", trainskill=" + trainskill +
+                ", consultmanage=" + consultmanage +
+                ", consultlegal=" + consultlegal +
+                ", consultskill=" + consultskill +
+                ", awarddistrict=" + awarddistrict +
+                ", awardcity=" + awardcity +
+                ", awardprovince=" + awardprovince +
+                ", awardnation=" + awardnation +
+                ", comfirmdistrict=" + comfirmdistrict +
+                ", comfirmcity=" + comfirmcity +
+                ", comfirmprovince=" + comfirmprovince +
+                ", comfirmnation=" + comfirmnation +
+                ", supportdistrict=" + supportdistrict +
+                ", supportcity=" + supportcity +
+                ", supportprovince=" + supportprovince +
+                ", supportnation=" + supportnation +
+                '}';
+    }
+
     public CompanyInput() {
     }
 
-    public void input(List<String> input) {
-        Iterator<String> iterator = input.iterator();
-        Field[] fields = this.getClass().getDeclaredFields();
+    public static CompanyInput inputByArray(String[] input) {
+        CompanyInput companyInput = new CompanyInput();
+        List<String> list = Arrays.asList(input);
+        Iterator<String> iterator = list.iterator();
+        Field[] fields = CompanyInput.class.getDeclaredFields();
         try {
-            if (fields.length - 1 != input.size()) {
+            if (fields.length - 1 != input.length) {
                 throw new RuntimeException("输入的list的个数必须匹配companyInput属性个数(id属性除外)");
             }
         } catch (RuntimeException e) {
@@ -1833,19 +1922,53 @@ public class CompanyInput {
         }
         for (int i = 1; i < fields.length && iterator.hasNext(); i++) {
             fields[i].setAccessible(true);
+            String next = iterator.next();
+            if (next.isEmpty()) {
+                continue;
+            }
             try {
                 if (fields[i].getGenericType() == Integer.class) {
-                    fields[i].set(this, Integer.parseInt(iterator.next()));
+                    fields[i].set(companyInput, Integer.parseInt(iterator.next()));
                 }
                 if (fields[i].getGenericType() == Double.class) {
-                    fields[i].set(this, Double.parseDouble(iterator.next()));
+                    fields[i].set(companyInput, Double.parseDouble(iterator.next()));
                 }
                 if (fields[i].getGenericType() == String.class) {
-                    fields[i].set(this, iterator.next());
+                    fields[i].set(companyInput, iterator.next());
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
+        return companyInput;
+    }
+    public static CompanyInput inputByMap(Map<String, String[]> map){
+        CompanyInput companyInput = new CompanyInput();
+        for (Map.Entry<String, String[]> entry : map.entrySet()) {
+            try {
+                if (entry.getValue().length > 1) {
+                    throw new RuntimeException("map中 key=" + entry.getKey() + " value值不唯一");
+                }
+                if (entry.getValue().length == 0 || entry.getValue()[0].isEmpty()) {
+                    continue;
+                }
+                Field field = CompanyInput.class.getDeclaredField(entry.getKey());
+                field.setAccessible(true);
+                if (field.getGenericType() == Integer.class) {
+                    field.set(companyInput, Integer.parseInt(entry.getValue()[0]));
+                }
+                if (field.getGenericType() == Double.class) {
+                    field.set(companyInput, Double.parseDouble(entry.getValue()[0]));
+                }
+                if (field.getGenericType() == String.class) {
+                    field.set(companyInput, entry.getValue()[0]);
+                }
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return companyInput;
     }
 }

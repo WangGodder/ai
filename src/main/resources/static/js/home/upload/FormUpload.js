@@ -2,20 +2,49 @@ let FormUpload = {
     name: "FormUpload",
     methods: {
         submit: function () {
-            let form = document.getElementById("form-data")
-            let inputs = form.getElementsByTagName("input");
-            let elements = [];
-            for (let i = 0; i < inputs.length; i++) {
-                elements.push(inputs[i]);
-            }
-            let formData = new FormData();
-            for (let i = 0; i < elements.length; i++) {
-                formData.set(elements[i].name, elements[i].value);
-            }
+            // let form = document.getElementById("form-data")
+            // let inputs = form.getElementsByTagName("input");
 
-            $('#submit-btn').attr('disabled', true);
-            alert("上传成功");
-            $('#submit-btn').attr('disabled', false);
+            // let elements = [];
+            // alert(inputs[0].value.data);
+            // alert(typeof inputs[0].value.data);
+            // for (let i = 0; i < inputs.length; i++) {
+            //     elements.push(inputs[i]);
+            //     console.log(inputs[i]);
+            // }
+            let formData = new FormData();
+            // for (let i = 0; i < elements.length; i++) {
+            //     console.log(elements[i].value);
+            //     if (elements[i] == null || elements[i] === '' || elements[i] === undefined) {
+            //         console.log("is null");
+            //         formData.set(elements[i].name, 0);
+            //     } else {
+            //         formData.set(elements[i].name, elements[i].value);
+            //     }
+            // }
+
+            $('#submit-form-btn').attr('disabled', true);
+            $("#data-form").ajaxSubmit(
+                {
+                    url:"/user/formSubmit/",
+                    dataType:"json",
+                    resetForm:true,
+                    // async: false,
+                    success: function (data) {
+                        var json = data.status;
+                        if (json == 1) {
+                            sv2.warn("上传成功");
+                        } else {
+                            sv2.warn("上传失败:");
+                        }
+                    },
+                    error: function () {
+                        alert("wrong");
+                        sv2.warn("上传失败");
+                    }
+                }
+            );
+            $('#submit-form-btn').attr('disabled', false);
 
             // $.ajax({
             //     data: formData,
@@ -25,6 +54,7 @@ let FormUpload = {
     },
     template:
         " <div id=\"form-data\" class=\"row\">\n" +
+        "<form id='data-form' type='multipart/form-data' method='post' name='data-form'>\n" +
         "        <div class=\"panel panel-danger\">\n" +
         "            <!--录入批次-->\n" +
         "            <div class=\"panel-heading\">\n" +
@@ -159,14 +189,14 @@ let FormUpload = {
         "                    <div class=\"block-show \">\n" +
         "                        <div class=\"input-group input-group-lg\">\n" +
         "                            <span class=\"input-group-addon\">应纳税值</span>\n" +
-        "                            <input id=\"personal-taxable\" name=\"personaltaxable\" type=\"number\" class=\"form-control\">\n" +
+        "                            <input id=\"personal-taxable\" name=\"pensonaltaxable\" type=\"number\" class=\"form-control\">\n" +
         "                            <span class=\"input-group-addon\">万元</span>\n" +
         "                        </div>\n" +
         "                    </div>\n" +
         "                    <div class=\"block-show \">\n" +
         "                        <div class=\"input-group input-group-lg\">\n" +
         "                            <span class=\"input-group-addon\">税收减免</span>\n" +
-        "                            <input id=\"personal-tax-deduction\" name=\"personaltaxdedection\" type=\"number\" class=\"form-control\">\n" +
+        "                            <input id=\"personal-tax-deduction\" name=\"pensonaltaxdedection\" type=\"number\" class=\"form-control\">\n" +
         "                            <span class=\"input-group-addon\">万元</span>\n" +
         "                        </div>\n" +
         "                    </div>\n" +
@@ -188,7 +218,7 @@ let FormUpload = {
         "                    <div class=\"block-show \">\n" +
         "                        <div class=\"input-group input-group-lg\">\n" +
         "                            <span class=\"input-group-addon\">税收减免</span>\n" +
-        "                            <input id=\"add-value-tax-deduction\" name=\"addvaluetaxdeduction\" type=\"number\" class=\"form-control\">\n" +
+        "                            <input id=\"add-value-tax-deduction\" name=\"addvaluetaxdecution\" type=\"number\" class=\"form-control\">\n" +
         "                            <span class=\"input-group-addon\">万元</span>\n" +
         "                        </div>\n" +
         "                    </div>\n" +
@@ -212,14 +242,14 @@ let FormUpload = {
         "                <div class=\"block-show col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
         "                    <div class=\"input-group input-group-lg\">\n" +
         "                        <span class=\"input-group-addon\">政府企业</span>\n" +
-        "                        <input id=\"stock-finance-government\" name=\"stockfinancegovernment\" type=\"number\" class=\"form-control\">\n" +
+        "                        <input id=\"stock-finance-government\" name=\"stockfinancegovenment\" type=\"number\" class=\"form-control\">\n" +
         "                        <span class=\"input-group-addon\">万元</span>\n" +
         "                    </div>\n" +
         "                </div>\n" +
         "                <div class=\"block-show col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
         "                    <div class=\"input-group input-group-lg\">\n" +
         "                        <span class=\"input-group-addon\">个人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\n" +
-        "                        <input id=\"stock-finance-person\" name=\"stockfinanceperson\" type=\"number\" class=\"form-control\">\n" +
+        "                        <input id=\"stock-finance-person\" name=\"stockfinancepensonal\" type=\"number\" class=\"form-control\">\n" +
         "                        <span class=\"input-group-addon\">万元</span>\n" +
         "                    </div>\n" +
         "                </div>\n" +
@@ -253,7 +283,7 @@ let FormUpload = {
         "                <div class=\"block-show col-lg-3 col-md-3 col-sm-3 col-xs-3\">\n" +
         "                    <div class=\"input-group input-group-lg\">\n" +
         "                        <span class=\"input-group-addon\">个人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\n" +
-        "                        <input id=\"debt-finance-person\" name=\"debtfinanceperson\" type=\"number\" class=\"form-control\">\n" +
+        "                        <input id=\"debt-finance-person\" name=\"debtfinancepensonal\" type=\"number\" class=\"form-control\">\n" +
         "                        <span class=\"input-group-addon\">万元</span>\n" +
         "                    </div>\n" +
         "                </div>\n" +
@@ -374,14 +404,14 @@ let FormUpload = {
         "                <div class=\"block-show col-lg-3 col-md-3 col-sm-3 col-xs-3\">\n" +
         "                    <div class=\"input-group input-group-lg\">\n" +
         "                        <span class=\"input-group-addon\">高管</span>\n" +
-        "                        <input id=\"manager\" name=\"manager\" type=\"number\" class=\"form-control\">\n" +
+        "                        <input id=\"manager\" name=\"manamger\" type=\"number\" class=\"form-control\">\n" +
         "                        <span class=\"input-group-addon\">人</span>\n" +
         "                    </div>\n" +
         "                </div>\n" +
         "                <div class=\"block-show col-lg-3 col-md-3 col-sm-3 col-xs-3\">\n" +
         "                    <div class=\"input-group input-group-lg\">\n" +
         "                        <span class=\"input-group-addon\">行政</span>\n" +
-        "                        <input id=\"admin\" name=\"admin\" type=\"number\" class=\"form-control\">\n" +
+        "                        <input id=\"admin\" name=\"administrator\" type=\"number\" class=\"form-control\">\n" +
         "                        <span class=\"input-group-addon\">人</span>\n" +
         "                    </div>\n" +
         "                </div>\n" +
@@ -710,7 +740,7 @@ let FormUpload = {
         "                    <div class=\"block-show col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
         "                        <div class=\"input-group input-group-lg\">\n" +
         "                            <span class=\"input-group-addon\">区级</span>\n" +
-        "                            <input id=\"confirm-district\" name=\"confirmdistrict\" type=\"number\" class=\"form-control\">\n" +
+        "                            <input id=\"confirm-district\" name=\"comfirmdistrict\" type=\"number\" class=\"form-control\">\n" +
         "                            <span class=\"input-group-addon\">次</span>\n" +
         "                        </div>\n" +
         "                    </div>\n" +
@@ -724,14 +754,14 @@ let FormUpload = {
         "                    <div class=\"block-show col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
         "                        <div class=\"input-group input-group-lg\">\n" +
         "                            <span class=\"input-group-addon\">省级</span>\n" +
-        "                            <input id=\"confirm-province\" name=\"confirmprovince\" type=\"number\" class=\"form-control\">\n" +
+        "                            <input id=\"confirm-province\" name=\"comfirmprovince\" type=\"number\" class=\"form-control\">\n" +
         "                            <span class=\"input-group-addon\">次</span>\n" +
         "                        </div>\n" +
         "                    </div>\n" +
         "                    <div class=\"block-show col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
         "                        <div class=\"input-group input-group-lg\">\n" +
         "                            <span class=\"input-group-addon\">国家级</span>\n" +
-        "                            <input id=\"confirm-nation\" name=\"confirmnation\" type=\"number\" class=\"form-control\">\n" +
+        "                            <input id=\"confirm-nation\" name=\"comfirmnation\" type=\"number\" class=\"form-control\">\n" +
         "                            <span class=\"input-group-addon\">次</span>\n" +
         "                        </div>\n" +
         "                    </div>\n" +
@@ -787,8 +817,10 @@ let FormUpload = {
         "            </div>\n" +
         "        </div>\n" +
         "\n" +
-        "        <button id=\"submit-btn\" class=\"btn btn-warning btn-lg btn-block\" v-on:click=\"submit($event)\">\n" +
+        "        <div id=\"submit-form-btn\" class=\"btn btn-warning btn-lg btn-block\" v-on:click=\"submit()\">\n" +
         "            已确认无误并上传\n" +
-        "        </button>\n" +
-        "    </div>",
+        "        </div>\n" +
+        "    </form>\n" +
+        // "<iframe name='hidden_frame' id=\"hidden_frame\" style=\"display:none\"></iframe>   \n" +
+        "</div>" ,
 }

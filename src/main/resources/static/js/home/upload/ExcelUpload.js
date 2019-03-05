@@ -1,8 +1,9 @@
 let ExcelUpload = {
     name: "ExcelUpload",
     methods: {
-        download_template : function () {
-
+        download_template: function () {
+            const url = "/user/downloadFile/";
+            window.location = url;
         },
         submit: function () {
             $('submit-btn').attr('disabled', true);
@@ -17,15 +18,14 @@ let ExcelUpload = {
                         if (json == 1) {
                             sv2.warn("上传成功");
                         } else {
-                            sv2.warn("上传失败");
+                            sv2.warn("上传失败:" + data.message);
                         }
                     },
                     error: function () {
-                        alert("上传失败，请重新选择文件");
+                        sv2.warn("上传失败");
                     }
                 }
             );
-            alert("上传成功");
             $('submit-btn').attr('disabled', false);
         }
     },
