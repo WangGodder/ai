@@ -22,9 +22,10 @@
     <script type="text/javascript" src="/js/home/UploadPage.js"></script>
     <script type="text/javascript" src="/js/home/utils.js"></script>
     <script type="text/javascript" src="/js/home/App.js"></script>
-    <script type = text/javascript src="/js/utils.js"></script>
     <script type = text/javascript src="/js/lib/jquery.form.js"></script>
-
+    <script type = text/javascript src="/js/utils.js"></script>
+    <script type = text/javascript src="/js/layui/layui.all.js"></script>
+    <script type = text/javascript src="/js/common/sv2.js"></script>
 </head>
 <body>
 <div id="app">

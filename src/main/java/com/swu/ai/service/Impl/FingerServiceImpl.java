@@ -36,6 +36,6 @@ public class FingerServiceImpl implements FingerService {
 
     @Override
     public List<VoFingerResult> getFingerResult2(Integer year, Integer quarter, Long companyId){
-        return null;
+        return companyInputDaoDao.findAllByYearAndQuarter(year,quarter);
     }
 }
