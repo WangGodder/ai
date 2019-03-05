@@ -17,6 +17,10 @@ public class CompanyInput {
      */
     private String companyname;
 
+    private String industry;
+
+    private String region;
+
     /**
      * 年
      */
@@ -432,6 +436,22 @@ public class CompanyInput {
      */
     public void setCompanyname(String companyname) {
         this.companyname = companyname == null ? null : companyname.trim();
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     /**
@@ -1087,7 +1107,7 @@ public class CompanyInput {
      *
      * @return administrator - g行政人数
      */
-    public Integer administrator() {
+    public Integer getAdministrator() {
         return administrator;
     }
 
@@ -1096,7 +1116,7 @@ public class CompanyInput {
      *
      * @param administrator g行政人数
      */
-    public void administrator(Integer administrator) {
+    public void setAdministrator(Integer administrator) {
         this.administrator = administrator;
     }
 
@@ -1905,8 +1925,6 @@ public class CompanyInput {
                 '}';
     }
 
-    public CompanyInput() {
-    }
 
     public static CompanyInput inputByArray(String[] input) {
         CompanyInput companyInput = new CompanyInput();
