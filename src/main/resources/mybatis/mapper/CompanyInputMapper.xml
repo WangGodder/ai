@@ -1,612 +1,614 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.swu.ai.mapper.CompanyInputMapper">
-  <resultMap id="BaseResultMap" type="com.swu.ai.entity.CompanyInput">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="companyname" jdbcType="VARCHAR" property="companyname" />
-    <result column="year" jdbcType="INTEGER" property="year" />
-    <result column="quarter" jdbcType="INTEGER" property="quarter" />
-    <result column="ticketincomesoftware" jdbcType="DOUBLE" property="ticketincomesoftware" />
-    <result column="ticketincomehardware" jdbcType="DOUBLE" property="ticketincomehardware" />
-    <result column="ticketincomeconsult" jdbcType="DOUBLE" property="ticketincomeconsult" />
-    <result column="ticketincomeother" jdbcType="DOUBLE" property="ticketincomeother" />
-    <result column="contractincomesoftware" jdbcType="DOUBLE" property="contractincomesoftware" />
-    <result column="contractincomehardware" jdbcType="DOUBLE" property="contractincomehardware" />
-    <result column="contractincomeconsult" jdbcType="DOUBLE" property="contractincomeconsult" />
-    <result column="contractincomeother" jdbcType="DOUBLE" property="contractincomeother" />
-    <result column="incometaxable" jdbcType="DOUBLE" property="incometaxable" />
-    <result column="incometaxdeduction" jdbcType="DOUBLE" property="incometaxdeduction" />
-    <result column="pensonaltaxable" jdbcType="DOUBLE" property="pensonaltaxable" />
-    <result column="pensonaltaxdecution" jdbcType="DOUBLE" property="pensonaltaxdecution" />
-    <result column="addvaluetaxable" jdbcType="DOUBLE" property="addvaluetaxable" />
-    <result column="addvaluetaxdecution" jdbcType="DOUBLE" property="addvaluetaxdecution" />
-    <result column="stockfinancevc" jdbcType="DOUBLE" property="stockfinancevc" />
-    <result column="stockfinancegovenment" jdbcType="DOUBLE" property="stockfinancegovenment" />
-    <result column="stockfinancepensonal" jdbcType="DOUBLE" property="stockfinancepensonal" />
-    <result column="debtfinancebank" jdbcType="DOUBLE" property="debtfinancebank" />
-    <result column="debtfinanceli" jdbcType="DOUBLE" property="debtfinanceli" />
-    <result column="debtfinancecompany" jdbcType="DOUBLE" property="debtfinancecompany" />
-    <result column="debtfinancepensonal" jdbcType="DOUBLE" property="debtfinancepensonal" />
-    <result column="currentasset" jdbcType="DOUBLE" property="currentasset" />
-    <result column="nocurrentasset" jdbcType="DOUBLE" property="nocurrentasset" />
-    <result column="currentdebt" jdbcType="DOUBLE" property="currentdebt" />
-    <result column="nocurrentdebt" jdbcType="DOUBLE" property="nocurrentdebt" />
-    <result column="firstfinancevalue" jdbcType="DOUBLE" property="firstfinancevalue" />
-    <result column="lastfinancevalue" jdbcType="DOUBLE" property="lastfinancevalue" />
-    <result column="currentfinancevalue" jdbcType="DOUBLE" property="currentfinancevalue" />
-    <result column="parttimedevelopment" jdbcType="INTEGER" property="parttimedevelopment" />
-    <result column="parttimemanager" jdbcType="INTEGER" property="parttimemanager" />
-    <result column="parttimeadmin" jdbcType="INTEGER" property="parttimeadmin" />
-    <result column="parttimesell" jdbcType="INTEGER" property="parttimesell" />
-    <result column="development" jdbcType="INTEGER" property="development" />
-    <result column="manamger" jdbcType="INTEGER" property="manamger" />
-    <result column="administrator" jdbcType="INTEGER" property="administrator" />
-    <result column="sell" jdbcType="INTEGER" property="sell" />
-    <result column="doctor" jdbcType="INTEGER" property="doctor" />
-    <result column="master" jdbcType="INTEGER" property="master" />
-    <result column="bachelor" jdbcType="INTEGER" property="bachelor" />
-    <result column="applypatentinvent" jdbcType="INTEGER" property="applypatentinvent" />
-    <result column="applypatentindustry" jdbcType="INTEGER" property="applypatentindustry" />
-    <result column="applypatentdesign" jdbcType="INTEGER" property="applypatentdesign" />
-    <result column="patentinvent" jdbcType="INTEGER" property="patentinvent" />
-    <result column="patentindustry" jdbcType="INTEGER" property="patentindustry" />
-    <result column="patentdesign" jdbcType="INTEGER" property="patentdesign" />
-    <result column="applyauthorsoftware" jdbcType="INTEGER" property="applyauthorsoftware" />
-    <result column="applyauthorother" jdbcType="INTEGER" property="applyauthorother" />
-    <result column="authorsoftware" jdbcType="INTEGER" property="authorsoftware" />
-    <result column="authorother" jdbcType="INTEGER" property="authorother" />
-    <result column="servicepatent" jdbcType="INTEGER" property="servicepatent" />
-    <result column="serviceskill" jdbcType="INTEGER" property="serviceskill" />
-    <result column="servicesell" jdbcType="INTEGER" property="servicesell" />
-    <result column="salaryhigh" jdbcType="DOUBLE" property="salaryhigh" />
-    <result column="salarymiddle" jdbcType="DOUBLE" property="salarymiddle" />
-    <result column="salarylow" jdbcType="DOUBLE" property="salarylow" />
-    <result column="persell" jdbcType="DOUBLE" property="persell" />
-    <result column="pertax" jdbcType="DOUBLE" property="pertax" />
-    <result column="trainmanage" jdbcType="INTEGER" property="trainmanage" />
-    <result column="trainlegal" jdbcType="INTEGER" property="trainlegal" />
-    <result column="trainskill" jdbcType="INTEGER" property="trainskill" />
-    <result column="consultmanage" jdbcType="INTEGER" property="consultmanage" />
-    <result column="consultlegal" jdbcType="INTEGER" property="consultlegal" />
-    <result column="consultskill" jdbcType="INTEGER" property="consultskill" />
-    <result column="awarddistrict" jdbcType="INTEGER" property="awarddistrict" />
-    <result column="awardcity" jdbcType="INTEGER" property="awardcity" />
-    <result column="awardprovince" jdbcType="INTEGER" property="awardprovince" />
-    <result column="awardnation" jdbcType="INTEGER" property="awardnation" />
-    <result column="comfirmdistrict" jdbcType="INTEGER" property="comfirmdistrict" />
-    <result column="comfirmcity" jdbcType="INTEGER" property="comfirmcity" />
-    <result column="comfirmprovince" jdbcType="INTEGER" property="comfirmprovince" />
-    <result column="comfirmnation" jdbcType="INTEGER" property="comfirmnation" />
-    <result column="supportdistrict" jdbcType="INTEGER" property="supportdistrict" />
-    <result column="supportcity" jdbcType="INTEGER" property="supportcity" />
-    <result column="supportprovince" jdbcType="INTEGER" property="supportprovince" />
-    <result column="supportnation" jdbcType="INTEGER" property="supportnation" />
-  </resultMap>
-  <insert id="insertCompanyInput" parameterType="CompanyInput" useGeneratedKeys="true">
-      insert into company_input (id, companyname, industry,
-      region, year, quarter,
-      ticketincomesoftware, ticketincomehardware,
-      ticketincomeconsult, ticketincomeother, contractincomesoftware,
-      contractincomehardware, contractincomeconsult,
-      contractincomeother, incometaxable, incometaxdeduction,
-      pensonaltaxable, pensonaltaxdecution, addvaluetaxable,
-      addvaluetaxdecution, stockfinancevc, stockfinancegovenment,
-      stockfinancepensonal, debtfinancebank, debtfinanceli,
-      debtfinancecompany, debtfinancepensonal,
-      currentasset, nocurrentasset, currentdebt,
-      nocurrentdebt, firstfinancevalue, lastfinancevalue,
-      currentfinancevalue, parttimedevelopment,
-      parttimemanager, parttimeadmin, parttimesell,
-      development, manamger, administrator,
-      sell, doctor, master,
-      bachelor, applypatentinvent, applypatentindustry,
-      applypatentdesign, patentinvent, patentindustry,
-      patentdesign, applyauthorsoftware, applyauthorother,
-      authorsoftware, authorother, servicepatent,
-      serviceskill, servicesell, salaryhigh,
-      salarymiddle, salarylow, persell,
-      pertax, trainmanage, trainlegal,
-      trainskill, consultmanage, consultlegal,
-      consultskill, awarddistrict, awardcity,
-      awardprovince, awardnation, comfirmdistrict,
-      comfirmcity, comfirmprovince, comfirmnation,
-      supportdistrict, supportcity, supportprovince,
-      supportnation)
-      values (#{id,jdbcType=BIGINT}, #{companyname,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR},
-      #{region,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{quarter,jdbcType=INTEGER},
-      #{ticketincomesoftware,jdbcType=DOUBLE}, #{ticketincomehardware,jdbcType=DOUBLE},
-      #{ticketincomeconsult,jdbcType=DOUBLE}, #{ticketincomeother,jdbcType=DOUBLE}, #{contractincomesoftware,jdbcType=DOUBLE},
-      #{contractincomehardware,jdbcType=DOUBLE}, #{contractincomeconsult,jdbcType=DOUBLE},
-      #{contractincomeother,jdbcType=DOUBLE}, #{incometaxable,jdbcType=DOUBLE}, #{incometaxdeduction,jdbcType=DOUBLE},
-      #{pensonaltaxable,jdbcType=DOUBLE}, #{pensonaltaxdecution,jdbcType=DOUBLE}, #{addvaluetaxable,jdbcType=DOUBLE},
-      #{addvaluetaxdecution,jdbcType=DOUBLE}, #{stockfinancevc,jdbcType=DOUBLE}, #{stockfinancegovenment,jdbcType=DOUBLE},
-      #{stockfinancepensonal,jdbcType=DOUBLE}, #{debtfinancebank,jdbcType=DOUBLE}, #{debtfinanceli,jdbcType=DOUBLE},
-      #{debtfinancecompany,jdbcType=DOUBLE}, #{debtfinancepensonal,jdbcType=DOUBLE},
-      #{currentasset,jdbcType=DOUBLE}, #{nocurrentasset,jdbcType=DOUBLE}, #{currentdebt,jdbcType=DOUBLE},
-      #{nocurrentdebt,jdbcType=DOUBLE}, #{firstfinancevalue,jdbcType=DOUBLE}, #{lastfinancevalue,jdbcType=DOUBLE},
-      #{currentfinancevalue,jdbcType=DOUBLE}, #{parttimedevelopment,jdbcType=INTEGER},
-      #{parttimemanager,jdbcType=INTEGER}, #{parttimeadmin,jdbcType=INTEGER}, #{parttimesell,jdbcType=INTEGER},
-      #{development,jdbcType=INTEGER}, #{manamger,jdbcType=INTEGER}, #{administrator,jdbcType=INTEGER},
-      #{sell,jdbcType=INTEGER}, #{doctor,jdbcType=INTEGER}, #{master,jdbcType=INTEGER},
-      #{bachelor,jdbcType=INTEGER}, #{applypatentinvent,jdbcType=INTEGER}, #{applypatentindustry,jdbcType=INTEGER},
-      #{applypatentdesign,jdbcType=INTEGER}, #{patentinvent,jdbcType=INTEGER}, #{patentindustry,jdbcType=INTEGER},
-      #{patentdesign,jdbcType=INTEGER}, #{applyauthorsoftware,jdbcType=INTEGER}, #{applyauthorother,jdbcType=INTEGER},
-      #{authorsoftware,jdbcType=INTEGER}, #{authorother,jdbcType=INTEGER}, #{servicepatent,jdbcType=INTEGER},
-      #{serviceskill,jdbcType=INTEGER}, #{servicesell,jdbcType=INTEGER}, #{salaryhigh,jdbcType=DOUBLE},
-      #{salarymiddle,jdbcType=DOUBLE}, #{salarylow,jdbcType=DOUBLE}, #{persell,jdbcType=DOUBLE},
-      #{pertax,jdbcType=DOUBLE}, #{trainmanage,jdbcType=INTEGER}, #{trainlegal,jdbcType=INTEGER},
-      #{trainskill,jdbcType=INTEGER}, #{consultmanage,jdbcType=INTEGER}, #{consultlegal,jdbcType=INTEGER},
-      #{consultskill,jdbcType=INTEGER}, #{awarddistrict,jdbcType=INTEGER}, #{awardcity,jdbcType=INTEGER},
-      #{awardprovince,jdbcType=INTEGER}, #{awardnation,jdbcType=INTEGER}, #{comfirmdistrict,jdbcType=INTEGER},
-      #{comfirmcity,jdbcType=INTEGER}, #{comfirmprovince,jdbcType=INTEGER}, #{comfirmnation,jdbcType=INTEGER},
-      #{supportdistrict,jdbcType=INTEGER}, #{supportcity,jdbcType=INTEGER}, #{supportprovince,jdbcType=INTEGER},
-      #{supportnation,jdbcType=INTEGER})
-      <!--insert into company_input-->
-      <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
-              <!--companyname, year, quarter,-->
-          <!--<if test="ticketincomesoftware != null">-->
-              <!--ticketincomesoftware,-->
-          <!--</if>-->
-          <!--<if test="ticketincomehardware != null">-->
-              <!--ticketincomehardware,-->
-          <!--</if>-->
-          <!--<if test="ticketincomeconsult != null">-->
-              <!--ticketincomeconsult,-->
-          <!--</if>-->
-          <!--<if test="ticketincomeother != null">-->
-              <!--ticketincomeother,-->
-          <!--</if>-->
-          <!--<if test="contractincomesoftware != null">-->
-              <!--contractincomesoftware,-->
-          <!--</if>-->
-          <!--<if test="contractincomehardware != null">-->
-              <!--contractincomehardware,-->
-          <!--</if>-->
-          <!--<if test="contractincomeconsult != null">-->
-              <!--contractincomeconsult,-->
-          <!--</if>-->
-          <!--<if test="contractincomeother != null">-->
-              <!--contractincomeother,-->
-          <!--</if>-->
-          <!--<if test="incometaxable != null">-->
-              <!--incometaxable,-->
-          <!--</if>-->
-          <!--<if test="incometaxdeduction != null">-->
-              <!--incometaxdeduction,-->
-          <!--</if>-->
-          <!--<if test="pensonaltaxable != null">-->
-              <!--pensonaltaxable,-->
-          <!--</if>-->
-          <!--<if test="pensonaltaxdecution != null">-->
-              <!--pensonaltaxdecution,-->
-          <!--</if>-->
-          <!--<if test="addvaluetaxable != null">-->
-              <!--addvaluetaxable,-->
-          <!--</if>-->
-          <!--<if test="addvaluetaxdecution != null">-->
-              <!--addvaluetaxdecution,-->
-          <!--</if>-->
-          <!--<if test="stockfinancevc != null">-->
-              <!--stockfinancevc,-->
-          <!--</if>-->
-          <!--<if test="stockfinancegovenment != null">-->
-              <!--stockfinancegovenment,-->
-          <!--</if>-->
-          <!--<if test="stockfinancepensonal != null">-->
-              <!--stockfinancepensonal,-->
-          <!--</if>-->
-          <!--<if test="debtfinancebank != null">-->
-              <!--debtfinancebank,-->
-          <!--</if>-->
-          <!--<if test="debtfinanceli != null">-->
-              <!--debtfinanceli,-->
-          <!--</if>-->
-          <!--<if test="debtfinancecompany != null">-->
-              <!--debtfinancecompany,-->
-          <!--</if>-->
-          <!--<if test="debtfinancepensonal != null">-->
-              <!--debtfinancepensonal,-->
-          <!--</if>-->
-          <!--<if test="currentasset != null">-->
-              <!--currentasset,-->
-          <!--</if>-->
-          <!--<if test="nocurrentasset != null">-->
-              <!--nocurrentasset,-->
-          <!--</if>-->
-          <!--<if test="currentdebt != null">-->
-              <!--currentdebt,-->
-          <!--</if>-->
-          <!--<if test="nocurrentdebt != null">-->
-              <!--nocurrentdebt,-->
-          <!--</if>-->
-          <!--<if test="firstfinancevalue != null">-->
-              <!--firstfinancevalue,-->
-          <!--</if>-->
-          <!--<if test="lastfinancevalue != null">-->
-              <!--lastfinancevalue,-->
-          <!--</if>-->
-          <!--<if test="currentfinancevalue != null">-->
-              <!--currentfinancevalue,-->
-          <!--</if>-->
-          <!--<if test="parttimedevelopment != null">-->
-              <!--parttimedevelopment,-->
-          <!--</if>-->
-          <!--<if test="parttimemanager != null">-->
-              <!--parttimemanager,-->
-          <!--</if>-->
-          <!--<if test="parttimeadmin != null">-->
-              <!--parttimeadmin,-->
-          <!--</if>-->
-          <!--<if test="parttimesell != null">-->
-              <!--parttimesell,-->
-          <!--</if>-->
-          <!--<if test="development != null">-->
-              <!--development,-->
-          <!--</if>-->
-          <!--<if test="manamger != null">-->
-              <!--manamger,-->
-          <!--</if>-->
-          <!--<if test="administrator != null">-->
-              <!--administrator,-->
-          <!--</if>-->
-          <!--<if test="sell != null">-->
-              <!--sell,-->
-          <!--</if>-->
-          <!--<if test="doctor != null">-->
-              <!--doctor,-->
-          <!--</if>-->
-          <!--<if test="master != null">-->
-              <!--master,-->
-          <!--</if>-->
-          <!--<if test="bachelor != null">-->
-              <!--bachelor,-->
-          <!--</if>-->
-          <!--<if test="applypatentinvent != null">-->
-              <!--applypatentinvent,-->
-          <!--</if>-->
-          <!--<if test="applypatentindustry != null">-->
-              <!--applypatentindustry,-->
-          <!--</if>-->
-          <!--<if test="applypatentdesign != null">-->
-              <!--applypatentdesign,-->
-          <!--</if>-->
-          <!--<if test="patentinvent != null">-->
-              <!--patentinvent,-->
-          <!--</if>-->
-          <!--<if test="patentindustry != null">-->
-              <!--patentindustry,-->
-          <!--</if>-->
-          <!--<if test="patentdesign != null">-->
-              <!--patentdesign,-->
-          <!--</if>-->
-          <!--<if test="applyauthorsoftware != null">-->
-              <!--applyauthorsoftware,-->
-          <!--</if>-->
-          <!--<if test="applyauthorother != null">-->
-              <!--applyauthorother,-->
-          <!--</if>-->
-          <!--<if test="authorsoftware != null">-->
-              <!--authorsoftware,-->
-          <!--</if>-->
-          <!--<if test="authorother != null">-->
-              <!--authorother,-->
-          <!--</if>-->
-          <!--<if test="servicepatent != null">-->
-              <!--servicepatent,-->
-          <!--</if>-->
-          <!--<if test="serviceskill != null">-->
-              <!--serviceskill,-->
-          <!--</if>-->
-          <!--<if test="servicesell != null">-->
-              <!--servicesell,-->
-          <!--</if>-->
-          <!--<if test="salaryhigh != null">-->
-              <!--salaryhigh,-->
-          <!--</if>-->
-          <!--<if test="salarymiddle != null">-->
-              <!--salarymiddle,-->
-          <!--</if>-->
-          <!--<if test="salarylow != null">-->
-              <!--salarylow,-->
-          <!--</if>-->
-          <!--<if test="persell != null">-->
-              <!--persell,-->
-          <!--</if>-->
-          <!--<if test="pertax != null">-->
-              <!--pertax,-->
-          <!--</if>-->
-          <!--<if test="trainmanage != null">-->
-              <!--trainmanage,-->
-          <!--</if>-->
-          <!--<if test="trainlegal != null">-->
-              <!--trainlegal,-->
-          <!--</if>-->
-          <!--<if test="trainskill != null">-->
-              <!--trainskill,-->
-          <!--</if>-->
-          <!--<if test="consultmanage != null">-->
-              <!--consultmanage,-->
-          <!--</if>-->
-          <!--<if test="consultlegal != null">-->
-              <!--consultlegal,-->
-          <!--</if>-->
-          <!--<if test="consultskill != null">-->
-              <!--consultskill,-->
-          <!--</if>-->
-          <!--<if test="awarddistrict != null">-->
-              <!--awarddistrict,-->
-          <!--</if>-->
-          <!--<if test="awardcity != null">-->
-              <!--awardcity,-->
-          <!--</if>-->
-          <!--<if test="awardprovince != null">-->
-              <!--awardprovince,-->
-          <!--</if>-->
-          <!--<if test="awardnation != null">-->
-              <!--awardnation,-->
-          <!--</if>-->
-          <!--<if test="comfirmdistrict != null">-->
-              <!--comfirmdistrict,-->
-          <!--</if>-->
-          <!--<if test="comfirmcity != null">-->
-              <!--comfirmcity,-->
-          <!--</if>-->
-          <!--<if test="comfirmprovince != null">-->
-              <!--comfirmprovince,-->
-          <!--</if>-->
-          <!--<if test="comfirmnation != null">-->
-              <!--comfirmnation,-->
-          <!--</if>-->
-          <!--<if test="supportdistrict != null">-->
-              <!--supportdistrict,-->
-          <!--</if>-->
-          <!--<if test="supportcity != null">-->
-              <!--supportcity,-->
-          <!--</if>-->
-          <!--<if test="supportprovince != null">-->
-              <!--supportprovince,-->
-          <!--</if>-->
-          <!--<if test="supportnation != null">-->
-              <!--supportnation,-->
-          <!--</if>-->
-      <!--</trim>-->
-      <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
-              <!--#{companyname,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{quarter,jdbcType=INTEGER},-->
-          <!--<if test="ticketincomesoftware != 0">-->
-              <!--#{ticketincomesoftware,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="ticketincomehardware != null">-->
-              <!--#{ticketincomehardware,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="ticketincomeconsult != null">-->
-              <!--#{ticketincomeconsult,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="ticketincomeother != null">-->
-              <!--#{ticketincomeother,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="contractincomesoftware != null">-->
-              <!--#{contractincomesoftware,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="contractincomehardware != null">-->
-              <!--#{contractincomehardware,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="contractincomeconsult != null">-->
-              <!--#{contractincomeconsult,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="contractincomeother != null">-->
-              <!--#{contractincomeother,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="incometaxable != null">-->
-              <!--#{incometaxable,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="incometaxdeduction != null">-->
-              <!--#{incometaxdeduction,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="pensonaltaxable != null">-->
-              <!--#{pensonaltaxable,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="pensonaltaxdecution != null">-->
-              <!--#{pensonaltaxdecution,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="addvaluetaxable != null">-->
-              <!--#{addvaluetaxable,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="addvaluetaxdecution != null">-->
-              <!--#{addvaluetaxdecution,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="stockfinancevc != null">-->
-              <!--#{stockfinancevc,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="stockfinancegovenment != null">-->
-              <!--#{stockfinancegovenment,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="stockfinancepensonal != null">-->
-              <!--#{stockfinancepensonal,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="debtfinancebank != null">-->
-              <!--#{debtfinancebank,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="debtfinanceli != null">-->
-              <!--#{debtfinanceli,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="debtfinancecompany != null">-->
-              <!--#{debtfinancecompany,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="debtfinancepensonal != null">-->
-              <!--#{debtfinancepensonal,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="currentasset != null">-->
-              <!--#{currentasset,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="nocurrentasset != null">-->
-              <!--#{nocurrentasset,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="currentdebt != null">-->
-              <!--#{currentdebt,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="nocurrentdebt != null">-->
-              <!--#{nocurrentdebt,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="firstfinancevalue != null">-->
-              <!--#{firstfinancevalue,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="lastfinancevalue != null">-->
-              <!--#{lastfinancevalue,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="currentfinancevalue != null">-->
-              <!--#{currentfinancevalue,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="parttimedevelopment != null">-->
-              <!--#{parttimedevelopment,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="parttimemanager != null">-->
-              <!--#{parttimemanager,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="parttimeadmin != null">-->
-              <!--#{parttimeadmin,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="parttimesell != null">-->
-              <!--#{parttimesell,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="development != null">-->
-              <!--#{development,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="manamger != null">-->
-              <!--#{manamger,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="administrator != null">-->
-              <!--#{administrator,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="sell != null">-->
-              <!--#{sell,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="doctor != null">-->
-              <!--#{doctor,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="master != null">-->
-              <!--#{master,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="bachelor != null">-->
-              <!--#{bachelor,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="applypatentinvent != null">-->
-              <!--#{applypatentinvent,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="applypatentindustry != null">-->
-              <!--#{applypatentindustry,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="applypatentdesign != null">-->
-              <!--#{applypatentdesign,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="patentinvent != null">-->
-              <!--#{patentinvent,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="patentindustry != null">-->
-              <!--#{patentindustry,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="patentdesign != null">-->
-              <!--#{patentdesign,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="applyauthorsoftware != null">-->
-              <!--#{applyauthorsoftware,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="applyauthorother != null">-->
-              <!--#{applyauthorother,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="authorsoftware != null">-->
-              <!--#{authorsoftware,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="authorother != null">-->
-              <!--#{authorother,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="servicepatent != null">-->
-              <!--#{servicepatent,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="serviceskill != null">-->
-              <!--#{serviceskill,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="servicesell != null">-->
-              <!--#{servicesell,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="salaryhigh != null">-->
-              <!--#{salaryhigh,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="salarymiddle != null">-->
-              <!--#{salarymiddle,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="salarylow != null">-->
-              <!--#{salarylow,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="persell != null">-->
-              <!--#{persell,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="pertax != null">-->
-              <!--#{pertax,jdbcType=DOUBLE},-->
-          <!--</if>-->
-          <!--<if test="trainmanage != null">-->
-              <!--#{trainmanage,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="trainlegal != null">-->
-              <!--#{trainlegal,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="trainskill != null">-->
-              <!--#{trainskill,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="consultmanage != null">-->
-              <!--#{consultmanage,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="consultlegal != null">-->
-              <!--#{consultlegal,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="consultskill != null">-->
-              <!--#{consultskill,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="awarddistrict != null">-->
-              <!--#{awarddistrict,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="awardcity != null">-->
-              <!--#{awardcity,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="awardprovince != null">-->
-              <!--#{awardprovince,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="awardnation != null">-->
-              <!--#{awardnation,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="comfirmdistrict != null">-->
-              <!--#{comfirmdistrict,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="comfirmcity != null">-->
-              <!--#{comfirmcity,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="comfirmprovince != null">-->
-              <!--#{comfirmprovince,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="comfirmnation != null">-->
-              <!--#{comfirmnation,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="supportdistrict != null">-->
-              <!--#{supportdistrict,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="supportcity != null">-->
-              <!--#{supportcity,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="supportprovince != null">-->
-              <!--#{supportprovince,jdbcType=INTEGER},-->
-          <!--</if>-->
-          <!--<if test="supportnation != null">-->
-              <!--#{supportnation,jdbcType=INTEGER},-->
-          <!--</if>-->
-      <!--</trim>-->
-  </insert>
+    <resultMap id="BaseResultMap" type="com.swu.ai.entity.CompanyInput">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="companyname" jdbcType="VARCHAR" property="companyname"/>
+        <result column="year" jdbcType="INTEGER" property="year"/>
+        <result column="quarter" jdbcType="INTEGER" property="quarter"/>
+        <result column="ticketincomesoftware" jdbcType="DOUBLE" property="ticketincomesoftware"/>
+        <result column="ticketincomehardware" jdbcType="DOUBLE" property="ticketincomehardware"/>
+        <result column="ticketincomeconsult" jdbcType="DOUBLE" property="ticketincomeconsult"/>
+        <result column="ticketincomeother" jdbcType="DOUBLE" property="ticketincomeother"/>
+        <result column="contractincomesoftware" jdbcType="DOUBLE" property="contractincomesoftware"/>
+        <result column="contractincomehardware" jdbcType="DOUBLE" property="contractincomehardware"/>
+        <result column="contractincomeconsult" jdbcType="DOUBLE" property="contractincomeconsult"/>
+        <result column="contractincomeother" jdbcType="DOUBLE" property="contractincomeother"/>
+        <result column="incometaxable" jdbcType="DOUBLE" property="incometaxable"/>
+        <result column="incometaxdeduction" jdbcType="DOUBLE" property="incometaxdeduction"/>
+        <result column="pensonaltaxable" jdbcType="DOUBLE" property="pensonaltaxable"/>
+        <result column="pensonaltaxdecution" jdbcType="DOUBLE" property="pensonaltaxdecution"/>
+        <result column="addvaluetaxable" jdbcType="DOUBLE" property="addvaluetaxable"/>
+        <result column="addvaluetaxdecution" jdbcType="DOUBLE" property="addvaluetaxdecution"/>
+        <result column="stockfinancevc" jdbcType="DOUBLE" property="stockfinancevc"/>
+        <result column="stockfinancegovenment" jdbcType="DOUBLE" property="stockfinancegovenment"/>
+        <result column="stockfinancepensonal" jdbcType="DOUBLE" property="stockfinancepensonal"/>
+        <result column="debtfinancebank" jdbcType="DOUBLE" property="debtfinancebank"/>
+        <result column="debtfinanceli" jdbcType="DOUBLE" property="debtfinanceli"/>
+        <result column="debtfinancecompany" jdbcType="DOUBLE" property="debtfinancecompany"/>
+        <result column="debtfinancepensonal" jdbcType="DOUBLE" property="debtfinancepensonal"/>
+        <result column="currentasset" jdbcType="DOUBLE" property="currentasset"/>
+        <result column="nocurrentasset" jdbcType="DOUBLE" property="nocurrentasset"/>
+        <result column="currentdebt" jdbcType="DOUBLE" property="currentdebt"/>
+        <result column="nocurrentdebt" jdbcType="DOUBLE" property="nocurrentdebt"/>
+        <result column="firstfinancevalue" jdbcType="DOUBLE" property="firstfinancevalue"/>
+        <result column="lastfinancevalue" jdbcType="DOUBLE" property="lastfinancevalue"/>
+        <result column="currentfinancevalue" jdbcType="DOUBLE" property="currentfinancevalue"/>
+        <result column="parttimedevelopment" jdbcType="INTEGER" property="parttimedevelopment"/>
+        <result column="parttimemanager" jdbcType="INTEGER" property="parttimemanager"/>
+        <result column="parttimeadmin" jdbcType="INTEGER" property="parttimeadmin"/>
+        <result column="parttimesell" jdbcType="INTEGER" property="parttimesell"/>
+        <result column="development" jdbcType="INTEGER" property="development"/>
+        <result column="manamger" jdbcType="INTEGER" property="manamger"/>
+        <result column="administrator" jdbcType="INTEGER" property="administrator"/>
+        <result column="sell" jdbcType="INTEGER" property="sell"/>
+        <result column="doctor" jdbcType="INTEGER" property="doctor"/>
+        <result column="master" jdbcType="INTEGER" property="master"/>
+        <result column="bachelor" jdbcType="INTEGER" property="bachelor"/>
+        <result column="applypatentinvent" jdbcType="INTEGER" property="applypatentinvent"/>
+        <result column="applypatentindustry" jdbcType="INTEGER" property="applypatentindustry"/>
+        <result column="applypatentdesign" jdbcType="INTEGER" property="applypatentdesign"/>
+        <result column="patentinvent" jdbcType="INTEGER" property="patentinvent"/>
+        <result column="patentindustry" jdbcType="INTEGER" property="patentindustry"/>
+        <result column="patentdesign" jdbcType="INTEGER" property="patentdesign"/>
+        <result column="applyauthorsoftware" jdbcType="INTEGER" property="applyauthorsoftware"/>
+        <result column="applyauthorother" jdbcType="INTEGER" property="applyauthorother"/>
+        <result column="authorsoftware" jdbcType="INTEGER" property="authorsoftware"/>
+        <result column="authorother" jdbcType="INTEGER" property="authorother"/>
+        <result column="servicepatent" jdbcType="INTEGER" property="servicepatent"/>
+        <result column="serviceskill" jdbcType="INTEGER" property="serviceskill"/>
+        <result column="servicesell" jdbcType="INTEGER" property="servicesell"/>
+        <result column="salaryhigh" jdbcType="DOUBLE" property="salaryhigh"/>
+        <result column="salarymiddle" jdbcType="DOUBLE" property="salarymiddle"/>
+        <result column="salarylow" jdbcType="DOUBLE" property="salarylow"/>
+        <result column="persell" jdbcType="DOUBLE" property="persell"/>
+        <result column="pertax" jdbcType="DOUBLE" property="pertax"/>
+        <result column="trainmanage" jdbcType="INTEGER" property="trainmanage"/>
+        <result column="trainlegal" jdbcType="INTEGER" property="trainlegal"/>
+        <result column="trainskill" jdbcType="INTEGER" property="trainskill"/>
+        <result column="consultmanage" jdbcType="INTEGER" property="consultmanage"/>
+        <result column="consultlegal" jdbcType="INTEGER" property="consultlegal"/>
+        <result column="consultskill" jdbcType="INTEGER" property="consultskill"/>
+        <result column="awarddistrict" jdbcType="INTEGER" property="awarddistrict"/>
+        <result column="awardcity" jdbcType="INTEGER" property="awardcity"/>
+        <result column="awardprovince" jdbcType="INTEGER" property="awardprovince"/>
+        <result column="awardnation" jdbcType="INTEGER" property="awardnation"/>
+        <result column="comfirmdistrict" jdbcType="INTEGER" property="comfirmdistrict"/>
+        <result column="comfirmcity" jdbcType="INTEGER" property="comfirmcity"/>
+        <result column="comfirmprovince" jdbcType="INTEGER" property="comfirmprovince"/>
+        <result column="comfirmnation" jdbcType="INTEGER" property="comfirmnation"/>
+        <result column="supportdistrict" jdbcType="INTEGER" property="supportdistrict"/>
+        <result column="supportcity" jdbcType="INTEGER" property="supportcity"/>
+        <result column="supportprovince" jdbcType="INTEGER" property="supportprovince"/>
+        <result column="supportnation" jdbcType="INTEGER" property="supportnation"/>
+    </resultMap>
+    <insert id="insertCompanyInput" parameterType="CompanyInput" useGeneratedKeys="true">
+        insert into company_input (id, companyname, industry,
+        region, year, quarter,
+        ticketincomesoftware, ticketincomehardware,
+        ticketincomeconsult, ticketincomeother, contractincomesoftware,
+        contractincomehardware, contractincomeconsult,
+        contractincomeother, incometaxable, incometaxdeduction,
+        pensonaltaxable, pensonaltaxdecution, addvaluetaxable,
+        addvaluetaxdecution, stockfinancevc, stockfinancegovenment,
+        stockfinancepensonal, debtfinancebank, debtfinanceli,
+        debtfinancecompany, debtfinancepensonal,
+        currentasset, nocurrentasset, currentdebt,
+        nocurrentdebt, firstfinancevalue, lastfinancevalue,
+        currentfinancevalue, parttimedevelopment,
+        parttimemanager, parttimeadmin, parttimesell,
+        development, manamger, administrator,
+        sell, doctor, master,
+        bachelor, applypatentinvent, applypatentindustry,
+        applypatentdesign, patentinvent, patentindustry,
+        patentdesign, applyauthorsoftware, applyauthorother,
+        authorsoftware, authorother, servicepatent,
+        serviceskill, servicesell, salaryhigh,
+        salarymiddle, salarylow, persell,
+        pertax, trainmanage, trainlegal,
+        trainskill, consultmanage, consultlegal,
+        consultskill, awarddistrict, awardcity,
+        awardprovince, awardnation, comfirmdistrict,
+        comfirmcity, comfirmprovince, comfirmnation,
+        supportdistrict, supportcity, supportprovince,
+        supportnation)
+        values (#{id,jdbcType=BIGINT}, #{companyname,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR},
+        #{region,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{quarter,jdbcType=INTEGER},
+        #{ticketincomesoftware,jdbcType=DOUBLE}, #{ticketincomehardware,jdbcType=DOUBLE},
+        #{ticketincomeconsult,jdbcType=DOUBLE}, #{ticketincomeother,jdbcType=DOUBLE},
+        #{contractincomesoftware,jdbcType=DOUBLE},
+        #{contractincomehardware,jdbcType=DOUBLE}, #{contractincomeconsult,jdbcType=DOUBLE},
+        #{contractincomeother,jdbcType=DOUBLE}, #{incometaxable,jdbcType=DOUBLE}, #{incometaxdeduction,jdbcType=DOUBLE},
+        #{pensonaltaxable,jdbcType=DOUBLE}, #{pensonaltaxdecution,jdbcType=DOUBLE}, #{addvaluetaxable,jdbcType=DOUBLE},
+        #{addvaluetaxdecution,jdbcType=DOUBLE}, #{stockfinancevc,jdbcType=DOUBLE},
+        #{stockfinancegovenment,jdbcType=DOUBLE},
+        #{stockfinancepensonal,jdbcType=DOUBLE}, #{debtfinancebank,jdbcType=DOUBLE}, #{debtfinanceli,jdbcType=DOUBLE},
+        #{debtfinancecompany,jdbcType=DOUBLE}, #{debtfinancepensonal,jdbcType=DOUBLE},
+        #{currentasset,jdbcType=DOUBLE}, #{nocurrentasset,jdbcType=DOUBLE}, #{currentdebt,jdbcType=DOUBLE},
+        #{nocurrentdebt,jdbcType=DOUBLE}, #{firstfinancevalue,jdbcType=DOUBLE}, #{lastfinancevalue,jdbcType=DOUBLE},
+        #{currentfinancevalue,jdbcType=DOUBLE}, #{parttimedevelopment,jdbcType=INTEGER},
+        #{parttimemanager,jdbcType=INTEGER}, #{parttimeadmin,jdbcType=INTEGER}, #{parttimesell,jdbcType=INTEGER},
+        #{development,jdbcType=INTEGER}, #{manamger,jdbcType=INTEGER}, #{administrator,jdbcType=INTEGER},
+        #{sell,jdbcType=INTEGER}, #{doctor,jdbcType=INTEGER}, #{master,jdbcType=INTEGER},
+        #{bachelor,jdbcType=INTEGER}, #{applypatentinvent,jdbcType=INTEGER}, #{applypatentindustry,jdbcType=INTEGER},
+        #{applypatentdesign,jdbcType=INTEGER}, #{patentinvent,jdbcType=INTEGER}, #{patentindustry,jdbcType=INTEGER},
+        #{patentdesign,jdbcType=INTEGER}, #{applyauthorsoftware,jdbcType=INTEGER}, #{applyauthorother,jdbcType=INTEGER},
+        #{authorsoftware,jdbcType=INTEGER}, #{authorother,jdbcType=INTEGER}, #{servicepatent,jdbcType=INTEGER},
+        #{serviceskill,jdbcType=INTEGER}, #{servicesell,jdbcType=INTEGER}, #{salaryhigh,jdbcType=DOUBLE},
+        #{salarymiddle,jdbcType=DOUBLE}, #{salarylow,jdbcType=DOUBLE}, #{persell,jdbcType=DOUBLE},
+        #{pertax,jdbcType=DOUBLE}, #{trainmanage,jdbcType=INTEGER}, #{trainlegal,jdbcType=INTEGER},
+        #{trainskill,jdbcType=INTEGER}, #{consultmanage,jdbcType=INTEGER}, #{consultlegal,jdbcType=INTEGER},
+        #{consultskill,jdbcType=INTEGER}, #{awarddistrict,jdbcType=INTEGER}, #{awardcity,jdbcType=INTEGER},
+        #{awardprovince,jdbcType=INTEGER}, #{awardnation,jdbcType=INTEGER}, #{comfirmdistrict,jdbcType=INTEGER},
+        #{comfirmcity,jdbcType=INTEGER}, #{comfirmprovince,jdbcType=INTEGER}, #{comfirmnation,jdbcType=INTEGER},
+        #{supportdistrict,jdbcType=INTEGER}, #{supportcity,jdbcType=INTEGER}, #{supportprovince,jdbcType=INTEGER},
+        #{supportnation,jdbcType=INTEGER})
+        <!--insert into company_input-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+        <!--companyname, year, quarter,-->
+        <!--<if test="ticketincomesoftware != null">-->
+        <!--ticketincomesoftware,-->
+        <!--</if>-->
+        <!--<if test="ticketincomehardware != null">-->
+        <!--ticketincomehardware,-->
+        <!--</if>-->
+        <!--<if test="ticketincomeconsult != null">-->
+        <!--ticketincomeconsult,-->
+        <!--</if>-->
+        <!--<if test="ticketincomeother != null">-->
+        <!--ticketincomeother,-->
+        <!--</if>-->
+        <!--<if test="contractincomesoftware != null">-->
+        <!--contractincomesoftware,-->
+        <!--</if>-->
+        <!--<if test="contractincomehardware != null">-->
+        <!--contractincomehardware,-->
+        <!--</if>-->
+        <!--<if test="contractincomeconsult != null">-->
+        <!--contractincomeconsult,-->
+        <!--</if>-->
+        <!--<if test="contractincomeother != null">-->
+        <!--contractincomeother,-->
+        <!--</if>-->
+        <!--<if test="incometaxable != null">-->
+        <!--incometaxable,-->
+        <!--</if>-->
+        <!--<if test="incometaxdeduction != null">-->
+        <!--incometaxdeduction,-->
+        <!--</if>-->
+        <!--<if test="pensonaltaxable != null">-->
+        <!--pensonaltaxable,-->
+        <!--</if>-->
+        <!--<if test="pensonaltaxdecution != null">-->
+        <!--pensonaltaxdecution,-->
+        <!--</if>-->
+        <!--<if test="addvaluetaxable != null">-->
+        <!--addvaluetaxable,-->
+        <!--</if>-->
+        <!--<if test="addvaluetaxdecution != null">-->
+        <!--addvaluetaxdecution,-->
+        <!--</if>-->
+        <!--<if test="stockfinancevc != null">-->
+        <!--stockfinancevc,-->
+        <!--</if>-->
+        <!--<if test="stockfinancegovenment != null">-->
+        <!--stockfinancegovenment,-->
+        <!--</if>-->
+        <!--<if test="stockfinancepensonal != null">-->
+        <!--stockfinancepensonal,-->
+        <!--</if>-->
+        <!--<if test="debtfinancebank != null">-->
+        <!--debtfinancebank,-->
+        <!--</if>-->
+        <!--<if test="debtfinanceli != null">-->
+        <!--debtfinanceli,-->
+        <!--</if>-->
+        <!--<if test="debtfinancecompany != null">-->
+        <!--debtfinancecompany,-->
+        <!--</if>-->
+        <!--<if test="debtfinancepensonal != null">-->
+        <!--debtfinancepensonal,-->
+        <!--</if>-->
+        <!--<if test="currentasset != null">-->
+        <!--currentasset,-->
+        <!--</if>-->
+        <!--<if test="nocurrentasset != null">-->
+        <!--nocurrentasset,-->
+        <!--</if>-->
+        <!--<if test="currentdebt != null">-->
+        <!--currentdebt,-->
+        <!--</if>-->
+        <!--<if test="nocurrentdebt != null">-->
+        <!--nocurrentdebt,-->
+        <!--</if>-->
+        <!--<if test="firstfinancevalue != null">-->
+        <!--firstfinancevalue,-->
+        <!--</if>-->
+        <!--<if test="lastfinancevalue != null">-->
+        <!--lastfinancevalue,-->
+        <!--</if>-->
+        <!--<if test="currentfinancevalue != null">-->
+        <!--currentfinancevalue,-->
+        <!--</if>-->
+        <!--<if test="parttimedevelopment != null">-->
+        <!--parttimedevelopment,-->
+        <!--</if>-->
+        <!--<if test="parttimemanager != null">-->
+        <!--parttimemanager,-->
+        <!--</if>-->
+        <!--<if test="parttimeadmin != null">-->
+        <!--parttimeadmin,-->
+        <!--</if>-->
+        <!--<if test="parttimesell != null">-->
+        <!--parttimesell,-->
+        <!--</if>-->
+        <!--<if test="development != null">-->
+        <!--development,-->
+        <!--</if>-->
+        <!--<if test="manamger != null">-->
+        <!--manamger,-->
+        <!--</if>-->
+        <!--<if test="administrator != null">-->
+        <!--administrator,-->
+        <!--</if>-->
+        <!--<if test="sell != null">-->
+        <!--sell,-->
+        <!--</if>-->
+        <!--<if test="doctor != null">-->
+        <!--doctor,-->
+        <!--</if>-->
+        <!--<if test="master != null">-->
+        <!--master,-->
+        <!--</if>-->
+        <!--<if test="bachelor != null">-->
+        <!--bachelor,-->
+        <!--</if>-->
+        <!--<if test="applypatentinvent != null">-->
+        <!--applypatentinvent,-->
+        <!--</if>-->
+        <!--<if test="applypatentindustry != null">-->
+        <!--applypatentindustry,-->
+        <!--</if>-->
+        <!--<if test="applypatentdesign != null">-->
+        <!--applypatentdesign,-->
+        <!--</if>-->
+        <!--<if test="patentinvent != null">-->
+        <!--patentinvent,-->
+        <!--</if>-->
+        <!--<if test="patentindustry != null">-->
+        <!--patentindustry,-->
+        <!--</if>-->
+        <!--<if test="patentdesign != null">-->
+        <!--patentdesign,-->
+        <!--</if>-->
+        <!--<if test="applyauthorsoftware != null">-->
+        <!--applyauthorsoftware,-->
+        <!--</if>-->
+        <!--<if test="applyauthorother != null">-->
+        <!--applyauthorother,-->
+        <!--</if>-->
+        <!--<if test="authorsoftware != null">-->
+        <!--authorsoftware,-->
+        <!--</if>-->
+        <!--<if test="authorother != null">-->
+        <!--authorother,-->
+        <!--</if>-->
+        <!--<if test="servicepatent != null">-->
+        <!--servicepatent,-->
+        <!--</if>-->
+        <!--<if test="serviceskill != null">-->
+        <!--serviceskill,-->
+        <!--</if>-->
+        <!--<if test="servicesell != null">-->
+        <!--servicesell,-->
+        <!--</if>-->
+        <!--<if test="salaryhigh != null">-->
+        <!--salaryhigh,-->
+        <!--</if>-->
+        <!--<if test="salarymiddle != null">-->
+        <!--salarymiddle,-->
+        <!--</if>-->
+        <!--<if test="salarylow != null">-->
+        <!--salarylow,-->
+        <!--</if>-->
+        <!--<if test="persell != null">-->
+        <!--persell,-->
+        <!--</if>-->
+        <!--<if test="pertax != null">-->
+        <!--pertax,-->
+        <!--</if>-->
+        <!--<if test="trainmanage != null">-->
+        <!--trainmanage,-->
+        <!--</if>-->
+        <!--<if test="trainlegal != null">-->
+        <!--trainlegal,-->
+        <!--</if>-->
+        <!--<if test="trainskill != null">-->
+        <!--trainskill,-->
+        <!--</if>-->
+        <!--<if test="consultmanage != null">-->
+        <!--consultmanage,-->
+        <!--</if>-->
+        <!--<if test="consultlegal != null">-->
+        <!--consultlegal,-->
+        <!--</if>-->
+        <!--<if test="consultskill != null">-->
+        <!--consultskill,-->
+        <!--</if>-->
+        <!--<if test="awarddistrict != null">-->
+        <!--awarddistrict,-->
+        <!--</if>-->
+        <!--<if test="awardcity != null">-->
+        <!--awardcity,-->
+        <!--</if>-->
+        <!--<if test="awardprovince != null">-->
+        <!--awardprovince,-->
+        <!--</if>-->
+        <!--<if test="awardnation != null">-->
+        <!--awardnation,-->
+        <!--</if>-->
+        <!--<if test="comfirmdistrict != null">-->
+        <!--comfirmdistrict,-->
+        <!--</if>-->
+        <!--<if test="comfirmcity != null">-->
+        <!--comfirmcity,-->
+        <!--</if>-->
+        <!--<if test="comfirmprovince != null">-->
+        <!--comfirmprovince,-->
+        <!--</if>-->
+        <!--<if test="comfirmnation != null">-->
+        <!--comfirmnation,-->
+        <!--</if>-->
+        <!--<if test="supportdistrict != null">-->
+        <!--supportdistrict,-->
+        <!--</if>-->
+        <!--<if test="supportcity != null">-->
+        <!--supportcity,-->
+        <!--</if>-->
+        <!--<if test="supportprovince != null">-->
+        <!--supportprovince,-->
+        <!--</if>-->
+        <!--<if test="supportnation != null">-->
+        <!--supportnation,-->
+        <!--</if>-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+        <!--#{companyname,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{quarter,jdbcType=INTEGER},-->
+        <!--<if test="ticketincomesoftware != 0">-->
+        <!--#{ticketincomesoftware,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="ticketincomehardware != null">-->
+        <!--#{ticketincomehardware,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="ticketincomeconsult != null">-->
+        <!--#{ticketincomeconsult,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="ticketincomeother != null">-->
+        <!--#{ticketincomeother,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="contractincomesoftware != null">-->
+        <!--#{contractincomesoftware,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="contractincomehardware != null">-->
+        <!--#{contractincomehardware,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="contractincomeconsult != null">-->
+        <!--#{contractincomeconsult,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="contractincomeother != null">-->
+        <!--#{contractincomeother,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="incometaxable != null">-->
+        <!--#{incometaxable,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="incometaxdeduction != null">-->
+        <!--#{incometaxdeduction,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="pensonaltaxable != null">-->
+        <!--#{pensonaltaxable,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="pensonaltaxdecution != null">-->
+        <!--#{pensonaltaxdecution,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="addvaluetaxable != null">-->
+        <!--#{addvaluetaxable,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="addvaluetaxdecution != null">-->
+        <!--#{addvaluetaxdecution,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="stockfinancevc != null">-->
+        <!--#{stockfinancevc,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="stockfinancegovenment != null">-->
+        <!--#{stockfinancegovenment,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="stockfinancepensonal != null">-->
+        <!--#{stockfinancepensonal,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="debtfinancebank != null">-->
+        <!--#{debtfinancebank,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="debtfinanceli != null">-->
+        <!--#{debtfinanceli,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="debtfinancecompany != null">-->
+        <!--#{debtfinancecompany,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="debtfinancepensonal != null">-->
+        <!--#{debtfinancepensonal,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="currentasset != null">-->
+        <!--#{currentasset,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="nocurrentasset != null">-->
+        <!--#{nocurrentasset,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="currentdebt != null">-->
+        <!--#{currentdebt,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="nocurrentdebt != null">-->
+        <!--#{nocurrentdebt,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="firstfinancevalue != null">-->
+        <!--#{firstfinancevalue,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="lastfinancevalue != null">-->
+        <!--#{lastfinancevalue,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="currentfinancevalue != null">-->
+        <!--#{currentfinancevalue,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="parttimedevelopment != null">-->
+        <!--#{parttimedevelopment,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="parttimemanager != null">-->
+        <!--#{parttimemanager,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="parttimeadmin != null">-->
+        <!--#{parttimeadmin,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="parttimesell != null">-->
+        <!--#{parttimesell,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="development != null">-->
+        <!--#{development,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="manamger != null">-->
+        <!--#{manamger,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="administrator != null">-->
+        <!--#{administrator,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="sell != null">-->
+        <!--#{sell,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="doctor != null">-->
+        <!--#{doctor,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="master != null">-->
+        <!--#{master,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="bachelor != null">-->
+        <!--#{bachelor,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="applypatentinvent != null">-->
+        <!--#{applypatentinvent,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="applypatentindustry != null">-->
+        <!--#{applypatentindustry,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="applypatentdesign != null">-->
+        <!--#{applypatentdesign,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="patentinvent != null">-->
+        <!--#{patentinvent,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="patentindustry != null">-->
+        <!--#{patentindustry,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="patentdesign != null">-->
+        <!--#{patentdesign,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="applyauthorsoftware != null">-->
+        <!--#{applyauthorsoftware,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="applyauthorother != null">-->
+        <!--#{applyauthorother,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="authorsoftware != null">-->
+        <!--#{authorsoftware,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="authorother != null">-->
+        <!--#{authorother,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="servicepatent != null">-->
+        <!--#{servicepatent,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="serviceskill != null">-->
+        <!--#{serviceskill,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="servicesell != null">-->
+        <!--#{servicesell,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="salaryhigh != null">-->
+        <!--#{salaryhigh,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="salarymiddle != null">-->
+        <!--#{salarymiddle,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="salarylow != null">-->
+        <!--#{salarylow,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="persell != null">-->
+        <!--#{persell,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="pertax != null">-->
+        <!--#{pertax,jdbcType=DOUBLE},-->
+        <!--</if>-->
+        <!--<if test="trainmanage != null">-->
+        <!--#{trainmanage,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="trainlegal != null">-->
+        <!--#{trainlegal,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="trainskill != null">-->
+        <!--#{trainskill,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="consultmanage != null">-->
+        <!--#{consultmanage,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="consultlegal != null">-->
+        <!--#{consultlegal,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="consultskill != null">-->
+        <!--#{consultskill,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="awarddistrict != null">-->
+        <!--#{awarddistrict,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="awardcity != null">-->
+        <!--#{awardcity,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="awardprovince != null">-->
+        <!--#{awardprovince,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="awardnation != null">-->
+        <!--#{awardnation,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="comfirmdistrict != null">-->
+        <!--#{comfirmdistrict,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="comfirmcity != null">-->
+        <!--#{comfirmcity,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="comfirmprovince != null">-->
+        <!--#{comfirmprovince,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="comfirmnation != null">-->
+        <!--#{comfirmnation,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="supportdistrict != null">-->
+        <!--#{supportdistrict,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="supportcity != null">-->
+        <!--#{supportcity,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="supportprovince != null">-->
+        <!--#{supportprovince,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--<if test="supportnation != null">-->
+        <!--#{supportnation,jdbcType=INTEGER},-->
+        <!--</if>-->
+        <!--</trim>-->
+    </insert>
     <!--选择-->
-  <select id="findAllCompanyInput" resultType="CompanyInput">
+    <select id="findAllCompanyInput" resultType="CompanyInput">
       select * from company_input;
   </select>
-  <select id="findCompanyInputByTime" resultType="CompanyInput" parameterType="java.util.Map">
+    <select id="findCompanyInputByTime" resultType="CompanyInput" parameterType="java.util.Map">
     select * from company_input where #{begin_year} &lt;= year and year &lt;= #{end_year} and #{begin_quarter} &lt;= quarter and quarter &lt;= #{end_quarter};
   </select>
     <select id="findCompanyInputByCompanyName" resultType="CompanyInput" parameterType="java.lang.String">
@@ -714,4 +716,173 @@
         delete from company_input
         where id = #{id,jdbcType=BIGINT}
     </delete>
+    <select id="findFingerByYearAndQuarter" resultType="com.swu.ai.vo.VoFingerResult"
+            parameterType="com.swu.ai.entity.CompanyInput">
+        select `id`,`companyname` companyName,`industry`,`region`,`year`,`quarter`,
+        `ticketincomesoftware`/(SELECT SUM(`ticketincomesoftware`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter})finger_sale_invoice_soft,
+        `ticketincomehardware`/(SELECT SUM(`ticketincomehardware`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) finger_sale_invoice_hard,
+        `ticketincomeconsult`/(SELECT SUM(`ticketincomeconsult`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_sale_invoice_consultation,
+        `ticketincomeother`/(SELECT SUM(`ticketincomeother`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_sale_invoice_other,
+        `contractincomesoftware`/(SELECT SUM(`contractincomesoftware`)/count(*) from `company_input` WHERE year =
+        #{year} and quarter = #{quarter}) finger_sale_contract_soft,
+        `contractincomehardware`/(SELECT SUM(`contractincomehardware`)/count(*) from `company_input` WHERE year =
+        #{year} and quarter = #{quarter}) finger_sale_contract_hard,
+        `contractincomeconsult`/(SELECT SUM(`contractincomeconsult`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) finger_sale_contract_consultation,
+        `contractincomeother`/(SELECT SUM(`contractincomeother`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_sale_contract_other ,
+        `incometaxable`/(SELECT SUM(`incometaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_tax_corporate_taxable,
+        `incometaxdeduction`/(SELECT SUM(`incometaxdeduction`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_tax_corporate_relief,
+        `pensonaltaxable`/(SELECT SUM(`pensonaltaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_tax_individual_taxable,
+        `pensonaltaxdecution`/(SELECT SUM(`pensonaltaxdecution`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_tax_individual_relief,
+        `addvaluetaxable`/(SELECT SUM(`addvaluetaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_tax_added_taxable,
+        `addvaluetaxdecution`/(SELECT SUM(`addvaluetaxdecution`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_tax_added_relief,
+        `stockfinancevc`/(SELECT SUM(`stockfinancevc`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_finance_stock_risk,
+        `stockfinancegovenment`/(SELECT SUM(`stockfinancegovenment`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) finger_finance_stock_gov,
+        `stockfinancepensonal`/(SELECT SUM(`stockfinancepensonal`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) finger_finance_stock_person,
+        `debtfinancebank`/(SELECT SUM(`debtfinancebank`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_finance_debt_bank,
+        `debtfinanceli`/(SELECT SUM(`debtfinanceli`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_finance_debt_new,
+        `debtfinancecompany`/(SELECT SUM(`debtfinancecompany`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_finance_debt_lending,
+        `debtfinancepensonal`/(SELECT SUM(`debtfinancepensonal`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_finance_debt_person,
+        `currentasset`/(SELECT SUM(`currentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_valuation_assets_circulating,
+        `nocurrentasset`/(SELECT SUM(`nocurrentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_valuation_assets_uncirculating,
+        `currentdebt`/(SELECT SUM(`currentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_valuation_assets_debt_circulating,
+        `nocurrentdebt`/(SELECT SUM(`nocurrentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_valuation_assets_debt_uncirculating,
+        `firstfinancevalue`/(SELECT SUM(`firstfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_valuation_actual_first,
+        `lastfinancevalue`/(SELECT SUM(`lastfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_valuation_actual_latest,
+        `currentfinancevalue`/(SELECT SUM(`currentfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_valuation_actual_want,
+        `parttimedevelopment`/(SELECT SUM(`parttimedevelopment`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_hr_partime_dev,
+        `parttimemanager`/(SELECT SUM(`parttimemanager`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_hr_partime_manage,
+        `parttimeadmin`/(SELECT SUM(`parttimeadmin`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_hr_partime_admin,
+        `parttimesell`/(SELECT SUM(`parttimesell`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_hr_partime_saler,
+        `development`/(SELECT SUM(`development`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_hr_fulltime_dev,
+        `manamger`/(SELECT SUM(`manamger`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        finger_hr_fulltime_senior,
+        `administrator`/(SELECT SUM(`administrator`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_hr_fulltime_admin,
+        `sell`/(SELECT SUM(`sell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        finger_hr_fulltime_saler,
+        `doctor`/(SELECT SUM(`doctor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        finger_hr_educated_doc,
+        `master`/(SELECT SUM(`master`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        finger_hr_educated_master,
+        `bachelor`/(SELECT SUM(`bachelor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        finger_hr_bachelor,
+        `applypatentinvent`/(SELECT SUM(`applypatentinvent`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_innovate_patent_apply_invention,
+        `applypatentindustry`/(SELECT SUM(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_innovate_patent_apply_utility,
+        `applypatentindustry`/(SELECT SUM(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_innovate_patent_apply_appear,
+        `patentinvent`/(SELECT SUM(`patentinvent`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_patent_grant_invention,
+        `patentindustry`/(SELECT SUM(`patentindustry`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_patent_grant_utility,
+        `patentdesign`/(SELECT SUM(`patentdesign`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_patent_grant_appear,
+        `applyauthorsoftware`/(SELECT SUM(`applyauthorsoftware`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_innovate_copyright_apply_soft,
+        `applyauthorother`/(SELECT SUM(`applyauthorother`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) finger_innovate_copyright_apply_unsoft,
+        `authorsoftware`/(SELECT SUM(`authorsoftware`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_copyright_grant_soft,
+        `authorother`/(SELECT SUM(`authorother`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_copyright_grant_unsoft,
+        `servicepatent`/(SELECT SUM(`servicepatent`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_new_product_patent,
+        `serviceskill`/(SELECT SUM(`serviceskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_new_product_tech,
+        `servicesell`/(SELECT SUM(`servicesell`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_innovate_new_product_bus,
+        `salaryhigh`/(SELECT SUM(`salaryhigh`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_salary_staff_up_10,
+        `salarymiddle`/(SELECT SUM(`salarymiddle`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_salary_staff_5_10,
+        `salarylow`/(SELECT SUM(`salarylow`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_salary_staff_down_5,
+        `persell`/(SELECT SUM(`persell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        finger_salary_staff_contribution_meansale,
+        `pertax`/(SELECT SUM(`pertax`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        finger_salary_staff_contribution_meantax,
+        `trainmanage`/(SELECT SUM(`trainmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_learn_train_manage,
+        `trainlegal`/(SELECT SUM(`trainlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_learn_train_policy,
+        `trainskill`/(SELECT SUM(`trainskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_learn_train_skill,
+        `consultmanage`/(SELECT SUM(`consultmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_learn_conslted_manage,
+        `consultlegal`/(SELECT SUM(`consultlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_learn_conslted_policy,
+        `consultskill`/(SELECT SUM(`consultskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_learn_conslted_skill,
+        `awarddistrict`/(SELECT SUM(`awarddistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_reward_area,
+        `awardcity`/(SELECT SUM(`awardcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_reward_city,
+        `awardprovince`/(SELECT SUM(`awardprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_reward_province,
+        `awardnation`/(SELECT SUM(`awardnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_reward_country,
+        `comfirmdistrict`/(SELECT SUM(`comfirmdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_brand_recognition_area ,
+        `comfirmcity`/(SELECT SUM(`comfirmcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_recognition_city,
+        `comfirmprovince`/(SELECT SUM(`comfirmprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_brand_recognition_province,
+        `comfirmnation`/(SELECT SUM(`comfirmnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_recognition_country,
+        `supportdistrict`/(SELECT SUM(`supportdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_brand_talent_area,
+        `supportcity`/(SELECT SUM(`supportcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_talent_city,
+        `supportprovince`/(SELECT SUM(`supportprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) finger_brand_talent_province,
+        `supportnation`/(SELECT SUM(`supportnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) finger_brand_talent_country
+        from company_input
+        <where>
+            <if test="year != null">
+                and year = #{year}
+            </if>
+            <if test="quarter != null">
+                and quarter = #{quarter}
+            </if>
+            <if test="industry != null">
+                and industry = #{industry}
+            </if>
+            <if test="region != null">
+                and region = #{region}
+            </if>
+        </where>
+    </select>
 </mapper>

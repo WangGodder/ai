@@ -15,13 +15,4 @@ import com.swu.ai.entity.FingerResultV0;
  * -------------------------------------------------
  */
 public class VoFingerResult extends FingerResultV0 {
-    private Integer quarter;
-
-    public Integer getQuarter() {
-        return quarter;
-    }
-
-    public void setQuarter(Integer quarter) {
-        this.quarter = quarter;
-    }
 }

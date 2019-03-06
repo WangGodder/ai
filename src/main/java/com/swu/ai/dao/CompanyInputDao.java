@@ -1,6 +1,7 @@
 package com.swu.ai.dao;
 
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
 import java.util.Map;
@@ -27,4 +28,6 @@ public interface CompanyInputDao {
     boolean updateCompanyInput(CompanyInput companyInput);
 
     boolean deleteCompanyInput(Long id);
+
+    List<VoFingerResult> findAllByYearAndQuarter(CompanyInput companyInput);
 }

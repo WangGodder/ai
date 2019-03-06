@@ -2,6 +2,7 @@ package com.swu.ai.service.Impl;
 
 import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.dao.FingerDao;
+import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.service.FingerService;
 import com.swu.ai.vo.VoFingerResult;
@@ -35,8 +36,8 @@ public class FingerServiceImpl implements FingerService {
     }
 
     @Override
-    public List<VoFingerResult> getFingerResult2(Integer year, Integer quarter, Long companyId){
-//        return companyInputDaoDao.findAllByYearAndQuarter(year,quarter);
-        return null;
+    public List<VoFingerResult> getFingerResult2(CompanyInput companyInput){
+        return companyInputDaoDao.findAllByYearAndQuarter(companyInput);
+//        return null;
     }
 }

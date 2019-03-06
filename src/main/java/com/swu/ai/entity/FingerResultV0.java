@@ -18,676 +18,675 @@ public class FingerResultV0 {
     /**
      * 公司所属的板块
      */
-    @Column(name = "company_plate")
-    private String companyPlate;
+    @Column(name = "industry")
+    private String industry;
 
     /**
      * 分母类型：mean平均值，max最大值，min最小值，极差值range
      */
-    @Column(name = "denominator_type")
-    private String denominatorType;
+    @Column(name = "region")
+    private String region;
 
     private Integer year;
 
     /**
      * Y整年 Q1 一季度 Q2 二季度 Q3三季度 Q4四季度
      */
-    @Column(name = "period_type")
-    private String periodType;
+    @Column(name = "quarter")
+    private Integer quarter;
 
     /**
      * 综合指数
      */
     @Column(name = "finger_all")
-    private Double fingerAll;
+    private Double fingerAll = 0.0;
 
     /**
      * 一级指标：销售指数
      */
     @Column(name = "finger_sale")
-    private Double fingerSale;
+    private Double fingerSale = 0.0;
 
     /**
      * 二级指标：已开票的收入
      */
     @Column(name = "finger_sale_invoice")
-    private Double fingerSaleInvoice;
+    private Double fingerSaleInvoice = 0.0;
 
     /**
      * 已开发票的收入-软件产品
      */
     @Column(name = "finger_sale_invoice_soft")
-    private Double fingerSaleInvoiceSoft;
+    private Double fingerSaleInvoiceSoft = 0.0;
 
     /**
      * 已开发票的收入-硬件产品
      */
     @Column(name = "finger_sale_invoice_hard")
-    private Double fingerSaleInvoiceHard;
+    private Double fingerSaleInvoiceHard = 0.0;
 
     /**
      * 已开发票的收入-咨询服务
      */
     @Column(name = "finger_sale_invoice_consultation")
-    private Double fingerSaleInvoiceConsultation;
+    private Double fingerSaleInvoiceConsultation = 0.0;
 
     /**
      * 已开发票的收入-其他
      */
     @Column(name = "finger_sale_invoice_other")
-    private Double fingerSaleInvoiceOther;
+    private Double fingerSaleInvoiceOther = 0.0;
 
     /**
      * 二级指标：合同确认额
      */
     @Column(name = "finger_sale_contract")
-    private Double fingerSaleContract;
+    private Double fingerSaleContract = 0.0;
 
     /**
      * 三级指标：合同确认额-软件产品
      */
     @Column(name = "finger_sale_contract_soft")
-    private Double fingerSaleContractSoft;
+    private Double fingerSaleContractSoft = 0.0;
 
     /**
      * 三级指标：合同确认额-硬件产品
      */
     @Column(name = "finger_sale_contract_hard")
-    private Double fingerSaleContractHard;
+    private Double fingerSaleContractHard = 0.0;
 
     /**
      * 三级指标：合同确认额-咨询服务
      */
     @Column(name = "finger_sale_contract_consultation")
-    private Double fingerSaleContractConsultation;
+    private Double fingerSaleContractConsultation = 0.0;
 
     /**
      * 三级指标：合同确认额-其他
      */
     @Column(name = "finger_sale_contract_other")
-    private Double fingerSaleContractOther;
+    private Double fingerSaleContractOther = 0.0;
 
     /**
      * 一级指标：纳税指数
      */
     @Column(name = "finger_tax")
-    private Double fingerTax;
+    private Double fingerTax = 0.0;
 
     /**
      * 二级指标：企业所得税
      */
     @Column(name = "finger_tax_corporate")
-    private Double fingerTaxCorporate;
+    private Double fingerTaxCorporate = 0.0;
 
     /**
      * 三级指标：企业所得税-应纳税值
      */
     @Column(name = "finger_tax_corporate_taxable")
-    private Double fingerTaxCorporateTaxable;
+    private Double fingerTaxCorporateTaxable = 0.0;
 
     /**
      * 三级指标：企业所得税-税收减免值
      */
     @Column(name = "finger_tax_corporate_relief")
-    private Double fingerTaxCorporateRelief;
+    private Double fingerTaxCorporateRelief = 0.0;
 
     /**
      * 二级指标：个人所得税
      */
     @Column(name = "finger_tax_individual")
-    private Double fingerTaxIndividual;
+    private Double fingerTaxIndividual = 0.0;
 
     /**
      * 三级指标：个人所得税-应纳税值
      */
     @Column(name = "finger_tax_individual_taxable")
-    private Double fingerTaxIndividualTaxable;
+    private Double fingerTaxIndividualTaxable = 0.0;
 
     /**
      * 三级指标：个人所得税-税收减免
      */
     @Column(name = "finger_tax_individual_relief")
-    private Double fingerTaxIndividualRelief;
+    private Double fingerTaxIndividualRelief = 0.0;
 
     /**
      * 二级指标：增值税
      */
     @Column(name = "finger_tax_added")
-    private Double fingerTaxAdded;
+    private Double fingerTaxAdded = 0.0;
 
     /**
      * 三级指标：增值税-应纳税值
      */
     @Column(name = "finger_tax_added_taxable")
-    private Double fingerTaxAddedTaxable;
+    private Double fingerTaxAddedTaxable = 0.0;
 
     /**
      * 三级指标：增值税-税收减免
      */
     @Column(name = "finger_tax_added_relief")
-    private Double fingerTaxAddedRelief;
+    private Double fingerTaxAddedRelief = 0.0;
 
     /**
      * 一级指标：融资指数
      */
     @Column(name = "finger_finance")
-    private Double fingerFinance;
+    private Double fingerFinance = 0.0;
 
     /**
      * 二级指标：股权类融资
      */
     @Column(name = "finger_finance_stock")
-    private Double fingerFinanceStock;
+    private Double fingerFinanceStock = 0.0;
 
     /**
      * 三级指标：股权类融资-风投机构
      */
     @Column(name = "finger_finance_stock_risk")
-    private Double fingerFinanceStockRisk;
+    private Double fingerFinanceStockRisk = 0.0;
 
     /**
      * 三级指标：股权类融资-政府企业
      */
     @Column(name = "finger_finance_stock_gov")
-    private Double fingerFinanceStockGov;
+    private Double fingerFinanceStockGov = 0.0;
 
     /**
      * 三级指标：股权类融资-个人
      */
     @Column(name = "finger_finance_stock_person")
-    private Double fingerFinanceStockPerson;
+    private Double fingerFinanceStockPerson = 0.0;
 
     /**
      * 二级指标：债务类融资
      */
     @Column(name = "finger_finance_debt")
-    private Double fingerFinanceDebt;
+    private Double fingerFinanceDebt = 0.0;
 
     /**
      * 三级指标：债务类融资-银行
      */
     @Column(name = "finger_finance_debt_bank")
-    private Double fingerFinanceDebtBank;
+    private Double fingerFinanceDebtBank = 0.0;
 
     /**
      * 三级指标：债务类融资-新型贷款机构
      */
     @Column(name = "finger_finance_debt_new")
-    private Double fingerFinanceDebtNew;
+    private Double fingerFinanceDebtNew = 0.0;
 
     /**
      * 三级指标：债务类融资-企业拆借
      */
     @Column(name = "finger_finance_debt_lending")
-    private Double fingerFinanceDebtLending;
+    private Double fingerFinanceDebtLending = 0.0;
 
     /**
      * 三级指标：债务类融资-个人
      */
     @Column(name = "finger_finance_debt_person")
-    private Double fingerFinanceDebtPerson;
+    private Double fingerFinanceDebtPerson = 0.0;
 
     /**
      * 一级指标:估值指数
      */
     @Column(name = "finger_valuation")
-    private Double fingerValuation;
+    private Double fingerValuation = 0.0;
 
     /**
      * 二级指标：净资产
      */
     @Column(name = "finger_valuation_assets")
-    private Double fingerValuationAssets;
+    private Double fingerValuationAssets = 0.0;
 
     /**
      * 三级指标：净资产-流动资产
      */
     @Column(name = "finger_valuation_assets_circulating")
-    private Double fingerValuationAssetsCirculating;
+    private Double fingerValuationAssetsCirculating = 0.0;
 
     /**
      * 三级指标：净资产-非流动资产
      */
     @Column(name = "finger_valuation_assets_uncirculating")
-    private Double fingerValuationAssetsUncirculating;
+    private Double fingerValuationAssetsUncirculating = 0.0;
 
     /**
      * 三级指标：净资产-流动负债
      */
     @Column(name = "finger_valuation_assets_debt_circulating")
-    private Double fingerValuationAssetsDebtCirculating;
+    private Double fingerValuationAssetsDebtCirculating = 0.0;
 
     /**
      * 三级指标：净资产-非流动负债
      */
     @Column(name = "finger_valuation_assets_debt_uncirculating")
-    private Double fingerValuationAssetsDebtUncirculating;
+    private Double fingerValuationAssetsDebtUncirculating = 0.0;
 
     /**
      * 二级指标：实际估值
      */
     @Column(name = "finger_valuation_actual")
-    private Double fingerValuationActual;
+    private Double fingerValuationActual = 0.0;
 
     /**
      * 三级指标：实际估值-首次融资
      */
     @Column(name = "finger_valuation_actual_first")
-    private Double fingerValuationActualFirst;
+    private Double fingerValuationActualFirst = 0.0;
 
     /**
      * 三级指标：实际估值-最近一次融资估值
      */
     @Column(name = "finger_valuation_actual_latest")
-    private Double fingerValuationActualLatest;
+    private Double fingerValuationActualLatest = 0.0;
 
     /**
      * 三级指标：实际估值-现在准备融资估值
      */
     @Column(name = "finger_valuation_actual_want")
-    private Double fingerValuationActualWant;
+    private Double fingerValuationActualWant = 0.0;
 
     /**
      * 一级指标：人力资源指数
      */
     @Column(name = "finger_hr")
-    private Double fingerHr;
+    private Double fingerHr = 0.0;
 
     /**
      * 二级指标：兼职员工数
      */
     @Column(name = "finger_hr_partime")
-    private Double fingerHrPartime;
+    private Double fingerHrPartime = 0.0;
 
     /**
      * 三级指标：兼职员工-研发
      */
     @Column(name = "finger_hr_partime_dev")
-    private Double fingerHrPartimeDev;
+    private Double fingerHrPartimeDev = 0.0;
 
     /**
      * 三级指标：兼职员工-管理
      */
     @Column(name = "finger_hr_partime_manage")
-    private Double fingerHrPartimeManage;
+    private Double fingerHrPartimeManage = 0.0;
 
     /**
      * 三级指标：兼职员工-行政
      */
     @Column(name = "finger_hr_partime_admin")
-    private Double fingerHrPartimeAdmin;
+    private Double fingerHrPartimeAdmin = 0.0;
 
     /**
      * 三级指标：兼职员工-销售
      */
     @Column(name = "finger_hr_partime_saler")
-    private Double fingerHrPartimeSaler;
+    private Double fingerHrPartimeSaler = 0.0;
 
     /**
      * 二级指标：全职员工
      */
     @Column(name = "finger_hr_fulltime")
-    private Double fingerHrFulltime;
+    private Double fingerHrFulltime = 0.0;
 
     /**
      * 三级指标：全职员工-研发
      */
     @Column(name = "finger_hr_fulltime_dev")
-    private Double fingerHrFulltimeDev;
+    private Double fingerHrFulltimeDev = 0.0;
 
     /**
      * 三级指标：全职员工-高管
      */
     @Column(name = "finger_hr_fulltime_senior")
-    private Double fingerHrFulltimeSenior;
+    private Double fingerHrFulltimeSenior = 0.0;
 
     /**
      * 三级指标：全职员工-行政
      */
     @Column(name = "finger_hr_fulltime_admin")
-    private Double fingerHrFulltimeAdmin;
+    private Double fingerHrFulltimeAdmin = 0.0;
 
     /**
      * 三级指标：全职员工-销售
      */
     @Column(name = "finger_hr_fulltime_saler")
-    private Double fingerHrFulltimeSaler;
+    private Double fingerHrFulltimeSaler = 0.0;
 
     /**
      * 二级指标：高学历人员
      */
     @Column(name = "finger_hr_educated")
-    private Double fingerHrEducated;
+    private Double fingerHrEducated = 0.0;
 
     /**
      * 三级指标：高学历人员-博士
      */
     @Column(name = "finger_hr_educated_doc")
-    private Double fingerHrEducatedDoc;
+    private Double fingerHrEducatedDoc = 0.0;
 
     /**
      * 三级指标：高学历人员-硕士
      */
     @Column(name = "finger_hr_educated_master")
-    private Double fingerHrEducatedMaster;
+    private Double fingerHrEducatedMaster = 0.0;
 
     /**
      * 三级指标：高学历人员-学士
      */
     @Column(name = "finger_hr_bachelor")
-    private Double fingerHrBachelor;
+    private Double fingerHrBachelor = 0.0;
 
     /**
      * 一级指标：创新指数
      */
     @Column(name = "finger_innovate")
-    private Double fingerInnovate;
+    private Double fingerInnovate = 0.0;
 
     /**
      * 二级指标：专利申请
      */
     @Column(name = "finger_innovate_patent_apply")
-    private Double fingerInnovatePatentApply;
+    private Double fingerInnovatePatentApply = 0.0;
 
     /**
      * 三级指标：专利申请-发明
      */
     @Column(name = "finger_innovate_patent_apply_invention")
-    private Double fingerInnovatePatentApplyInvention;
+    private Double fingerInnovatePatentApplyInvention = 0.0;
 
     /**
      * 三级指标：专利申请-实用新型
      */
     @Column(name = "finger_innovate_patent_apply_utility")
-    private Double fingerInnovatePatentApplyUtility;
+    private Double fingerInnovatePatentApplyUtility = 0.0;
 
     /**
      * 三级指标：专利申请-外观设计
      */
     @Column(name = "finger_innovate_patent_apply_appear")
-    private Double fingerInnovatePatentApplyAppear;
+    private Double fingerInnovatePatentApplyAppear = 0.0;
 
     /**
      * 二级指标：专利授权
      */
     @Column(name = "finger_innovate_patent_grant")
-    private Double fingerInnovatePatentGrant;
+    private Double fingerInnovatePatentGrant = 0.0;
 
     /**
      * 三级指标：专利授权-发明
      */
     @Column(name = "finger_innovate_patent_grant_invention")
-    private Double fingerInnovatePatentGrantInvention;
+    private Double fingerInnovatePatentGrantInvention = 0.0;
 
     /**
      * 三级指标：专利授权-实用新型
      */
     @Column(name = "finger_innovate_patent_grant_utility")
-    private Double fingerInnovatePatentGrantUtility;
+    private Double fingerInnovatePatentGrantUtility = 0.0;
 
     /**
      * 三级指标：专利授权-外观设计
      */
     @Column(name = "finger_innovate_patent_grant_appear")
-    private Double fingerInnovatePatentGrantAppear;
+    private Double fingerInnovatePatentGrantAppear = 0.0;
 
     /**
      * 二级指标：著作权申请
      */
     @Column(name = "finger_innovate_copyright_apply")
-    private Double fingerInnovateCopyrightApply;
+    private Double fingerInnovateCopyrightApply = 0.0;
 
     /**
      * 三级指标：著作权申请-软件类
      */
     @Column(name = "finger_innovate_copyright_apply_soft")
-    private Double fingerInnovateCopyrightApplySoft;
+    private Double fingerInnovateCopyrightApplySoft = 0.0;
 
     /**
      * 三级指标：著作权申请-非软件类
      */
     @Column(name = "finger_innovate_copyright_apply_unsoft")
-    private Double fingerInnovateCopyrightApplyUnsoft;
+    private Double fingerInnovateCopyrightApplyUnsoft = 0.0;
 
     /**
      * 二级指标：著作权授权
      */
     @Column(name = "finger_innovate_copyright_grant")
-    private Double fingerInnovateCopyrightGrant;
+    private Double fingerInnovateCopyrightGrant = 0.0;
 
     /**
      * 三级指标：著作权授权-软件类
      */
     @Column(name = "finger_innovate_copyright_grant_soft")
-    private Double fingerInnovateCopyrightGrantSoft;
+    private Double fingerInnovateCopyrightGrantSoft = 0.0;
 
     /**
      * 三级指标：著作权授权-非软件类
      */
     @Column(name = "finger_innovate_copyright_grant_unsoft")
-    private Double fingerInnovateCopyrightGrantUnsoft;
-
+    private Double fingerInnovateCopyrightGrantUnsoft = 0.0;
     /**
      * 二级指标：新产品/服务
      */
     @Column(name = "finger_innovate_new_product")
-    private Double fingerInnovateNewProduct;
+    private Double fingerInnovateNewProduct = 0.0;
 
     /**
      * 三级指标：新产品/服务-专利类
      */
     @Column(name = "finger_innovate_new_product_patent")
-    private Double fingerInnovateNewProductPatent;
+    private Double fingerInnovateNewProductPatent = 0.0;
 
     /**
      * 三级指标：新产品/服务-专用技术
      */
     @Column(name = "finger_innovate_new_product_tech")
-    private Double fingerInnovateNewProductTech;
+    private Double fingerInnovateNewProductTech = 0.0;
 
     /**
      * 三级指标：新产品/服务-商业模式
      */
     @Column(name = "finger_innovate_new_product_bus")
-    private Double fingerInnovateNewProductBus;
+    private Double fingerInnovateNewProductBus = 0.0;
 
     /**
      * 一级指标：薪酬指数
      */
     @Column(name = "finger_salary")
-    private Double fingerSalary;
+    private Double fingerSalary = 0.0;
 
     /**
      * 二级指标：员工工资额
      */
     @Column(name = "finger_salary_staff")
-    private Double fingerSalaryStaff;
+    private Double fingerSalaryStaff = 0.0;
 
     /**
      * 三级指标：员工工资额-1万元以上
      */
     @Column(name = "finger_salary_staff_up_10")
-    private Double fingerSalaryStaffUp10;
+    private Double fingerSalaryStaffUp10 = 0.0;
 
     /**
      * 三级指标：员工工资额-5千到1万
      */
     @Column(name = "finger_salary_staff_5_10")
-    private Double fingerSalaryStaff510;
+    private Double fingerSalaryStaff510 = 0.0;
 
     /**
      * 三级指标：员工工资额-5千以下
      */
     @Column(name = "finger_salary_staff_down_5")
-    private Double fingerSalaryStaffDown5;
+    private Double fingerSalaryStaffDown5 = 0.0;
 
     /**
      * 二级指标：员工贡献率
      */
     @Column(name = "finger_salary_staff_contribution")
-    private Double fingerSalaryStaffContribution;
+    private Double fingerSalaryStaffContribution = 0.0;
 
     /**
      * 三级指标：员工贡献率-人均销售
      */
     @Column(name = "finger_salary_staff_contribution_meansale")
-    private Double fingerSalaryStaffContributionMeansale;
+    private Double fingerSalaryStaffContributionMeansale = 0.0;
 
     /**
      * 三级指标：员工贡献率-人均纳税
      */
     @Column(name = "finger_salary_staff_contribution_meantax")
-    private Double fingerSalaryStaffContributionMeantax;
+    private Double fingerSalaryStaffContributionMeantax = 0.0;
 
     /**
      * 一级指标：学习指数
      */
     @Column(name = "finger_learn")
-    private Double fingerLearn;
+    private Double fingerLearn = 0.0;
 
     /**
      * 二级指标：参加培训的次数
      */
     @Column(name = "finger_learn_train")
-    private Double fingerLearnTrain;
+    private Double fingerLearnTrain = 0.0;
 
     /**
      * 三级指标：参加培训的次数-管理类
      */
     @Column(name = "finger_learn_train_manage")
-    private Double fingerLearnTrainManage;
+    private Double fingerLearnTrainManage = 0.0;
 
     /**
      * 三级指标：参加培训的次数-政策法规
      */
     @Column(name = "finger_learn_train_policy")
-    private Double fingerLearnTrainPolicy;
+    private Double fingerLearnTrainPolicy = 0.0;
 
     /**
      * 三级指标：参加培训的次数-技能类
      */
     @Column(name = "finger_learn_train_skill")
-    private Double fingerLearnTrainSkill;
+    private Double fingerLearnTrainSkill = 0.0;
 
     /**
      * 二级指标：接受咨询的次数
      */
     @Column(name = "finger_learn_conslted")
-    private Double fingerLearnConslted;
+    private Double fingerLearnConslted = 0.0;
 
     /**
      * 三级指标：接受咨询的次数-管理类
      */
     @Column(name = "finger_learn_conslted_manage")
-    private Double fingerLearnConsltedManage;
+    private Double fingerLearnConsltedManage = 0.0;
 
     /**
      * 三级指标：接受咨询的次数-政策法规
      */
     @Column(name = "finger_learn_conslted_policy")
-    private Double fingerLearnConsltedPolicy;
+    private Double fingerLearnConsltedPolicy = 0.0;
 
     /**
      * 三级指标：接受咨询的次数-技能类
      */
     @Column(name = "finger_learn_conslted_skill")
-    private Double fingerLearnConsltedSkill;
+    private Double fingerLearnConsltedSkill = 0.0;
 
     /**
      * 一级指标：品牌指数
      */
     @Column(name = "finger_brand")
-    private Double fingerBrand;
+    private Double fingerBrand = 0.0;
 
     /**
      * 二级指标：企业获奖
      */
     @Column(name = "finger_brand_reward")
-    private Double fingerBrandReward;
+    private Double fingerBrandReward = 0.0;
 
     /**
      * 三级指标：企业获奖-区级
      */
     @Column(name = "finger_brand_reward_area")
-    private Double fingerBrandRewardArea;
+    private Double fingerBrandRewardArea = 0.0;
 
     /**
      * 三级指标：企业获奖-市级
      */
     @Column(name = "finger_brand_reward_city")
-    private Double fingerBrandRewardCity;
+    private Double fingerBrandRewardCity = 0.0;
 
     /**
      * 三级指标：企业获奖-省级
      */
     @Column(name = "finger_brand_reward_province")
-    private Double fingerBrandRewardProvince;
+    private Double fingerBrandRewardProvince = 0.0;
 
     /**
      * 三级指标：企业获奖-国家级
      */
     @Column(name = "finger_brand_reward_country")
-    private Double fingerBrandRewardCountry;
+    private Double fingerBrandRewardCountry = 0.0;
 
     /**
      * 二级指标：企业认定
      */
     @Column(name = "finger_brand_recognition")
-    private Double fingerBrandRecognition;
+    private Double fingerBrandRecognition = 0.0;
 
     /**
      * 三级指标：企业认定-区级
      */
     @Column(name = "finger_brand_recognition_area")
-    private Double fingerBrandRecognitionArea;
+    private Double fingerBrandRecognitionArea = 0.0;
 
     /**
      * 三级指标：企业认定-市级
      */
     @Column(name = "finger_brand_recognition_city")
-    private Double fingerBrandRecognitionCity;
+    private Double fingerBrandRecognitionCity = 0.0;
 
     /**
      * 三级指标：企业认定-省级
      */
     @Column(name = "finger_brand_recognition_province")
-    private Double fingerBrandRecognitionProvince;
+    private Double fingerBrandRecognitionProvince = 0.0;
 
     /**
      * 三级指标：企业认定-国家级
      */
     @Column(name = "finger_brand_recognition_country")
-    private Double fingerBrandRecognitionCountry;
+    private Double fingerBrandRecognitionCountry = 0.0;
 
     /**
      * 二级指标：人才资助
      */
     @Column(name = "finger_brand_talent")
-    private Double fingerBrandTalent;
+    private Double fingerBrandTalent = 0.0;
 
     /**
      * 三级指标：人才资助-区级
      */
     @Column(name = "finger_brand_talent_area")
-    private Double fingerBrandTalentArea;
+    private Double fingerBrandTalentArea = 0.0;
 
     /**
      * 三级指标：人才资助-市级
      */
     @Column(name = "finger_brand_talent_city")
-    private Double fingerBrandTalentCity;
+    private Double fingerBrandTalentCity = 0.0;
 
     /**
      * 三级指标：人才资助-省级
      */
     @Column(name = "finger_brand_talent_province")
-    private Double fingerBrandTalentProvince;
+    private Double fingerBrandTalentProvince = 0.0;
 
     /**
      * 三级指标：人才资助-国家级
      */
     @Column(name = "finger_brand_talent_country")
-    private Double fingerBrandTalentCountry;
+    private Double fingerBrandTalentCountry = 0.0;
 
     /**
      * 初始化三级指标后，计算所有指标
@@ -783,43 +782,29 @@ public class FingerResultV0 {
     public void setCompanyName(String companyName) {
         this.companyName = companyName == null ? null : companyName.trim();
     }
-
-    /**
-     * 获取公司所属的板块
-     *
-     * @return company_plate - 公司所属的板块
-     */
-    public String getCompanyPlate() {
-        return companyPlate;
+        public String getIndustry() {
+        return industry;
     }
 
-    /**
-     * 设置公司所属的板块
-     *
-     * @param companyPlate 公司所属的板块
-     */
-    public void setCompanyPlate(String companyPlate) {
-        this.companyPlate = companyPlate == null ? null : companyPlate.trim();
+    public void setIndustry(String industry) {
+        this.industry = industry;
     }
 
-    /**
-     * 获取分母类型：mean平均值，max最大值，min最小值，极差值range
-     *
-     * @return denominator_type - 分母类型：mean平均值，max最大值，min最小值，极差值range
-     */
-    public String getDenominatorType() {
-        return denominatorType;
+    public String getRegion() {
+        return region;
     }
 
-    /**
-     * 设置分母类型：mean平均值，max最大值，min最小值，极差值range
-     *
-     * @param denominatorType 分母类型：mean平均值，max最大值，min最小值，极差值range
-     */
-    public void setDenominatorType(String denominatorType) {
-        this.denominatorType = denominatorType == null ? null : denominatorType.trim();
+    public void setRegion(String region) {
+        this.region = region;
     }
 
+    public Integer getQuarter() {
+        return quarter;
+    }
+
+    public void setQuarter(Integer quarter) {
+        this.quarter = quarter;
+    }
     /**
      * @return year
      */
@@ -832,24 +817,6 @@ public class FingerResultV0 {
      */
     public void setYear(Integer year) {
         this.year = year;
-    }
-
-    /**
-     * 获取Y整年 Q1 一季度 Q2 二季度 Q3三季度 Q4四季度
-     *
-     * @return period_type - Y整年 Q1 一季度 Q2 二季度 Q3三季度 Q4四季度
-     */
-    public String getPeriodType() {
-        return periodType;
-    }
-
-    /**
-     * 设置Y整年 Q1 一季度 Q2 二季度 Q3三季度 Q4四季度
-     *
-     * @param periodType Y整年 Q1 一季度 Q2 二季度 Q3三季度 Q4四季度
-     */
-    public void setPeriodType(String periodType) {
-        this.periodType = periodType == null ? null : periodType.trim();
     }
 
     /**

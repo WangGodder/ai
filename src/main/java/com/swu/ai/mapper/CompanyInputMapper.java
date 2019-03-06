@@ -2,6 +2,7 @@ package com.swu.ai.mapper;
 
 import com.swu.ai.Base.BaseMapper;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
 import java.util.Map;
@@ -24,4 +25,6 @@ public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
     boolean updateCompanyInput(CompanyInput companyInput);
 
     boolean deleteCompanyInput(Long id);
+
+    List<VoFingerResult> findFingerByYearAndQuarter(CompanyInput companyInput);
 }

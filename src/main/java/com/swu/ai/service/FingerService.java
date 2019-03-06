@@ -1,5 +1,6 @@
 package com.swu.ai.service;
 
+import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.vo.VoFingerResult;
 
@@ -27,6 +28,6 @@ public interface FingerService {
     */
     List<FingerResultV0> getFingerResult(Integer year, String periodType, String denominatorType, Long companyId, String companyPlate);
 
-    List<VoFingerResult> getFingerResult2(Integer year, Integer quarter, Long companyId);
+    List<VoFingerResult> getFingerResult2(CompanyInput companyInput);
 
 }

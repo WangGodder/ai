@@ -86,6 +86,9 @@ public class FingerResultController {
         return fingerResult;
     }
 
+    /**
+     *  请注意： year 和 quarter 为必须要传入的参数，否则报错
+    * */
     @RequestMapping("getFingerRes2/")
     @ResponseBody
     /*
@@ -95,12 +98,16 @@ public class FingerResultController {
     quarter 全年还是季度 ： 1 一季度 2 二季度 3三季度 4四季度 默认是 1
     denominatorType 分母类型：mean平均值，max最大值，min最小值，极差值range 这一项是必选，默认是mean
     */
-    JsonResult getFingerResult2(@RequestParam(value = "year", required = false, defaultValue = "2018") Integer year,
-                                @RequestParam(value = "quarter", required = false, defaultValue = "1") Integer quarter,
-//                                 @RequestParam(value = "denominatorType", required = false, defaultValue = "mean") String denominatorType,
-//                                @RequestParam(value = "companyPlate", required = false, defaultValue = "all") String companyPlate,
-                                @RequestParam(value = "companyId", required = false, defaultValue = "-1") Long companyId) {
-        List<VoFingerResult> res = fingerService.getFingerResult2(year, quarter, companyId);
+//    JsonResult getFingerResult2(@RequestParam(value = "year", required = false, defaultValue = "2018") Integer year,
+//                                @RequestParam(value = "quarter", required = false, defaultValue = "1") Integer quarter,
+////                                 @RequestParam(value = "denominatorType", required = false, defaultValue = "mean") String denominatorType,
+////                                @RequestParam(value = "companyPlate", required = false, defaultValue = "all") String companyPlate,
+//                                @RequestParam(value = "companyId", required = false, defaultValue = "-1") Long companyId) {
+    JsonResult getFingerResult2(CompanyInput companyInput) {
+        if(companyInput.getYear() == null || companyInput.getQuarter() == null ){
+            return JsonResult.fail("year 和 quarter 不能为空");
+        }
+        List<VoFingerResult> res = fingerService.getFingerResult2(companyInput);
         return JsonResult.success(res);
     }
 

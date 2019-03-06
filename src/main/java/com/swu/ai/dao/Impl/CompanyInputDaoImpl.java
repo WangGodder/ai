@@ -2,7 +2,9 @@ package com.swu.ai.dao.Impl;
 
 import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.mapper.CompanyInputMapper;
+import com.swu.ai.vo.VoFingerResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -79,6 +81,18 @@ public class CompanyInputDaoImpl implements CompanyInputDao {
     @Override
     public boolean deleteCompanyInput(Long id) {
         return companyInputMapper.deleteCompanyInput(id);
+    }
+
+    @Override
+    public List<VoFingerResult> findAllByYearAndQuarter(CompanyInput companyInput) {
+//        CompanyInput companyInput = new CompanyInput();
+//        companyInput.setYear(year);
+//        companyInput.setQuarter(quarter);
+        List<VoFingerResult> fingerResultV0List = companyInputMapper.findFingerByYearAndQuarter(companyInput);
+        for (FingerResultV0 fingerResultV0 : fingerResultV0List) {
+            fingerResultV0.evaluate();
+        }
+        return fingerResultV0List;
     }
 
 }
