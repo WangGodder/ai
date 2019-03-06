@@ -23,5 +23,7 @@ public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
 
     boolean updateCompanyInput(CompanyInput companyInput);
 
+    boolean updateCompanyInputByCompanyName(CompanyInput companyInput);
+
     boolean deleteCompanyInput(Long id);
 }
