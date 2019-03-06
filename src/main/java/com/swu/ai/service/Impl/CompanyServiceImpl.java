@@ -20,4 +20,9 @@ public class CompanyServiceImpl implements CompanyService {
     public boolean insertCompanyInfo(List<CompanyInput> list) {
         return companyDao.insertCompanyInfo(list);
     }
+
+    @Override
+    public List<CompanyInput> findAllCompanyInput() {
+        return companyDao.findAllCompanyInput();
+    }
 }

@@ -18,6 +18,13 @@ public interface CompanyInputDao {
 
     List<CompanyInput> findCompanyInputByCompanyName(String companyname);
 
+    List<CompanyInput> findCompanyInputByIndustry(String industry);
+
+    List<CompanyInput> findCompanyInputByRegion(String region);
+
     CompanyInput findCompanyInputById(Long id);
 
+    boolean updateCompanyInput(CompanyInput companyInput);
+
+    boolean deleteCompanyInput(Long id);
 }

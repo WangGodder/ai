@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.swu.ai.Base.BaseResult;
+import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.FingerResult;
 import com.swu.ai.Result.JsonResult;
 import com.swu.ai.Result.ResultBase;
+import com.swu.ai.Util.BaseDataUtil;
 import com.swu.ai.dao.UserTkDao;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
@@ -215,5 +217,32 @@ public class FingerResultController {
     public JsonResult insertCompanyInfo(List<CompanyInput> list) {
         Boolean r = companyService.insertCompanyInfo(list);
         return JsonResult.success();
+    }
+
+    @RequestMapping(value = "charts/")
+    public String toCharts() {
+        return "charts_vue";
+    }
+
+    @RequestMapping(value = "getAllCompanyInfo/")
+    @ResponseBody
+    public JsonResult getAllCompanyInfo() {
+//        List<CompanyInput> list = companyService.findAllCompanyInput();
+        BaseData<Integer> baseData = new BaseData<>();
+        List<String> labels = Arrays.asList("第一指标", "第二指标", "第三指标", "第四指标", "第五指标");
+        baseData.setLabels(labels);
+        List<List<Integer>> datas = new ArrayList<>(2);
+        datas.add(Arrays.asList(4, 5, 6, 7, 8));
+        datas.add(Arrays.asList(7, 6, 5, 4, 3));
+        baseData.setDatas(datas);
+        baseData.setDatasetLabels(Arrays.asList("公司A", "公司B"));
+//        try {
+//            baseData = BaseDataUtil.companyInputToBaseData(list);
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+        return JsonResult.success(baseData);
     }
 }

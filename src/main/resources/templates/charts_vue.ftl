@@ -14,6 +14,8 @@
     <script type="text/javascript" src="/js/chart/i18n.js"></script>
     <script type="text/javascript" src="/js/chart/chartUtils.js"></script>
     <script type="text/javascript" src="/js/chart/chart-component.js"></script>
+    <script type = text/javascript src="/js/layui/layui.all.js"></script>
+    <script type = text/javascript src="/js/common/sv2.js"></script>
 </head>
 <body>
     <div id="app">

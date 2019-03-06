@@ -8,8 +8,20 @@ import java.util.Map;
 
 public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
     List<CompanyInput> findAllCompanyInput();
+
     List<CompanyInput> findCompanyInputByTime(Map<String, Integer> timeMap);
+
     List<CompanyInput> findCompanyInputByCompanyName(String companyname);
+
+    List<CompanyInput> findCompanyInputByIndustry(String industry);
+
+    List<CompanyInput> findCompanyInputByRegion(String region);
+
     CompanyInput findCompanyInputById(Long id);
+
     boolean insertCompanyInput(CompanyInput companyInput);
+
+    boolean updateCompanyInput(CompanyInput companyInput);
+
+    boolean deleteCompanyInput(Long id);
 }
