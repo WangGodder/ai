@@ -115,11 +115,15 @@ public class FingerResultController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "evaluation/")
+    @RequestMapping(value = "upload/")
     @ResponseBody
     public JsonResult evaluation(HttpServletRequest request, HttpServletResponse response, @RequestParam("file") MultipartFile[] files) throws IOException {
         System.out.println(files[1].getName());
+        //获取excel指标值
         List<String[]> list = ExcelData.getExcelData(files[0]);
+        CompanyInput companyInput = CompanyInput.inputByArray(list.get(2));
+        System.out.println(companyInput);
+        //插入企业信息
         return JsonResult.success(list);
     }
 

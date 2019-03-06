@@ -1946,13 +1946,13 @@ public class CompanyInput {
             }
             try {
                 if (fields[i].getGenericType() == Integer.class) {
-                    fields[i].set(companyInput, Integer.parseInt(iterator.next()));
+                    fields[i].set(companyInput, Integer.parseInt(next));
                 }
                 if (fields[i].getGenericType() == Double.class) {
-                    fields[i].set(companyInput, Double.parseDouble(iterator.next()));
+                    fields[i].set(companyInput, Double.parseDouble(next));
                 }
                 if (fields[i].getGenericType() == String.class) {
-                    fields[i].set(companyInput, iterator.next());
+                    fields[i].set(companyInput, next);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

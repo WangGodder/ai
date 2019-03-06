@@ -16,7 +16,7 @@ let ExcelUpload = {
             // upload
             $("#uploadForm").ajaxSubmit(
                 {
-                    url:"/user/evaluation/",
+                    url:"/user/upload/",
                     dataType:"json",
                     resetForm:true,
                     success: function (data) {
