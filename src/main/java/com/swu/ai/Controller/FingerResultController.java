@@ -1,40 +1,32 @@
 package com.swu.ai.Controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.swu.ai.Base.BaseResult;
+
 import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.FingerResult;
 import com.swu.ai.Result.JsonResult;
-import com.swu.ai.Result.ResultBase;
-import com.swu.ai.Util.BaseDataUtil;
-import com.swu.ai.dao.UserTkDao;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.service.CompanyService;
 import com.swu.ai.service.FingerService;
-import com.swu.ai.service.RegService;
+
 import com.swu.ai.util.ExcelData;
 import com.swu.ai.vo.VoFingerResult;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.net.URISyntaxException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.*;
 
 /**
@@ -120,15 +112,19 @@ public class FingerResultController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "evaluation/")
+    @RequestMapping(value = "upload/")
     @ResponseBody
     public JsonResult evaluation(HttpServletRequest request, HttpServletResponse response, @RequestParam("file") MultipartFile[] files) throws IOException {
-//        if (files.length == 1) {
-//            return JsonResult.fail("上传文件数量不足");
-//        }
-        System.out.println(files[0].getName());
-        System.out.println(files[1].getName());
+        //获取excel指标值
         List<String[]> list = ExcelData.getExcelData(files[0]);
+        CompanyInput companyInput;
+        List<CompanyInput> companyList = new ArrayList<CompanyInput>();
+        for(int i = 2;i < list.size();i++){
+             companyInput = CompanyInput.inputByArray(list.get(i));
+             companyList.add(companyInput);
+        }
+        //插入企业信息
+        companyService.insertCompanyInfo(companyList);
         return JsonResult.success(list);
     }
 
@@ -141,16 +137,10 @@ public class FingerResultController {
      */
     @RequestMapping(value = "downloadFile/")
     public Object downloadExcel(HttpServletRequest request, HttpServletResponse response) {
-        String classPath = null;
-        try {
-            classPath = Thread.currentThread().getContextClassLoader().getResource("").toURI().getPath();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-//        System.out.println(url);
+
 
         try {
-            String filePath = "E:/19.jpg";// 如 E:/test.docx
+            String filePath = "E:/人才企业指数评估模板.xlsx";// 如 E:/test.docx
 
             // You must tell the browser the file type you are going to send
             // for example application/pdf, text/plain, text/html, image/jpg
@@ -205,19 +195,6 @@ public class FingerResultController {
             map.put("reason", e.getMessage());
             return map;
         }
-    }
-
-    @RequestMapping(value = "formSubmit/")
-    @ResponseBody
-    public JsonResult formSubmit(HttpServletRequest request, @RequestParam("prove") MultipartFile proveFile) {
-        System.out.println(proveFile.getOriginalFilename());
-        Map<String, String[]> map = request.getParameterMap();
-        CompanyInput companyInput = CompanyInput.inputByMap(map);
-        System.out.println(companyInput);
-//        System.out.println(map);
-//        System.out.println(companyInput.getCompanyname());
-//        System.out.println(file.getName());
-        return JsonResult.success(companyInput);
     }
 
     @RequestMapping(value = "insertCompanyInfo/")

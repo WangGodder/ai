@@ -79,6 +79,16 @@ public class CompanyInputDaoImpl implements CompanyInputDao {
     }
 
     @Override
+    public boolean updateCompanyInputByCompanyName(CompanyInput companyInput) {
+        return companyInputMapper.updateCompanyInputByCompanyName(companyInput);
+    }
+
+    @Override
+    public boolean existCompanyName(String companyName) {
+        return companyInputMapper.findCompanyInputByCompanyName(companyName).size() > 0;
+    }
+
+    @Override
     public boolean deleteCompanyInput(Long id) {
         return companyInputMapper.deleteCompanyInput(id);
     }

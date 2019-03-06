@@ -27,6 +27,10 @@ public interface CompanyInputDao {
 
     boolean updateCompanyInput(CompanyInput companyInput);
 
+    boolean updateCompanyInputByCompanyName(CompanyInput companyInput);
+
+    boolean existCompanyName(String companyName);
+
     boolean deleteCompanyInput(Long id);
 
     List<VoFingerResult> findAllByYearAndQuarter(CompanyInput companyInput);
