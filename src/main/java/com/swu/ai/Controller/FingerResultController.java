@@ -112,7 +112,7 @@ public class FingerResultController {
         List<String[]> list = ExcelData.getExcelData(files[0]);
         CompanyInput companyInput;
         List<CompanyInput> companyList = new ArrayList<CompanyInput>();
-        for(int i = 2;i < list.size()-2;i++){
+        for(int i = 2;i < list.size();i++){
              companyInput = CompanyInput.inputByArray(list.get(i));
              companyList.add(companyInput);
         }
