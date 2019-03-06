@@ -1845,6 +1845,8 @@ public class CompanyInput {
         return "CompanyInput{" +
                 "id=" + id +
                 ", companyname='" + companyname + '\'' +
+                ", industry='" + industry + '\'' +
+                ", region='" + region + '\'' +
                 ", year=" + year +
                 ", quarter=" + quarter +
                 ", ticketincomesoftware=" + ticketincomesoftware +
@@ -1925,7 +1927,12 @@ public class CompanyInput {
                 '}';
     }
 
-
+    /**
+     * 通过String数组生成CompanyInput对象
+     * @param input 输入String数组
+     * @return
+     */
+    // TODO: input的长度必须与CompanyInput除ID外的属性一一对应，空值请用空字符串，不要用null
     public static CompanyInput inputByArray(String[] input) {
         CompanyInput companyInput = new CompanyInput();
         List<String> list = Arrays.asList(input);
@@ -1960,6 +1967,12 @@ public class CompanyInput {
         }
         return companyInput;
     }
+
+    /**
+     * 通过Map生成
+     * @param map 与companyInput属性名称对应的Map，且value中的String数组长度必须为1，若无值则长度为0或为单个空字符串
+     * @return
+     */
     public static CompanyInput inputByMap(Map<String, String[]> map){
         CompanyInput companyInput = new CompanyInput();
         for (Map.Entry<String, String[]> entry : map.entrySet()) {

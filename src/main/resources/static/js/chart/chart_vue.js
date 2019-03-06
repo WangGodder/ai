@@ -116,7 +116,28 @@
             this.base_data = getRandomBaseData(3, 10);
         },
         mounted() {
-
+            let ajax_data;
+            $.ajax({
+                url: '/user/getAllCompanyInfo/',
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    var json = data.status;
+                    if (json == 1) {
+                        sv2.warn("上传成功");
+                        ajax_data = data.data;
+                        console.log(ajax_data);
+                        console.log(data);
+                    } else {
+                        sv2.warn("上传失败:" + data.message);
+                    }
+                },
+                error: function () {
+                    sv2.warn("上传失败");
+                }
+            });
+            this.base_data = ajax_data;
         },
         methods: {
             /**

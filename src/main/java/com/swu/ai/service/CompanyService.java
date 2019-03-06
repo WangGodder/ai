@@ -10,4 +10,7 @@ import java.util.List;
  */
 public interface CompanyService {
     boolean insertCompanyInfo(List<CompanyInput> list);
+
+    List<CompanyInput> findAllCompanyInput();
+
 }

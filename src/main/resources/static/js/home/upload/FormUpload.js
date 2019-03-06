@@ -74,12 +74,28 @@ let FormUpload = {
         "                        <input id=\"quarter\" name=\"quarter\" type=\"number\" min=\"1\" max=\"4\" class=\"form-control\">\n" +
         "                        <span class=\"input-group-addon\">1-4季度</span>\n" +
         "                    </div>\n" +
+        "                </div>\" +
+        "               <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 block-show\">\n" +
+        "                    <div class=\"input-group input-group-lg\">\n" +
+        "                        <span class=\"input-group-addon\">公司名称</span>\n" +
+        "                        <input id=\"company-name\" name=\"companyname\" type=\"text\" class=\"form-control\">\n" +
+        "                        <span class=\"input-group-addon\"></span>\n" +
+        "                    </div>\n" +
         "                </div>\n" +
-        "                <div class=\"input-group input-group-lg\">\n" +
-        "                    <span class=\"input-group-addon\">公司名称</span>\n" +
-        "                    <input id=\"company-name\" name=\"companyname\" type=\"text\" class=\"form-control\">\n" +
-        "                    <span class=\"input-group-addon\"></span>\n" +
+        "                <div class=\"block-show  col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
+        "                    <div class=\"input-group input-group-lg\">\n" +
+        "                        <span class=\"input-group-addon\">公司所在行业</span>\n" +
+        "                        <input id=\"company-industry\" name=\"industry\" type=\"text\" class=\"form-control\">\n" +
+        "                        <span class=\"input-group-addon\"></span>\n" +
+        "                    </div>\n" +
         "                </div>\n" +
+        "                <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 block-show\">\n" +
+        "                    <div class=\"input-group input-group-lg \">\n" +
+        "                        <span class=\"input-group-addon\">公司所在地区</span>\n" +
+        "                        <input id=\"company-region\" name=\"region\" type=\"text\" class=\"form-control\">\n" +
+        "                        <span class=\"input-group-addon\"></span>\n" +
+        "                    </div>\n" +
+        "                </div>" +
         "            </div>\n" +
         "        </div>\n" +
         "        <!--1-->\n" +

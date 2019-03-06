@@ -54,8 +54,31 @@ public class CompanyInputDaoImpl implements CompanyInputDao {
     }
 
     @Override
+    public List<CompanyInput> findCompanyInputByIndustry(String industry) {
+        List<CompanyInput> result = companyInputMapper.findCompanyInputByIndustry(industry);
+        return result;
+    }
+
+    @Override
+    public List<CompanyInput> findCompanyInputByRegion(String region) {
+        List<CompanyInput> result = companyInputMapper.findCompanyInputByRegion(region);
+        return result;
+    }
+
+    @Override
     public CompanyInput findCompanyInputById(Long id) {
         CompanyInput result = companyInputMapper.findCompanyInputById(id);
         return result;
     }
+
+    @Override
+    public boolean updateCompanyInput(CompanyInput companyInput) {
+        return companyInputMapper.updateCompanyInput(companyInput);
+    }
+
+    @Override
+    public boolean deleteCompanyInput(Long id) {
+        return companyInputMapper.deleteCompanyInput(id);
+    }
+
 }
