@@ -92,8 +92,8 @@ public class FingerResultController {
     */
 //    JsonResult getFingerResult2(@RequestParam(value = "year", required = false, defaultValue = "2018") Integer year,
 //                                @RequestParam(value = "quarter", required = false, defaultValue = "1") Integer quarter,
-////                                 @RequestParam(value = "denominatorType", required = false, defaultValue = "mean") String denominatorType,
-////                                @RequestParam(value = "companyPlate", required = false, defaultValue = "all") String companyPlate,
+//                                @RequestParam(value = "denominatorType", required = false, defaultValue = "mean") String denominatorType,
+//                                @RequestParam(value = "companyPlate", required = false, defaultValue = "all") String companyPlate,
 //                                @RequestParam(value = "companyId", required = false, defaultValue = "-1") Long companyId) {
     JsonResult getFingerResult2(CompanyInput companyInput) {
         if(companyInput.getYear() == null || companyInput.getQuarter() == null ){
