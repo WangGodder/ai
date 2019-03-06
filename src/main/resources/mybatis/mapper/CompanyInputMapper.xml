@@ -968,6 +968,9 @@
             <if test="region != null">
                 and region = #{region}
             </if>
+            <if test="companyname != null">
+                and companyname = #{companyname}
+            </if>
         </where>
     </select>
 </mapper>
