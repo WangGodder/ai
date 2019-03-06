@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -118,12 +119,16 @@ public class FingerResultController {
     @RequestMapping(value = "upload/")
     @ResponseBody
     public JsonResult evaluation(HttpServletRequest request, HttpServletResponse response, @RequestParam("file") MultipartFile[] files) throws IOException {
-        System.out.println(files[1].getName());
         //获取excel指标值
         List<String[]> list = ExcelData.getExcelData(files[0]);
-        CompanyInput companyInput = CompanyInput.inputByArray(list.get(2));
-        System.out.println(companyInput);
+        CompanyInput companyInput;
+        List<CompanyInput> companyList = new ArrayList<CompanyInput>();
+        for(int i = 2;i < list.size()-2;i++){
+             companyInput = CompanyInput.inputByArray(list.get(i));
+             companyList.add(companyInput);
+        }
         //插入企业信息
+        companyService.insertCompanyInfo(companyList);
         return JsonResult.success(list);
     }
 
