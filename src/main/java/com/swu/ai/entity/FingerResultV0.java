@@ -688,53 +688,692 @@ public class FingerResultV0 {
     @Column(name = "finger_brand_talent_country")
     private Double fingerBrandTalentCountry = 0.0;
 
+    @Column(name = "finger_sale_weight")
+    private Double fingerSaleWeight = 0.0;
+
+    @Column(name = "finger_sale_invoice_weight")
+    private Double fingerSaleInvoiceWeight = 0.0;
+
+    @Column(name = "finger_sale_invoice_soft_weight")
+    private Double fingerSaleInvoiceSoftWeight = 0.0;
+
+    /**
+     * 已开发票的收入-硬件产品
+     */
+    @Column(name = "finger_sale_invoice_hard_weight")
+    private Double fingerSaleInvoiceHardWeight = 0.0;
+
+    /**
+     * 已开发票的收入-咨询服务
+     */
+    @Column(name = "finger_sale_invoice_consultation_weight")
+    private Double fingerSaleInvoiceConsultationWeight = 0.0;
+
+    /**
+     * 已开发票的收入-其他
+     */
+    @Column(name = "finger_sale_invoice_other_weight")
+    private Double fingerSaleInvoiceOtherWeight = 0.0;
+
+    /**
+     * 二级指标：合同确认额
+     */
+    @Column(name = "finger_sale_contract_weight")
+    private Double fingerSaleContractWeight = 0.0;
+
+    /**
+     * 三级指标：合同确认额-软件产品
+     */
+    @Column(name = "finger_sale_contract_soft_weight")
+    private Double fingerSaleContractSoftWeight = 0.0;
+
+    /**
+     * 三级指标：合同确认额-硬件产品
+     */
+    @Column(name = "finger_sale_contract_hard_weight")
+    private Double fingerSaleContractHardWeight = 0.0;
+
+    /**
+     * 三级指标：合同确认额-咨询服务
+     */
+    @Column(name = "finger_sale_contract_consultation_weight")
+    private Double fingerSaleContractConsultationWeight = 0.0;
+
+    /**
+     * 三级指标：合同确认额-其他
+     */
+    @Column(name = "finger_sale_contract_other_weight")
+    private Double fingerSaleContractOtherWeight = 0.0;
+
+    /**
+     * 一级指标：纳税指数
+     */
+    @Column(name = "finger_tax_weight")
+    private Double fingerTaxWeight = 0.0;
+
+    /**
+     * 二级指标：企业所得税
+     */
+    @Column(name = "finger_tax_corporate_weight")
+    private Double fingerTaxCorporateWeight = 0.0;
+
+    /**
+     * 三级指标：企业所得税-应纳税值
+     */
+    @Column(name = "finger_tax_corporate_taxable_weight")
+    private Double fingerTaxCorporateTaxableWeight = 0.0;
+
+    /**
+     * 三级指标：企业所得税-税收减免值
+     */
+    @Column(name = "finger_tax_corporate_relief_weight")
+    private Double fingerTaxCorporateReliefWeight = 0.0;
+
+    /**
+     * 二级指标：个人所得税
+     */
+    @Column(name = "finger_tax_individual_weight")
+    private Double fingerTaxIndividualWeight = 0.0;
+
+    /**
+     * 三级指标：个人所得税-应纳税值
+     */
+    @Column(name = "finger_tax_individual_taxable_weight")
+    private Double fingerTaxIndividualTaxableWeight = 0.0;
+
+    /**
+     * 三级指标：个人所得税-税收减免
+     */
+    @Column(name = "finger_tax_individual_relief_weight")
+    private Double fingerTaxIndividualReliefWeight = 0.0;
+
+    /**
+     * 二级指标：增值税
+     */
+    @Column(name = "finger_tax_added_weight")
+    private Double fingerTaxAddedWeight = 0.0;
+
+    /**
+     * 三级指标：增值税-应纳税值
+     */
+    @Column(name = "finger_tax_added_taxable_weight")
+    private Double fingerTaxAddedTaxableWeight = 0.0;
+
+    /**
+     * 三级指标：增值税-税收减免
+     */
+    @Column(name = "finger_tax_added_relief_weight")
+    private Double fingerTaxAddedReliefWeight = 0.0;
+
+    /**
+     * 一级指标：融资指数
+     */
+    @Column(name = "finger_finance_weight")
+    private Double fingerFinanceWeight = 0.0;
+
+    /**
+     * 二级指标：股权类融资
+     */
+    @Column(name = "finger_finance_stock_weight")
+    private Double fingerFinanceStockWeight = 0.0;
+
+    /**
+     * 三级指标：股权类融资-风投机构
+     */
+    @Column(name = "finger_finance_stock_risk_weight")
+    private Double fingerFinanceStockRiskWeight = 0.0;
+
+    /**
+     * 三级指标：股权类融资-政府企业
+     */
+    @Column(name = "finger_finance_stock_gov_weight")
+    private Double fingerFinanceStockGovWeight = 0.0;
+
+    /**
+     * 三级指标：股权类融资-个人
+     */
+    @Column(name = "finger_finance_stock_person_weight")
+    private Double fingerFinanceStockPersonWeight = 0.0;
+
+    /**
+     * 二级指标：债务类融资
+     */
+    @Column(name = "finger_finance_debt_weight")
+    private Double fingerFinanceDebtWeight = 0.0;
+
+    /**
+     * 三级指标：债务类融资-银行
+     */
+    @Column(name = "finger_finance_debt_bank_weight")
+    private Double fingerFinanceDebtBankWeight = 0.0;
+
+    /**
+     * 三级指标：债务类融资-新型贷款机构
+     */
+    @Column(name = "finger_finance_debt_new_weight")
+    private Double fingerFinanceDebtNewWeight = 0.0;
+
+    /**
+     * 三级指标：债务类融资-企业拆借
+     */
+    @Column(name = "finger_finance_debt_lending_weight")
+    private Double fingerFinanceDebtLendingWeight = 0.0;
+
+    /**
+     * 三级指标：债务类融资-个人
+     */
+    @Column(name = "finger_finance_debt_person_weight")
+    private Double fingerFinanceDebtPersonWeight = 0.0;
+
+    /**
+     * 一级指标:估值指数
+     */
+    @Column(name = "finger_valuation_weight")
+    private Double fingerValuationWeight = 0.0;
+
+    /**
+     * 二级指标：净资产
+     */
+    @Column(name = "finger_valuation_assets_weight")
+    private Double fingerValuationAssetsWeight = 0.0;
+
+    /**
+     * 三级指标：净资产-流动资产
+     */
+    @Column(name = "finger_valuation_assets_circulating_weight")
+    private Double fingerValuationAssetsCirculatingWeight = 0.0;
+
+    /**
+     * 三级指标：净资产-非流动资产
+     */
+    @Column(name = "finger_valuation_assets_uncirculating_weight")
+    private Double fingerValuationAssetsUncirculatingWeight = 0.0;
+
+    /**
+     * 三级指标：净资产-流动负债
+     */
+    @Column(name = "finger_valuation_assets_debt_circulating_weight")
+    private Double fingerValuationAssetsDebtCirculatingWeight = 0.0;
+
+    /**
+     * 三级指标：净资产-非流动负债
+     */
+    @Column(name = "finger_valuation_assets_debt_uncirculating_weight")
+    private Double fingerValuationAssetsDebtUncirculatingWeight = 0.0;
+
+    /**
+     * 二级指标：实际估值
+     */
+    @Column(name = "finger_valuation_actual_weight")
+    private Double fingerValuationActualWeight = 0.0;
+
+    /**
+     * 三级指标：实际估值-首次融资
+     */
+    @Column(name = "finger_valuation_actual_first_weight")
+    private Double fingerValuationActualFirstWeight = 0.0;
+
+    /**
+     * 三级指标：实际估值-最近一次融资估值
+     */
+    @Column(name = "finger_valuation_actual_latest_weight")
+    private Double fingerValuationActualLatestWeight = 0.0;
+
+    /**
+     * 三级指标：实际估值-现在准备融资估值
+     */
+    @Column(name = "finger_valuation_actual_want_weight")
+    private Double fingerValuationActualWantWeight = 0.0;
+
+    /**
+     * 一级指标：人力资源指数
+     */
+    @Column(name = "finger_hr_weight")
+    private Double fingerHrWeight = 0.0;
+
+    /**
+     * 二级指标：兼职员工数
+     */
+    @Column(name = "finger_hr_partime_weight")
+    private Double fingerHrPartimeWeight = 0.0;
+
+    /**
+     * 三级指标：兼职员工-研发
+     */
+    @Column(name = "finger_hr_partime_dev_weight")
+    private Double fingerHrPartimeDevWeight = 0.0;
+
+    /**
+     * 三级指标：兼职员工-管理
+     */
+    @Column(name = "finger_hr_partime_manage_weight")
+    private Double fingerHrPartimeManageWeight = 0.0;
+
+    /**
+     * 三级指标：兼职员工-行政
+     */
+    @Column(name = "finger_hr_partime_admin_weight")
+    private Double fingerHrPartimeAdminWeight = 0.0;
+
+    /**
+     * 三级指标：兼职员工-销售
+     */
+    @Column(name = "finger_hr_partime_saler_weight")
+    private Double fingerHrPartimeSalerWeight = 0.0;
+
+    /**
+     * 二级指标：全职员工
+     */
+    @Column(name = "finger_hr_fulltime_weight")
+    private Double fingerHrFulltimeWeight = 0.0;
+
+    /**
+     * 三级指标：全职员工-研发
+     */
+    @Column(name = "finger_hr_fulltime_dev_weight")
+    private Double fingerHrFulltimeDevWeight = 0.0;
+
+    /**
+     * 三级指标：全职员工-高管
+     */
+    @Column(name = "finger_hr_fulltime_senior_weight")
+    private Double fingerHrFulltimeSeniorWeight = 0.0;
+
+    /**
+     * 三级指标：全职员工-行政
+     */
+    @Column(name = "finger_hr_fulltime_admin_weight")
+    private Double fingerHrFulltimeAdminWeight = 0.0;
+
+    /**
+     * 三级指标：全职员工-销售
+     */
+    @Column(name = "finger_hr_fulltime_saler_weight")
+    private Double fingerHrFulltimeSalerWeight = 0.0;
+
+    /**
+     * 二级指标：高学历人员
+     */
+    @Column(name = "finger_hr_educated_weight")
+    private Double fingerHrEducatedWeight = 0.0;
+
+    /**
+     * 三级指标：高学历人员-博士
+     */
+    @Column(name = "finger_hr_educated_doc_weight")
+    private Double fingerHrEducatedDocWeight = 0.0;
+
+    /**
+     * 三级指标：高学历人员-硕士
+     */
+    @Column(name = "finger_hr_educated_master_weight")
+    private Double fingerHrEducatedMasterWeight = 0.0;
+
+    /**
+     * 三级指标：高学历人员-学士
+     */
+    @Column(name = "finger_hr_bachelor_weight")
+    private Double fingerHrBachelorWeight = 0.0;
+
+    /**
+     * 一级指标：创新指数
+     */
+    @Column(name = "finger_innovate_weight")
+    private Double fingerInnovateWeight = 0.0;
+
+    /**
+     * 二级指标：专利申请
+     */
+    @Column(name = "finger_innovate_patent_apply_weight")
+    private Double fingerInnovatePatentApplyWeight = 0.0;
+
+    /**
+     * 三级指标：专利申请-发明
+     */
+    @Column(name = "finger_innovate_patent_apply_invention_weight")
+    private Double fingerInnovatePatentApplyInventionWeight = 0.0;
+
+    /**
+     * 三级指标：专利申请-实用新型
+     */
+    @Column(name = "finger_innovate_patent_apply_utility_weight")
+    private Double fingerInnovatePatentApplyUtilityWeight = 0.0;
+
+    /**
+     * 三级指标：专利申请-外观设计
+     */
+    @Column(name = "finger_innovate_patent_apply_appear_weight")
+    private Double fingerInnovatePatentApplyAppearWeight = 0.0;
+
+    /**
+     * 二级指标：专利授权
+     */
+    @Column(name = "finger_innovate_patent_grant_weight")
+    private Double fingerInnovatePatentGrantWeight = 0.0;
+
+    /**
+     * 三级指标：专利授权-发明
+     */
+    @Column(name = "finger_innovate_patent_grant_invention_weight")
+    private Double fingerInnovatePatentGrantInventionWeight = 0.0;
+
+    /**
+     * 三级指标：专利授权-实用新型
+     */
+    @Column(name = "finger_innovate_patent_grant_utility_weight")
+    private Double fingerInnovatePatentGrantUtilityWeight = 0.0;
+
+    /**
+     * 三级指标：专利授权-外观设计
+     */
+    @Column(name = "finger_innovate_patent_grant_appear_weight")
+    private Double fingerInnovatePatentGrantAppearWeight = 0.0;
+
+    /**
+     * 二级指标：著作权申请
+     */
+    @Column(name = "finger_innovate_copyright_apply_weight")
+    private Double fingerInnovateCopyrightApplyWeight = 0.0;
+
+    /**
+     * 三级指标：著作权申请-软件类
+     */
+    @Column(name = "finger_innovate_copyright_apply_soft_weight")
+    private Double fingerInnovateCopyrightApplySoftWeight = 0.0;
+
+    /**
+     * 三级指标：著作权申请-非软件类
+     */
+    @Column(name = "finger_innovate_copyright_apply_unsoft_weight")
+    private Double fingerInnovateCopyrightApplyUnsoftWeight = 0.0;
+
+    /**
+     * 二级指标：著作权授权
+     */
+    @Column(name = "finger_innovate_copyright_grant_weight")
+    private Double fingerInnovateCopyrightGrantWeight = 0.0;
+
+    /**
+     * 三级指标：著作权授权-软件类
+     */
+    @Column(name = "finger_innovate_copyright_grant_soft_weight")
+    private Double fingerInnovateCopyrightGrantSoftWeight = 0.0;
+
+    /**
+     * 三级指标：著作权授权-非软件类
+     */
+    @Column(name = "finger_innovate_copyright_grant_unsoft_weight")
+    private Double fingerInnovateCopyrightGrantUnsoftWeight = 0.0;
+
+    /**
+     * 二级指标：新产品/服务
+     */
+    @Column(name = "finger_innovate_new_product_weight")
+    private Double fingerInnovateNewProductWeight = 0.0;
+
+    /**
+     * 三级指标：新产品/服务-专利类
+     */
+    @Column(name = "finger_innovate_new_product_patent_weight")
+    private Double fingerInnovateNewProductPatentWeight = 0.0;
+
+    /**
+     * 三级指标：新产品/服务-专用技术
+     */
+    @Column(name = "finger_innovate_new_product_tech_weight")
+    private Double fingerInnovateNewProductTechWeight = 0.0;
+
+    /**
+     * 三级指标：新产品/服务-商业模式
+     */
+    @Column(name = "finger_innovate_new_product_bus_weight")
+    private Double fingerInnovateNewProductBusWeight = 0.0;
+
+    /**
+     * 一级指标：薪酬指数
+     */
+    @Column(name = "finger_salary_weight")
+    private Double fingerSalaryWeight = 0.0;
+
+    /**
+     * 二级指标：员工工资额
+     */
+    @Column(name = "finger_salary_staff_weight")
+    private Double fingerSalaryStaffWeight = 0.0;
+
+    /**
+     * 三级指标：员工工资额-1万元以上
+     */
+    @Column(name = "finger_salary_staff_up_10_weight")
+    private Double fingerSalaryStaffUp10Weight = 0.0;
+
+    /**
+     * 三级指标：员工工资额-5千到1万
+     */
+    @Column(name = "finger_salary_staff_5_10_weight")
+    private Double fingerSalaryStaff510Weight = 0.0;
+
+    /**
+     * 三级指标：员工工资额-5千以下
+     */
+    @Column(name = "finger_salary_staff_down_5_weight")
+    private Double fingerSalaryStaffDown5Weight = 0.0;
+
+    /**
+     * 二级指标：员工贡献率
+     */
+    @Column(name = "finger_salary_staff_contribution_weight")
+    private Double fingerSalaryStaffContributionWeight = 0.0;
+
+    /**
+     * 三级指标：员工贡献率-人均销售
+     */
+    @Column(name = "finger_salary_staff_contribution_meansale_weight")
+    private Double fingerSalaryStaffContributionMeansaleWeight = 0.0;
+
+    /**
+     * 三级指标：员工贡献率-人均纳税
+     */
+    @Column(name = "finger_salary_staff_contribution_meantax_weight")
+    private Double fingerSalaryStaffContributionMeantaxWeight = 0.0;
+
+    /**
+     * 一级指标：学习指数
+     */
+    @Column(name = "finger_learn_weight")
+    private Double fingerLearnWeight = 0.0;
+
+    /**
+     * 二级指标：参加培训的次数
+     */
+    @Column(name = "finger_learn_train_weight")
+    private Double fingerLearnTrainWeight = 0.0;
+
+    /**
+     * 三级指标：参加培训的次数-管理类
+     */
+    @Column(name = "finger_learn_train_manage_weight")
+    private Double fingerLearnTrainManageWeight = 0.0;
+
+    /**
+     * 三级指标：参加培训的次数-政策法规
+     */
+    @Column(name = "finger_learn_train_policy_weight")
+    private Double fingerLearnTrainPolicyWeight = 0.0;
+
+    /**
+     * 三级指标：参加培训的次数-技能类
+     */
+    @Column(name = "finger_learn_train_skill_weight")
+    private Double fingerLearnTrainSkillWeight = 0.0;
+
+    /**
+     * 二级指标：接受咨询的次数
+     */
+    @Column(name = "finger_learn_conslted_weight")
+    private Double fingerLearnConsltedWeight = 0.0;
+
+    /**
+     * 三级指标：接受咨询的次数-管理类
+     */
+    @Column(name = "finger_learn_conslted_manage_weight")
+    private Double fingerLearnConsltedManageWeight = 0.0;
+
+    /**
+     * 三级指标：接受咨询的次数-政策法规
+     */
+    @Column(name = "finger_learn_conslted_policy_weight")
+    private Double fingerLearnConsltedPolicyWeight = 0.0;
+
+    /**
+     * 三级指标：接受咨询的次数-技能类
+     */
+    @Column(name = "finger_learn_conslted_skill_weight")
+    private Double fingerLearnConsltedSkillWeight = 0.0;
+
+    /**
+     * 一级指标：品牌指数
+     */
+    @Column(name = "finger_brand_weight")
+    private Double fingerBrandWeight = 0.0;
+
+    /**
+     * 二级指标：企业获奖
+     */
+    @Column(name = "finger_brand_reward_weight")
+    private Double fingerBrandRewardWeight = 0.0;
+
+    /**
+     * 三级指标：企业获奖-区级
+     */
+    @Column(name = "finger_brand_reward_area_weight")
+    private Double fingerBrandRewardAreaWeight = 0.0;
+
+    /**
+     * 三级指标：企业获奖-市级
+     */
+    @Column(name = "finger_brand_reward_city_weight")
+    private Double fingerBrandRewardCityWeight = 0.0;
+
+    /**
+     * 三级指标：企业获奖-省级
+     */
+    @Column(name = "finger_brand_reward_province_weight")
+    private Double fingerBrandRewardProvinceWeight = 0.0;
+
+    /**
+     * 三级指标：企业获奖-国家级
+     */
+    @Column(name = "finger_brand_reward_country_weight")
+    private Double fingerBrandRewardCountryWeight = 0.0;
+
+    /**
+     * 二级指标：企业认定
+     */
+    @Column(name = "finger_brand_recognition_weight")
+    private Double fingerBrandRecognitionWeight = 0.0;
+
+    /**
+     * 三级指标：企业认定-区级
+     */
+    @Column(name = "finger_brand_recognition_area_weight")
+    private Double fingerBrandRecognitionAreaWeight = 0.0;
+
+    /**
+     * 三级指标：企业认定-市级
+     */
+    @Column(name = "finger_brand_recognition_city_weight")
+    private Double fingerBrandRecognitionCityWeight = 0.0;
+
+    /**
+     * 三级指标：企业认定-省级
+     */
+    @Column(name = "finger_brand_recognition_province_weight")
+    private Double fingerBrandRecognitionProvinceWeight = 0.0;
+
+    /**
+     * 三级指标：企业认定-国家级
+     */
+    @Column(name = "finger_brand_recognition_country_weight")
+    private Double fingerBrandRecognitionCountryWeight = 0.0;
+
+    /**
+     * 二级指标：人才资助
+     */
+    @Column(name = "finger_brand_talent_weight")
+    private Double fingerBrandTalentWeight = 0.0;
+
+    /**
+     * 三级指标：人才资助-区级
+     */
+    @Column(name = "finger_brand_talent_area_weight")
+    private Double fingerBrandTalentAreaWeight = 0.0;
+
+    /**
+     * 三级指标：人才资助-市级
+     */
+    @Column(name = "finger_brand_talent_city_weight")
+    private Double fingerBrandTalentCityWeight = 0.0;
+
+    /**
+     * 三级指标：人才资助-省级
+     */
+    @Column(name = "finger_brand_talent_province_weight")
+    private Double fingerBrandTalentProvinceWeight = 0.0;
+
+    /**
+     * 三级指标：人才资助-国家级
+     */
+    @Column(name = "finger_brand_talent_country_weight")
+    private Double fingerBrandTalentCountryWeight = 0.0;
+
     /**
      * 初始化三级指标后，计算所有指标
      */
     public void evaluate() {
-        this.fingerSaleInvoice = this.fingerSaleInvoiceSoft * 2 + this.fingerSaleInvoiceHard * 2.5 + this.fingerSaleInvoiceConsultation + this.fingerSaleInvoiceSoft * 0.5;
-        this.fingerSaleContract = this.fingerSaleContractSoft * 2 + this.fingerSaleContractHard * 2.5 + this.fingerSaleContractConsultation + this.fingerSaleContractOther * 0.5;
-        this.fingerSale = this.fingerSaleInvoice * 5 + this.fingerSaleContract;
+        this.fingerSaleInvoice = this.fingerSaleInvoiceSoft * this.fingerSaleInvoiceSoftWeight + this.fingerSaleInvoiceHard *  this.fingerSaleInvoiceHardWeight + this.fingerSaleInvoiceConsultation * this.fingerSaleInvoiceConsultationWeight + this.fingerSaleInvoiceSoft * this.fingerSaleInvoiceSoftWeight;
+        this.fingerSaleContract = this.fingerSaleContractSoft * this.fingerSaleContractSoftWeight + this.fingerSaleContractHard * this.fingerSaleContractHardWeight + this.fingerSaleContractConsultation * this.fingerSaleContractConsultationWeight + this.fingerSaleContractOther * this.fingerSaleContractOtherWeight;
+        this.fingerSale = this.fingerSaleInvoice * this.fingerSaleInvoiceWeight + this.fingerSaleContract * this.fingerSaleContractWeight;
 
-        this.fingerTaxCorporate = this.fingerTaxCorporateTaxable + this.fingerTaxCorporateRelief * 2;
-        this.fingerTaxIndividual = this.fingerTaxIndividualRelief + this.fingerTaxIndividualRelief * 2;
-        this.fingerTaxAdded = this.fingerTaxAddedTaxable + this.fingerTaxAddedRelief * 2;
-        this.fingerTax = this.fingerTaxCorporate * 3 + this.fingerTaxIndividual * 2 + this.fingerTaxAdded * 4;
+        this.fingerTaxCorporate = this.fingerTaxCorporateTaxable * this.fingerTaxCorporateTaxableWeight + this.fingerTaxCorporateRelief * this.fingerTaxCorporateReliefWeight;
+        this.fingerTaxIndividual = this.fingerTaxIndividualRelief * this.fingerTaxIndividualReliefWeight + this.fingerTaxIndividualRelief * this.fingerTaxIndividualReliefWeight;
+        this.fingerTaxAdded = this.fingerTaxAddedTaxable * this.fingerTaxAddedTaxableWeight + this.fingerTaxAddedRelief * this.fingerTaxAddedReliefWeight;
+        this.fingerTax = this.fingerTaxCorporate * this.fingerTaxCorporateWeight + this.fingerTaxIndividual * this.fingerTaxIndividualWeight  + this.fingerTaxAdded * this.fingerTaxAddedWeight;
 
-        this.fingerFinanceStock = this.fingerFinanceStockRisk * 3 + this.fingerFinanceStockGov * 2 + this.fingerFinanceStockPerson;
-        this.fingerFinanceDebt = this.fingerFinanceDebtBank * 3 + this.fingerFinanceDebtLending * 2 + this.fingerFinanceDebtNew * 2 + this.fingerFinanceDebtPerson;
-        this.fingerFinance = this.fingerFinanceStock * 4 + this.fingerFinanceDebt;
+        this.fingerFinanceStock = this.fingerFinanceStockRisk * this.fingerFinanceStockRiskWeight + this.fingerFinanceStockGov * this.fingerFinanceStockGovWeight + this.fingerFinanceStockPerson * this.fingerFinanceStockPersonWeight;
+        this.fingerFinanceDebt = this.fingerFinanceDebtBank * this.fingerFinanceDebtBankWeight + this.fingerFinanceDebtLending * this.fingerFinanceDebtLendingWeight + this.fingerFinanceDebtNew * this.fingerFinanceDebtNewWeight + this.fingerFinanceDebtPerson * this.fingerFinanceDebtPersonWeight;
+        this.fingerFinance = this.fingerFinanceStock * this.fingerFinanceStockWeight + this.fingerFinanceDebt * this.fingerFinanceDebtWeight;
 
-        this.fingerValuationAssets = this.fingerValuationAssetsCirculating * 4 + this.fingerValuationAssetsUncirculating * 3 + this.fingerValuationAssetsDebtCirculating * 1 + this.fingerValuationAssetsDebtUncirculating * 2;
-        this.fingerValuationActual = this.fingerValuationActualFirst * 2 + this.fingerValuationActualLatest * 3 + this.fingerValuationActualWant * 0.0000001;
-        this.fingerValuation = this.fingerValuationAssets * 4 + this.fingerValuationActual;
+        this.fingerValuationAssets = this.fingerValuationAssetsCirculating * this.fingerValuationAssetsCirculatingWeight + this.fingerValuationAssetsUncirculating * this.fingerValuationAssetsUncirculatingWeight + this.fingerValuationAssetsDebtCirculating * this.fingerValuationAssetsDebtCirculatingWeight + this.fingerValuationAssetsDebtUncirculating * this.fingerValuationAssetsDebtUncirculatingWeight;
+        this.fingerValuationActual = this.fingerValuationActualFirst * this.fingerValuationActualFirstWeight + this.fingerValuationActualLatest * this.fingerValuationActualLatestWeight + this.fingerValuationActualWant * this.fingerValuationActualWantWeight;
+        this.fingerValuation = this.fingerValuationAssets * this.fingerValuationAssetsWeight + this.fingerValuationActual * this.fingerValuationActualWantWeight;
 
-        this.fingerHrPartime = this.fingerHrPartimeDev + this.fingerHrPartimeManage + this.fingerHrPartimeAdmin + this.fingerHrPartimeSaler;
-        this.fingerHrFulltime = this.fingerHrFulltimeDev * 3 + this.fingerHrFulltimeSenior * 4 + this.fingerHrFulltimeAdmin + this.fingerHrFulltimeSaler * 2;
-        this.fingerHrEducated = this.fingerHrEducatedDoc * 3 + this.fingerHrEducatedMaster * 2 + this.fingerHrBachelor;
-        this.fingerHr = this.fingerHrPartime + this.fingerHrFulltime * 3 + this.fingerHrEducated * 4;
+        this.fingerHrPartime = this.fingerHrPartimeDev * this.fingerHrPartimeDevWeight + this.fingerHrPartimeManage * this.fingerHrPartimeManageWeight + this.fingerHrPartimeAdmin * this.fingerHrPartimeAdminWeight + this.fingerHrPartimeSaler * this.fingerHrPartimeSalerWeight;
+        this.fingerHrFulltime = this.fingerHrFulltimeDev * this.fingerHrFulltimeDevWeight + this.fingerHrFulltimeSenior * this.fingerHrFulltimeSeniorWeight + this.fingerHrFulltimeAdmin * this.fingerHrFulltimeAdminWeight + this.fingerHrFulltimeSaler * this.fingerHrFulltimeSalerWeight;
+        this.fingerHrEducated = this.fingerHrEducatedDoc * this.fingerHrEducatedDocWeight + this.fingerHrEducatedMaster * this.fingerHrEducatedMasterWeight + this.fingerHrBachelor * this.fingerHrBachelor;
+        this.fingerHr = this.fingerHrPartime * this.fingerHrPartimeWeight + this.fingerHrFulltime * this.fingerHrFulltimeWeight + this.fingerHrEducated * this.fingerHrEducatedWeight;
 
-        this.fingerInnovatePatentApply = this.fingerInnovatePatentApplyInvention * 3 + this.fingerInnovatePatentApplyUtility * 2 + this.fingerInnovatePatentApplyAppear;
-        this.fingerInnovatePatentGrant = this.fingerInnovatePatentGrantInvention * 3 + this.fingerInnovatePatentGrantUtility * 2 + this.fingerInnovatePatentGrantAppear;
-        this.fingerInnovateCopyrightApply = this.fingerInnovateCopyrightApplySoft * 2 + this.fingerInnovateCopyrightApplyUnsoft;
-        this.fingerInnovateCopyrightGrant = this.fingerInnovateCopyrightGrantSoft * 2 + this.fingerInnovateCopyrightGrantUnsoft;
-        this.fingerInnovateNewProduct = this.fingerInnovateNewProductPatent * 2 + this.fingerInnovateNewProductTech + this.fingerInnovateNewProductBus;
-        this.fingerInnovate = this.fingerInnovatePatentApply * 2 + this.fingerInnovatePatentGrant * 4 + this.fingerInnovateCopyrightApply * 2 + this.fingerInnovateCopyrightGrant * 3 + this.fingerInnovateNewProduct * 4;
+        this.fingerInnovatePatentApply = this.fingerInnovatePatentApplyInvention * this.fingerInnovatePatentApplyInventionWeight + this.fingerInnovatePatentApplyUtility * this.fingerInnovatePatentApplyUtilityWeight + this.fingerInnovatePatentApplyAppear * this.fingerInnovatePatentApplyAppearWeight;
+        this.fingerInnovatePatentGrant = this.fingerInnovatePatentGrantInvention * this.fingerInnovatePatentGrantInventionWeight + this.fingerInnovatePatentGrantUtility * this.fingerInnovatePatentGrantUtilityWeight + this.fingerInnovatePatentGrantAppear * this.fingerInnovatePatentGrantAppearWeight;
+        this.fingerInnovateCopyrightApply = this.fingerInnovateCopyrightApplySoft * this.fingerInnovateCopyrightApplySoftWeight + this.fingerInnovateCopyrightApplyUnsoft * this.fingerInnovateCopyrightApplyUnsoftWeight;
+        this.fingerInnovateCopyrightGrant = this.fingerInnovateCopyrightGrantSoft * this.fingerInnovateCopyrightGrantSoftWeight + this.fingerInnovateCopyrightGrantUnsoft * this.fingerInnovateCopyrightGrantUnsoftWeight;
+        this.fingerInnovateNewProduct = this.fingerInnovateNewProductPatent * this.fingerInnovateNewProductPatentWeight + this.fingerInnovateNewProductTech * this.fingerInnovateNewProductTechWeight + this.fingerInnovateNewProductBus * this.fingerInnovateNewProductBusWeight;
+        this.fingerInnovate = this.fingerInnovatePatentApply * this.fingerInnovatePatentApplyWeight + this.fingerInnovatePatentGrant * this.fingerInnovatePatentGrantWeight + this.fingerInnovateCopyrightApply * this.fingerInnovateCopyrightApplyWeight + this.fingerInnovateCopyrightGrant * this.fingerInnovateCopyrightGrantWeight + this.fingerInnovateNewProduct * this.fingerInnovateNewProductWeight;
 
-        this.fingerSalaryStaff = this.fingerSalaryStaffUp10 + this.fingerSalaryStaff510 + this.fingerSalaryStaffDown5;
-        this.fingerSalaryStaffContribution = this.fingerSalaryStaffContributionMeansale + this.fingerSalaryStaffContributionMeantax * 2;
-        this.fingerSalary = this.fingerSalaryStaff + this.fingerSalaryStaffContribution * 4;
+        this.fingerSalaryStaff = this.fingerSalaryStaffUp10 * this.fingerSalaryStaffUp10Weight + this.fingerSalaryStaff510 * this.fingerSalaryStaff510Weight + this.fingerSalaryStaffDown5 * this.fingerSalaryStaffDown5;
+        this.fingerSalaryStaffContribution = this.fingerSalaryStaffContributionMeansale * this.fingerSalaryStaffContributionMeansaleWeight + this.fingerSalaryStaffContributionMeantax * this.fingerSalaryStaffContributionMeantaxWeight;
+        this.fingerSalary = this.fingerSalaryStaff * this.fingerSalaryStaffWeight + this.fingerSalaryStaffContribution * this.fingerSalaryStaffContributionWeight;
 
-        this.fingerLearnTrain = this.fingerLearnTrainManage + this.fingerLearnTrainPolicy + this.fingerLearnTrainSkill;
-        this.fingerLearnConslted = this.fingerLearnConsltedManage + this.fingerLearnTrainPolicy + this.fingerLearnTrainSkill;
-        this.fingerLearn = this.fingerLearnTrain * 3 + this.fingerLearnConslted * 4;
+        this.fingerLearnTrain = this.fingerLearnTrainManage * this.fingerLearnTrainManageWeight + this.fingerLearnTrainPolicy * this.fingerLearnTrainPolicyWeight + this.fingerLearnTrainSkill * this.fingerLearnTrainSkillWeight;
+        this.fingerLearnConslted = this.fingerLearnConsltedManage * this.fingerLearnConsltedManageWeight + this.fingerLearnTrainPolicy * this.fingerLearnTrainPolicyWeight + this.fingerLearnTrainSkill * this.fingerLearnTrainSkillWeight;
+        this.fingerLearn = this.fingerLearnTrain * this.fingerLearnTrainWeight + this.fingerLearnConslted * this.fingerLearnConsltedWeight;
 
-        this.fingerBrandReward = this.fingerBrandRewardArea * 1 + this.fingerBrandRewardCity * 2 + this.fingerBrandRewardProvince * 3 + this.fingerBrandRewardCountry * 5;
-        this.fingerBrandRecognition = this.fingerBrandRecognitionArea * 1 + this.fingerBrandRecognitionCity * 2 + this.fingerBrandRecognitionProvince * 3 + this.fingerBrandRecognitionCountry * 5;
-        this.fingerBrandTalent = this.fingerBrandTalentArea * 1 + this.fingerBrandTalentCity * 2 + this.fingerBrandTalentProvince * 3 + this.fingerBrandTalentCountry * 5;
-        this.fingerBrand = this.fingerBrandReward * 2 + this.fingerBrandRecognition * 3 + this.fingerBrandTalent * 2;
+        this.fingerBrandReward = this.fingerBrandRewardArea * this.fingerBrandRewardAreaWeight + this.fingerBrandRewardCity * this.fingerBrandRewardCityWeight + this.fingerBrandRewardProvince * this.fingerBrandRewardProvinceWeight + this.fingerBrandRewardCountry * this.fingerBrandRewardCountryWeight;
+        this.fingerBrandRecognition = this.fingerBrandRecognitionArea * this.fingerBrandRecognitionAreaWeight + this.fingerBrandRecognitionCity * this.fingerBrandRecognitionCityWeight + this.fingerBrandRecognitionProvince * this.fingerBrandRecognitionProvinceWeight + this.fingerBrandRecognitionCountry * this.fingerBrandRecognitionCountryWeight;
+        this.fingerBrandTalent = this.fingerBrandTalentArea * this.fingerBrandTalentAreaWeight + this.fingerBrandTalentCity * this.fingerBrandTalentCityWeight + this.fingerBrandTalentProvince * this.fingerBrandTalentProvinceWeight + this.fingerBrandTalentCountry * this.fingerBrandTalentCountryWeight;
+        this.fingerBrand = this.fingerBrandReward * this.fingerBrandRewardWeight + this.fingerBrandRecognition * this.fingerBrandRecognitionWeight + this.fingerBrandTalent * this.fingerBrandTalentWeight;
 
-        this.fingerAll = this.fingerSale * 5 + this.fingerTax * 2 + this.fingerFinance * 0.5 + this.fingerValuation + this.fingerHr * 3 + this.fingerInnovate * 4 + this.fingerSalary * 2 + this.fingerLearn * 2 + this.fingerBrand * 4;
+        this.fingerAll = this.fingerSale * this.fingerSaleWeight + this.fingerTax * this.fingerTaxWeight + this.fingerFinance * this.fingerFinanceWeight + this.fingerValuation * this.fingerValuationWeight + this.fingerHr * this.fingerHrWeight + this.fingerInnovate * this.fingerInnovateWeight + this.fingerSalary * this.fingerSalaryWeight + this.fingerLearn * this.fingerLearnWeight + this.fingerBrand * this.fingerBrandWeight;
     }
 
     /**
@@ -1573,6 +2212,870 @@ public class FingerResultV0 {
      */
     public void setFingerValuationActualWant(Double fingerValuationActualWant) {
         this.fingerValuationActualWant = fingerValuationActualWant;
+    }
+
+    public Double getFingerSaleWeight() {
+        return fingerSaleWeight;
+    }
+
+    public void setFingerSaleWeight(Double fingerSaleWeight) {
+        this.fingerSaleWeight = fingerSaleWeight;
+    }
+
+    public Double getFingerSaleInvoiceWeight() {
+        return fingerSaleInvoiceWeight;
+    }
+
+    public void setFingerSaleInvoiceWeight(Double fingerSaleInvoiceWeight) {
+        this.fingerSaleInvoiceWeight = fingerSaleInvoiceWeight;
+    }
+
+    public Double getFingerSaleInvoiceSoftWeight() {
+        return fingerSaleInvoiceSoftWeight;
+    }
+
+    public void setFingerSaleInvoiceSoftWeight(Double fingerSaleInvoiceSoftWeight) {
+        this.fingerSaleInvoiceSoftWeight = fingerSaleInvoiceSoftWeight;
+    }
+
+    public Double getFingerSaleInvoiceHardWeight() {
+        return fingerSaleInvoiceHardWeight;
+    }
+
+    public void setFingerSaleInvoiceHardWeight(Double fingerSaleInvoiceHardWeight) {
+        this.fingerSaleInvoiceHardWeight = fingerSaleInvoiceHardWeight;
+    }
+
+    public Double getFingerSaleInvoiceConsultationWeight() {
+        return fingerSaleInvoiceConsultationWeight;
+    }
+
+    public void setFingerSaleInvoiceConsultationWeight(Double fingerSaleInvoiceConsultationWeight) {
+        this.fingerSaleInvoiceConsultationWeight = fingerSaleInvoiceConsultationWeight;
+    }
+
+    public Double getFingerSaleInvoiceOtherWeight() {
+        return fingerSaleInvoiceOtherWeight;
+    }
+
+    public void setFingerSaleInvoiceOtherWeight(Double fingerSaleInvoiceOtherWeight) {
+        this.fingerSaleInvoiceOtherWeight = fingerSaleInvoiceOtherWeight;
+    }
+
+    public Double getFingerSaleContractWeight() {
+        return fingerSaleContractWeight;
+    }
+
+    public void setFingerSaleContractWeight(Double fingerSaleContractWeight) {
+        this.fingerSaleContractWeight = fingerSaleContractWeight;
+    }
+
+    public Double getFingerSaleContractSoftWeight() {
+        return fingerSaleContractSoftWeight;
+    }
+
+    public void setFingerSaleContractSoftWeight(Double fingerSaleContractSoftWeight) {
+        this.fingerSaleContractSoftWeight = fingerSaleContractSoftWeight;
+    }
+
+    public Double getFingerSaleContractHardWeight() {
+        return fingerSaleContractHardWeight;
+    }
+
+    public void setFingerSaleContractHardWeight(Double fingerSaleContractHardWeight) {
+        this.fingerSaleContractHardWeight = fingerSaleContractHardWeight;
+    }
+
+    public Double getFingerSaleContractConsultationWeight() {
+        return fingerSaleContractConsultationWeight;
+    }
+
+    public void setFingerSaleContractConsultationWeight(Double fingerSaleContractConsultationWeight) {
+        this.fingerSaleContractConsultationWeight = fingerSaleContractConsultationWeight;
+    }
+
+    public Double getFingerSaleContractOtherWeight() {
+        return fingerSaleContractOtherWeight;
+    }
+
+    public void setFingerSaleContractOtherWeight(Double fingerSaleContractOtherWeight) {
+        this.fingerSaleContractOtherWeight = fingerSaleContractOtherWeight;
+    }
+
+    public Double getFingerTaxWeight() {
+        return fingerTaxWeight;
+    }
+
+    public void setFingerTaxWeight(Double fingerTaxWeight) {
+        this.fingerTaxWeight = fingerTaxWeight;
+    }
+
+    public Double getFingerTaxCorporateWeight() {
+        return fingerTaxCorporateWeight;
+    }
+
+    public void setFingerTaxCorporateWeight(Double fingerTaxCorporateWeight) {
+        this.fingerTaxCorporateWeight = fingerTaxCorporateWeight;
+    }
+
+    public Double getFingerTaxCorporateTaxableWeight() {
+        return fingerTaxCorporateTaxableWeight;
+    }
+
+    public void setFingerTaxCorporateTaxableWeight(Double fingerTaxCorporateTaxableWeight) {
+        this.fingerTaxCorporateTaxableWeight = fingerTaxCorporateTaxableWeight;
+    }
+
+    public Double getFingerTaxCorporateReliefWeight() {
+        return fingerTaxCorporateReliefWeight;
+    }
+
+    public void setFingerTaxCorporateReliefWeight(Double fingerTaxCorporateReliefWeight) {
+        this.fingerTaxCorporateReliefWeight = fingerTaxCorporateReliefWeight;
+    }
+
+    public Double getFingerTaxIndividualWeight() {
+        return fingerTaxIndividualWeight;
+    }
+
+    public void setFingerTaxIndividualWeight(Double fingerTaxIndividualWeight) {
+        this.fingerTaxIndividualWeight = fingerTaxIndividualWeight;
+    }
+
+    public Double getFingerTaxIndividualTaxableWeight() {
+        return fingerTaxIndividualTaxableWeight;
+    }
+
+    public void setFingerTaxIndividualTaxableWeight(Double fingerTaxIndividualTaxableWeight) {
+        this.fingerTaxIndividualTaxableWeight = fingerTaxIndividualTaxableWeight;
+    }
+
+    public Double getFingerTaxIndividualReliefWeight() {
+        return fingerTaxIndividualReliefWeight;
+    }
+
+    public void setFingerTaxIndividualReliefWeight(Double fingerTaxIndividualReliefWeight) {
+        this.fingerTaxIndividualReliefWeight = fingerTaxIndividualReliefWeight;
+    }
+
+    public Double getFingerTaxAddedWeight() {
+        return fingerTaxAddedWeight;
+    }
+
+    public void setFingerTaxAddedWeight(Double fingerTaxAddedWeight) {
+        this.fingerTaxAddedWeight = fingerTaxAddedWeight;
+    }
+
+    public Double getFingerTaxAddedTaxableWeight() {
+        return fingerTaxAddedTaxableWeight;
+    }
+
+    public void setFingerTaxAddedTaxableWeight(Double fingerTaxAddedTaxableWeight) {
+        this.fingerTaxAddedTaxableWeight = fingerTaxAddedTaxableWeight;
+    }
+
+    public Double getFingerTaxAddedReliefWeight() {
+        return fingerTaxAddedReliefWeight;
+    }
+
+    public void setFingerTaxAddedReliefWeight(Double fingerTaxAddedReliefWeight) {
+        this.fingerTaxAddedReliefWeight = fingerTaxAddedReliefWeight;
+    }
+
+    public Double getFingerFinanceWeight() {
+        return fingerFinanceWeight;
+    }
+
+    public void setFingerFinanceWeight(Double fingerFinanceWeight) {
+        this.fingerFinanceWeight = fingerFinanceWeight;
+    }
+
+    public Double getFingerFinanceStockWeight() {
+        return fingerFinanceStockWeight;
+    }
+
+    public void setFingerFinanceStockWeight(Double fingerFinanceStockWeight) {
+        this.fingerFinanceStockWeight = fingerFinanceStockWeight;
+    }
+
+    public Double getFingerFinanceStockRiskWeight() {
+        return fingerFinanceStockRiskWeight;
+    }
+
+    public void setFingerFinanceStockRiskWeight(Double fingerFinanceStockRiskWeight) {
+        this.fingerFinanceStockRiskWeight = fingerFinanceStockRiskWeight;
+    }
+
+    public Double getFingerFinanceStockGovWeight() {
+        return fingerFinanceStockGovWeight;
+    }
+
+    public void setFingerFinanceStockGovWeight(Double fingerFinanceStockGovWeight) {
+        this.fingerFinanceStockGovWeight = fingerFinanceStockGovWeight;
+    }
+
+    public Double getFingerFinanceStockPersonWeight() {
+        return fingerFinanceStockPersonWeight;
+    }
+
+    public void setFingerFinanceStockPersonWeight(Double fingerFinanceStockPersonWeight) {
+        this.fingerFinanceStockPersonWeight = fingerFinanceStockPersonWeight;
+    }
+
+    public Double getFingerFinanceDebtWeight() {
+        return fingerFinanceDebtWeight;
+    }
+
+    public void setFingerFinanceDebtWeight(Double fingerFinanceDebtWeight) {
+        this.fingerFinanceDebtWeight = fingerFinanceDebtWeight;
+    }
+
+    public Double getFingerFinanceDebtBankWeight() {
+        return fingerFinanceDebtBankWeight;
+    }
+
+    public void setFingerFinanceDebtBankWeight(Double fingerFinanceDebtBankWeight) {
+        this.fingerFinanceDebtBankWeight = fingerFinanceDebtBankWeight;
+    }
+
+    public Double getFingerFinanceDebtNewWeight() {
+        return fingerFinanceDebtNewWeight;
+    }
+
+    public void setFingerFinanceDebtNewWeight(Double fingerFinanceDebtNewWeight) {
+        this.fingerFinanceDebtNewWeight = fingerFinanceDebtNewWeight;
+    }
+
+    public Double getFingerFinanceDebtLendingWeight() {
+        return fingerFinanceDebtLendingWeight;
+    }
+
+    public void setFingerFinanceDebtLendingWeight(Double fingerFinanceDebtLendingWeight) {
+        this.fingerFinanceDebtLendingWeight = fingerFinanceDebtLendingWeight;
+    }
+
+    public Double getFingerFinanceDebtPersonWeight() {
+        return fingerFinanceDebtPersonWeight;
+    }
+
+    public void setFingerFinanceDebtPersonWeight(Double fingerFinanceDebtPersonWeight) {
+        this.fingerFinanceDebtPersonWeight = fingerFinanceDebtPersonWeight;
+    }
+
+    public Double getFingerValuationWeight() {
+        return fingerValuationWeight;
+    }
+
+    public void setFingerValuationWeight(Double fingerValuationWeight) {
+        this.fingerValuationWeight = fingerValuationWeight;
+    }
+
+    public Double getFingerValuationAssetsWeight() {
+        return fingerValuationAssetsWeight;
+    }
+
+    public void setFingerValuationAssetsWeight(Double fingerValuationAssetsWeight) {
+        this.fingerValuationAssetsWeight = fingerValuationAssetsWeight;
+    }
+
+    public Double getFingerValuationAssetsCirculatingWeight() {
+        return fingerValuationAssetsCirculatingWeight;
+    }
+
+    public void setFingerValuationAssetsCirculatingWeight(Double fingerValuationAssetsCirculatingWeight) {
+        this.fingerValuationAssetsCirculatingWeight = fingerValuationAssetsCirculatingWeight;
+    }
+
+    public Double getFingerValuationAssetsUncirculatingWeight() {
+        return fingerValuationAssetsUncirculatingWeight;
+    }
+
+    public void setFingerValuationAssetsUncirculatingWeight(Double fingerValuationAssetsUncirculatingWeight) {
+        this.fingerValuationAssetsUncirculatingWeight = fingerValuationAssetsUncirculatingWeight;
+    }
+
+    public Double getFingerValuationAssetsDebtCirculatingWeight() {
+        return fingerValuationAssetsDebtCirculatingWeight;
+    }
+
+    public void setFingerValuationAssetsDebtCirculatingWeight(Double fingerValuationAssetsDebtCirculatingWeight) {
+        this.fingerValuationAssetsDebtCirculatingWeight = fingerValuationAssetsDebtCirculatingWeight;
+    }
+
+    public Double getFingerValuationAssetsDebtUncirculatingWeight() {
+        return fingerValuationAssetsDebtUncirculatingWeight;
+    }
+
+    public void setFingerValuationAssetsDebtUncirculatingWeight(Double fingerValuationAssetsDebtUncirculatingWeight) {
+        this.fingerValuationAssetsDebtUncirculatingWeight = fingerValuationAssetsDebtUncirculatingWeight;
+    }
+
+    public Double getFingerValuationActualWeight() {
+        return fingerValuationActualWeight;
+    }
+
+    public void setFingerValuationActualWeight(Double fingerValuationActualWeight) {
+        this.fingerValuationActualWeight = fingerValuationActualWeight;
+    }
+
+    public Double getFingerValuationActualFirstWeight() {
+        return fingerValuationActualFirstWeight;
+    }
+
+    public void setFingerValuationActualFirstWeight(Double fingerValuationActualFirstWeight) {
+        this.fingerValuationActualFirstWeight = fingerValuationActualFirstWeight;
+    }
+
+    public Double getFingerValuationActualLatestWeight() {
+        return fingerValuationActualLatestWeight;
+    }
+
+    public void setFingerValuationActualLatestWeight(Double fingerValuationActualLatestWeight) {
+        this.fingerValuationActualLatestWeight = fingerValuationActualLatestWeight;
+    }
+
+    public Double getFingerValuationActualWantWeight() {
+        return fingerValuationActualWantWeight;
+    }
+
+    public void setFingerValuationActualWantWeight(Double fingerValuationActualWantWeight) {
+        this.fingerValuationActualWantWeight = fingerValuationActualWantWeight;
+    }
+
+    public Double getFingerHrWeight() {
+        return fingerHrWeight;
+    }
+
+    public void setFingerHrWeight(Double fingerHrWeight) {
+        this.fingerHrWeight = fingerHrWeight;
+    }
+
+    public Double getFingerHrPartimeWeight() {
+        return fingerHrPartimeWeight;
+    }
+
+    public void setFingerHrPartimeWeight(Double fingerHrPartimeWeight) {
+        this.fingerHrPartimeWeight = fingerHrPartimeWeight;
+    }
+
+    public Double getFingerHrPartimeDevWeight() {
+        return fingerHrPartimeDevWeight;
+    }
+
+    public void setFingerHrPartimeDevWeight(Double fingerHrPartimeDevWeight) {
+        this.fingerHrPartimeDevWeight = fingerHrPartimeDevWeight;
+    }
+
+    public Double getFingerHrPartimeManageWeight() {
+        return fingerHrPartimeManageWeight;
+    }
+
+    public void setFingerHrPartimeManageWeight(Double fingerHrPartimeManageWeight) {
+        this.fingerHrPartimeManageWeight = fingerHrPartimeManageWeight;
+    }
+
+    public Double getFingerHrPartimeAdminWeight() {
+        return fingerHrPartimeAdminWeight;
+    }
+
+    public void setFingerHrPartimeAdminWeight(Double fingerHrPartimeAdminWeight) {
+        this.fingerHrPartimeAdminWeight = fingerHrPartimeAdminWeight;
+    }
+
+    public Double getFingerHrPartimeSalerWeight() {
+        return fingerHrPartimeSalerWeight;
+    }
+
+    public void setFingerHrPartimeSalerWeight(Double fingerHrPartimeSalerWeight) {
+        this.fingerHrPartimeSalerWeight = fingerHrPartimeSalerWeight;
+    }
+
+    public Double getFingerHrFulltimeWeight() {
+        return fingerHrFulltimeWeight;
+    }
+
+    public void setFingerHrFulltimeWeight(Double fingerHrFulltimeWeight) {
+        this.fingerHrFulltimeWeight = fingerHrFulltimeWeight;
+    }
+
+    public Double getFingerHrFulltimeDevWeight() {
+        return fingerHrFulltimeDevWeight;
+    }
+
+    public void setFingerHrFulltimeDevWeight(Double fingerHrFulltimeDevWeight) {
+        this.fingerHrFulltimeDevWeight = fingerHrFulltimeDevWeight;
+    }
+
+    public Double getFingerHrFulltimeSeniorWeight() {
+        return fingerHrFulltimeSeniorWeight;
+    }
+
+    public void setFingerHrFulltimeSeniorWeight(Double fingerHrFulltimeSeniorWeight) {
+        this.fingerHrFulltimeSeniorWeight = fingerHrFulltimeSeniorWeight;
+    }
+
+    public Double getFingerHrFulltimeAdminWeight() {
+        return fingerHrFulltimeAdminWeight;
+    }
+
+    public void setFingerHrFulltimeAdminWeight(Double fingerHrFulltimeAdminWeight) {
+        this.fingerHrFulltimeAdminWeight = fingerHrFulltimeAdminWeight;
+    }
+
+    public Double getFingerHrFulltimeSalerWeight() {
+        return fingerHrFulltimeSalerWeight;
+    }
+
+    public void setFingerHrFulltimeSalerWeight(Double fingerHrFulltimeSalerWeight) {
+        this.fingerHrFulltimeSalerWeight = fingerHrFulltimeSalerWeight;
+    }
+
+    public Double getFingerHrEducatedWeight() {
+        return fingerHrEducatedWeight;
+    }
+
+    public void setFingerHrEducatedWeight(Double fingerHrEducatedWeight) {
+        this.fingerHrEducatedWeight = fingerHrEducatedWeight;
+    }
+
+    public Double getFingerHrEducatedDocWeight() {
+        return fingerHrEducatedDocWeight;
+    }
+
+    public void setFingerHrEducatedDocWeight(Double fingerHrEducatedDocWeight) {
+        this.fingerHrEducatedDocWeight = fingerHrEducatedDocWeight;
+    }
+
+    public Double getFingerHrEducatedMasterWeight() {
+        return fingerHrEducatedMasterWeight;
+    }
+
+    public void setFingerHrEducatedMasterWeight(Double fingerHrEducatedMasterWeight) {
+        this.fingerHrEducatedMasterWeight = fingerHrEducatedMasterWeight;
+    }
+
+    public Double getFingerHrBachelorWeight() {
+        return fingerHrBachelorWeight;
+    }
+
+    public void setFingerHrBachelorWeight(Double fingerHrBachelorWeight) {
+        this.fingerHrBachelorWeight = fingerHrBachelorWeight;
+    }
+
+    public Double getFingerInnovateWeight() {
+        return fingerInnovateWeight;
+    }
+
+    public void setFingerInnovateWeight(Double fingerInnovateWeight) {
+        this.fingerInnovateWeight = fingerInnovateWeight;
+    }
+
+    public Double getFingerInnovatePatentApplyWeight() {
+        return fingerInnovatePatentApplyWeight;
+    }
+
+    public void setFingerInnovatePatentApplyWeight(Double fingerInnovatePatentApplyWeight) {
+        this.fingerInnovatePatentApplyWeight = fingerInnovatePatentApplyWeight;
+    }
+
+    public Double getFingerInnovatePatentApplyInventionWeight() {
+        return fingerInnovatePatentApplyInventionWeight;
+    }
+
+    public void setFingerInnovatePatentApplyInventionWeight(Double fingerInnovatePatentApplyInventionWeight) {
+        this.fingerInnovatePatentApplyInventionWeight = fingerInnovatePatentApplyInventionWeight;
+    }
+
+    public Double getFingerInnovatePatentApplyUtilityWeight() {
+        return fingerInnovatePatentApplyUtilityWeight;
+    }
+
+    public void setFingerInnovatePatentApplyUtilityWeight(Double fingerInnovatePatentApplyUtilityWeight) {
+        this.fingerInnovatePatentApplyUtilityWeight = fingerInnovatePatentApplyUtilityWeight;
+    }
+
+    public Double getFingerInnovatePatentApplyAppearWeight() {
+        return fingerInnovatePatentApplyAppearWeight;
+    }
+
+    public void setFingerInnovatePatentApplyAppearWeight(Double fingerInnovatePatentApplyAppearWeight) {
+        this.fingerInnovatePatentApplyAppearWeight = fingerInnovatePatentApplyAppearWeight;
+    }
+
+    public Double getFingerInnovatePatentGrantWeight() {
+        return fingerInnovatePatentGrantWeight;
+    }
+
+    public void setFingerInnovatePatentGrantWeight(Double fingerInnovatePatentGrantWeight) {
+        this.fingerInnovatePatentGrantWeight = fingerInnovatePatentGrantWeight;
+    }
+
+    public Double getFingerInnovatePatentGrantInventionWeight() {
+        return fingerInnovatePatentGrantInventionWeight;
+    }
+
+    public void setFingerInnovatePatentGrantInventionWeight(Double fingerInnovatePatentGrantInventionWeight) {
+        this.fingerInnovatePatentGrantInventionWeight = fingerInnovatePatentGrantInventionWeight;
+    }
+
+    public Double getFingerInnovatePatentGrantUtilityWeight() {
+        return fingerInnovatePatentGrantUtilityWeight;
+    }
+
+    public void setFingerInnovatePatentGrantUtilityWeight(Double fingerInnovatePatentGrantUtilityWeight) {
+        this.fingerInnovatePatentGrantUtilityWeight = fingerInnovatePatentGrantUtilityWeight;
+    }
+
+    public Double getFingerInnovatePatentGrantAppearWeight() {
+        return fingerInnovatePatentGrantAppearWeight;
+    }
+
+    public void setFingerInnovatePatentGrantAppearWeight(Double fingerInnovatePatentGrantAppearWeight) {
+        this.fingerInnovatePatentGrantAppearWeight = fingerInnovatePatentGrantAppearWeight;
+    }
+
+    public Double getFingerInnovateCopyrightApplyWeight() {
+        return fingerInnovateCopyrightApplyWeight;
+    }
+
+    public void setFingerInnovateCopyrightApplyWeight(Double fingerInnovateCopyrightApplyWeight) {
+        this.fingerInnovateCopyrightApplyWeight = fingerInnovateCopyrightApplyWeight;
+    }
+
+    public Double getFingerInnovateCopyrightApplySoftWeight() {
+        return fingerInnovateCopyrightApplySoftWeight;
+    }
+
+    public void setFingerInnovateCopyrightApplySoftWeight(Double fingerInnovateCopyrightApplySoftWeight) {
+        this.fingerInnovateCopyrightApplySoftWeight = fingerInnovateCopyrightApplySoftWeight;
+    }
+
+    public Double getFingerInnovateCopyrightApplyUnsoftWeight() {
+        return fingerInnovateCopyrightApplyUnsoftWeight;
+    }
+
+    public void setFingerInnovateCopyrightApplyUnsoftWeight(Double fingerInnovateCopyrightApplyUnsoftWeight) {
+        this.fingerInnovateCopyrightApplyUnsoftWeight = fingerInnovateCopyrightApplyUnsoftWeight;
+    }
+
+    public Double getFingerInnovateCopyrightGrantWeight() {
+        return fingerInnovateCopyrightGrantWeight;
+    }
+
+    public void setFingerInnovateCopyrightGrantWeight(Double fingerInnovateCopyrightGrantWeight) {
+        this.fingerInnovateCopyrightGrantWeight = fingerInnovateCopyrightGrantWeight;
+    }
+
+    public Double getFingerInnovateCopyrightGrantSoftWeight() {
+        return fingerInnovateCopyrightGrantSoftWeight;
+    }
+
+    public void setFingerInnovateCopyrightGrantSoftWeight(Double fingerInnovateCopyrightGrantSoftWeight) {
+        this.fingerInnovateCopyrightGrantSoftWeight = fingerInnovateCopyrightGrantSoftWeight;
+    }
+
+    public Double getFingerInnovateCopyrightGrantUnsoftWeight() {
+        return fingerInnovateCopyrightGrantUnsoftWeight;
+    }
+
+    public void setFingerInnovateCopyrightGrantUnsoftWeight(Double fingerInnovateCopyrightGrantUnsoftWeight) {
+        this.fingerInnovateCopyrightGrantUnsoftWeight = fingerInnovateCopyrightGrantUnsoftWeight;
+    }
+
+    public Double getFingerInnovateNewProductWeight() {
+        return fingerInnovateNewProductWeight;
+    }
+
+    public void setFingerInnovateNewProductWeight(Double fingerInnovateNewProductWeight) {
+        this.fingerInnovateNewProductWeight = fingerInnovateNewProductWeight;
+    }
+
+    public Double getFingerInnovateNewProductPatentWeight() {
+        return fingerInnovateNewProductPatentWeight;
+    }
+
+    public void setFingerInnovateNewProductPatentWeight(Double fingerInnovateNewProductPatentWeight) {
+        this.fingerInnovateNewProductPatentWeight = fingerInnovateNewProductPatentWeight;
+    }
+
+    public Double getFingerInnovateNewProductTechWeight() {
+        return fingerInnovateNewProductTechWeight;
+    }
+
+    public void setFingerInnovateNewProductTechWeight(Double fingerInnovateNewProductTechWeight) {
+        this.fingerInnovateNewProductTechWeight = fingerInnovateNewProductTechWeight;
+    }
+
+    public Double getFingerInnovateNewProductBusWeight() {
+        return fingerInnovateNewProductBusWeight;
+    }
+
+    public void setFingerInnovateNewProductBusWeight(Double fingerInnovateNewProductBusWeight) {
+        this.fingerInnovateNewProductBusWeight = fingerInnovateNewProductBusWeight;
+    }
+
+    public Double getFingerSalaryWeight() {
+        return fingerSalaryWeight;
+    }
+
+    public void setFingerSalaryWeight(Double fingerSalaryWeight) {
+        this.fingerSalaryWeight = fingerSalaryWeight;
+    }
+
+    public Double getFingerSalaryStaffWeight() {
+        return fingerSalaryStaffWeight;
+    }
+
+    public void setFingerSalaryStaffWeight(Double fingerSalaryStaffWeight) {
+        this.fingerSalaryStaffWeight = fingerSalaryStaffWeight;
+    }
+
+    public Double getFingerSalaryStaffUp10Weight() {
+        return fingerSalaryStaffUp10Weight;
+    }
+
+    public void setFingerSalaryStaffUp10Weight(Double fingerSalaryStaffUp10Weight) {
+        this.fingerSalaryStaffUp10Weight = fingerSalaryStaffUp10Weight;
+    }
+
+    public Double getFingerSalaryStaff510Weight() {
+        return fingerSalaryStaff510Weight;
+    }
+
+    public void setFingerSalaryStaff510Weight(Double fingerSalaryStaff510Weight) {
+        this.fingerSalaryStaff510Weight = fingerSalaryStaff510Weight;
+    }
+
+    public Double getFingerSalaryStaffDown5Weight() {
+        return fingerSalaryStaffDown5Weight;
+    }
+
+    public void setFingerSalaryStaffDown5Weight(Double fingerSalaryStaffDown5Weight) {
+        this.fingerSalaryStaffDown5Weight = fingerSalaryStaffDown5Weight;
+    }
+
+    public Double getFingerSalaryStaffContributionWeight() {
+        return fingerSalaryStaffContributionWeight;
+    }
+
+    public void setFingerSalaryStaffContributionWeight(Double fingerSalaryStaffContributionWeight) {
+        this.fingerSalaryStaffContributionWeight = fingerSalaryStaffContributionWeight;
+    }
+
+    public Double getFingerSalaryStaffContributionMeansaleWeight() {
+        return fingerSalaryStaffContributionMeansaleWeight;
+    }
+
+    public void setFingerSalaryStaffContributionMeansaleWeight(Double fingerSalaryStaffContributionMeansaleWeight) {
+        this.fingerSalaryStaffContributionMeansaleWeight = fingerSalaryStaffContributionMeansaleWeight;
+    }
+
+    public Double getFingerSalaryStaffContributionMeantaxWeight() {
+        return fingerSalaryStaffContributionMeantaxWeight;
+    }
+
+    public void setFingerSalaryStaffContributionMeantaxWeight(Double fingerSalaryStaffContributionMeantaxWeight) {
+        this.fingerSalaryStaffContributionMeantaxWeight = fingerSalaryStaffContributionMeantaxWeight;
+    }
+
+    public Double getFingerLearnWeight() {
+        return fingerLearnWeight;
+    }
+
+    public void setFingerLearnWeight(Double fingerLearnWeight) {
+        this.fingerLearnWeight = fingerLearnWeight;
+    }
+
+    public Double getFingerLearnTrainWeight() {
+        return fingerLearnTrainWeight;
+    }
+
+    public void setFingerLearnTrainWeight(Double fingerLearnTrainWeight) {
+        this.fingerLearnTrainWeight = fingerLearnTrainWeight;
+    }
+
+    public Double getFingerLearnTrainManageWeight() {
+        return fingerLearnTrainManageWeight;
+    }
+
+    public void setFingerLearnTrainManageWeight(Double fingerLearnTrainManageWeight) {
+        this.fingerLearnTrainManageWeight = fingerLearnTrainManageWeight;
+    }
+
+    public Double getFingerLearnTrainPolicyWeight() {
+        return fingerLearnTrainPolicyWeight;
+    }
+
+    public void setFingerLearnTrainPolicyWeight(Double fingerLearnTrainPolicyWeight) {
+        this.fingerLearnTrainPolicyWeight = fingerLearnTrainPolicyWeight;
+    }
+
+    public Double getFingerLearnTrainSkillWeight() {
+        return fingerLearnTrainSkillWeight;
+    }
+
+    public void setFingerLearnTrainSkillWeight(Double fingerLearnTrainSkillWeight) {
+        this.fingerLearnTrainSkillWeight = fingerLearnTrainSkillWeight;
+    }
+
+    public Double getFingerLearnConsltedWeight() {
+        return fingerLearnConsltedWeight;
+    }
+
+    public void setFingerLearnConsltedWeight(Double fingerLearnConsltedWeight) {
+        this.fingerLearnConsltedWeight = fingerLearnConsltedWeight;
+    }
+
+    public Double getFingerLearnConsltedManageWeight() {
+        return fingerLearnConsltedManageWeight;
+    }
+
+    public void setFingerLearnConsltedManageWeight(Double fingerLearnConsltedManageWeight) {
+        this.fingerLearnConsltedManageWeight = fingerLearnConsltedManageWeight;
+    }
+
+    public Double getFingerLearnConsltedPolicyWeight() {
+        return fingerLearnConsltedPolicyWeight;
+    }
+
+    public void setFingerLearnConsltedPolicyWeight(Double fingerLearnConsltedPolicyWeight) {
+        this.fingerLearnConsltedPolicyWeight = fingerLearnConsltedPolicyWeight;
+    }
+
+    public Double getFingerLearnConsltedSkillWeight() {
+        return fingerLearnConsltedSkillWeight;
+    }
+
+    public void setFingerLearnConsltedSkillWeight(Double fingerLearnConsltedSkillWeight) {
+        this.fingerLearnConsltedSkillWeight = fingerLearnConsltedSkillWeight;
+    }
+
+    public Double getFingerBrandWeight() {
+        return fingerBrandWeight;
+    }
+
+    public void setFingerBrandWeight(Double fingerBrandWeight) {
+        this.fingerBrandWeight = fingerBrandWeight;
+    }
+
+    public Double getFingerBrandRewardWeight() {
+        return fingerBrandRewardWeight;
+    }
+
+    public void setFingerBrandRewardWeight(Double fingerBrandRewardWeight) {
+        this.fingerBrandRewardWeight = fingerBrandRewardWeight;
+    }
+
+    public Double getFingerBrandRewardAreaWeight() {
+        return fingerBrandRewardAreaWeight;
+    }
+
+    public void setFingerBrandRewardAreaWeight(Double fingerBrandRewardAreaWeight) {
+        this.fingerBrandRewardAreaWeight = fingerBrandRewardAreaWeight;
+    }
+
+    public Double getFingerBrandRewardCityWeight() {
+        return fingerBrandRewardCityWeight;
+    }
+
+    public void setFingerBrandRewardCityWeight(Double fingerBrandRewardCityWeight) {
+        this.fingerBrandRewardCityWeight = fingerBrandRewardCityWeight;
+    }
+
+    public Double getFingerBrandRewardProvinceWeight() {
+        return fingerBrandRewardProvinceWeight;
+    }
+
+    public void setFingerBrandRewardProvinceWeight(Double fingerBrandRewardProvinceWeight) {
+        this.fingerBrandRewardProvinceWeight = fingerBrandRewardProvinceWeight;
+    }
+
+    public Double getFingerBrandRewardCountryWeight() {
+        return fingerBrandRewardCountryWeight;
+    }
+
+    public void setFingerBrandRewardCountryWeight(Double fingerBrandRewardCountryWeight) {
+        this.fingerBrandRewardCountryWeight = fingerBrandRewardCountryWeight;
+    }
+
+    public Double getFingerBrandRecognitionWeight() {
+        return fingerBrandRecognitionWeight;
+    }
+
+    public void setFingerBrandRecognitionWeight(Double fingerBrandRecognitionWeight) {
+        this.fingerBrandRecognitionWeight = fingerBrandRecognitionWeight;
+    }
+
+    public Double getFingerBrandRecognitionAreaWeight() {
+        return fingerBrandRecognitionAreaWeight;
+    }
+
+    public void setFingerBrandRecognitionAreaWeight(Double fingerBrandRecognitionAreaWeight) {
+        this.fingerBrandRecognitionAreaWeight = fingerBrandRecognitionAreaWeight;
+    }
+
+    public Double getFingerBrandRecognitionCityWeight() {
+        return fingerBrandRecognitionCityWeight;
+    }
+
+    public void setFingerBrandRecognitionCityWeight(Double fingerBrandRecognitionCityWeight) {
+        this.fingerBrandRecognitionCityWeight = fingerBrandRecognitionCityWeight;
+    }
+
+    public Double getFingerBrandRecognitionProvinceWeight() {
+        return fingerBrandRecognitionProvinceWeight;
+    }
+
+    public void setFingerBrandRecognitionProvinceWeight(Double fingerBrandRecognitionProvinceWeight) {
+        this.fingerBrandRecognitionProvinceWeight = fingerBrandRecognitionProvinceWeight;
+    }
+
+    public Double getFingerBrandRecognitionCountryWeight() {
+        return fingerBrandRecognitionCountryWeight;
+    }
+
+    public void setFingerBrandRecognitionCountryWeight(Double fingerBrandRecognitionCountryWeight) {
+        this.fingerBrandRecognitionCountryWeight = fingerBrandRecognitionCountryWeight;
+    }
+
+    public Double getFingerBrandTalentWeight() {
+        return fingerBrandTalentWeight;
+    }
+
+    public void setFingerBrandTalentWeight(Double fingerBrandTalentWeight) {
+        this.fingerBrandTalentWeight = fingerBrandTalentWeight;
+    }
+
+    public Double getFingerBrandTalentAreaWeight() {
+        return fingerBrandTalentAreaWeight;
+    }
+
+    public void setFingerBrandTalentAreaWeight(Double fingerBrandTalentAreaWeight) {
+        this.fingerBrandTalentAreaWeight = fingerBrandTalentAreaWeight;
+    }
+
+    public Double getFingerBrandTalentCityWeight() {
+        return fingerBrandTalentCityWeight;
+    }
+
+    public void setFingerBrandTalentCityWeight(Double fingerBrandTalentCityWeight) {
+        this.fingerBrandTalentCityWeight = fingerBrandTalentCityWeight;
+    }
+
+    public Double getFingerBrandTalentProvinceWeight() {
+        return fingerBrandTalentProvinceWeight;
+    }
+
+    public void setFingerBrandTalentProvinceWeight(Double fingerBrandTalentProvinceWeight) {
+        this.fingerBrandTalentProvinceWeight = fingerBrandTalentProvinceWeight;
+    }
+
+    public Double getFingerBrandTalentCountryWeight() {
+        return fingerBrandTalentCountryWeight;
+    }
+
+    public void setFingerBrandTalentCountryWeight(Double fingerBrandTalentCountryWeight) {
+        this.fingerBrandTalentCountryWeight = fingerBrandTalentCountryWeight;
     }
 
     /**

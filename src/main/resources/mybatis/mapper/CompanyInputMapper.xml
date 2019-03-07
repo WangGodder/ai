@@ -803,7 +803,7 @@
     </delete>
     <select id="findFingerByYearAndQuarter" resultType="com.swu.ai.vo.VoFingerResult"
             parameterType="com.swu.ai.entity.CompanyInput">
-        select `id`,`companyname` companyName,`industry`,`region`,`year`,`quarter`,
+        select `companyname` companyName,`industry`,`region`,`year`,`quarter`,`finger_weight`.*,
         `ticketincomesoftware`/(SELECT SUM(`ticketincomesoftware`)/count(*) from `company_input` WHERE year = #{year}
         and quarter = #{quarter})finger_sale_invoice_soft,
         `ticketincomehardware`/(SELECT SUM(`ticketincomehardware`)/count(*) from `company_input` WHERE year = #{year}
@@ -954,7 +954,7 @@
         = #{quarter}) finger_brand_talent_province,
         `supportnation`/(SELECT SUM(`supportnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
         #{quarter}) finger_brand_talent_country
-        from company_input
+        from company_input,finger_weight
         <where>
             <if test="year != null">
                 and year = #{year}
@@ -971,6 +971,17 @@
             <if test="companyname != null">
                 and companyname = #{companyname}
             </if>
+            <if test="companyname != null">
+                and companyname = #{companyname}
+            </if>
+            <choose>
+            <when test="id != null and id !=''">
+                and `finger_weight`.id = #{id}
+            </when>
+            <otherwise>
+                and `finger_weight`.id = 1
+            </otherwise>
+          </choose>
         </where>
     </select>
 </mapper>
