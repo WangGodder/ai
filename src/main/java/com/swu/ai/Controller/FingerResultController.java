@@ -83,6 +83,11 @@ public class FingerResultController {
 
     /**
      *  请注意： year 和 quarter 为必须要传入的参数，否则报错
+     *  可选参数
+     *      id 表示使用 finger_weight 中的权重模板 id 系统中默认是 1
+     *      companyname     公司 id
+     *      industry        板块
+     *      region          区域
     * */
     @RequestMapping("getFingerRes2/")
     @ResponseBody
