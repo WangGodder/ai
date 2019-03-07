@@ -229,4 +229,9 @@ public class FingerResultController {
 //        }
         return JsonResult.success(baseData);
     }
+
+    @RequestMapping(value = "query/")
+    public String queryPage() {
+        return "data_query";
+    }
 }
