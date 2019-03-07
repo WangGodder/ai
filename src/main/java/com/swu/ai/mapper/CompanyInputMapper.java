@@ -2,6 +2,7 @@ package com.swu.ai.mapper;
 
 import com.swu.ai.Base.BaseMapper;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
     List<CompanyInput> findCompanyInputByIndustry(String industry);
 
     List<CompanyInput> findCompanyInputByRegion(String region);
+
+    List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq);
 
     CompanyInput findCompanyInputById(Long id);
 

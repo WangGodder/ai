@@ -1,6 +1,7 @@
 package com.swu.ai.dao;
 
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public interface CompanyInputDao {
     List<CompanyInput> findCompanyInputByIndustry(String industry);
 
     List<CompanyInput> findCompanyInputByRegion(String region);
+
+    List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq);
 
     CompanyInput findCompanyInputById(Long id);
 

@@ -4,8 +4,10 @@ package com.swu.ai.Controller;
 import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.FingerResult;
 import com.swu.ai.Result.JsonResult;
+import com.swu.ai.Util.FieldInject;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.service.CompanyService;
 import com.swu.ai.service.FingerService;
 
@@ -15,6 +17,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -233,5 +236,22 @@ public class FingerResultController {
     @RequestMapping(value = "query/")
     public String queryPage() {
         return "data_query";
+    }
+
+    @RequestMapping(value = "queryCompanyInfoTable/")
+    @ResponseBody
+    public JsonResult queryCompanyInfoTable(HttpServletRequest request) {
+        Map<String, String[]> map = request.getParameterMap();
+        CompanyInputReq companyInputReq = null;
+        try {
+            companyInputReq = FieldInject.createInstanceByMap(map, CompanyInputReq.class);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(companyInputReq);
+        return JsonResult.success(companyInputReq);
     }
 }

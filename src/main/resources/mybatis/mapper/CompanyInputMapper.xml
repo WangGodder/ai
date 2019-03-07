@@ -623,6 +623,13 @@
     <select id="findCompanyInputByRegion" resultType="CompanyInput" parameterType="java.lang.String">
         select * from company_input where region = #{region};
     </select>
+    <select id="findCompanyInputByReq" resultType="CompanyInput" parameterType="com.swu.ai.request.CompanyInputReq">
+        select * from company_input
+        where
+            <if test="industry != null and industry != ''">industry = #{industry} and </if>
+            <if test="region != null and region != ''">region = #{region} and </if>
+            #{beginYear} &lt;= year and year &lt;= #{endYear} and #{beginQuarter} &lt;= quarter and quarter &lt;= #{endQuarter};
+    </select>
 
     <!--更新-->
     <update id="updateCompanyInputByCompanyName" parameterType="CompanyInput">
