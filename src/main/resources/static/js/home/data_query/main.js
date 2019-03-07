@@ -22,8 +22,8 @@
                 this.queryParams.industry = $('#industry').val();
                 this.queryParams.region = $('#region').val();
                 this.queryParams.beginYear = $('#beginYear').val();
-                this.queryParams.beginQuarter = $('#beginQuarter').val();
                 this.queryParams.endYear = $('#endYear').val();
+                this.queryParams.beginQuarter = $('#beginQuarter').val();
                 this.queryParams.endQuarter = $('#endQuarter').val();
                 this.showData = false;
                 this.$nextTick(() => {

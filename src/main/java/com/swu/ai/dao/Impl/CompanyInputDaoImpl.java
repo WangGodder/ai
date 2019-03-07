@@ -4,6 +4,7 @@ import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.mapper.CompanyInputMapper;
+import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.vo.VoFingerResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -64,6 +65,12 @@ public class CompanyInputDaoImpl implements CompanyInputDao {
     @Override
     public List<CompanyInput> findCompanyInputByRegion(String region) {
         List<CompanyInput> result = companyInputMapper.findCompanyInputByRegion(region);
+        return result;
+    }
+
+    @Override
+    public List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq) {
+        List<CompanyInput> result = companyInputMapper.findCompanyInputByReq(companyInputReq);
         return result;
     }
 
