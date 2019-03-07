@@ -63,7 +63,7 @@ let DataPage = {
         "        <!--工作区-->\n" +
         "        <div id=\"workspace\" class=\"col-lg-10 col-md-10 col-sm-10 col-xs-10 well\">\n" +
         "            <div v-show=\"this.function_show[0]\" class=\"embed-responsive embed-responsive-16by9\">\n" +
-        "                <iframe class=\"embed-responsive-item\" src=\"http://www.leetcode.com\"></iframe>\n" +
+        "                <iframe class=\"embed-responsive-item\" src=\"/user/query/\" scrolling='yes'></iframe>\n" +
         "            </div>\n" +
         "            <weight-query v-show=\"this.function_show[1]\"></weight-query>\n" +
         "            <self-company v-show=\"this.function_show[2]\"></self-company>\n" +
