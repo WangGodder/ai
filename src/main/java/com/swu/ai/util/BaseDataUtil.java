@@ -29,6 +29,9 @@ public class BaseDataUtil {
             List<Number> data = new ArrayList<>(labelList.size());
             for (String fieldName : labelList) {
                 Field field = CompanyInput.class.getDeclaredField(fieldName);
+                if (field.getGenericType() != Number.class) {
+                    continue;
+                }
                 field.setAccessible(true);
                 data.add((Number)field.get(companyInput));
             }

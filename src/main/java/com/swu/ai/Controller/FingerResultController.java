@@ -5,6 +5,7 @@ import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.FingerResult;
 import com.swu.ai.Result.JsonResult;
 import com.swu.ai.Util.FieldInject;
+import com.swu.ai.Util.TableUtil;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.request.CompanyInputReq;
@@ -243,9 +244,20 @@ public class FingerResultController {
         return "data_query";
     }
 
+    @RequestMapping(value = "companyInfoTableColumn/")
+    @ResponseBody
+    public JsonResult companyInfoTableColumn() {
+        List<String> title = TableUtil.getFieldNames(CompanyInput.class);
+        List<String> field = TableUtil.getFieldNames(CompanyInput.class);
+        List<List<String>> list = new ArrayList<>(2);
+        list.add(field);
+        list.add(title);
+        return JsonResult.success(list);
+    }
+
     @RequestMapping(value = "queryCompanyInfoTable/")
     @ResponseBody
-    public JsonResult queryCompanyInfoTable(HttpServletRequest request) {
+    public List<CompanyInput> queryCompanyInfoTable(HttpServletRequest request) {
         Map<String, String[]> map = request.getParameterMap();
         CompanyInputReq companyInputReq = null;
         try {
@@ -255,8 +267,8 @@ public class FingerResultController {
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
-
-        System.out.println(companyInputReq);
-        return JsonResult.success(companyInputReq);
+        List<CompanyInput> result = companyService.findCompanyInputByReq(companyInputReq);
+        System.out.println(result);
+        return result;
     }
 }

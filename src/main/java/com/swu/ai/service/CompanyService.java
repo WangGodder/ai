@@ -1,6 +1,7 @@
 package com.swu.ai.service;
 
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.request.CompanyInputReq;
 
 import java.util.List;
 
@@ -12,5 +13,8 @@ public interface CompanyService {
     boolean insertCompanyInfo(List<CompanyInput> list);
 
     List<CompanyInput> findAllCompanyInput();
+
+    List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq);
+
 
 }

@@ -57,12 +57,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top: 1%">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top: 1%; margin-bottom: 1%;">
             <div id="query-btn" class="btn btn-primary btn-lg btn-block" v-on:click="query()">查询</div>
         </div>
     </div>
-    <div class="row">
-        <data-show ref="table" v-if="this.showData" v-bind:query-params="this.queryParams"></data-show>
+    <div class="">
+        <data-show ref="table" v-if="this.showData" v-bind:query-params="this.queryParams" v-bind:columns="this.columns"></data-show>
     </div>
 </div>
 </body>

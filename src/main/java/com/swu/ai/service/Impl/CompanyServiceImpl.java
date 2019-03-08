@@ -2,6 +2,7 @@ package com.swu.ai.service.Impl;
 
 import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<CompanyInput> findAllCompanyInput() {
         return companyDao.findAllCompanyInput();
+    }
+
+    @Override
+    public List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq) {
+        return companyDao.findCompanyInputByReq(companyInputReq);
     }
 }

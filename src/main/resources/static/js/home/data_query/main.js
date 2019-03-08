@@ -5,6 +5,7 @@
         components: {DataShow},
         data: function() {
             return {
+                columns: [],
                 queryParams: {
                     industry: "",
                     region: "",
@@ -14,8 +15,33 @@
                     endQuarter: 0,
                 },
                 showData: false,
-                process_num: 60,
             }
+        },
+        mounted() {
+            let col = [];
+            $.ajax({
+                url: '../companyInfoTableColumn/',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    let status = data.status;
+                    if (status == 1) {
+                        for (let i = 0; i < data.data[0].length; i++) {
+                            col.push({
+                                field: data.data[0][i],
+                                title: data.data[1][i]
+                            });
+                        }
+                    } else {
+                        sv2.warn("获取表格属性失败，5xx");
+                    }
+                },
+                error: function () {
+                    sv2.warn("获取表格属性失败，4xx");
+                }
+            });
+            this.columns = col;
+
         },
         methods: {
             query: function () {
