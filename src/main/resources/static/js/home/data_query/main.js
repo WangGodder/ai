@@ -20,18 +20,47 @@
         mounted() {
             let col = [];
             $.ajax({
-                url: '../companyInfoTableColumn/',
+                url: '../../data/companyInfoTableColumn/',
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
                     let status = data.status;
                     if (status == 1) {
-                        for (let i = 0; i < data.data[0].length; i++) {
-                            col.push({
-                                field: data.data[0][i],
-                                title: data.data[1][i]
-                            });
+                        let firstRow = [];
+                        for (let i = 0; i < data.data.headTitles.length; i++) {
+                            firstRow.push({
+                                title: data.data.headTitles[i],
+                                field: data.data.headField[i],
+                                rowspan: 3,
+                                align: 'center',
+                                valign: 'middle',
+                                }
+                            )
                         }
+                        for (let i = 0; i < data.data.firstRowTitles.length; i++) {
+                            firstRow.push({
+                                title: data.data.firstRowTitles[i],
+                                colspan: data.data.firstRowLength[i],
+                                align: 'center'
+                            })
+                        }
+                        let secondRow = [];
+                        for (let i = 0; i < data.data.secondRowTitles.length; i++) {
+                            secondRow.push({
+                                title: data.data.secondRowTitles[i],
+                                colspan: data.data.secondRowLength[i],
+                                align: 'center'
+                            })
+                        }
+                        let thridRow = [];
+                        for (let i = 0; i < data.data.fields.length; i++) {
+                            thridRow.push({
+                                title: data.data.titles[i],
+                                field: data.data.fields[i],
+                                align: 'center'
+                            })
+                        }
+                        col.push(firstRow, secondRow, thridRow);
                     } else {
                         sv2.warn("获取表格属性失败，5xx");
                     }

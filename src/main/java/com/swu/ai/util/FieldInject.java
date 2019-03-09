@@ -22,6 +22,9 @@ public class FieldInject {
     public static <T> T createInstanceByMap(Map<String, String[]> map, Class<T> tClass) throws IllegalAccessException, InstantiationException {
         T obj = tClass.newInstance();
         for (Map.Entry<String, String[]> entry : map.entrySet()) {
+            if (entry.getValue().length == 0 || entry.getValue().length > 1 || entry.getValue()[0].isEmpty()) {
+                continue;
+            }
             try {
                 Field field = tClass.getDeclaredField(entry.getKey());
                 field.setAccessible(true);

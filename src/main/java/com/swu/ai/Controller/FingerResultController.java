@@ -247,6 +247,7 @@ public class FingerResultController {
     @RequestMapping(value = "companyInfoTableColumn/")
     @ResponseBody
     public JsonResult companyInfoTableColumn() {
+
         List<String> title = TableUtil.getFieldNames(CompanyInput.class);
         List<String> field = TableUtil.getFieldNames(CompanyInput.class);
         List<List<String>> list = new ArrayList<>(2);

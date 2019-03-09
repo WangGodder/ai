@@ -1,9 +1,12 @@
 package com.swu.ai.service;
 
+import com.swu.ai.Result.CompanyInfoTableColumn;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.entity.CompanyInputDict;
 import com.swu.ai.request.CompanyInputReq;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author mhp
@@ -16,5 +19,5 @@ public interface CompanyService {
 
     List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq);
 
-
+    CompanyInfoTableColumn getCompanyInfoTableColumn();
 }

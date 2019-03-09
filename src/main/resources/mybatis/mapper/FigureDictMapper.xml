@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swu.ai.mapper.FigureDictMapper">
+  <resultMap id="BaseResultMap" type="com.swu.ai.entity.FigureDict">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="figure_name" jdbcType="VARCHAR" property="figureName" />
+    <result column="figure_level" jdbcType="INTEGER" property="figureLevel"/>
+    <result column="sub_figure_num" jdbcType="INTEGER" property="subFigureNum" />
+  </resultMap>
+      <select id="findAllFigureDict" resultType="FigureDict">
+          select * from figure_dict;
+      </select>
+    <select id="findFigureDictByLevel" resultType="FigureDict" parameterType="java.lang.Integer">
+        select * from figure_dict where figure_level = #{level};
+    </select>
+
+</mapper>
