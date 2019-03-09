@@ -8,11 +8,14 @@
     <script type="text/javascript" src="/js/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-table-export.js"></script>
     <script type="text/javascript" src="/js/common/tableExport.min.js"></script>
     <script type="text/javascript" src="/js/common/xlsx.core.min.js"></script>
     <script type="text/javascript" src="/js/common/FileSaver.min.js"></script>
     <script type="text/javascript" src="/js/vue/vue.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="/js/home/data_query/DataShow.js"></script>
+
 </head>
 <body>
 <div id="app">
