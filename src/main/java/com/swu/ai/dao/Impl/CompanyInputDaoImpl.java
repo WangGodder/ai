@@ -4,6 +4,7 @@ import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.mapper.CompanyInputMapper;
+import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.vo.VoFingerResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,15 +102,26 @@ public class CompanyInputDaoImpl implements CompanyInputDao {
     }
 
     @Override
-    public List<VoFingerResult> findAllByYearAndQuarter(CompanyInput companyInput) {
+    public List<VoFingerResult> findSumAllByYearAndQuarter(CompanyFigureReq companyInput) {
 //        CompanyInput companyInput = new CompanyInput();
 //        companyInput.setYear(year);
 //        companyInput.setQuarter(quarter);
-        List<VoFingerResult> fingerResultV0List = companyInputMapper.findFingerByYearAndQuarter(companyInput);
+        List<VoFingerResult> fingerResultV0List = companyInputMapper.findFingerSumByYearAndQuarter(companyInput);
         for (FingerResultV0 fingerResultV0 : fingerResultV0List) {
             fingerResultV0.evaluate();
         }
         return fingerResultV0List;
     }
 
+    @Override
+    public List<VoFingerResult> findMaxAllByYearAndQuarter(CompanyFigureReq companyInput) {
+//        CompanyInput companyInput = new CompanyInput();
+//        companyInput.setYear(year);
+//        companyInput.setQuarter(quarter);
+        List<VoFingerResult> fingerResultV0List = companyInputMapper.findFingerMaxByYearAndQuarter(companyInput);
+        for (FingerResultV0 fingerResultV0 : fingerResultV0List) {
+            fingerResultV0.evaluate();
+        }
+        return fingerResultV0List;
+    }
 }

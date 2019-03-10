@@ -9,6 +9,5 @@ import java.util.List;
  * @date: 2019/3/8
  */
 public interface FigureDictDao {
-    List<FigureDict> findAllFigureDict();
     List<FigureDict> findFigureDictByLevel(int level);
 }

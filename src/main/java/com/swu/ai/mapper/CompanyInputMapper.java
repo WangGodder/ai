@@ -2,6 +2,7 @@ package com.swu.ai.mapper;
 
 import com.swu.ai.Base.BaseMapper;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.vo.VoFingerResult;
 
@@ -31,5 +32,7 @@ public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
 
     boolean deleteCompanyInput(Long id);
 
-    List<VoFingerResult> findFingerByYearAndQuarter(CompanyInput companyInput);
+    List<VoFingerResult> findFingerSumByYearAndQuarter(CompanyFigureReq companyFigureReq);
+
+    List<VoFingerResult> findFingerMaxByYearAndQuarter(CompanyFigureReq companyFigureReq);
 }

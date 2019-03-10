@@ -8,6 +8,7 @@ import com.swu.ai.Util.FieldInject;
 import com.swu.ai.Util.TableUtil;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.service.CompanyService;
 import com.swu.ai.service.FingerService;
@@ -90,7 +91,7 @@ public class FingerResultController {
      *      industry        板块
      *      region          区域
     * */
-    @RequestMapping("getFingerRes2/")
+    @RequestMapping("getFingerResSum2/")
     @ResponseBody
     /*
     companyId 公司ID 默认是-1表示所有
@@ -104,11 +105,29 @@ public class FingerResultController {
 //                                @RequestParam(value = "denominatorType", required = false, defaultValue = "mean") String denominatorType,
 //                                @RequestParam(value = "companyPlate", required = false, defaultValue = "all") String companyPlate,
 //                                @RequestParam(value = "companyId", required = false, defaultValue = "-1") Long companyId) {
-    JsonResult getFingerResult2(CompanyInput companyInput) {
+    JsonResult getFingerResultSum2(CompanyFigureReq companyInput) {
         if(companyInput.getYear() == null || companyInput.getQuarter() == null ){
             return JsonResult.fail("year 和 quarter 不能为空");
         }
-        List<VoFingerResult> res = fingerService.getFingerResult2(companyInput);
+        List<VoFingerResult> res = fingerService.getFingerResultSum2(companyInput);
+        return JsonResult.success(res);
+    }
+
+    /**
+     *  请注意： year 和 quarter 为必须要传入的参数，否则报错
+     *  可选参数
+     *      id 表示使用 finger_weight 中的权重模板 id 系统中默认是 1
+     *      companyname     公司 id
+     *      industry        板块
+     *      region          区域
+     * */
+    @RequestMapping("getFingerResMax2/")
+    @ResponseBody
+    JsonResult getFingerResultMax2(CompanyFigureReq companyInput) {
+        if(companyInput.getYear() == null || companyInput.getQuarter() == null ){
+            return JsonResult.fail("year 和 quarter 不能为空");
+        }
+        List<VoFingerResult> res = fingerService.getFingerResultMax2(companyInput);
         return JsonResult.success(res);
     }
 

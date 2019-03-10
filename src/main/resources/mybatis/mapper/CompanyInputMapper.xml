@@ -625,10 +625,15 @@
     </select>
     <select id="findCompanyInputByReq" resultType="CompanyInput" parameterType="com.swu.ai.request.CompanyInputReq">
         select * from company_input
-        where
-            <if test="industry != null and industry != ''">industry = #{industry} and </if>
-            <if test="region != null and region != ''">region = #{region} and </if>
-            #{beginYear} &lt;= year and year &lt;= #{endYear} and #{beginQuarter} &lt;= quarter and quarter &lt;= #{endQuarter};
+        <where>
+            <if test="industry != null and industry != ''"> and industry = #{industry}</if>
+            <if test="region != null and region != ''">and region = #{region} and </if>
+            <if test="beginYear != null">and #{beginYear} &lt;= year</if>
+            <if test="endYear != null">and year &lt;= #{endYear}</if>
+            <if test="beginQuarter != null">and #{beginQuarter} &lt;= quarter</if>
+            <if test="endQuarter != null">and quarter &lt;= #{endQuarter}</if>
+        </where>
+
     </select>
 
     <!--更新-->
@@ -808,160 +813,160 @@
         delete from company_input
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <select id="findFingerByYearAndQuarter" resultType="com.swu.ai.vo.VoFingerResult"
-            parameterType="com.swu.ai.entity.CompanyInput">
-        select `companyname` companyName,`industry`,`region`,`year`,`quarter`,`finger_weight`.*,
+    <select id="findFingerSumByYearAndQuarter" resultType="com.swu.ai.vo.VoFingerResult"
+            parameterType="com.swu.ai.request.CompanyFigureReq">
+        select `companyname` companyName,`industry`,`region`,`year`,`quarter`,`figure_weight`.*,
         `ticketincomesoftware`/(SELECT SUM(`ticketincomesoftware`)/count(*) from `company_input` WHERE year = #{year}
-        and quarter = #{quarter})finger_sale_invoice_soft,
+        and quarter = #{quarter})figure_sale_invoice_soft,
         `ticketincomehardware`/(SELECT SUM(`ticketincomehardware`)/count(*) from `company_input` WHERE year = #{year}
-        and quarter = #{quarter}) finger_sale_invoice_hard,
+        and quarter = #{quarter}) figure_sale_invoice_hard,
         `ticketincomeconsult`/(SELECT SUM(`ticketincomeconsult`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_sale_invoice_consultation,
+        quarter = #{quarter}) figure_sale_invoice_consultation,
         `ticketincomeother`/(SELECT SUM(`ticketincomeother`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_sale_invoice_other,
+        quarter = #{quarter}) figure_sale_invoice_other,
         `contractincomesoftware`/(SELECT SUM(`contractincomesoftware`)/count(*) from `company_input` WHERE year =
-        #{year} and quarter = #{quarter}) finger_sale_contract_soft,
+        #{year} and quarter = #{quarter}) figure_sale_contract_soft,
         `contractincomehardware`/(SELECT SUM(`contractincomehardware`)/count(*) from `company_input` WHERE year =
-        #{year} and quarter = #{quarter}) finger_sale_contract_hard,
+        #{year} and quarter = #{quarter}) figure_sale_contract_hard,
         `contractincomeconsult`/(SELECT SUM(`contractincomeconsult`)/count(*) from `company_input` WHERE year = #{year}
-        and quarter = #{quarter}) finger_sale_contract_consultation,
+        and quarter = #{quarter}) figure_sale_contract_consultation,
         `contractincomeother`/(SELECT SUM(`contractincomeother`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_sale_contract_other ,
+        quarter = #{quarter}) figure_sale_contract_other ,
         `incometaxable`/(SELECT SUM(`incometaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_tax_corporate_taxable,
+        #{quarter}) figure_tax_corporate_taxable,
         `incometaxdeduction`/(SELECT SUM(`incometaxdeduction`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_tax_corporate_relief,
+        quarter = #{quarter}) figure_tax_corporate_relief,
         `pensonaltaxable`/(SELECT SUM(`pensonaltaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_tax_individual_taxable,
+        = #{quarter}) figure_tax_individual_taxable,
         `pensonaltaxdecution`/(SELECT SUM(`pensonaltaxdecution`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_tax_individual_relief,
+        quarter = #{quarter}) figure_tax_individual_relief,
         `addvaluetaxable`/(SELECT SUM(`addvaluetaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_tax_added_taxable,
+        = #{quarter}) figure_tax_added_taxable,
         `addvaluetaxdecution`/(SELECT SUM(`addvaluetaxdecution`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_tax_added_relief,
+        quarter = #{quarter}) figure_tax_added_relief,
         `stockfinancevc`/(SELECT SUM(`stockfinancevc`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_finance_stock_risk,
+        #{quarter}) figure_finance_stock_risk,
         `stockfinancegovenment`/(SELECT SUM(`stockfinancegovenment`)/count(*) from `company_input` WHERE year = #{year}
-        and quarter = #{quarter}) finger_finance_stock_gov,
+        and quarter = #{quarter}) figure_finance_stock_gov,
         `stockfinancepensonal`/(SELECT SUM(`stockfinancepensonal`)/count(*) from `company_input` WHERE year = #{year}
-        and quarter = #{quarter}) finger_finance_stock_person,
+        and quarter = #{quarter}) figure_finance_stock_person,
         `debtfinancebank`/(SELECT SUM(`debtfinancebank`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_finance_debt_bank,
+        = #{quarter}) figure_finance_debt_bank,
         `debtfinanceli`/(SELECT SUM(`debtfinanceli`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_finance_debt_new,
+        #{quarter}) figure_finance_debt_new,
         `debtfinancecompany`/(SELECT SUM(`debtfinancecompany`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_finance_debt_lending,
+        quarter = #{quarter}) figure_finance_debt_lending,
         `debtfinancepensonal`/(SELECT SUM(`debtfinancepensonal`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_finance_debt_person,
+        quarter = #{quarter}) figure_finance_debt_person,
         `currentasset`/(SELECT SUM(`currentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_valuation_assets_circulating,
+        #{quarter}) figure_valuation_assets_circulating,
         `nocurrentasset`/(SELECT SUM(`nocurrentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_valuation_assets_uncirculating,
+        #{quarter}) figure_valuation_assets_uncirculating,
         `currentdebt`/(SELECT SUM(`currentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_valuation_assets_debt_circulating,
+        #{quarter}) figure_valuation_assets_debt_circulating,
         `nocurrentdebt`/(SELECT SUM(`nocurrentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_valuation_assets_debt_uncirculating,
+        #{quarter}) figure_valuation_assets_debt_uncirculating,
         `firstfinancevalue`/(SELECT SUM(`firstfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_valuation_actual_first,
+        quarter = #{quarter}) figure_valuation_actual_first,
         `lastfinancevalue`/(SELECT SUM(`lastfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_valuation_actual_latest,
+        quarter = #{quarter}) figure_valuation_actual_latest,
         `currentfinancevalue`/(SELECT SUM(`currentfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_valuation_actual_want,
+        quarter = #{quarter}) figure_valuation_actual_want,
         `parttimedevelopment`/(SELECT SUM(`parttimedevelopment`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_hr_partime_dev,
+        quarter = #{quarter}) figure_hr_partime_dev,
         `parttimemanager`/(SELECT SUM(`parttimemanager`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_hr_partime_manage,
+        = #{quarter}) figure_hr_partime_manage,
         `parttimeadmin`/(SELECT SUM(`parttimeadmin`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_hr_partime_admin,
+        #{quarter}) figure_hr_partime_admin,
         `parttimesell`/(SELECT SUM(`parttimesell`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_hr_partime_saler,
+        #{quarter}) figure_hr_partime_saler,
         `development`/(SELECT SUM(`development`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_hr_fulltime_dev,
+        #{quarter}) figure_hr_fulltime_dev,
         `manamger`/(SELECT SUM(`manamger`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
-        finger_hr_fulltime_senior,
+        figure_hr_fulltime_senior,
         `administrator`/(SELECT SUM(`administrator`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_hr_fulltime_admin,
+        #{quarter}) figure_hr_fulltime_admin,
         `sell`/(SELECT SUM(`sell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
-        finger_hr_fulltime_saler,
+        figure_hr_fulltime_saler,
         `doctor`/(SELECT SUM(`doctor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
-        finger_hr_educated_doc,
+        figure_hr_educated_doc,
         `master`/(SELECT SUM(`master`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
-        finger_hr_educated_master,
+        figure_hr_educated_master,
         `bachelor`/(SELECT SUM(`bachelor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
-        finger_hr_bachelor,
+        figure_hr_bachelor,
         `applypatentinvent`/(SELECT SUM(`applypatentinvent`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_innovate_patent_apply_invention,
+        quarter = #{quarter}) figure_innovate_patent_apply_invention,
         `applypatentindustry`/(SELECT SUM(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_innovate_patent_apply_utility,
+        quarter = #{quarter}) figure_innovate_patent_apply_utility,
         `applypatentindustry`/(SELECT SUM(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_innovate_patent_apply_appear,
+        quarter = #{quarter}) figure_innovate_patent_apply_appear,
         `patentinvent`/(SELECT SUM(`patentinvent`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_patent_grant_invention,
+        #{quarter}) figure_innovate_patent_grant_invention,
         `patentindustry`/(SELECT SUM(`patentindustry`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_patent_grant_utility,
+        #{quarter}) figure_innovate_patent_grant_utility,
         `patentdesign`/(SELECT SUM(`patentdesign`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_patent_grant_appear,
+        #{quarter}) figure_innovate_patent_grant_appear,
         `applyauthorsoftware`/(SELECT SUM(`applyauthorsoftware`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_innovate_copyright_apply_soft,
+        quarter = #{quarter}) figure_innovate_copyright_apply_soft,
         `applyauthorother`/(SELECT SUM(`applyauthorother`)/count(*) from `company_input` WHERE year = #{year} and
-        quarter = #{quarter}) finger_innovate_copyright_apply_unsoft,
+        quarter = #{quarter}) figure_innovate_copyright_apply_unsoft,
         `authorsoftware`/(SELECT SUM(`authorsoftware`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_copyright_grant_soft,
+        #{quarter}) figure_innovate_copyright_grant_soft,
         `authorother`/(SELECT SUM(`authorother`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_copyright_grant_unsoft,
+        #{quarter}) figure_innovate_copyright_grant_unsoft,
         `servicepatent`/(SELECT SUM(`servicepatent`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_new_product_patent,
+        #{quarter}) figure_innovate_new_product_patent,
         `serviceskill`/(SELECT SUM(`serviceskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_new_product_tech,
+        #{quarter}) figure_innovate_new_product_tech,
         `servicesell`/(SELECT SUM(`servicesell`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_innovate_new_product_bus,
+        #{quarter}) figure_innovate_new_product_bus,
         `salaryhigh`/(SELECT SUM(`salaryhigh`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_salary_staff_up_10,
+        #{quarter}) figure_salary_staff_up_10,
         `salarymiddle`/(SELECT SUM(`salarymiddle`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_salary_staff_5_10,
+        #{quarter}) figure_salary_staff_5_10,
         `salarylow`/(SELECT SUM(`salarylow`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_salary_staff_down_5,
+        #{quarter}) figure_salary_staff_down_5,
         `persell`/(SELECT SUM(`persell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
-        finger_salary_staff_contribution_meansale,
+        figure_salary_staff_contribution_meansale,
         `pertax`/(SELECT SUM(`pertax`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
-        finger_salary_staff_contribution_meantax,
+        figure_salary_staff_contribution_meantax,
         `trainmanage`/(SELECT SUM(`trainmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_learn_train_manage,
+        #{quarter}) figure_learn_train_manage,
         `trainlegal`/(SELECT SUM(`trainlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_learn_train_policy,
+        #{quarter}) figure_learn_train_policy,
         `trainskill`/(SELECT SUM(`trainskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_learn_train_skill,
+        #{quarter}) figure_learn_train_skill,
         `consultmanage`/(SELECT SUM(`consultmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_learn_conslted_manage,
+        #{quarter}) figure_learn_conslted_manage,
         `consultlegal`/(SELECT SUM(`consultlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_learn_conslted_policy,
+        #{quarter}) figure_learn_conslted_policy,
         `consultskill`/(SELECT SUM(`consultskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_learn_conslted_skill,
+        #{quarter}) figure_learn_conslted_skill,
         `awarddistrict`/(SELECT SUM(`awarddistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_reward_area,
+        #{quarter}) figure_brand_reward_area,
         `awardcity`/(SELECT SUM(`awardcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_reward_city,
+        #{quarter}) figure_brand_reward_city,
         `awardprovince`/(SELECT SUM(`awardprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_reward_province,
+        #{quarter}) figure_brand_reward_province,
         `awardnation`/(SELECT SUM(`awardnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_reward_country,
+        #{quarter}) figure_brand_reward_country,
         `comfirmdistrict`/(SELECT SUM(`comfirmdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_brand_recognition_area ,
+        = #{quarter}) figure_brand_recognition_area ,
         `comfirmcity`/(SELECT SUM(`comfirmcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_recognition_city,
+        #{quarter}) figure_brand_recognition_city,
         `comfirmprovince`/(SELECT SUM(`comfirmprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_brand_recognition_province,
+        = #{quarter}) figure_brand_recognition_province,
         `comfirmnation`/(SELECT SUM(`comfirmnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_recognition_country,
+        #{quarter}) figure_brand_recognition_country,
         `supportdistrict`/(SELECT SUM(`supportdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_brand_talent_area,
+        = #{quarter}) figure_brand_talent_area,
         `supportcity`/(SELECT SUM(`supportcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_talent_city,
+        #{quarter}) figure_brand_talent_city,
         `supportprovince`/(SELECT SUM(`supportprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter
-        = #{quarter}) finger_brand_talent_province,
+        = #{quarter}) figure_brand_talent_province,
         `supportnation`/(SELECT SUM(`supportnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
-        #{quarter}) finger_brand_talent_country
-        from company_input,finger_weight
+        #{quarter}) figure_brand_talent_country
+        from company_input,figure_weight
         <where>
             <if test="year != null">
                 and year = #{year}
@@ -978,17 +983,195 @@
             <if test="companyname != null">
                 and companyname = #{companyname}
             </if>
+            <choose>
+            <when test="id != null and id !=''">
+                and `figure_weight`.id = #{id}
+            </when>
+            <otherwise>
+                and `figure_weight`.id = 1
+            </otherwise>
+          </choose>
+        </where>
+    </select>
+
+    <select id="findFingerMaxByYearAndQuarter" resultType="com.swu.ai.vo.VoFingerResult"
+            parameterType="com.swu.ai.request.CompanyFigureReq">
+        select `companyname` companyName,`industry`,`region`,`year`,`quarter`,`figure_weight`.*,
+        `ticketincomesoftware`/(SELECT MAX(`ticketincomesoftware`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter})figure_sale_invoice_soft,
+        `ticketincomehardware`/(SELECT MAX(`ticketincomehardware`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) figure_sale_invoice_hard,
+        `ticketincomeconsult`/(SELECT MAX(`ticketincomeconsult`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_sale_invoice_consultation,
+        `ticketincomeother`/(SELECT MAX(`ticketincomeother`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_sale_invoice_other,
+        `contractincomesoftware`/(SELECT MAX(`contractincomesoftware`)/count(*) from `company_input` WHERE year =
+        #{year} and quarter = #{quarter}) figure_sale_contract_soft,
+        `contractincomehardware`/(SELECT MAX(`contractincomehardware`)/count(*) from `company_input` WHERE year =
+        #{year} and quarter = #{quarter}) figure_sale_contract_hard,
+        `contractincomeconsult`/(SELECT MAX(`contractincomeconsult`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) figure_sale_contract_consultation,
+        `contractincomeother`/(SELECT MAX(`contractincomeother`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_sale_contract_other ,
+        `incometaxable`/(SELECT MAX(`incometaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_tax_corporate_taxable,
+        `incometaxdeduction`/(SELECT MAX(`incometaxdeduction`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_tax_corporate_relief,
+        `pensonaltaxable`/(SELECT MAX(`pensonaltaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_tax_individual_taxable,
+        `pensonaltaxdecution`/(SELECT MAX(`pensonaltaxdecution`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_tax_individual_relief,
+        `addvaluetaxable`/(SELECT MAX(`addvaluetaxable`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_tax_added_taxable,
+        `addvaluetaxdecution`/(SELECT MAX(`addvaluetaxdecution`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_tax_added_relief,
+        `stockfinancevc`/(SELECT MAX(`stockfinancevc`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_finance_stock_risk,
+        `stockfinancegovenment`/(SELECT MAX(`stockfinancegovenment`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) figure_finance_stock_gov,
+        `stockfinancepensonal`/(SELECT MAX(`stockfinancepensonal`)/count(*) from `company_input` WHERE year = #{year}
+        and quarter = #{quarter}) figure_finance_stock_person,
+        `debtfinancebank`/(SELECT MAX(`debtfinancebank`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_finance_debt_bank,
+        `debtfinanceli`/(SELECT MAX(`debtfinanceli`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_finance_debt_new,
+        `debtfinancecompany`/(SELECT MAX(`debtfinancecompany`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_finance_debt_lending,
+        `debtfinancepensonal`/(SELECT MAX(`debtfinancepensonal`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_finance_debt_person,
+        `currentasset`/(SELECT MAX(`currentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_valuation_assets_circulating,
+        `nocurrentasset`/(SELECT MAX(`nocurrentasset`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_valuation_assets_uncirculating,
+        `currentdebt`/(SELECT MAX(`currentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_valuation_assets_debt_circulating,
+        `nocurrentdebt`/(SELECT MAX(`nocurrentdebt`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_valuation_assets_debt_uncirculating,
+        `firstfinancevalue`/(SELECT MAX(`firstfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_valuation_actual_first,
+        `lastfinancevalue`/(SELECT MAX(`lastfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_valuation_actual_latest,
+        `currentfinancevalue`/(SELECT MAX(`currentfinancevalue`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_valuation_actual_want,
+        `parttimedevelopment`/(SELECT MAX(`parttimedevelopment`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_hr_partime_dev,
+        `parttimemanager`/(SELECT MAX(`parttimemanager`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_hr_partime_manage,
+        `parttimeadmin`/(SELECT MAX(`parttimeadmin`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_hr_partime_admin,
+        `parttimesell`/(SELECT MAX(`parttimesell`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_hr_partime_saler,
+        `development`/(SELECT MAX(`development`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_hr_fulltime_dev,
+        `manamger`/(SELECT MAX(`manamger`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        figure_hr_fulltime_senior,
+        `administrator`/(SELECT MAX(`administrator`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_hr_fulltime_admin,
+        `sell`/(SELECT MAX(`sell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        figure_hr_fulltime_saler,
+        `doctor`/(SELECT MAX(`doctor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        figure_hr_educated_doc,
+        `master`/(SELECT MAX(`master`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        figure_hr_educated_master,
+        `bachelor`/(SELECT MAX(`bachelor`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        figure_hr_bachelor,
+        `applypatentinvent`/(SELECT MAX(`applypatentinvent`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_innovate_patent_apply_invention,
+        `applypatentindustry`/(SELECT MAX(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_innovate_patent_apply_utility,
+        `applypatentindustry`/(SELECT MAX(`applypatentindustry`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_innovate_patent_apply_appear,
+        `patentinvent`/(SELECT MAX(`patentinvent`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_patent_grant_invention,
+        `patentindustry`/(SELECT MAX(`patentindustry`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_patent_grant_utility,
+        `patentdesign`/(SELECT MAX(`patentdesign`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_patent_grant_appear,
+        `applyauthorsoftware`/(SELECT MAX(`applyauthorsoftware`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_innovate_copyright_apply_soft,
+        `applyauthorother`/(SELECT MAX(`applyauthorother`)/count(*) from `company_input` WHERE year = #{year} and
+        quarter = #{quarter}) figure_innovate_copyright_apply_unsoft,
+        `authorsoftware`/(SELECT MAX(`authorsoftware`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_copyright_grant_soft,
+        `authorother`/(SELECT MAX(`authorother`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_copyright_grant_unsoft,
+        `servicepatent`/(SELECT MAX(`servicepatent`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_new_product_patent,
+        `serviceskill`/(SELECT MAX(`serviceskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_new_product_tech,
+        `servicesell`/(SELECT MAX(`servicesell`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_innovate_new_product_bus,
+        `salaryhigh`/(SELECT MAX(`salaryhigh`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_salary_staff_up_10,
+        `salarymiddle`/(SELECT MAX(`salarymiddle`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_salary_staff_5_10,
+        `salarylow`/(SELECT MAX(`salarylow`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_salary_staff_down_5,
+        `persell`/(SELECT MAX(`persell`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        figure_salary_staff_contribution_meansale,
+        `pertax`/(SELECT MAX(`pertax`)/count(*) from `company_input` WHERE year = #{year} and quarter = #{quarter})
+        figure_salary_staff_contribution_meantax,
+        `trainmanage`/(SELECT MAX(`trainmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_learn_train_manage,
+        `trainlegal`/(SELECT MAX(`trainlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_learn_train_policy,
+        `trainskill`/(SELECT MAX(`trainskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_learn_train_skill,
+        `consultmanage`/(SELECT MAX(`consultmanage`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_learn_conslted_manage,
+        `consultlegal`/(SELECT MAX(`consultlegal`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_learn_conslted_policy,
+        `consultskill`/(SELECT MAX(`consultskill`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_learn_conslted_skill,
+        `awarddistrict`/(SELECT MAX(`awarddistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_reward_area,
+        `awardcity`/(SELECT MAX(`awardcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_reward_city,
+        `awardprovince`/(SELECT MAX(`awardprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_reward_province,
+        `awardnation`/(SELECT MAX(`awardnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_reward_country,
+        `comfirmdistrict`/(SELECT MAX(`comfirmdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_brand_recognition_area ,
+        `comfirmcity`/(SELECT MAX(`comfirmcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_recognition_city,
+        `comfirmprovince`/(SELECT MAX(`comfirmprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_brand_recognition_province,
+        `comfirmnation`/(SELECT MAX(`comfirmnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_recognition_country,
+        `supportdistrict`/(SELECT MAX(`supportdistrict`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_brand_talent_area,
+        `supportcity`/(SELECT MAX(`supportcity`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_talent_city,
+        `supportprovince`/(SELECT MAX(`supportprovince`)/count(*) from `company_input` WHERE year = #{year} and quarter
+        = #{quarter}) figure_brand_talent_province,
+        `supportnation`/(SELECT MAX(`supportnation`)/count(*) from `company_input` WHERE year = #{year} and quarter =
+        #{quarter}) figure_brand_talent_country
+        from company_input,figure_weight
+        <where>
+            <if test="year != null">
+                and year = #{year}
+            </if>
+            <if test="quarter != null">
+                and quarter = #{quarter}
+            </if>
+            <if test="industry != null">
+                and industry = #{industry}
+            </if>
+            <if test="region != null">
+                and region = #{region}
+            </if>
             <if test="companyname != null">
                 and companyname = #{companyname}
             </if>
             <choose>
-            <when test="id != null and id !=''">
-                and `finger_weight`.id = #{id}
-            </when>
-            <otherwise>
-                and `finger_weight`.id = 1
-            </otherwise>
-          </choose>
+                <when test="id != null and id !=''">
+                    and `figure_weight`.id = #{id}
+                </when>
+                <otherwise>
+                    and `figure_weight`.id = 1
+                </otherwise>
+            </choose>
         </where>
     </select>
 </mapper>

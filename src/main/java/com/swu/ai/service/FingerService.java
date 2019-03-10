@@ -1,7 +1,10 @@
 package com.swu.ai.service;
 
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.request.CompanyFigureReq;
+import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
@@ -28,6 +31,9 @@ public interface FingerService {
     */
     List<FingerResultV0> getFingerResult(Integer year, String periodType, String denominatorType, Long companyId, String companyPlate);
 
-    List<VoFingerResult> getFingerResult2(CompanyInput companyInput);
+    List<VoFingerResult> getFingerResultSum2(CompanyFigureReq companyInput);
 
+    List<VoFingerResult> getFingerResultMax2(CompanyFigureReq companyInput);
+
+    List<EvaluateResult> evaluateCompany(CompanyInputReq companyInputReq);
 }

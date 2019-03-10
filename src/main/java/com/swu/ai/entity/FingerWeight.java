@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Table(name = "finger_weight")
 public class FingerWeight {
+    @Id
     private Long id;
 
     @Column(name = "finger_sale_weight")

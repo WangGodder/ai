@@ -17,10 +17,6 @@ public class FigureDictDaoImpl implements FigureDictDao {
     @Autowired
     private FigureDictMapper figureDictMapper;
 
-    @Override
-    public List<FigureDict> findAllFigureDict() {
-        return figureDictMapper.findAllFigureDict();
-    }
 
     @Override
     public List<FigureDict> findFigureDictByLevel(int level) {

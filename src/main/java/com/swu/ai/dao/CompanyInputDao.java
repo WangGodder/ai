@@ -1,6 +1,7 @@
 package com.swu.ai.dao;
 
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.vo.VoFingerResult;
 
@@ -36,5 +37,7 @@ public interface CompanyInputDao {
 
     boolean deleteCompanyInput(Long id);
 
-    List<VoFingerResult> findAllByYearAndQuarter(CompanyInput companyInput);
+    List<VoFingerResult> findSumAllByYearAndQuarter(CompanyFigureReq companyFigureReq);
+
+    List<VoFingerResult> findMaxAllByYearAndQuarter(CompanyFigureReq companyFigureReq);
 }

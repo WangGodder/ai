@@ -5,7 +5,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="finger_sale_weight" jdbcType="DOUBLE" property="fingerSaleWeight" />
     <result column="finger_sale_invoice_weight" jdbcType="DOUBLE" property="fingerSaleInvoiceWeight" />
     <result column="finger_sale_invoice_soft_weight" jdbcType="DOUBLE" property="fingerSaleInvoiceSoftWeight" />
@@ -115,4 +115,7 @@
     <result column="finger_brand_talent_province_weight" jdbcType="DOUBLE" property="fingerBrandTalentProvinceWeight" />
     <result column="finger_brand_talent_country_weight" jdbcType="DOUBLE" property="fingerBrandTalentCountryWeight" />
   </resultMap>
+  <select id="findFingerWeight" parameterType="java.lang.Long" resultType="FingerWeight">
+      select * from finger_weight where id = #{id} limit 1
+  </select>
 </mapper>
