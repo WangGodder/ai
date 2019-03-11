@@ -154,7 +154,7 @@
     </where>
   </select>
     <insert id="addEvaluateResult" parameterType="EvaluateResult">
-        insert into evaluate_result (id, company_id, figure_id,
+        insert into evaluate_result (company_id, figure_id,
                                      evaluate_type, industry, region,
                                      begin_year, end_year, begin_quarter,
                                      end_quarter, figure_all, figure_sale,
@@ -208,7 +208,7 @@
                                      figure_brand_talent, figure_brand_talent_area,
                                      figure_brand_talent_city, figure_brand_talent_province,
                                      figure_brand_talent_country)
-        values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{figureId,jdbcType=BIGINT},
+        values (#{companyId,jdbcType=BIGINT}, #{figureId,jdbcType=BIGINT},
                 #{evaluateType, jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR},
                 #{beginYear,jdbcType=INTEGER}, #{endYear,jdbcType=INTEGER}, #{beginQuarter,jdbcType=INTEGER},
                 #{endQuarter,jdbcType=INTEGER}, #{figureAll,jdbcType=DOUBLE}, #{figureSale,jdbcType=DOUBLE},

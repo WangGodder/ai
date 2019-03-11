@@ -36,7 +36,7 @@
                              targetProject="src/main/java">
         </javaClientGenerator>
 
-        <table schema="" tableName="finger_result_v0"></table>
+        <table schema="" tableName="figure_weight"></table>
 
     </context>
 </generatorConfiguration>
