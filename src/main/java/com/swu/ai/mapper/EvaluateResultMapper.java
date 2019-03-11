@@ -9,7 +9,10 @@ import java.util.List;
 public interface EvaluateResultMapper extends BaseMapper<EvaluateResult> {
     List<EvaluateResult> findAllEvaluateResult();
 
-    List<EvaluateResult> findAllEvaluateResultByCompany(Long companyId);
-
     List<EvaluateResult> findEvalutateResultByReq(CompanyInputReq companyInputReq);
+
+    boolean addEvaluateResult(EvaluateResult evaluateResult);
+
+    boolean updateEvaluateResult(EvaluateResult evaluateResult);
+
 }

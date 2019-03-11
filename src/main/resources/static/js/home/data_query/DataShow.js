@@ -30,13 +30,13 @@ let DataShow = {
             showRefresh: true,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: true,                //是否启用点击选中行
-            height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            // height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "no",                     //每一行的唯一标识，一般为主键列
             showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
             fixedColumns: true,                  // 从左开始固定列
-            fixedNumber: 1,                         // 固定1列
+            fixedNumber: 1,                        // 固定1列
 
             columns: this.columns,
             showExport: true,              //是否显示导出按钮

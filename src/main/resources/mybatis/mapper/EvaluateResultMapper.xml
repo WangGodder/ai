@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swu.ai.mapper.EvaluateResultMapper">
+  <resultMap id="BaseResultMap" type="com.swu.ai.entity.EvaluateResult">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="figure_id" jdbcType="BIGINT" property="figureId" />
+    <result column="evaluate_date" jdbcType="TIMESTAMP" property="evaluateDate" />
+    <result column="evalute_type" jdbcType="VARCHAR" property="evaluateType"/>
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="begin_year" jdbcType="INTEGER" property="beginYear" />
+    <result column="end_year" jdbcType="INTEGER" property="endYear" />
+    <result column="begin_quarter" jdbcType="INTEGER" property="beginQuarter" />
+    <result column="end_quarter" jdbcType="INTEGER" property="endQuarter" />
+    <result column="figure_all" jdbcType="DOUBLE" property="figureAll" />
+    <result column="figure_sale" jdbcType="DOUBLE" property="figureSale" />
+    <result column="figure_sale_invoice" jdbcType="DOUBLE" property="figureSaleInvoice" />
+    <result column="figure_sale_invoice_soft" jdbcType="DOUBLE" property="figureSaleInvoiceSoft" />
+    <result column="figure_sale_invoice_hard" jdbcType="DOUBLE" property="figureSaleInvoiceHard" />
+    <result column="figure_sale_invoice_consultation" jdbcType="DOUBLE" property="figureSaleInvoiceConsultation" />
+    <result column="figure_sale_invoice_other" jdbcType="DOUBLE" property="figureSaleInvoiceOther" />
+    <result column="figure_sale_contract" jdbcType="DOUBLE" property="figureSaleContract" />
+    <result column="figure_sale_contract_soft" jdbcType="DOUBLE" property="figureSaleContractSoft" />
+    <result column="figure_sale_contract_hard" jdbcType="DOUBLE" property="figureSaleContractHard" />
+    <result column="figure_sale_contract_consultation" jdbcType="DOUBLE" property="figureSaleContractConsultation" />
+    <result column="figure_sale_contract_other" jdbcType="DOUBLE" property="figureSaleContractOther" />
+    <result column="figure_tax" jdbcType="DOUBLE" property="figureTax" />
+    <result column="figure_tax_corporate" jdbcType="DOUBLE" property="figureTaxCorporate" />
+    <result column="figure_tax_corporate_taxable" jdbcType="DOUBLE" property="figureTaxCorporateTaxable" />
+    <result column="figure_tax_corporate_relief" jdbcType="DOUBLE" property="figureTaxCorporateRelief" />
+    <result column="figure_tax_individual" jdbcType="DOUBLE" property="figureTaxIndividual" />
+    <result column="figure_tax_individual_taxable" jdbcType="DOUBLE" property="figureTaxIndividualTaxable" />
+    <result column="figure_tax_individual_relief" jdbcType="DOUBLE" property="figureTaxIndividualRelief" />
+    <result column="figure_tax_added" jdbcType="DOUBLE" property="figureTaxAdded" />
+    <result column="figure_tax_added_taxable" jdbcType="DOUBLE" property="figureTaxAddedTaxable" />
+    <result column="figure_tax_added_relief" jdbcType="DOUBLE" property="figureTaxAddedRelief" />
+    <result column="figure_finance" jdbcType="DOUBLE" property="figureFinance" />
+    <result column="figure_finance_stock" jdbcType="DOUBLE" property="figureFinanceStock" />
+    <result column="figure_finance_stock_risk" jdbcType="DOUBLE" property="figureFinanceStockRisk" />
+    <result column="figure_finance_stock_gov" jdbcType="DOUBLE" property="figureFinanceStockGov" />
+    <result column="figure_finance_stock_person" jdbcType="DOUBLE" property="figureFinanceStockPerson" />
+    <result column="figure_finance_debt" jdbcType="DOUBLE" property="figureFinanceDebt" />
+    <result column="figure_finance_debt_bank" jdbcType="DOUBLE" property="figureFinanceDebtBank" />
+    <result column="figure_finance_debt_new" jdbcType="DOUBLE" property="figureFinanceDebtNew" />
+    <result column="figure_finance_debt_lending" jdbcType="DOUBLE" property="figureFinanceDebtLending" />
+    <result column="figure_finance_debt_person" jdbcType="DOUBLE" property="figureFinanceDebtPerson" />
+    <result column="figure_valuation" jdbcType="DOUBLE" property="figureValuation" />
+    <result column="figure_valuation_assets" jdbcType="DOUBLE" property="figureValuationAssets" />
+    <result column="figure_valuation_assets_circulating" jdbcType="DOUBLE" property="figureValuationAssetsCirculating" />
+    <result column="figure_valuation_assets_uncirculating" jdbcType="DOUBLE" property="figureValuationAssetsUncirculating" />
+    <result column="figure_valuation_assets_debt_circulating" jdbcType="DOUBLE" property="figureValuationAssetsDebtCirculating" />
+    <result column="figure_valuation_assets_debt_uncirculating" jdbcType="DOUBLE" property="figureValuationAssetsDebtUncirculating" />
+    <result column="figure_valuation_actual" jdbcType="DOUBLE" property="figureValuationActual" />
+    <result column="figure_valuation_actual_first" jdbcType="DOUBLE" property="figureValuationActualFirst" />
+    <result column="figure_valuation_actual_latest" jdbcType="DOUBLE" property="figureValuationActualLatest" />
+    <result column="figure_valuation_actual_want" jdbcType="DOUBLE" property="figureValuationActualWant" />
+    <result column="figure_hr" jdbcType="DOUBLE" property="figureHr" />
+    <result column="figure_hr_partime" jdbcType="DOUBLE" property="figureHrPartime" />
+    <result column="figure_hr_partime_dev" jdbcType="DOUBLE" property="figureHrPartimeDev" />
+    <result column="figure_hr_partime_manage" jdbcType="DOUBLE" property="figureHrPartimeManage" />
+    <result column="figure_hr_partime_admin" jdbcType="DOUBLE" property="figureHrPartimeAdmin" />
+    <result column="figure_hr_partime_saler" jdbcType="DOUBLE" property="figureHrPartimeSaler" />
+    <result column="figure_hr_fulltime" jdbcType="DOUBLE" property="figureHrFulltime" />
+    <result column="figure_hr_fulltime_dev" jdbcType="DOUBLE" property="figureHrFulltimeDev" />
+    <result column="figure_hr_fulltime_senior" jdbcType="DOUBLE" property="figureHrFulltimeSenior" />
+    <result column="figure_hr_fulltime_admin" jdbcType="DOUBLE" property="figureHrFulltimeAdmin" />
+    <result column="figure_hr_fulltime_saler" jdbcType="DOUBLE" property="figureHrFulltimeSaler" />
+    <result column="figure_hr_educated" jdbcType="DOUBLE" property="figureHrEducated" />
+    <result column="figure_hr_educated_doc" jdbcType="DOUBLE" property="figureHrEducatedDoc" />
+    <result column="figure_hr_educated_master" jdbcType="DOUBLE" property="figureHrEducatedMaster" />
+    <result column="figure_hr_bachelor" jdbcType="DOUBLE" property="figureHrBachelor" />
+    <result column="figure_innovate" jdbcType="DOUBLE" property="figureInnovate" />
+    <result column="figure_innovate_patent_apply" jdbcType="DOUBLE" property="figureInnovatePatentApply" />
+    <result column="figure_innovate_patent_apply_invention" jdbcType="DOUBLE" property="figureInnovatePatentApplyInvention" />
+    <result column="figure_innovate_patent_apply_utility" jdbcType="DOUBLE" property="figureInnovatePatentApplyUtility" />
+    <result column="figure_innovate_patent_apply_appear" jdbcType="DOUBLE" property="figureInnovatePatentApplyAppear" />
+    <result column="figure_innovate_patent_grant" jdbcType="DOUBLE" property="figureInnovatePatentGrant" />
+    <result column="figure_innovate_patent_grant_invention" jdbcType="DOUBLE" property="figureInnovatePatentGrantInvention" />
+    <result column="figure_innovate_patent_grant_utility" jdbcType="DOUBLE" property="figureInnovatePatentGrantUtility" />
+    <result column="figure_innovate_patent_grant_appear" jdbcType="DOUBLE" property="figureInnovatePatentGrantAppear" />
+    <result column="figure_innovate_copyright_apply" jdbcType="DOUBLE" property="figureInnovateCopyrightApply" />
+    <result column="figure_innovate_copyright_apply_soft" jdbcType="DOUBLE" property="figureInnovateCopyrightApplySoft" />
+    <result column="figure_innovate_copyright_apply_unsoft" jdbcType="DOUBLE" property="figureInnovateCopyrightApplyUnsoft" />
+    <result column="figure_innovate_copyright_grant" jdbcType="DOUBLE" property="figureInnovateCopyrightGrant" />
+    <result column="figure_innovate_copyright_grant_soft" jdbcType="DOUBLE" property="figureInnovateCopyrightGrantSoft" />
+    <result column="figure_innovate_copyright_grant_unsoft" jdbcType="DOUBLE" property="figureInnovateCopyrightGrantUnsoft" />
+    <result column="figure_innovate_new_product" jdbcType="DOUBLE" property="figureInnovateNewProduct" />
+    <result column="figure_innovate_new_product_patent" jdbcType="DOUBLE" property="figureInnovateNewProductPatent" />
+    <result column="figure_innovate_new_product_tech" jdbcType="DOUBLE" property="figureInnovateNewProductTech" />
+    <result column="figure_innovate_new_product_bus" jdbcType="DOUBLE" property="figureInnovateNewProductBus" />
+    <result column="figure_salary" jdbcType="DOUBLE" property="figureSalary" />
+    <result column="figure_salary_staff" jdbcType="DOUBLE" property="figureSalaryStaff" />
+    <result column="figure_salary_staff_up_10" jdbcType="DOUBLE" property="figureSalaryStaffUp10" />
+    <result column="figure_salary_staff_5_10" jdbcType="DOUBLE" property="figureSalaryStaff510" />
+    <result column="figure_salary_staff_down_5" jdbcType="DOUBLE" property="figureSalaryStaffDown5" />
+    <result column="figure_salary_staff_contribution" jdbcType="DOUBLE" property="figureSalaryStaffContribution" />
+    <result column="figure_salary_staff_contribution_meansale" jdbcType="DOUBLE" property="figureSalaryStaffContributionMeansale" />
+    <result column="figure_salary_staff_contribution_meantax" jdbcType="DOUBLE" property="figureSalaryStaffContributionMeantax" />
+    <result column="figure_learn" jdbcType="DOUBLE" property="figureLearn" />
+    <result column="figure_learn_train" jdbcType="DOUBLE" property="figureLearnTrain" />
+    <result column="figure_learn_train_manage" jdbcType="DOUBLE" property="figureLearnTrainManage" />
+    <result column="figure_learn_train_policy" jdbcType="DOUBLE" property="figureLearnTrainPolicy" />
+    <result column="figure_learn_train_skill" jdbcType="DOUBLE" property="figureLearnTrainSkill" />
+    <result column="figure_learn_conslted" jdbcType="DOUBLE" property="figureLearnConslted" />
+    <result column="figure_learn_conslted_manage" jdbcType="DOUBLE" property="figureLearnConsltedManage" />
+    <result column="figure_learn_conslted_policy" jdbcType="DOUBLE" property="figureLearnConsltedPolicy" />
+    <result column="figure_learn_conslted_skill" jdbcType="DOUBLE" property="figureLearnConsltedSkill" />
+    <result column="figure_brand" jdbcType="DOUBLE" property="figureBrand" />
+    <result column="figure_brand_reward" jdbcType="DOUBLE" property="figureBrandReward" />
+    <result column="figure_brand_reward_area" jdbcType="DOUBLE" property="figureBrandRewardArea" />
+    <result column="figure_brand_reward_city" jdbcType="DOUBLE" property="figureBrandRewardCity" />
+    <result column="figure_brand_reward_province" jdbcType="DOUBLE" property="figureBrandRewardProvince" />
+    <result column="figure_brand_reward_country" jdbcType="DOUBLE" property="figureBrandRewardCountry" />
+    <result column="figure_brand_recognition" jdbcType="DOUBLE" property="figureBrandRecognition" />
+    <result column="figure_brand_recognition_area" jdbcType="DOUBLE" property="figureBrandRecognitionArea" />
+    <result column="figure_brand_recognition_city" jdbcType="DOUBLE" property="figureBrandRecognitionCity" />
+    <result column="figure_brand_recognition_province" jdbcType="DOUBLE" property="figureBrandRecognitionProvince" />
+    <result column="figure_brand_recognition_country" jdbcType="DOUBLE" property="figureBrandRecognitionCountry" />
+    <result column="figure_brand_talent" jdbcType="DOUBLE" property="figureBrandTalent" />
+    <result column="figure_brand_talent_area" jdbcType="DOUBLE" property="figureBrandTalentArea" />
+    <result column="figure_brand_talent_city" jdbcType="DOUBLE" property="figureBrandTalentCity" />
+    <result column="figure_brand_talent_province" jdbcType="DOUBLE" property="figureBrandTalentProvince" />
+    <result column="figure_brand_talent_country" jdbcType="DOUBLE" property="figureBrandTalentCountry" />
+  </resultMap>
+
+  <select id="findAllEvaluateResult" resultType="EvaluateResult">
+    select * from evaluate_result
+  </select>
+  <select id="findEvaluateResultByReq" resultType="EvaluateResult" parameterType="com.swu.ai.request.EvaluateResultReq">
+    select * from evaluate_result
+    <where>
+      <if test="beginYear != null">
+        #{beginYear} &lt;= year
+      </if>
+      <if test="endYear != null">
+        year &lt;= #{endYear}
+      </if>
+      <if test="beginQuarter != null">
+        and #{beginQuarter} &lt;= quarter
+      </if>
+      <if test="endQuarter != null">
+        and quarter &lt;= #{endQuarter}
+      </if>
+      <if test="industry != null and industry != ''">
+        and industry = #{industry}
+      </if>
+      <if test="region != null and region != ''">and region = #{region} and </if>
+      <if test="evaluateType != null and evaluateType != ''"> and evaluate_type = #{evaluateType}</if>
+      <if test="companyId != null"> and company_id = #{companyId}</if>
+    </where>
+  </select>
+    <insert id="addEvaluateResult" parameterType="EvaluateResult">
+        insert into evaluate_result (id, company_id, figure_id,
+                                     evaluate_type, industry, region,
+                                     begin_year, end_year, begin_quarter,
+                                     end_quarter, figure_all, figure_sale,
+                                     figure_sale_invoice, figure_sale_invoice_soft,
+                                     figure_sale_invoice_hard, figure_sale_invoice_consultation,
+                                     figure_sale_invoice_other, figure_sale_contract,
+                                     figure_sale_contract_soft, figure_sale_contract_hard,
+                                     figure_sale_contract_consultation, figure_sale_contract_other,
+                                     figure_tax, figure_tax_corporate, figure_tax_corporate_taxable,
+                                     figure_tax_corporate_relief, figure_tax_individual,
+                                     figure_tax_individual_taxable, figure_tax_individual_relief,
+                                     figure_tax_added, figure_tax_added_taxable, figure_tax_added_relief,
+                                     figure_finance, figure_finance_stock, figure_finance_stock_risk,
+                                     figure_finance_stock_gov, figure_finance_stock_person,
+                                     figure_finance_debt, figure_finance_debt_bank,
+                                     figure_finance_debt_new, figure_finance_debt_lending,
+                                     figure_finance_debt_person, figure_valuation,
+                                     figure_valuation_assets, figure_valuation_assets_circulating,
+                                     figure_valuation_assets_uncirculating, figure_valuation_assets_debt_circulating,
+                                     figure_valuation_assets_debt_uncirculating, figure_valuation_actual,
+                                     figure_valuation_actual_first, figure_valuation_actual_latest,
+                                     figure_valuation_actual_want, figure_hr, figure_hr_partime,
+                                     figure_hr_partime_dev, figure_hr_partime_manage,
+                                     figure_hr_partime_admin, figure_hr_partime_saler,
+                                     figure_hr_fulltime, figure_hr_fulltime_dev, figure_hr_fulltime_senior,
+                                     figure_hr_fulltime_admin, figure_hr_fulltime_saler,
+                                     figure_hr_educated, figure_hr_educated_doc, figure_hr_educated_master,
+                                     figure_hr_bachelor, figure_innovate, figure_innovate_patent_apply,
+                                     figure_innovate_patent_apply_invention, figure_innovate_patent_apply_utility,
+                                     figure_innovate_patent_apply_appear, figure_innovate_patent_grant,
+                                     figure_innovate_patent_grant_invention, figure_innovate_patent_grant_utility,
+                                     figure_innovate_patent_grant_appear, figure_innovate_copyright_apply,
+                                     figure_innovate_copyright_apply_soft, figure_innovate_copyright_apply_unsoft,
+                                     figure_innovate_copyright_grant, figure_innovate_copyright_grant_soft,
+                                     figure_innovate_copyright_grant_unsoft, figure_innovate_new_product,
+                                     figure_innovate_new_product_patent, figure_innovate_new_product_tech,
+                                     figure_innovate_new_product_bus, figure_salary,
+                                     figure_salary_staff, figure_salary_staff_up_10,
+                                     figure_salary_staff_5_10, figure_salary_staff_down_5,
+                                     figure_salary_staff_contribution, figure_salary_staff_contribution_meansale,
+                                     figure_salary_staff_contribution_meantax, figure_learn,
+                                     figure_learn_train, figure_learn_train_manage,
+                                     figure_learn_train_policy, figure_learn_train_skill,
+                                     figure_learn_conslted, figure_learn_conslted_manage,
+                                     figure_learn_conslted_policy, figure_learn_conslted_skill,
+                                     figure_brand, figure_brand_reward, figure_brand_reward_area,
+                                     figure_brand_reward_city, figure_brand_reward_province,
+                                     figure_brand_reward_country, figure_brand_recognition,
+                                     figure_brand_recognition_area, figure_brand_recognition_city,
+                                     figure_brand_recognition_province, figure_brand_recognition_country,
+                                     figure_brand_talent, figure_brand_talent_area,
+                                     figure_brand_talent_city, figure_brand_talent_province,
+                                     figure_brand_talent_country)
+        values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{figureId,jdbcType=BIGINT},
+                #{evaluateType, jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR},
+                #{beginYear,jdbcType=INTEGER}, #{endYear,jdbcType=INTEGER}, #{beginQuarter,jdbcType=INTEGER},
+                #{endQuarter,jdbcType=INTEGER}, #{figureAll,jdbcType=DOUBLE}, #{figureSale,jdbcType=DOUBLE},
+                #{figureSaleInvoice,jdbcType=DOUBLE}, #{figureSaleInvoiceSoft,jdbcType=DOUBLE},
+                #{figureSaleInvoiceHard,jdbcType=DOUBLE}, #{figureSaleInvoiceConsultation,jdbcType=DOUBLE},
+                #{figureSaleInvoiceOther,jdbcType=DOUBLE}, #{figureSaleContract,jdbcType=DOUBLE},
+                #{figureSaleContractSoft,jdbcType=DOUBLE}, #{figureSaleContractHard,jdbcType=DOUBLE},
+                #{figureSaleContractConsultation,jdbcType=DOUBLE}, #{figureSaleContractOther,jdbcType=DOUBLE},
+                #{figureTax,jdbcType=DOUBLE}, #{figureTaxCorporate,jdbcType=DOUBLE}, #{figureTaxCorporateTaxable,jdbcType=DOUBLE},
+                #{figureTaxCorporateRelief,jdbcType=DOUBLE}, #{figureTaxIndividual,jdbcType=DOUBLE},
+                #{figureTaxIndividualTaxable,jdbcType=DOUBLE}, #{figureTaxIndividualRelief,jdbcType=DOUBLE},
+                #{figureTaxAdded,jdbcType=DOUBLE}, #{figureTaxAddedTaxable,jdbcType=DOUBLE}, #{figureTaxAddedRelief,jdbcType=DOUBLE},
+                #{figureFinance,jdbcType=DOUBLE}, #{figureFinanceStock,jdbcType=DOUBLE}, #{figureFinanceStockRisk,jdbcType=DOUBLE},
+                #{figureFinanceStockGov,jdbcType=DOUBLE}, #{figureFinanceStockPerson,jdbcType=DOUBLE},
+                #{figureFinanceDebt,jdbcType=DOUBLE}, #{figureFinanceDebtBank,jdbcType=DOUBLE},
+                #{figureFinanceDebtNew,jdbcType=DOUBLE}, #{figureFinanceDebtLending,jdbcType=DOUBLE},
+                #{figureFinanceDebtPerson,jdbcType=DOUBLE}, #{figureValuation,jdbcType=DOUBLE},
+                #{figureValuationAssets,jdbcType=DOUBLE}, #{figureValuationAssetsCirculating,jdbcType=DOUBLE},
+                #{figureValuationAssetsUncirculating,jdbcType=DOUBLE}, #{figureValuationAssetsDebtCirculating,jdbcType=DOUBLE},
+                #{figureValuationAssetsDebtUncirculating,jdbcType=DOUBLE}, #{figureValuationActual,jdbcType=DOUBLE},
+                #{figureValuationActualFirst,jdbcType=DOUBLE}, #{figureValuationActualLatest,jdbcType=DOUBLE},
+                #{figureValuationActualWant,jdbcType=DOUBLE}, #{figureHr,jdbcType=DOUBLE}, #{figureHrPartime,jdbcType=DOUBLE},
+                #{figureHrPartimeDev,jdbcType=DOUBLE}, #{figureHrPartimeManage,jdbcType=DOUBLE},
+                #{figureHrPartimeAdmin,jdbcType=DOUBLE}, #{figureHrPartimeSaler,jdbcType=DOUBLE},
+                #{figureHrFulltime,jdbcType=DOUBLE}, #{figureHrFulltimeDev,jdbcType=DOUBLE}, #{figureHrFulltimeSenior,jdbcType=DOUBLE},
+                #{figureHrFulltimeAdmin,jdbcType=DOUBLE}, #{figureHrFulltimeSaler,jdbcType=DOUBLE},
+                #{figureHrEducated,jdbcType=DOUBLE}, #{figureHrEducatedDoc,jdbcType=DOUBLE}, #{figureHrEducatedMaster,jdbcType=DOUBLE},
+                #{figureHrBachelor,jdbcType=DOUBLE}, #{figureInnovate,jdbcType=DOUBLE}, #{figureInnovatePatentApply,jdbcType=DOUBLE},
+                #{figureInnovatePatentApplyInvention,jdbcType=DOUBLE}, #{figureInnovatePatentApplyUtility,jdbcType=DOUBLE},
+                #{figureInnovatePatentApplyAppear,jdbcType=DOUBLE}, #{figureInnovatePatentGrant,jdbcType=DOUBLE},
+                #{figureInnovatePatentGrantInvention,jdbcType=DOUBLE}, #{figureInnovatePatentGrantUtility,jdbcType=DOUBLE},
+                #{figureInnovatePatentGrantAppear,jdbcType=DOUBLE}, #{figureInnovateCopyrightApply,jdbcType=DOUBLE},
+                #{figureInnovateCopyrightApplySoft,jdbcType=DOUBLE}, #{figureInnovateCopyrightApplyUnsoft,jdbcType=DOUBLE},
+                #{figureInnovateCopyrightGrant,jdbcType=DOUBLE}, #{figureInnovateCopyrightGrantSoft,jdbcType=DOUBLE},
+                #{figureInnovateCopyrightGrantUnsoft,jdbcType=DOUBLE}, #{figureInnovateNewProduct,jdbcType=DOUBLE},
+                #{figureInnovateNewProductPatent,jdbcType=DOUBLE}, #{figureInnovateNewProductTech,jdbcType=DOUBLE},
+                #{figureInnovateNewProductBus,jdbcType=DOUBLE}, #{figureSalary,jdbcType=DOUBLE},
+                #{figureSalaryStaff,jdbcType=DOUBLE}, #{figureSalaryStaffUp10,jdbcType=DOUBLE},
+                #{figureSalaryStaff510,jdbcType=DOUBLE}, #{figureSalaryStaffDown5,jdbcType=DOUBLE},
+                #{figureSalaryStaffContribution,jdbcType=DOUBLE}, #{figureSalaryStaffContributionMeansale,jdbcType=DOUBLE},
+                #{figureSalaryStaffContributionMeantax,jdbcType=DOUBLE}, #{figureLearn,jdbcType=DOUBLE},
+                #{figureLearnTrain,jdbcType=DOUBLE}, #{figureLearnTrainManage,jdbcType=DOUBLE},
+                #{figureLearnTrainPolicy,jdbcType=DOUBLE}, #{figureLearnTrainSkill,jdbcType=DOUBLE},
+                #{figureLearnConslted,jdbcType=DOUBLE}, #{figureLearnConsltedManage,jdbcType=DOUBLE},
+                #{figureLearnConsltedPolicy,jdbcType=DOUBLE}, #{figureLearnConsltedSkill,jdbcType=DOUBLE},
+                #{figureBrand,jdbcType=DOUBLE}, #{figureBrandReward,jdbcType=DOUBLE}, #{figureBrandRewardArea,jdbcType=DOUBLE},
+                #{figureBrandRewardCity,jdbcType=DOUBLE}, #{figureBrandRewardProvince,jdbcType=DOUBLE},
+                #{figureBrandRewardCountry,jdbcType=DOUBLE}, #{figureBrandRecognition,jdbcType=DOUBLE},
+                #{figureBrandRecognitionArea,jdbcType=DOUBLE}, #{figureBrandRecognitionCity,jdbcType=DOUBLE},
+                #{figureBrandRecognitionProvince,jdbcType=DOUBLE}, #{figureBrandRecognitionCountry,jdbcType=DOUBLE},
+                #{figureBrandTalent,jdbcType=DOUBLE}, #{figureBrandTalentArea,jdbcType=DOUBLE},
+                #{figureBrandTalentCity,jdbcType=DOUBLE}, #{figureBrandTalentProvince,jdbcType=DOUBLE},
+                #{figureBrandTalentCountry,jdbcType=DOUBLE})
+    </insert>
+    <update id="updateEvaluateResult" parameterType="EvaluateResult">
+        update evaluate_result
+        <set>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="figureId != null">
+                figure_id = #{figureId,jdbcType=BIGINT},
+            </if>
+            <if test="industry != null">
+                industry = #{industry,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                region = #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="beginYear != null">
+                begin_year = #{beginYear,jdbcType=INTEGER},
+            </if>
+            <if test="endYear != null">
+                end_year = #{endYear,jdbcType=INTEGER},
+            </if>
+            <if test="beginQuarter != null">
+                begin_quarter = #{beginQuarter,jdbcType=INTEGER},
+            </if>
+            <if test="endQuarter != null">
+                end_quarter = #{endQuarter,jdbcType=INTEGER},
+            </if>
+            <if test="figureAll != null">
+                figure_all = #{figureAll,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSale != null">
+                figure_sale = #{figureSale,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleInvoice != null">
+                figure_sale_invoice = #{figureSaleInvoice,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleInvoiceSoft != null">
+                figure_sale_invoice_soft = #{figureSaleInvoiceSoft,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleInvoiceHard != null">
+                figure_sale_invoice_hard = #{figureSaleInvoiceHard,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleInvoiceConsultation != null">
+                figure_sale_invoice_consultation = #{figureSaleInvoiceConsultation,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleInvoiceOther != null">
+                figure_sale_invoice_other = #{figureSaleInvoiceOther,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleContract != null">
+                figure_sale_contract = #{figureSaleContract,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleContractSoft != null">
+                figure_sale_contract_soft = #{figureSaleContractSoft,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleContractHard != null">
+                figure_sale_contract_hard = #{figureSaleContractHard,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleContractConsultation != null">
+                figure_sale_contract_consultation = #{figureSaleContractConsultation,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSaleContractOther != null">
+                figure_sale_contract_other = #{figureSaleContractOther,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTax != null">
+                figure_tax = #{figureTax,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxCorporate != null">
+                figure_tax_corporate = #{figureTaxCorporate,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxCorporateTaxable != null">
+                figure_tax_corporate_taxable = #{figureTaxCorporateTaxable,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxCorporateRelief != null">
+                figure_tax_corporate_relief = #{figureTaxCorporateRelief,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxIndividual != null">
+                figure_tax_individual = #{figureTaxIndividual,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxIndividualTaxable != null">
+                figure_tax_individual_taxable = #{figureTaxIndividualTaxable,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxIndividualRelief != null">
+                figure_tax_individual_relief = #{figureTaxIndividualRelief,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxAdded != null">
+                figure_tax_added = #{figureTaxAdded,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxAddedTaxable != null">
+                figure_tax_added_taxable = #{figureTaxAddedTaxable,jdbcType=DOUBLE},
+            </if>
+            <if test="figureTaxAddedRelief != null">
+                figure_tax_added_relief = #{figureTaxAddedRelief,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinance != null">
+                figure_finance = #{figureFinance,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceStock != null">
+                figure_finance_stock = #{figureFinanceStock,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceStockRisk != null">
+                figure_finance_stock_risk = #{figureFinanceStockRisk,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceStockGov != null">
+                figure_finance_stock_gov = #{figureFinanceStockGov,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceStockPerson != null">
+                figure_finance_stock_person = #{figureFinanceStockPerson,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceDebt != null">
+                figure_finance_debt = #{figureFinanceDebt,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceDebtBank != null">
+                figure_finance_debt_bank = #{figureFinanceDebtBank,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceDebtNew != null">
+                figure_finance_debt_new = #{figureFinanceDebtNew,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceDebtLending != null">
+                figure_finance_debt_lending = #{figureFinanceDebtLending,jdbcType=DOUBLE},
+            </if>
+            <if test="figureFinanceDebtPerson != null">
+                figure_finance_debt_person = #{figureFinanceDebtPerson,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuation != null">
+                figure_valuation = #{figureValuation,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationAssets != null">
+                figure_valuation_assets = #{figureValuationAssets,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationAssetsCirculating != null">
+                figure_valuation_assets_circulating = #{figureValuationAssetsCirculating,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationAssetsUncirculating != null">
+                figure_valuation_assets_uncirculating = #{figureValuationAssetsUncirculating,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationAssetsDebtCirculating != null">
+                figure_valuation_assets_debt_circulating = #{figureValuationAssetsDebtCirculating,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationAssetsDebtUncirculating != null">
+                figure_valuation_assets_debt_uncirculating = #{figureValuationAssetsDebtUncirculating,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationActual != null">
+                figure_valuation_actual = #{figureValuationActual,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationActualFirst != null">
+                figure_valuation_actual_first = #{figureValuationActualFirst,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationActualLatest != null">
+                figure_valuation_actual_latest = #{figureValuationActualLatest,jdbcType=DOUBLE},
+            </if>
+            <if test="figureValuationActualWant != null">
+                figure_valuation_actual_want = #{figureValuationActualWant,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHr != null">
+                figure_hr = #{figureHr,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrPartime != null">
+                figure_hr_partime = #{figureHrPartime,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrPartimeDev != null">
+                figure_hr_partime_dev = #{figureHrPartimeDev,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrPartimeManage != null">
+                figure_hr_partime_manage = #{figureHrPartimeManage,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrPartimeAdmin != null">
+                figure_hr_partime_admin = #{figureHrPartimeAdmin,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrPartimeSaler != null">
+                figure_hr_partime_saler = #{figureHrPartimeSaler,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrFulltime != null">
+                figure_hr_fulltime = #{figureHrFulltime,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrFulltimeDev != null">
+                figure_hr_fulltime_dev = #{figureHrFulltimeDev,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrFulltimeSenior != null">
+                figure_hr_fulltime_senior = #{figureHrFulltimeSenior,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrFulltimeAdmin != null">
+                figure_hr_fulltime_admin = #{figureHrFulltimeAdmin,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrFulltimeSaler != null">
+                figure_hr_fulltime_saler = #{figureHrFulltimeSaler,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrEducated != null">
+                figure_hr_educated = #{figureHrEducated,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrEducatedDoc != null">
+                figure_hr_educated_doc = #{figureHrEducatedDoc,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrEducatedMaster != null">
+                figure_hr_educated_master = #{figureHrEducatedMaster,jdbcType=DOUBLE},
+            </if>
+            <if test="figureHrBachelor != null">
+                figure_hr_bachelor = #{figureHrBachelor,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovate != null">
+                figure_innovate = #{figureInnovate,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentApply != null">
+                figure_innovate_patent_apply = #{figureInnovatePatentApply,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentApplyInvention != null">
+                figure_innovate_patent_apply_invention = #{figureInnovatePatentApplyInvention,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentApplyUtility != null">
+                figure_innovate_patent_apply_utility = #{figureInnovatePatentApplyUtility,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentApplyAppear != null">
+                figure_innovate_patent_apply_appear = #{figureInnovatePatentApplyAppear,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentGrant != null">
+                figure_innovate_patent_grant = #{figureInnovatePatentGrant,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentGrantInvention != null">
+                figure_innovate_patent_grant_invention = #{figureInnovatePatentGrantInvention,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentGrantUtility != null">
+                figure_innovate_patent_grant_utility = #{figureInnovatePatentGrantUtility,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovatePatentGrantAppear != null">
+                figure_innovate_patent_grant_appear = #{figureInnovatePatentGrantAppear,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateCopyrightApply != null">
+                figure_innovate_copyright_apply = #{figureInnovateCopyrightApply,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateCopyrightApplySoft != null">
+                figure_innovate_copyright_apply_soft = #{figureInnovateCopyrightApplySoft,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateCopyrightApplyUnsoft != null">
+                figure_innovate_copyright_apply_unsoft = #{figureInnovateCopyrightApplyUnsoft,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateCopyrightGrant != null">
+                figure_innovate_copyright_grant = #{figureInnovateCopyrightGrant,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateCopyrightGrantSoft != null">
+                figure_innovate_copyright_grant_soft = #{figureInnovateCopyrightGrantSoft,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateCopyrightGrantUnsoft != null">
+                figure_innovate_copyright_grant_unsoft = #{figureInnovateCopyrightGrantUnsoft,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateNewProduct != null">
+                figure_innovate_new_product = #{figureInnovateNewProduct,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateNewProductPatent != null">
+                figure_innovate_new_product_patent = #{figureInnovateNewProductPatent,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateNewProductTech != null">
+                figure_innovate_new_product_tech = #{figureInnovateNewProductTech,jdbcType=DOUBLE},
+            </if>
+            <if test="figureInnovateNewProductBus != null">
+                figure_innovate_new_product_bus = #{figureInnovateNewProductBus,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalary != null">
+                figure_salary = #{figureSalary,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalaryStaff != null">
+                figure_salary_staff = #{figureSalaryStaff,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalaryStaffUp10 != null">
+                figure_salary_staff_up_10 = #{figureSalaryStaffUp10,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalaryStaff510 != null">
+                figure_salary_staff_5_10 = #{figureSalaryStaff510,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalaryStaffDown5 != null">
+                figure_salary_staff_down_5 = #{figureSalaryStaffDown5,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalaryStaffContribution != null">
+                figure_salary_staff_contribution = #{figureSalaryStaffContribution,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalaryStaffContributionMeansale != null">
+                figure_salary_staff_contribution_meansale = #{figureSalaryStaffContributionMeansale,jdbcType=DOUBLE},
+            </if>
+            <if test="figureSalaryStaffContributionMeantax != null">
+                figure_salary_staff_contribution_meantax = #{figureSalaryStaffContributionMeantax,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearn != null">
+                figure_learn = #{figureLearn,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnTrain != null">
+                figure_learn_train = #{figureLearnTrain,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnTrainManage != null">
+                figure_learn_train_manage = #{figureLearnTrainManage,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnTrainPolicy != null">
+                figure_learn_train_policy = #{figureLearnTrainPolicy,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnTrainSkill != null">
+                figure_learn_train_skill = #{figureLearnTrainSkill,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnConslted != null">
+                figure_learn_conslted = #{figureLearnConslted,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnConsltedManage != null">
+                figure_learn_conslted_manage = #{figureLearnConsltedManage,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnConsltedPolicy != null">
+                figure_learn_conslted_policy = #{figureLearnConsltedPolicy,jdbcType=DOUBLE},
+            </if>
+            <if test="figureLearnConsltedSkill != null">
+                figure_learn_conslted_skill = #{figureLearnConsltedSkill,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrand != null">
+                figure_brand = #{figureBrand,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandReward != null">
+                figure_brand_reward = #{figureBrandReward,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRewardArea != null">
+                figure_brand_reward_area = #{figureBrandRewardArea,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRewardCity != null">
+                figure_brand_reward_city = #{figureBrandRewardCity,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRewardProvince != null">
+                figure_brand_reward_province = #{figureBrandRewardProvince,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRewardCountry != null">
+                figure_brand_reward_country = #{figureBrandRewardCountry,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRecognition != null">
+                figure_brand_recognition = #{figureBrandRecognition,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRecognitionArea != null">
+                figure_brand_recognition_area = #{figureBrandRecognitionArea,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRecognitionCity != null">
+                figure_brand_recognition_city = #{figureBrandRecognitionCity,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRecognitionProvince != null">
+                figure_brand_recognition_province = #{figureBrandRecognitionProvince,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandRecognitionCountry != null">
+                figure_brand_recognition_country = #{figureBrandRecognitionCountry,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandTalent != null">
+                figure_brand_talent = #{figureBrandTalent,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandTalentArea != null">
+                figure_brand_talent_area = #{figureBrandTalentArea,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandTalentCity != null">
+                figure_brand_talent_city = #{figureBrandTalentCity,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandTalentProvince != null">
+                figure_brand_talent_province = #{figureBrandTalentProvince,jdbcType=DOUBLE},
+            </if>
+            <if test="figureBrandTalentCountry != null">
+                figure_brand_talent_country = #{figureBrandTalentCountry,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

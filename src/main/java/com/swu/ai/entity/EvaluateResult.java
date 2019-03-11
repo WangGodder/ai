@@ -30,6 +30,12 @@ public class EvaluateResult {
     private Date evaluateDate;
 
     /**
+     * 评估方式 (均值，最大值，最小值，n分位数)
+     */
+    @Column(name = "evaluate_type")
+    private String evaluateType;
+
+    /**
      * 评估范围 所在行业
      */
     private String industry;
@@ -717,8 +723,10 @@ public class EvaluateResult {
     @Column(name = "figure_brand_talent_country")
     private Double figureBrandTalentCountry;
 
-
-
+    /**
+     * 根据已有三级指标评按照权重估二级指标和一级指标的得分
+     * @param figureWeight 所用权重
+     */
     public void evaluate(FigureWeight figureWeight) {
         this.figureId = figureWeight.getId();
         try {
@@ -733,12 +741,42 @@ public class EvaluateResult {
             this.figureFinanceStock = this.findWeightAndCalc(figureWeight, "figureFinanceStockRisk", "figureFinanceStockGov", "figureFinanceStockPerson");
             this.figureFinanceDebt = this.findWeightAndCalc(figureWeight, "figureFinanceDebtBank", "figureFinanceDebtNew", "figureFinanceDebtLending", "figureFinanceDebtPerson");
 
+            this.figureValuationAssets = this.findWeightAndCalc(figureWeight, "figureValuationAssetsCirculating", "figureValuationAssetsUncirculating", "figureValuationAssetsDebtCirculating", "figureValuationAssetsDebtUncirculating");
+            this.figureValuationActual = this.findWeightAndCalc(figureWeight, "figureValuationActualFirst", "figureValuationActualLatest", "figureValuationActualWant");
+
+            this.figureHrPartime = this.findWeightAndCalc(figureWeight, "figureHrPartimeDev", "figureHrPartimeManage", "figureHrPartimeAdmin", "figureHrPartimeSaler");
+            this.figureHrFulltime = this.findWeightAndCalc(figureWeight, "figureHrFulltimeDev", "figureHrFulltimeSenior", "figureHrFulltimeAdmin", "figureHrFulltimeSaler");
+            this.figureHrEducated = this.findWeightAndCalc(figureWeight, "figureHrEducatedDoc", "figureHrEducatedMaster", "figureHrBachelor");
+
+            this.figureInnovatePatentApply = this.findWeightAndCalc(figureWeight, "figureInnovatePatentApplyInvention", "figureInnovatePatentApplyUtility", "figureInnovatePatentApplyAppear");
+            this.figureInnovatePatentGrant = this.findWeightAndCalc(figureWeight, "figureInnovatePatentGrantInvention", "figureInnovatePatentGrantUtility", "figureInnovatePatentGrantAppear");
+            this.figureInnovateCopyrightApply = this.findWeightAndCalc(figureWeight, "figureInnovateCopyrightApplySoft", "figureInnovateCopyrightApplyUnsoft");
+            this.figureInnovateCopyrightGrant = this.findWeightAndCalc(figureWeight, "figureInnovateCopyrightGrantSoft", "figureInnovateCopyrightGrantUnsoft");
+            this.figureInnovateNewProduct = this.findWeightAndCalc(figureWeight, "figureInnovateNewProductPatent", "figureInnovateNewProductTech", "figureInnovateNewProductBus");
+
+            this.figureSalaryStaff = this.findWeightAndCalc(figureWeight, "figureSalaryStaffUp10", "figureSalaryStaff510", "figureSalaryStaffDown5");
+            this.figureSalaryStaffContribution = this.findWeightAndCalc(figureWeight, "figureSalaryStaffContributionMeansale", "figureSalaryStaffContributionMeantax");
+
+            this.figureLearnTrain = this.findWeightAndCalc(figureWeight, "figureLearnTrainManage", "figureLearnTrainPolicy", "figureLearnTrainSkill");
+            this.figureLearnConslted = this.findWeightAndCalc(figureWeight, "figureLearnConsltedManage", "figureLearnConsltedPolicy");
+
+            this.figureBrandReward = this.findWeightAndCalc(figureWeight, "figureBrandRewardArea", "figureBrandRewardCity", "figureBrandRewardProvince", "figureBrandRewardCountry");
+            this.figureBrandRecognition = this.findWeightAndCalc(figureWeight, "figureBrandRecognitionArea", "figureBrandRecognitionCity", "figureBrandRecognitionProvince", "figureBrandRecognitionCountry");
+            this.figureBrandTalent = this.findWeightAndCalc(figureWeight, "figureBrandTalentArea", "figureBrandTalentCity", "figureBrandTalentProvince", "figureBrandTalentCountry");
 
             // 一级指标
             this.figureSale = this.findWeightAndCalc(figureWeight, "figureSaleInvoice", "figureSaleComtract");
             this.figureTax = this.findWeightAndCalc(figureWeight, "figureTaxCorporate", "figureTaxIndividual", "figureTaxAdded");
             this.figureFinance = this.findWeightAndCalc(figureWeight, "figureFinanceStock", "figureFinanceDebt");
+            this.figureValuation = this.findWeightAndCalc(figureWeight, "figureValuationAssets", "figureValuationActual");
+            this.figureHr = this.findWeightAndCalc(figureWeight, "figureHrPartime", "figureHrFulltime", "figureHrEducated");
+            this.figureInnovate = this.findWeightAndCalc(figureWeight, "figureInnovatePatentApply", "figureInnovatePatentGrant", "figureInnovateCopyrightApply", "figureInnovateCopyrightGrant", "figureInnovateNewProduct");
+            this.figureSalary = this.findWeightAndCalc(figureWeight, "figureSalaryStaff", "figureSalaryStaffContribution");
+            this.figureLearn = this.findWeightAndCalc(figureWeight, "figureLearnTrain", "figureLearnConslted");
+            this.figureBrand = this.findWeightAndCalc(figureWeight, "figureBrandReward", "figureBrandRecognition", "figureBrandTalent");
 
+            // 综合指标
+            this.figureAll = this.findWeightAndCalc(figureWeight, "figureSale", "figureTax", "figureFinance", "figureValuation", "figureHr", "figureInnovate", "figureSalary", "figureLearn", "figureBrand");
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (NoSuchFieldException e) {
@@ -749,6 +787,7 @@ public class EvaluateResult {
     private double findWeightAndCalc(FigureWeight figureWeight, String ... fieldNames) throws NoSuchFieldException, IllegalAccessException {
         int result = 0;
         for (String fieldName : fieldNames) {
+            fieldName = fieldName.trim();
             Field scoreField = this.getClass().getField(fieldName);
             Field weightField = FigureWeight.class.getField(fieldName + "Weight");
             scoreField.setAccessible(true);

@@ -14,10 +14,10 @@ import java.io.Serializable;
 public class CompanyInputReq implements Serializable {
     private String industry;
     private String region;
-    private Integer beginYear = 0;
-    private Integer endYear = 10000;
-    private Integer beginQuarter = 1;
-    private Integer endQuarter = 4;
+    private Integer beginYear;
+    private Integer endYear;
+    private Integer beginQuarter;
+    private Integer endQuarter;
 
     @Override
     public String toString() {

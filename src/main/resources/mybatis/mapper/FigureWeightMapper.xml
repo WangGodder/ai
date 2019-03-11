@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swu.ai.mapper.FigureWeightMapper">
+  <resultMap id="BaseResultMap" type="com.swu.ai.entity.FigureWeight">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="figure_sale_weight" jdbcType="DOUBLE" property="figureSaleWeight" />
+    <result column="figure_sale_invoice_weight" jdbcType="DOUBLE" property="figureSaleInvoiceWeight" />
+    <result column="figure_sale_invoice_soft_weight" jdbcType="DOUBLE" property="figureSaleInvoiceSoftWeight" />
+    <result column="figure_sale_invoice_hard_weight" jdbcType="DOUBLE" property="figureSaleInvoiceHardWeight" />
+    <result column="figure_sale_invoice_consultation_weight" jdbcType="DOUBLE" property="figureSaleInvoiceConsultationWeight" />
+    <result column="figure_sale_invoice_other_weight" jdbcType="DOUBLE" property="figureSaleInvoiceOtherWeight" />
+    <result column="figure_sale_contract_weight" jdbcType="DOUBLE" property="figureSaleContractWeight" />
+    <result column="figure_sale_contract_soft_weight" jdbcType="DOUBLE" property="figureSaleContractSoftWeight" />
+    <result column="figure_sale_contract_hard_weight" jdbcType="DOUBLE" property="figureSaleContractHardWeight" />
+    <result column="figure_sale_contract_consultation_weight" jdbcType="DOUBLE" property="figureSaleContractConsultationWeight" />
+    <result column="figure_sale_contract_other_weight" jdbcType="DOUBLE" property="figureSaleContractOtherWeight" />
+    <result column="figure_tax_weight" jdbcType="DOUBLE" property="figureTaxWeight" />
+    <result column="figure_tax_corporate_weight" jdbcType="DOUBLE" property="figureTaxCorporateWeight" />
+    <result column="figure_tax_corporate_taxable_weight" jdbcType="DOUBLE" property="figureTaxCorporateTaxableWeight" />
+    <result column="figure_tax_corporate_relief_weight" jdbcType="DOUBLE" property="figureTaxCorporateReliefWeight" />
+    <result column="figure_tax_individual_weight" jdbcType="DOUBLE" property="figureTaxIndividualWeight" />
+    <result column="figure_tax_individual_taxable_weight" jdbcType="DOUBLE" property="figureTaxIndividualTaxableWeight" />
+    <result column="figure_tax_individual_relief_weight" jdbcType="DOUBLE" property="figureTaxIndividualReliefWeight" />
+    <result column="figure_tax_added_weight" jdbcType="DOUBLE" property="figureTaxAddedWeight" />
+    <result column="figure_tax_added_taxable_weight" jdbcType="DOUBLE" property="figureTaxAddedTaxableWeight" />
+    <result column="figure_tax_added_relief_weight" jdbcType="DOUBLE" property="figureTaxAddedReliefWeight" />
+    <result column="figure_finance_weight" jdbcType="DOUBLE" property="figureFinanceWeight" />
+    <result column="figure_finance_stock_weight" jdbcType="DOUBLE" property="figureFinanceStockWeight" />
+    <result column="figure_finance_stock_risk_weight" jdbcType="DOUBLE" property="figureFinanceStockRiskWeight" />
+    <result column="figure_finance_stock_gov_weight" jdbcType="DOUBLE" property="figureFinanceStockGovWeight" />
+    <result column="figure_finance_stock_person_weight" jdbcType="DOUBLE" property="figureFinanceStockPersonWeight" />
+    <result column="figure_finance_debt_weight" jdbcType="DOUBLE" property="figureFinanceDebtWeight" />
+    <result column="figure_finance_debt_bank_weight" jdbcType="DOUBLE" property="figureFinanceDebtBankWeight" />
+    <result column="figure_finance_debt_new_weight" jdbcType="DOUBLE" property="figureFinanceDebtNewWeight" />
+    <result column="figure_finance_debt_lending_weight" jdbcType="DOUBLE" property="figureFinanceDebtLendingWeight" />
+    <result column="figure_finance_debt_person_weight" jdbcType="DOUBLE" property="figureFinanceDebtPersonWeight" />
+    <result column="figure_valuation_weight" jdbcType="DOUBLE" property="figureValuationWeight" />
+    <result column="figure_valuation_assets_weight" jdbcType="DOUBLE" property="figureValuationAssetsWeight" />
+    <result column="figure_valuation_assets_circulating_weight" jdbcType="DOUBLE" property="figureValuationAssetsCirculatingWeight" />
+    <result column="figure_valuation_assets_uncirculating_weight" jdbcType="DOUBLE" property="figureValuationAssetsUncirculatingWeight" />
+    <result column="figure_valuation_assets_debt_circulating_weight" jdbcType="DOUBLE" property="figureValuationAssetsDebtCirculatingWeight" />
+    <result column="figure_valuation_assets_debt_uncirculating_weight" jdbcType="DOUBLE" property="figureValuationAssetsDebtUncirculatingWeight" />
+    <result column="figure_valuation_actual_weight" jdbcType="DOUBLE" property="figureValuationActualWeight" />
+    <result column="figure_valuation_actual_first_weight" jdbcType="DOUBLE" property="figureValuationActualFirstWeight" />
+    <result column="figure_valuation_actual_latest_weight" jdbcType="DOUBLE" property="figureValuationActualLatestWeight" />
+    <result column="figure_valuation_actual_want_weight" jdbcType="DOUBLE" property="figureValuationActualWantWeight" />
+    <result column="figure_hr_weight" jdbcType="DOUBLE" property="figureHrWeight" />
+    <result column="figure_hr_partime_weight" jdbcType="DOUBLE" property="figureHrPartimeWeight" />
+    <result column="figure_hr_partime_dev_weight" jdbcType="DOUBLE" property="figureHrPartimeDevWeight" />
+    <result column="figure_hr_partime_manage_weight" jdbcType="DOUBLE" property="figureHrPartimeManageWeight" />
+    <result column="figure_hr_partime_admin_weight" jdbcType="DOUBLE" property="figureHrPartimeAdminWeight" />
+    <result column="figure_hr_partime_saler_weight" jdbcType="DOUBLE" property="figureHrPartimeSalerWeight" />
+    <result column="figure_hr_fulltime_weight" jdbcType="DOUBLE" property="figureHrFulltimeWeight" />
+    <result column="figure_hr_fulltime_dev_weight" jdbcType="DOUBLE" property="figureHrFulltimeDevWeight" />
+    <result column="figure_hr_fulltime_senior_weight" jdbcType="DOUBLE" property="figureHrFulltimeSeniorWeight" />
+    <result column="figure_hr_fulltime_admin_weight" jdbcType="DOUBLE" property="figureHrFulltimeAdminWeight" />
+    <result column="figure_hr_fulltime_saler_weight" jdbcType="DOUBLE" property="figureHrFulltimeSalerWeight" />
+    <result column="figure_hr_educated_weight" jdbcType="DOUBLE" property="figureHrEducatedWeight" />
+    <result column="figure_hr_educated_doc_weight" jdbcType="DOUBLE" property="figureHrEducatedDocWeight" />
+    <result column="figure_hr_educated_master_weight" jdbcType="DOUBLE" property="figureHrEducatedMasterWeight" />
+    <result column="figure_hr_bachelor_weight" jdbcType="DOUBLE" property="figureHrBachelorWeight" />
+    <result column="figure_innovate_weight" jdbcType="DOUBLE" property="figureInnovateWeight" />
+    <result column="figure_innovate_patent_apply_weight" jdbcType="DOUBLE" property="figureInnovatePatentApplyWeight" />
+    <result column="figure_innovate_patent_apply_invention_weight" jdbcType="DOUBLE" property="figureInnovatePatentApplyInventionWeight" />
+    <result column="figure_innovate_patent_apply_utility_weight" jdbcType="DOUBLE" property="figureInnovatePatentApplyUtilityWeight" />
+    <result column="figure_innovate_patent_apply_appear_weight" jdbcType="DOUBLE" property="figureInnovatePatentApplyAppearWeight" />
+    <result column="figure_innovate_patent_grant_weight" jdbcType="DOUBLE" property="figureInnovatePatentGrantWeight" />
+    <result column="figure_innovate_patent_grant_invention_weight" jdbcType="DOUBLE" property="figureInnovatePatentGrantInventionWeight" />
+    <result column="figure_innovate_patent_grant_utility_weight" jdbcType="DOUBLE" property="figureInnovatePatentGrantUtilityWeight" />
+    <result column="figure_innovate_patent_grant_appear_weight" jdbcType="DOUBLE" property="figureInnovatePatentGrantAppearWeight" />
+    <result column="figure_innovate_copyright_apply_weight" jdbcType="DOUBLE" property="figureInnovateCopyrightApplyWeight" />
+    <result column="figure_innovate_copyright_apply_soft_weight" jdbcType="DOUBLE" property="figureInnovateCopyrightApplySoftWeight" />
+    <result column="figure_innovate_copyright_apply_unsoft_weight" jdbcType="DOUBLE" property="figureInnovateCopyrightApplyUnsoftWeight" />
+    <result column="figure_innovate_copyright_grant_weight" jdbcType="DOUBLE" property="figureInnovateCopyrightGrantWeight" />
+    <result column="figure_innovate_copyright_grant_soft_weight" jdbcType="DOUBLE" property="figureInnovateCopyrightGrantSoftWeight" />
+    <result column="figure_innovate_copyright_grant_unsoft_weight" jdbcType="DOUBLE" property="figureInnovateCopyrightGrantUnsoftWeight" />
+    <result column="figure_innovate_new_product_weight" jdbcType="DOUBLE" property="figureInnovateNewProductWeight" />
+    <result column="figure_innovate_new_product_patent_weight" jdbcType="DOUBLE" property="figureInnovateNewProductPatentWeight" />
+    <result column="figure_innovate_new_product_tech_weight" jdbcType="DOUBLE" property="figureInnovateNewProductTechWeight" />
+    <result column="figure_innovate_new_product_bus_weight" jdbcType="DOUBLE" property="figureInnovateNewProductBusWeight" />
+    <result column="figure_salary_weight" jdbcType="DOUBLE" property="figureSalaryWeight" />
+    <result column="figure_salary_staff_weight" jdbcType="DOUBLE" property="figureSalaryStaffWeight" />
+    <result column="figure_salary_staff_up_10_weight" jdbcType="DOUBLE" property="figureSalaryStaffUp10Weight" />
+    <result column="figure_salary_staff_5_10_weight" jdbcType="DOUBLE" property="figureSalaryStaff510Weight" />
+    <result column="figure_salary_staff_down_5_weight" jdbcType="DOUBLE" property="figureSalaryStaffDown5Weight" />
+    <result column="figure_salary_staff_contribution_weight" jdbcType="DOUBLE" property="figureSalaryStaffContributionWeight" />
+    <result column="figure_salary_staff_contribution_meansale_weight" jdbcType="DOUBLE" property="figureSalaryStaffContributionMeansaleWeight" />
+    <result column="figure_salary_staff_contribution_meantax_weight" jdbcType="DOUBLE" property="figureSalaryStaffContributionMeantaxWeight" />
+    <result column="figure_learn_weight" jdbcType="DOUBLE" property="figureLearnWeight" />
+    <result column="figure_learn_train_weight" jdbcType="DOUBLE" property="figureLearnTrainWeight" />
+    <result column="figure_learn_train_manage_weight" jdbcType="DOUBLE" property="figureLearnTrainManageWeight" />
+    <result column="figure_learn_train_policy_weight" jdbcType="DOUBLE" property="figureLearnTrainPolicyWeight" />
+    <result column="figure_learn_train_skill_weight" jdbcType="DOUBLE" property="figureLearnTrainSkillWeight" />
+    <result column="figure_learn_conslted_weight" jdbcType="DOUBLE" property="figureLearnConsltedWeight" />
+    <result column="figure_learn_conslted_manage_weight" jdbcType="DOUBLE" property="figureLearnConsltedManageWeight" />
+    <result column="figure_learn_conslted_policy_weight" jdbcType="DOUBLE" property="figureLearnConsltedPolicyWeight" />
+    <result column="figure_learn_conslted_skill_weight" jdbcType="DOUBLE" property="figureLearnConsltedSkillWeight" />
+    <result column="figure_brand_weight" jdbcType="DOUBLE" property="figureBrandWeight" />
+    <result column="figure_brand_reward_weight" jdbcType="DOUBLE" property="figureBrandRewardWeight" />
+    <result column="figure_brand_reward_area_weight" jdbcType="DOUBLE" property="figureBrandRewardAreaWeight" />
+    <result column="figure_brand_reward_city_weight" jdbcType="DOUBLE" property="figureBrandRewardCityWeight" />
+    <result column="figure_brand_reward_province_weight" jdbcType="DOUBLE" property="figureBrandRewardProvinceWeight" />
+    <result column="figure_brand_reward_country_weight" jdbcType="DOUBLE" property="figureBrandRewardCountryWeight" />
+    <result column="figure_brand_recognition_weight" jdbcType="DOUBLE" property="figureBrandRecognitionWeight" />
+    <result column="figure_brand_recognition_area_weight" jdbcType="DOUBLE" property="figureBrandRecognitionAreaWeight" />
+    <result column="figure_brand_recognition_city_weight" jdbcType="DOUBLE" property="figureBrandRecognitionCityWeight" />
+    <result column="figure_brand_recognition_province_weight" jdbcType="DOUBLE" property="figureBrandRecognitionProvinceWeight" />
+    <result column="figure_brand_recognition_country_weight" jdbcType="DOUBLE" property="figureBrandRecognitionCountryWeight" />
+    <result column="figure_brand_talent_weight" jdbcType="DOUBLE" property="figureBrandTalentWeight" />
+    <result column="figure_brand_talent_area_weight" jdbcType="DOUBLE" property="figureBrandTalentAreaWeight" />
+    <result column="figure_brand_talent_city_weight" jdbcType="DOUBLE" property="figureBrandTalentCityWeight" />
+    <result column="figure_brand_talent_province_weight" jdbcType="DOUBLE" property="figureBrandTalentProvinceWeight" />
+    <result column="figure_brand_talent_country_weight" jdbcType="DOUBLE" property="figureBrandTalentCountryWeight" />
+  </resultMap>
+
+  <select id="getFigureWeight" resultType="FigureWeight" parameterType="java.lang.Long">
+    select * from figure_weight where id = #{id} limit 1;
+  </select>
+</mapper>
