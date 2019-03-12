@@ -891,7 +891,7 @@ public class EvaluateResult {
             this.figureBrandTalent = this.findWeightAndCalc(figureWeight, "figureBrandTalentArea", "figureBrandTalentCity", "figureBrandTalentProvince", "figureBrandTalentCountry");
 
             // 一级指标
-            this.figureSale = this.findWeightAndCalc(figureWeight, "figureSaleInvoice", "figureSaleComtract");
+            this.figureSale = this.findWeightAndCalc(figureWeight, "figureSaleInvoice", "figureSaleContract");
             this.figureTax = this.findWeightAndCalc(figureWeight, "figureTaxCorporate", "figureTaxIndividual", "figureTaxAdded");
             this.figureFinance = this.findWeightAndCalc(figureWeight, "figureFinanceStock", "figureFinanceDebt");
             this.figureValuation = this.findWeightAndCalc(figureWeight, "figureValuationAssets", "figureValuationActual");
@@ -914,10 +914,10 @@ public class EvaluateResult {
         int result = 0;
         for (String fieldName : fieldNames) {
             fieldName = fieldName.trim();
-            Field scoreField = this.getClass().getField(fieldName);
-            Field weightField = FigureWeight.class.getField(fieldName + "Weight");
+            Field scoreField = EvaluateResult.class.getDeclaredField(fieldName);
+            Field weightField = FigureWeight.class.getDeclaredField(fieldName + "Weight");
             scoreField.setAccessible(true);
-            double score = (double) scoreField.get(this);
+            double score = scoreField.get(this) != null? (double) scoreField.get(this) : 0;
             scoreField.setAccessible(false);
             weightField.setAccessible(true);
             double weight = (double) weightField.get(figureWeight);

@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/js/home/upload/FormUpload.js"></script>
     <script type="text/javascript" src="/js/home/upload/ImageUpload.js"></script>
     <script type="text/javascript" src="/js/home/upload/VoiceUpload.js"></script>
+    <script type="text/javascript" src="/js/home/evaluate/ChartConfig.js"></script>
     <script type="text/javascript" src="/js/home/DataPage.js"></script>
     <script type="text/javascript" src="/js/home/EvaluatePage.js"></script>
     <script type="text/javascript" src="/js/home/IndexPage.js"></script>

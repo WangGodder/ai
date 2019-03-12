@@ -3,9 +3,11 @@ package com.swu.ai.service.Impl;
 import com.alibaba.fastjson.JSON;
 import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.dao.EvaluateResultDao;
+import com.swu.ai.dao.FigureWeightDao;
 import com.swu.ai.dao.FingerDao;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.EvaluateResult;
+import com.swu.ai.entity.FigureWeight;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,8 +47,7 @@ public class FingerServiceImpl implements FingerService {
     public static final int FIRST_QUARTILE = 3; // 第一分位数
     public static final int MEDIAN = 4;         // 中位数
     public static final int THIRD_QUARTILE = 5; // 第三分位数
-    @Value(value = "${evaluation.result.indate}")
-    public static int RESULT_INDATE;            // 计算数据有效期，如果获取的计算结果超过有效期则重新计算 单位 小时
+    public static int RESULT_INDATE = 5;            // 计算数据有效期，如果获取的计算结果超过有效期则重新计算 单位 小时
 
     @Resource
     private FingerDao fingerDao;
@@ -52,6 +55,8 @@ public class FingerServiceImpl implements FingerService {
     private CompanyInputDao companyInputDao;
     @Resource
     private EvaluateResultDao evaluateResultDao;
+    @Resource
+    private FigureWeightDao figureWeightDao;
     @Resource
     private com.swu.ai.util.RedisUtil redisUtil;
 
@@ -85,8 +90,75 @@ public class FingerServiceImpl implements FingerService {
         List<CompanyInput> companyInputs = companyInputDao.findCompanyInputSumByReq(req);
         // 从reids上寻找基数
         String keyRedisBase = calcIdByCompanyInputReq(req);
+        System.out.println(keyRedisBase);
+        String redisBase = redisUtil.get(keyRedisBase);
+        // 判断redis上是否存有基数,若没有则生成并存入redis
+        if (redisBase == null || redisBase.isEmpty()) {
+            calcBaseAndStore(companyInputs, req);
+        }
         CompanyInput base = JSON.parseObject(redisUtil.get(keyRedisBase), CompanyInput.class);
-        return null;
+        // 计算获取数据的三级指标的得分
+        List<EvaluateResult> evaluateResultList = new ArrayList<>(companyInputs.size());
+        FigureWeight figureWeight = figureWeightDao.getFigureWeight(req.getFigureId());
+        for (CompanyInput companyInput : companyInputs) {
+            EvaluateResult evaluateResult = evaluteFigure(companyInput, base);
+            evaluateResult.evaluate(figureWeight);
+            evaluateResult.setEvaluateDate(new Date());
+            evaluateResult.setEvaluateType(req.getEvaluateType());
+            evaluateResult.setBeginYear(req.getBeginYear());
+            evaluateResult.setEndYear(req.getEndYear());
+            evaluateResult.setBeginQuarter(req.getBeginQuarter());
+            evaluateResult.setEndQuarter(req.getEndQuarter());
+            evaluateResult.setIndustry(req.getIndustry());
+            evaluateResult.setRegion(req.getRegion());
+            evaluateResultList.add(evaluateResult);
+        }
+        // 按照总分降序排列
+        evaluateResultList.sort(new Comparator<EvaluateResult>() {
+            @Override
+            public int compare(EvaluateResult o1, EvaluateResult o2) {
+                return o1.getFigureAll() - o2.getFigureAll() < 0? 1 : -1;
+            }
+        });
+        return evaluateResultList;
+    }
+
+    /**
+     * 获取计算的base并存入redis
+     * @param inputs 范围内的所有数据
+     * @param req 评估结果请求，用于生成key
+     */
+    private void calcBaseAndStore(List<CompanyInput> inputs, EvaluateResultReq req) {
+        List<CompanyInput> baseList = calcBase(inputs);
+        for (int i = 0; i < baseList.size(); i++) {
+            EvaluateResultReq resultReq = req;
+            switch (i) {
+                case AVG:
+                    resultReq.setEvaluateType("avg");
+                    redisUtil.set(calcIdByCompanyInputReq(resultReq), JSON.toJSONString(baseList.get(i)), 60 * 60 * RESULT_INDATE);
+                    break;
+                case MAX:
+                    resultReq.setEvaluateType("max");
+                    redisUtil.set(calcIdByCompanyInputReq(resultReq), JSON.toJSONString(baseList.get(i)), 60 * 60 * RESULT_INDATE);
+                    break;
+                case MIN:
+                    resultReq.setEvaluateType("min");
+                    redisUtil.set(calcIdByCompanyInputReq(resultReq), JSON.toJSONString(baseList.get(i)),  60 * 60 * RESULT_INDATE);
+                    break;
+                case FIRST_QUARTILE:
+                    resultReq.setEvaluateType("firstQ");
+                    redisUtil.set(calcIdByCompanyInputReq(resultReq), JSON.toJSONString(baseList.get(i)),  60 * 60 * RESULT_INDATE);
+                    break;
+                case MEDIAN:
+                    resultReq.setEvaluateType("median");
+                    redisUtil.set(calcIdByCompanyInputReq(resultReq), JSON.toJSONString(baseList.get(i)),  60 * 60 * RESULT_INDATE);
+                    break;
+                case THIRD_QUARTILE:
+                    resultReq.setEvaluateType("thirdQ");
+                    redisUtil.set(calcIdByCompanyInputReq(resultReq), JSON.toJSONString(baseList.get(i)),  60 * 60 * RESULT_INDATE);
+                    break;
+            }
+        }
     }
 
     /**
@@ -108,16 +180,15 @@ public class FingerServiceImpl implements FingerService {
 
     /**
      * 根据请求获取CompanyInput,并分别求出均值、最大值、最小值、四分位数等结果
-     * @param req 评估范围的请求
+     * @param companyInputs 评估范围内所有值
      * @return 按照均值、最大值、最小值、1分位、中位、3分位返回
      */
-    private List<CompanyInput> calcBase(CompanyInputReq req) {
+    private List<CompanyInput> calcBase(List<CompanyInput> companyInputs) {
         List<CompanyInput> list = new ArrayList<>(6);
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < 6; i++) {
             list.add(new CompanyInput());
         }
         Field[] fields = CompanyInput.class.getDeclaredFields();
-        List<CompanyInput> companyInputs = companyInputDao.findCompanyInputByReq(req);
         int index = 0;
         for (CompanyInput companyInput : companyInputs) {
             for (int i = 6; i <fields.length; i++) {

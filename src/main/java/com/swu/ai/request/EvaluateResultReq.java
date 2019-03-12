@@ -21,4 +21,5 @@ public class EvaluateResultReq extends CompanyInputReq implements Serializable {
     private String evaluateType;
     private Long companyId;
     private Long figureId;
+
 }
