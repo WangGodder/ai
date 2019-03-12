@@ -14,8 +14,8 @@ public class EvaluateResult {
     @Id
     private Long id;
 
-    @Column(name = "company_id")
-    private Long companyId;
+    @Column(name = "company_name")
+    private String companyName;
 
     /**
      * 选用评估权重的ID
@@ -722,6 +722,132 @@ public class EvaluateResult {
      */
     @Column(name = "figure_brand_talent_country")
     private Double figureBrandTalentCountry;
+
+    @Override
+    public String toString() {
+        return "EvaluateResult{" +
+                "id=" + id +
+                ", companyName=" + companyName +
+                ", figureId=" + figureId +
+                ", evaluateDate=" + evaluateDate +
+                ", evaluateType='" + evaluateType + '\'' +
+                ", industry='" + industry + '\'' +
+                ", region='" + region + '\'' +
+                ", beginYear=" + beginYear +
+                ", endYear=" + endYear +
+                ", beginQuarter=" + beginQuarter +
+                ", endQuarter=" + endQuarter +
+                ", figureAll=" + figureAll +
+                ", figureSale=" + figureSale +
+                ", figureSaleInvoice=" + figureSaleInvoice +
+                ", figureSaleInvoiceSoft=" + figureSaleInvoiceSoft +
+                ", figureSaleInvoiceHard=" + figureSaleInvoiceHard +
+                ", figureSaleInvoiceConsultation=" + figureSaleInvoiceConsultation +
+                ", figureSaleInvoiceOther=" + figureSaleInvoiceOther +
+                ", figureSaleContract=" + figureSaleContract +
+                ", figureSaleContractSoft=" + figureSaleContractSoft +
+                ", figureSaleContractHard=" + figureSaleContractHard +
+                ", figureSaleContractConsultation=" + figureSaleContractConsultation +
+                ", figureSaleContractOther=" + figureSaleContractOther +
+                ", figureTax=" + figureTax +
+                ", figureTaxCorporate=" + figureTaxCorporate +
+                ", figureTaxCorporateTaxable=" + figureTaxCorporateTaxable +
+                ", figureTaxCorporateRelief=" + figureTaxCorporateRelief +
+                ", figureTaxIndividual=" + figureTaxIndividual +
+                ", figureTaxIndividualTaxable=" + figureTaxIndividualTaxable +
+                ", figureTaxIndividualRelief=" + figureTaxIndividualRelief +
+                ", figureTaxAdded=" + figureTaxAdded +
+                ", figureTaxAddedTaxable=" + figureTaxAddedTaxable +
+                ", figureTaxAddedRelief=" + figureTaxAddedRelief +
+                ", figureFinance=" + figureFinance +
+                ", figureFinanceStock=" + figureFinanceStock +
+                ", figureFinanceStockRisk=" + figureFinanceStockRisk +
+                ", figureFinanceStockGov=" + figureFinanceStockGov +
+                ", figureFinanceStockPerson=" + figureFinanceStockPerson +
+                ", figureFinanceDebt=" + figureFinanceDebt +
+                ", figureFinanceDebtBank=" + figureFinanceDebtBank +
+                ", figureFinanceDebtNew=" + figureFinanceDebtNew +
+                ", figureFinanceDebtLending=" + figureFinanceDebtLending +
+                ", figureFinanceDebtPerson=" + figureFinanceDebtPerson +
+                ", figureValuation=" + figureValuation +
+                ", figureValuationAssets=" + figureValuationAssets +
+                ", figureValuationAssetsCirculating=" + figureValuationAssetsCirculating +
+                ", figureValuationAssetsUncirculating=" + figureValuationAssetsUncirculating +
+                ", figureValuationAssetsDebtCirculating=" + figureValuationAssetsDebtCirculating +
+                ", figureValuationAssetsDebtUncirculating=" + figureValuationAssetsDebtUncirculating +
+                ", figureValuationActual=" + figureValuationActual +
+                ", figureValuationActualFirst=" + figureValuationActualFirst +
+                ", figureValuationActualLatest=" + figureValuationActualLatest +
+                ", figureValuationActualWant=" + figureValuationActualWant +
+                ", figureHr=" + figureHr +
+                ", figureHrPartime=" + figureHrPartime +
+                ", figureHrPartimeDev=" + figureHrPartimeDev +
+                ", figureHrPartimeManage=" + figureHrPartimeManage +
+                ", figureHrPartimeAdmin=" + figureHrPartimeAdmin +
+                ", figureHrPartimeSaler=" + figureHrPartimeSaler +
+                ", figureHrFulltime=" + figureHrFulltime +
+                ", figureHrFulltimeDev=" + figureHrFulltimeDev +
+                ", figureHrFulltimeSenior=" + figureHrFulltimeSenior +
+                ", figureHrFulltimeAdmin=" + figureHrFulltimeAdmin +
+                ", figureHrFulltimeSaler=" + figureHrFulltimeSaler +
+                ", figureHrEducated=" + figureHrEducated +
+                ", figureHrEducatedDoc=" + figureHrEducatedDoc +
+                ", figureHrEducatedMaster=" + figureHrEducatedMaster +
+                ", figureHrBachelor=" + figureHrBachelor +
+                ", figureInnovate=" + figureInnovate +
+                ", figureInnovatePatentApply=" + figureInnovatePatentApply +
+                ", figureInnovatePatentApplyInvention=" + figureInnovatePatentApplyInvention +
+                ", figureInnovatePatentApplyUtility=" + figureInnovatePatentApplyUtility +
+                ", figureInnovatePatentApplyAppear=" + figureInnovatePatentApplyAppear +
+                ", figureInnovatePatentGrant=" + figureInnovatePatentGrant +
+                ", figureInnovatePatentGrantInvention=" + figureInnovatePatentGrantInvention +
+                ", figureInnovatePatentGrantUtility=" + figureInnovatePatentGrantUtility +
+                ", figureInnovatePatentGrantAppear=" + figureInnovatePatentGrantAppear +
+                ", figureInnovateCopyrightApply=" + figureInnovateCopyrightApply +
+                ", figureInnovateCopyrightApplySoft=" + figureInnovateCopyrightApplySoft +
+                ", figureInnovateCopyrightApplyUnsoft=" + figureInnovateCopyrightApplyUnsoft +
+                ", figureInnovateCopyrightGrant=" + figureInnovateCopyrightGrant +
+                ", figureInnovateCopyrightGrantSoft=" + figureInnovateCopyrightGrantSoft +
+                ", figureInnovateCopyrightGrantUnsoft=" + figureInnovateCopyrightGrantUnsoft +
+                ", figureInnovateNewProduct=" + figureInnovateNewProduct +
+                ", figureInnovateNewProductPatent=" + figureInnovateNewProductPatent +
+                ", figureInnovateNewProductTech=" + figureInnovateNewProductTech +
+                ", figureInnovateNewProductBus=" + figureInnovateNewProductBus +
+                ", figureSalary=" + figureSalary +
+                ", figureSalaryStaff=" + figureSalaryStaff +
+                ", figureSalaryStaffUp10=" + figureSalaryStaffUp10 +
+                ", figureSalaryStaff510=" + figureSalaryStaff510 +
+                ", figureSalaryStaffDown5=" + figureSalaryStaffDown5 +
+                ", figureSalaryStaffContribution=" + figureSalaryStaffContribution +
+                ", figureSalaryStaffContributionMeansale=" + figureSalaryStaffContributionMeansale +
+                ", figureSalaryStaffContributionMeantax=" + figureSalaryStaffContributionMeantax +
+                ", figureLearn=" + figureLearn +
+                ", figureLearnTrain=" + figureLearnTrain +
+                ", figureLearnTrainManage=" + figureLearnTrainManage +
+                ", figureLearnTrainPolicy=" + figureLearnTrainPolicy +
+                ", figureLearnTrainSkill=" + figureLearnTrainSkill +
+                ", figureLearnConslted=" + figureLearnConslted +
+                ", figureLearnConsltedManage=" + figureLearnConsltedManage +
+                ", figureLearnConsltedPolicy=" + figureLearnConsltedPolicy +
+                ", figureLearnConsltedSkill=" + figureLearnConsltedSkill +
+                ", figureBrand=" + figureBrand +
+                ", figureBrandReward=" + figureBrandReward +
+                ", figureBrandRewardArea=" + figureBrandRewardArea +
+                ", figureBrandRewardCity=" + figureBrandRewardCity +
+                ", figureBrandRewardProvince=" + figureBrandRewardProvince +
+                ", figureBrandRewardCountry=" + figureBrandRewardCountry +
+                ", figureBrandRecognition=" + figureBrandRecognition +
+                ", figureBrandRecognitionArea=" + figureBrandRecognitionArea +
+                ", figureBrandRecognitionCity=" + figureBrandRecognitionCity +
+                ", figureBrandRecognitionProvince=" + figureBrandRecognitionProvince +
+                ", figureBrandRecognitionCountry=" + figureBrandRecognitionCountry +
+                ", figureBrandTalent=" + figureBrandTalent +
+                ", figureBrandTalentArea=" + figureBrandTalentArea +
+                ", figureBrandTalentCity=" + figureBrandTalentCity +
+                ", figureBrandTalentProvince=" + figureBrandTalentProvince +
+                ", figureBrandTalentCountry=" + figureBrandTalentCountry +
+                '}';
+    }
 
     /**
      * 根据已有三级指标评按照权重估二级指标和一级指标的得分

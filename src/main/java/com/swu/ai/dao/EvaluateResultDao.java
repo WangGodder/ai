@@ -1,19 +1,21 @@
-package com.swu.ai.mapper;
+package com.swu.ai.dao;
 
-import com.swu.ai.Base.BaseMapper;
 import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.request.EvaluateResultReq;
 
 import java.util.List;
 
-public interface EvaluateResultMapper extends BaseMapper<EvaluateResult> {
+/**
+ * @author: godder
+ * @date: 2019/3/12
+ */
+public interface EvaluateResultDao {
     List<EvaluateResult> findAllEvaluateResult();
 
-    List<EvaluateResult> findEvaluateResultByReq(EvaluateResultReq evaluateResultReq);
+    List<EvaluateResult> findEvaluateResultByReq(EvaluateResultReq req);
 
     boolean addEvaluateResult(EvaluateResult evaluateResult);
 
     boolean updateEvaluateResult(EvaluateResult evaluateResult);
-
 }

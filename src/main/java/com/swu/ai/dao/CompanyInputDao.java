@@ -27,6 +27,8 @@ public interface CompanyInputDao {
 
     List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq);
 
+    List<CompanyInput> findCompanyInputSumByReq(CompanyInputReq companyInputReq);
+
     CompanyInput findCompanyInputById(Long id);
 
     boolean updateCompanyInput(CompanyInput companyInput);

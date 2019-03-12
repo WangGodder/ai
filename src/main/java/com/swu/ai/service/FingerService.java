@@ -5,6 +5,7 @@ import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
+import com.swu.ai.request.EvaluateResultReq;
 import com.swu.ai.vo.VoFingerResult;
 
 import java.util.List;
@@ -35,5 +36,5 @@ public interface FingerService {
 
     List<VoFingerResult> getFingerResultMax2(CompanyFigureReq companyInput);
 
-    List<EvaluateResult> evaluateCompany(CompanyInputReq companyInputReq);
+    List<EvaluateResult> evaluateCompany(EvaluateResultReq req);
 }

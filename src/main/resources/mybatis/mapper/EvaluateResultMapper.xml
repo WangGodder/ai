@@ -6,7 +6,7 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
     <result column="figure_id" jdbcType="BIGINT" property="figureId" />
     <result column="evaluate_date" jdbcType="TIMESTAMP" property="evaluateDate" />
     <result column="evalute_type" jdbcType="VARCHAR" property="evaluateType"/>
@@ -131,7 +131,9 @@
     select * from evaluate_result
   </select>
   <select id="findEvaluateResultByReq" resultType="EvaluateResult" parameterType="com.swu.ai.request.EvaluateResultReq">
-    select * from evaluate_result
+    select a.* from evaluate_result as a
+      right join
+      (select company_name, max(evaluate_date) as maxtime from evaluate_result
     <where>
       <if test="beginYear != null">
         #{beginYear} &lt;= year
@@ -150,11 +152,12 @@
       </if>
       <if test="region != null and region != ''">and region = #{region} and </if>
       <if test="evaluateType != null and evaluateType != ''"> and evaluate_type = #{evaluateType}</if>
-      <if test="companyId != null"> and company_id = #{companyId}</if>
+      <if test="companyId != null"> and company_name = #{companyName}</if>
+        group by company_name) as b on a.company_name = b.company_name and a.evaluate_date = b.maxtime order by figure_all desc;
     </where>
   </select>
     <insert id="addEvaluateResult" parameterType="EvaluateResult">
-        insert into evaluate_result (company_id, figure_id,
+        insert into evaluate_result (company_name, figure_id,
                                      evaluate_type, industry, region,
                                      begin_year, end_year, begin_quarter,
                                      end_quarter, figure_all, figure_sale,
@@ -208,7 +211,7 @@
                                      figure_brand_talent, figure_brand_talent_area,
                                      figure_brand_talent_city, figure_brand_talent_province,
                                      figure_brand_talent_country)
-        values (#{companyId,jdbcType=BIGINT}, #{figureId,jdbcType=BIGINT},
+        values (#{companyName,jdbcType=VARCHAR}, #{figureId,jdbcType=BIGINT},
                 #{evaluateType, jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR},
                 #{beginYear,jdbcType=INTEGER}, #{endYear,jdbcType=INTEGER}, #{beginQuarter,jdbcType=INTEGER},
                 #{endQuarter,jdbcType=INTEGER}, #{figureAll,jdbcType=DOUBLE}, #{figureSale,jdbcType=DOUBLE},
@@ -266,8 +269,8 @@
     <update id="updateEvaluateResult" parameterType="EvaluateResult">
         update evaluate_result
         <set>
-            <if test="companyId != null">
-                company_id = #{companyId,jdbcType=BIGINT},
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
             </if>
             <if test="figureId != null">
                 figure_id = #{figureId,jdbcType=BIGINT},

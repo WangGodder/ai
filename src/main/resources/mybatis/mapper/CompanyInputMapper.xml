@@ -635,6 +635,46 @@
         </where>
 
     </select>
+    <select id="findCompanyInputSumByReq" resultType="CompanyInput" parameterType="com.swu.ai.request.CompanyInputReq">
+        select 'id', 'companyname', 'industry',
+               'region', 'year', 'quarter',
+               SUM('ticketincomesoftware') as ticketincomesoftware, SUM('ticketincomehardware'),
+               SUM('ticketincomeconsult'), SUM('ticketincomeother'), SUM('contractincomesoftware'),
+               SUM('contractincomehardware'), SUM('contractincomeconsult'),
+               SUM('contractincomeother'), SUM('incometaxable'), SUM('incometaxdeduction'),
+               SUM('pensonaltaxable'), SUM('pensonaltaxdecution'), SUM('addvaluetaxable'),
+               SUM('addvaluetaxdecution'), SUM('stockfinancevc'), SUM('stockfinancegovenment'),
+               SUM('stockfinancepensonal'), SUM('debtfinancebank'), SUM('debtfinanceli'),
+               SUM('debtfinancecompany'), SUM('debtfinancepensonal'),
+               SUM('currentasset'), SUM('nocurrentasset'), SUM('currentdebt'),
+               SUM('nocurrentdebt'), SUM('firstfinancevalue'), SUM('lastfinancevalue'),
+               SUM('currentfinancevalue'), SUM('parttimedevelopment'),
+               SUM('parttimemanager'), SUM('parttimeadmin'), SUM('parttimesell'),
+               SUM('development'), SUM('manamger'), SUM('administrator'),
+               SUM('sell'), SUM('doctor'), SUM('master'),
+               SUM('bachelor'), SUM('applypatentinvent'), SUM('applypatentindustry'),
+               SUM('applypatentdesign'), SUM('patentinvent'), SUM('patentindustry'),
+               SUM('patentdesign'), SUM('applyauthorsoftware'), SUM('applyauthorother'),
+               SUM('authorsoftware'), SUM('authorother'), SUM('servicepatent'),
+               SUM('serviceskill'), SUM('servicesell'), SUM('salaryhigh'),
+               SUM('salarymiddle'), SUM('salarylow'), SUM('persell'),
+               SUM('pertax'), SUM('trainmanage'), SUM('trainlegal'),
+               SUM('trainskill'), SUM('consultmanage'), SUM('consultlegal'),
+               SUM('consultskill'), SUM('awarddistrict'), SUM('awardcity'),
+               SUM('awardprovince'), SUM('awardnation'), SUM('comfirmdistrict'),
+               SUM('comfirmcity'), SUM('comfirmprovince'), SUM('comfirmnation'),
+               SUM('supportdistrict'), SUM('supportcity'), SUM('supportprovince'),
+               SUM('supportnation')
+        <where>
+            <if test="industry != null and industry != ''"> and industry = #{industry}</if>
+            <if test="region != null and region != ''">and region = #{region} and </if>
+            <if test="beginYear != null">and #{beginYear} &lt;= year</if>
+            <if test="endYear != null">and year &lt;= #{endYear}</if>
+            <if test="beginQuarter != null">and #{beginQuarter} &lt;= quarter</if>
+            <if test="endQuarter != null">and quarter &lt;= #{endQuarter}</if>
+        </where>
+        GROUP BY companyname;
+    </select>
 
     <!--更新-->
     <update id="updateCompanyInputByCompanyName" parameterType="CompanyInput">

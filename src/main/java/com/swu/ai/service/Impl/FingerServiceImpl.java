@@ -1,17 +1,23 @@
 package com.swu.ai.service.Impl;
 
+import com.alibaba.fastjson.JSON;
 import com.swu.ai.dao.CompanyInputDao;
+import com.swu.ai.dao.EvaluateResultDao;
 import com.swu.ai.dao.FingerDao;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
+import com.swu.ai.request.EvaluateResultReq;
 import com.swu.ai.service.FingerService;
 import com.swu.ai.vo.VoFingerResult;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,11 +43,17 @@ public class FingerServiceImpl implements FingerService {
     public static final int FIRST_QUARTILE = 3; // 第一分位数
     public static final int MEDIAN = 4;         // 中位数
     public static final int THIRD_QUARTILE = 5; // 第三分位数
+    @Value(value = "${evaluation.result.indate}")
+    public static int RESULT_INDATE;            // 计算数据有效期，如果获取的计算结果超过有效期则重新计算 单位 小时
 
     @Resource
     private FingerDao fingerDao;
     @Resource
-    private CompanyInputDao companyInputDaoDao;
+    private CompanyInputDao companyInputDao;
+    @Resource
+    private EvaluateResultDao evaluateResultDao;
+    @Resource
+    private com.swu.ai.util.RedisUtil redisUtil;
 
     @Override
     public List<FingerResultV0> getFingerResult(Integer year, String periodType, String denominatorType, Long companyId, String companyPlate){
@@ -50,45 +62,127 @@ public class FingerServiceImpl implements FingerService {
 
     @Override
     public List<VoFingerResult> getFingerResultSum2(CompanyFigureReq companyInput){
-        return companyInputDaoDao.findSumAllByYearAndQuarter(companyInput);
+        return companyInputDao.findSumAllByYearAndQuarter(companyInput);
     }
 
     @Override
     public List<VoFingerResult> getFingerResultMax2(CompanyFigureReq companyInput){
-        return companyInputDaoDao.findMaxAllByYearAndQuarter(companyInput);
+        return companyInputDao.findMaxAllByYearAndQuarter(companyInput);
     }
 
     @Override
-    public List<EvaluateResult> evaluateCompany(CompanyInputReq companyInputReq) {
+    public List<EvaluateResult> evaluateCompany(EvaluateResultReq req) {
+        // 查找数据库内是否有存放的已算出结果
+        List<EvaluateResult> results = evaluateResultDao.findEvaluateResultByReq(req);
+        if (results != null && results.size() > 0) {
+            // 判断获取数据是否在有效期内
+            if (System.currentTimeMillis() - results.get(0).getEvaluateDate().getTime() < RESULT_INDATE) {
+                return results;
+            }
+        }
+        // 计算结果
+        // 获取范围内所有的数据
+        List<CompanyInput> companyInputs = companyInputDao.findCompanyInputSumByReq(req);
+        // 从reids上寻找基数
+        String keyRedisBase = calcIdByCompanyInputReq(req);
+        CompanyInput base = JSON.parseObject(redisUtil.get(keyRedisBase), CompanyInput.class);
         return null;
     }
 
     /**
-     * 根据CompanyInputReq和计算方式生成针对于当前时间的无重复ID, 作为redis的key值
-     * @param companyInputReq
-     * @param calcType
+     * 根据EvaluateResultReq和计算方式生成针对于当前时间的无重复ID, 作为redis的key值
+     * @param req
      * @return
      */
-    private String calcIdByCompanyInputReq(CompanyInputReq companyInputReq, int calcType) {
+    private String calcIdByCompanyInputReq(EvaluateResultReq req) {
         StringBuilder sb = new StringBuilder();
-        sb.append(calcType);
-        sb.append(companyInputReq.getIndustry() == null  || companyInputReq.getIndustry().isEmpty() ? " " : companyInputReq.getIndustry());
-        sb.append(companyInputReq.getBeginYear() == null ? "0000" : companyInputReq.getBeginYear());
-        sb.append(companyInputReq.getEndYear() == null ? "0000" : companyInputReq.getEndYear());
-        sb.append(companyInputReq.getRegion() == null || companyInputReq.getRegion().isEmpty() ? " " : companyInputReq.getRegion());
-        sb.append(companyInputReq.getBeginQuarter() == null ? "0" : companyInputReq.getBeginQuarter());
-        sb.append(companyInputReq.getEndYear() == null ? "0" : companyInputReq.getEndQuarter());
+        sb.append(req.getEvaluateType());
+        sb.append(req.getIndustry() == null  || req.getIndustry().isEmpty() ? " " : req.getIndustry());
+        sb.append(req.getBeginYear() == null ? "0000" : req.getBeginYear());
+        sb.append(req.getEndYear() == null ? "0000" : req.getEndYear());
+        sb.append(req.getRegion() == null || req.getRegion().isEmpty() ? " " : req.getRegion());
+        sb.append(req.getBeginQuarter() == null ? "0" : req.getBeginQuarter());
+        sb.append(req.getEndYear() == null ? "0" : req.getEndQuarter());
         return sb.toString();
     }
 
     /**
      * 根据请求获取CompanyInput,并分别求出均值、最大值、最小值、四分位数等结果
      * @param req 评估范围的请求
-     * @return 按照
+     * @return 按照均值、最大值、最小值、1分位、中位、3分位返回
      */
     private List<CompanyInput> calcBase(CompanyInputReq req) {
-
-        return null;
+        List<CompanyInput> list = new ArrayList<>(6);
+        for (int i = 0; i < list.size(); i++) {
+            list.add(new CompanyInput());
+        }
+        Field[] fields = CompanyInput.class.getDeclaredFields();
+        List<CompanyInput> companyInputs = companyInputDao.findCompanyInputByReq(req);
+        int index = 0;
+        for (CompanyInput companyInput : companyInputs) {
+            for (int i = 6; i <fields.length; i++) {
+                Field field = fields[i];
+                field.setAccessible(true);
+                try {
+                    Object read = field.get(companyInput);
+                    // first-quartile
+                    if (index == companyInputs.size() / 4 - 1) {
+                        field.set(list.get(3), read);
+                    }
+                    // median
+                    if (index == companyInputs.size() / 2 - 1) {
+                        field.set(list.get(4), read);
+                    }
+                    // third-quartile
+                    if (index == companyInputs.size() / 4 * 3 - 1) {
+                        field.set(list.get(5), read);
+                    }
+                    // type classify
+                    if (field.getGenericType() == Integer.class) {
+                        // sum
+                        field.set(list.get(0), (int)field.get(list.get(0)) + (int)read);
+                        // max
+                        if ((int)field.get(list.get(1)) < (int)read) {
+                            field.set(list.get(1), read);
+                        }
+                        // min
+                        if ((int)field.get(list.get(2)) > (int)read) {
+                            field.set(list.get(2), read);
+                        }
+                    }
+                    else if (field.getGenericType() == Double.class) {
+                        // sum
+                        field.set(list.get(0), (double)field.get(list.get(0)) + (double)read);
+                        // max
+                        if ((double)field.get(list.get(1)) < (double)read) {
+                            field.set(list.get(1), read);
+                        }
+                        // min
+                        if ((double)field.get(list.get(2)) > (double)read) {
+                            field.set(list.get(2), read);
+                        }
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            index++;
+        }
+        // avg
+        for (int i = 6; i < fields.length; i++) {
+            Field field = fields[i];
+            try {
+                if (field.getGenericType() == Integer.class) {
+                    field.set(list.get(0), (int)field.get(list.get(0)) / companyInputs.size());
+                } else if (field.getGenericType() == Double.class) {
+                    field.set(list.get(0), (double)field.get(list.get(0)) / companyInputs.size());
+                }
+                field.setAccessible(false);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 
     /**
@@ -99,7 +193,7 @@ public class FingerServiceImpl implements FingerService {
      */
     private EvaluateResult evaluteFigure(CompanyInput companyInput, CompanyInput base) {
         EvaluateResult result = new EvaluateResult();
-        result.setCompanyId(companyInput.getId());
+        result.setCompanyName(companyInput.getCompanyname());
         // 二级指标：已开票的收入
         result.setFigureSaleInvoiceSoft(companyInput.getTicketincomesoftware() / base.getTicketincomesoftware());
         result.setFigureSaleInvoiceHard(companyInput.getTicketincomehardware() / base.getTicketincomehardware());

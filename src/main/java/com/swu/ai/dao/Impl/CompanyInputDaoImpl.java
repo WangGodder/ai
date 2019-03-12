@@ -76,6 +76,11 @@ public class CompanyInputDaoImpl implements CompanyInputDao {
     }
 
     @Override
+    public List<CompanyInput> findCompanyInputSumByReq(CompanyInputReq companyInputReq) {
+        return companyInputMapper.findCompanyInputSumByReq(companyInputReq);
+    }
+
+    @Override
     public CompanyInput findCompanyInputById(Long id) {
         CompanyInput result = companyInputMapper.findCompanyInputById(id);
         return result;

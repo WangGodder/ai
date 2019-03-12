@@ -22,6 +22,8 @@ public interface CompanyInputMapper extends BaseMapper<CompanyInput> {
 
     List<CompanyInput> findCompanyInputByReq(CompanyInputReq companyInputReq);
 
+    List<CompanyInput> findCompanyInputSumByReq(CompanyInputReq companyInputReq);
+
     CompanyInput findCompanyInputById(Long id);
 
     boolean insertCompanyInput(CompanyInput companyInput);
