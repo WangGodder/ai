@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
     <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap/css/bootstrap-table.css">
     <script type="text/javascript" src="/js/jquery/jquery-3.2.1.min.js"></script>
@@ -15,7 +14,6 @@
     <script type="text/javascript" src="/js/vue/vue.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="/js/home/DataShow.js"></script>
-
 </head>
 <body>
 <div id="app">
@@ -60,14 +58,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top: 1%; margin-bottom: 1%;">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <label for="evaluateType">评估方式</label>
+            <select id="evaluateType" class="form-control">
+                <option value="avg">均值</option>
+                <option value="max">最大值</option>
+                <option value="min">最小值</option>
+                <option value="firstQ">第一四分位</option>
+                <option value="median">中位数</option>
+                <option value="thirdQ">第三四分位</option>
+            </select>
             <div id="query-btn" class="btn btn-primary btn-lg btn-block" v-on:click="query()">查询</div>
         </div>
     </div>
     <div class="">
-        <data-show ref="table" v-if="this.showData" v-bind:query-params="this.queryParams" v-bind:columns="this.columns" v-bind:url="this.url"></data-show>
+        <data-show ref="table"  v-if="this.showData" v-bind:query-params="this.queryParams" v-bind:columns="this.columns" v-bind:url="this.url"></data-show>
     </div>
 </div>
 </body>
-<script type="text/javascript" src="/js/home/data/data_query/main.js"></script>
+    <script type="text/javascript" src="/js/home/evaluate/detail_evaluate/main.js"></script>
 </html>

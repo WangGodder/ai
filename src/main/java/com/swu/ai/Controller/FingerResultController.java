@@ -7,9 +7,11 @@ import com.swu.ai.Result.JsonResult;
 import com.swu.ai.Util.FieldInject;
 import com.swu.ai.Util.TableUtil;
 import com.swu.ai.entity.CompanyInput;
+import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
+import com.swu.ai.request.EvaluateResultReq;
 import com.swu.ai.service.CompanyService;
 import com.swu.ai.service.FingerService;
 
@@ -263,6 +265,16 @@ public class FingerResultController {
         return "data_query";
     }
 
+    @RequestMapping(value = "totalEvaluate/")
+    public String totalEvaluate() {
+        return "total_evaluate";
+    }
+
+    @RequestMapping(value = "detailEvaluate")
+    public String detailEvaluate() {
+        return "detail_evaluate";
+    }
+
     @RequestMapping(value = "companyInfoTableColumn/")
     @ResponseBody
     public JsonResult companyInfoTableColumn() {
@@ -288,7 +300,14 @@ public class FingerResultController {
             e.printStackTrace();
         }
         List<CompanyInput> result = companyService.findCompanyInputByReq(companyInputReq);
-        System.out.println(result);
         return result;
+    }
+
+    @RequestMapping(value = "evaluateDetail/")
+    @ResponseBody
+    public List<EvaluateResult> evaluateDetail(EvaluateResultReq req) {
+        req.setFigureId(1L);
+        List<EvaluateResult> results = fingerService.evaluateCompany(req);
+        return results;
     }
 }

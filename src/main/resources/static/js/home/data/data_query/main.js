@@ -5,6 +5,7 @@
         components: {DataShow},
         data: function() {
             return {
+                url: '../queryCompanyInfoTable/',
                 columns: [],
                 queryParams: {
                     industry: "",

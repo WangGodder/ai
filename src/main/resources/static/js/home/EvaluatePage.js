@@ -32,10 +32,10 @@ let EvaluatePage = {
         "        </div>\n" +
         "        <div id=\"workspace\" class=\"col-lg-10 col-md-10 col-sm-10 col-xs-10 well\">\n" +
         "            <div v-show=\"this.function_show[0]\" class=\"embed-responsive embed-responsive-16by9\">\n" +
-        "                <iframe class=\"embed-responsive-item\" src=\"http://www.leetcode.com\"></iframe>\n" +
+        "                <iframe class=\"embed-responsive-item\" src=\"../totalEvaluate/\"></iframe>\n" +
         "            </div>\n" +
         "            <div v-show=\"this.function_show[1]\" class=\"embed-responsive embed-responsive-16by9\">\n" +
-        "                <iframe class=\"embed-responsive-item\" src=\"http://www.baidu.com\"></iframe>\n" +
+        "                <iframe class=\"embed-responsive-item\" src=\"../detailEvaluate/\"></iframe>\n" +
         "            </div>\n" +
         "            <chart-config v-show=\"this.function_show[2]\"></chart-config>\n" +
         "        </div>\n" +

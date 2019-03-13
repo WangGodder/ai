@@ -2,6 +2,10 @@
 let DataShow = {
     name: "DataShow",
     props: {
+        url: {
+            required: true,
+            type: String
+        },
         columns: {
             required: true,
             type: Array,
@@ -10,7 +14,7 @@ let DataShow = {
     },
     mounted() {
         $("#table").bootstrapTable({
-            url: '../queryCompanyInfoTable/',
+            url: this.url,
             method: 'post',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色

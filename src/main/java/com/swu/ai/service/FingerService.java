@@ -1,5 +1,6 @@
 package com.swu.ai.service;
 
+import com.swu.ai.Result.EvaluateDetailTable;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.entity.FingerResultV0;
@@ -37,4 +38,6 @@ public interface FingerService {
     List<VoFingerResult> getFingerResultMax2(CompanyFigureReq companyInput);
 
     List<EvaluateResult> evaluateCompany(EvaluateResultReq req);
+
+    EvaluateDetailTable getEvaluateDetailTable();
 }

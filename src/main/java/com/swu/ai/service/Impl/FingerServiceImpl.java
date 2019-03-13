@@ -1,14 +1,10 @@
 package com.swu.ai.service.Impl;
 
 import com.alibaba.fastjson.JSON;
-import com.swu.ai.dao.CompanyInputDao;
-import com.swu.ai.dao.EvaluateResultDao;
-import com.swu.ai.dao.FigureWeightDao;
-import com.swu.ai.dao.FingerDao;
-import com.swu.ai.entity.CompanyInput;
-import com.swu.ai.entity.EvaluateResult;
-import com.swu.ai.entity.FigureWeight;
-import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.Result.EvaluateDetailTable;
+import com.swu.ai.Util.TableUtil;
+import com.swu.ai.dao.*;
+import com.swu.ai.entity.*;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.request.EvaluateResultReq;
@@ -19,10 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * -------------------------------------------------
@@ -54,9 +47,13 @@ public class FingerServiceImpl implements FingerService {
     @Resource
     private CompanyInputDao companyInputDao;
     @Resource
+    private CompanyInputDictDao companyInputDictDao;
+    @Resource
     private EvaluateResultDao evaluateResultDao;
     @Resource
     private FigureWeightDao figureWeightDao;
+    @Resource
+    private FigureDictDao figureDictDao;
     @Resource
     private com.swu.ai.util.RedisUtil redisUtil;
 
@@ -109,8 +106,8 @@ public class FingerServiceImpl implements FingerService {
             evaluateResult.setEndYear(req.getEndYear());
             evaluateResult.setBeginQuarter(req.getBeginQuarter());
             evaluateResult.setEndQuarter(req.getEndQuarter());
-            evaluateResult.setIndustry(req.getIndustry());
-            evaluateResult.setRegion(req.getRegion());
+            evaluateResult.setIndustry(companyInput.getIndustry());
+            evaluateResult.setRegion(companyInput.getRegion());
             evaluateResultList.add(evaluateResult);
         }
         // 按照总分降序排列
@@ -121,6 +118,59 @@ public class FingerServiceImpl implements FingerService {
             }
         });
         return evaluateResultList;
+    }
+
+    @Override
+    public EvaluateDetailTable getEvaluateDetailTable() {
+        List<String> titles = new ArrayList<>(100);
+        List<String> head  = Arrays.asList("公司名称", "所在行业", "所在地区");
+        titles.addAll(head);
+        titles.add("综合指标");
+        List<String> companyFields = TableUtil.getFieldNames(CompanyInput.class);
+        Map<String, String> map = getCompanyInfoDictMap();
+        List<String> figureV3List = new ArrayList<>(companyFields.size());
+        for (int i = 6; i < companyFields.size(); i++) {
+            figureV3List.add(map.get(companyFields.get(i)));
+        }
+        List<FigureDict> figureV1DictList = figureDictDao.findFigureDictByLevel(1);
+        List<FigureDict> figureV2DictList = figureDictDao.findFigureDictByLevel(2);
+        Iterator<FigureDict> iteratorV1 = figureV1DictList.iterator();
+        Iterator<FigureDict> iteratorV2 = figureV2DictList.iterator();
+        Iterator<String> iteratorV3 = figureV3List.iterator();
+        while (iteratorV1.hasNext() && iteratorV2.hasNext()) {
+            FigureDict figureV1 = iteratorV1.next();
+            titles.add(figureV1.getFigureName());
+            int totalFigureV3Num = 0;
+            FigureDict figureV2 = iteratorV2.next();
+            titles.add(figureV2.getFigureName());
+            int currentFigureV3Num = 0;
+            while (totalFigureV3Num < figureV1.getSubFigureNum()) {
+                if (currentFigureV3Num == figureV2.getSubFigureNum()) {
+                    figureV2 = iteratorV2.next();
+                    titles.add(figureV2.getFigureName());
+                    currentFigureV3Num = 0;
+                }
+                titles.add(iteratorV3.next());
+                totalFigureV3Num++;
+                currentFigureV3Num++;
+            }
+        }
+        List<String> fields = TableUtil.getFieldNames(EvaluateResult.class);
+        List<String> unuseFields = Arrays.asList("id", "figureId", "evaluateDate", "evaluateType", "beginYear", "endYear", "beginQuarter", "endQuarter");
+        fields.removeAll(unuseFields);
+        EvaluateDetailTable table = new EvaluateDetailTable();
+        table.setTitles(titles);
+        table.setFields(fields);
+        return table;
+    }
+
+    private Map<String, String> getCompanyInfoDictMap() {
+        List<CompanyInputDict> list = companyInputDictDao.findAllCompanyInputDict();
+        Map<String, String> map = new HashMap<>(list.size());
+        for (CompanyInputDict companyInputDict : list) {
+            map.put(companyInputDict.getName(), companyInputDict.getValue());
+        }
+        return map;
     }
 
     /**
