@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.net.ConnectException;
 import java.util.*;
 
 /**
@@ -87,13 +88,31 @@ public class FingerServiceImpl implements FingerService {
         List<CompanyInput> companyInputs = companyInputDao.findCompanyInputSumByReq(req);
         // 从reids上寻找基数
         String keyRedisBase = calcIdByCompanyInputReq(req);
-        System.out.println(keyRedisBase);
-        String redisBase = redisUtil.get(keyRedisBase);
-        // 判断redis上是否存有基数,若没有则生成并存入redis
-        if (redisBase == null || redisBase.isEmpty()) {
-            calcBaseAndStore(companyInputs, req);
+        CompanyInput base = null;
+        // 如果redis连接失败，则直接计算
+        try {
+            String redisBase = redisUtil.get(keyRedisBase);
+            // 判断redis上是否存有基数,若没有则生成并存入redis
+            if (redisBase == null || redisBase.isEmpty()) {
+                calcBaseAndStore(companyInputs, req);
+            }
+            base = JSON.parseObject(redisUtil.get(keyRedisBase), CompanyInput.class);
+        } catch (Exception e) {
+            System.err.println("redis 连接错误");
+            switch (req.getEvaluateType()) {
+                case "avg": base = calcBase(companyInputs).get(AVG); break;
+                case "max":
+                    base = calcBase(companyInputs).get(MAX); break;
+                case "min":
+                    base = calcBase(companyInputs).get(MIN); break;
+                case "firstQ":
+                    base = calcBase(companyInputs).get(FIRST_QUARTILE); break;
+                case "median":
+                    base = calcBase(companyInputs).get(MEDIAN); break;
+                case "thirdQ":
+                    base = calcBase(companyInputs).get(THIRD_QUARTILE); break;
+            }
         }
-        CompanyInput base = JSON.parseObject(redisUtil.get(keyRedisBase), CompanyInput.class);
         // 计算获取数据的三级指标的得分
         List<EvaluateResult> evaluateResultList = new ArrayList<>(companyInputs.size());
         FigureWeight figureWeight = figureWeightDao.getFigureWeight(req.getFigureId());
@@ -106,6 +125,11 @@ public class FingerServiceImpl implements FingerService {
             evaluateResult.setEndYear(req.getEndYear());
             evaluateResult.setBeginQuarter(req.getBeginQuarter());
             evaluateResult.setEndQuarter(req.getEndQuarter());
+            evaluateResult.setIndustry(req.getIndustry());
+            evaluateResult.setRegion(req.getRegion());
+            // 存入数据库
+            evaluateResultDao.addEvaluateResult(evaluateResult);
+            // 展示结果中显示实际公司的所在行业和地区
             evaluateResult.setIndustry(companyInput.getIndustry());
             evaluateResult.setRegion(companyInput.getRegion());
             evaluateResultList.add(evaluateResult);
