@@ -4,10 +4,12 @@ package com.swu.ai.Controller;
 import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.FingerResult;
 import com.swu.ai.Result.JsonResult;
+import com.swu.ai.Result.TreeData;
 import com.swu.ai.Util.FieldInject;
 import com.swu.ai.Util.TableUtil;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.EvaluateResult;
+import com.swu.ai.entity.FigureWeight;
 import com.swu.ai.entity.FingerResultV0;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
@@ -309,5 +311,27 @@ public class FingerResultController {
         req.setFigureId(1L);
         List<EvaluateResult> results = fingerService.evaluateCompany(req);
         return results;
+    }
+
+    @RequestMapping(value = "evaluateTotal/")
+    @ResponseBody
+    public List<Map<String, Object>> evaluateTotal(EvaluateResultReq req) {
+        return fingerService.evaluateCompanyTotal(req);
+    }
+
+    @RequestMapping(value = "figureWeightTree/")
+    @ResponseBody
+    public JsonResult figureWeightTree() {
+        List<TreeData<String>> trees = fingerService.getFigureWeightTree();
+        return JsonResult.success(trees);
+    }
+
+    @RequestMapping(value = "addFigureWeight/")
+    @ResponseBody
+    public JsonResult addFigureWeight(FigureWeight figureWeight) {
+        if (fingerService.addFigureWeight(figureWeight)) {
+            return JsonResult.success();
+        }
+        return JsonResult.fail("添加权重失败,请保证每个权重为0也填写");
     }
 }

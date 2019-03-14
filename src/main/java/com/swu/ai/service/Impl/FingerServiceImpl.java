@@ -2,6 +2,8 @@ package com.swu.ai.service.Impl;
 
 import com.alibaba.fastjson.JSON;
 import com.swu.ai.Result.EvaluateDetailTable;
+import com.swu.ai.Result.TreeData;
+import com.swu.ai.Util.FieldInject;
 import com.swu.ai.Util.TableUtil;
 import com.swu.ai.dao.*;
 import com.swu.ai.entity.*;
@@ -12,6 +14,7 @@ import com.swu.ai.service.FingerService;
 import com.swu.ai.vo.VoFingerResult;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.tree.Tree;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
@@ -79,7 +82,8 @@ public class FingerServiceImpl implements FingerService {
         List<EvaluateResult> results = evaluateResultDao.findEvaluateResultByReq(req);
         if (results != null && results.size() > 0) {
             // 判断获取数据是否在有效期内
-            if (System.currentTimeMillis() - results.get(0).getEvaluateDate().getTime() < RESULT_INDATE) {
+            long timeGas = System.currentTimeMillis() - results.get(0).getEvaluateDate().getTime();
+            if (timeGas < RESULT_INDATE * 1000 * 60 * 60) {
                 return results;
             }
         }
@@ -145,17 +149,64 @@ public class FingerServiceImpl implements FingerService {
     }
 
     @Override
+    public List<Map<String, Object>> evaluateCompanyTotal(EvaluateResultReq req) {
+        req.setFigureId(1L);
+        HashMap<String, List<EvaluateResult>> map = new HashMap<>();
+        // 计算范围内每年的得分，并按照companyName进行map,key为从开始的年依次到结束年的全部评估结果
+        for (int i = req.getBeginYear(); i <= req.getEndYear(); i++) {
+            EvaluateResultReq currentReq = null;
+            try {
+                currentReq = (EvaluateResultReq) req.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            currentReq.setEndYear(i);
+            currentReq.setBeginYear(i);
+            // 获取该年的所有公司的评估结果
+            List<EvaluateResult> evaluateResultList = this.evaluateCompany(currentReq);
+            for (EvaluateResult evaluateResult : evaluateResultList) {
+                if (map.get(evaluateResult.getCompanyName()) == null) {
+                    map.put(evaluateResult.getCompanyName(), new ArrayList<>());
+                    // 如果前几年没有数据，则不齐空值
+                    for (int j = i - req.getBeginYear(); j > 0; j--) {
+                        map.get(evaluateResult.getCompanyName()).add(new EvaluateResult());
+                    }
+                }
+                map.get(evaluateResult.getCompanyName()).add(evaluateResult);
+            }
+        }
+        List<Map<String, Object>> result = new ArrayList<>(map.size());
+        String[] fileds = {"figureAll", "figureSale", "figureTax", "figureFinance", "figureValuation", "figureHr", "figureInnovate", "figureSalary", "figureLearn", "figureBrand"};
+        for (Map.Entry<String, List<EvaluateResult>> entry : map.entrySet()) {
+            Map<String, Object> line = new HashMap<>(3 + (req.getEndYear() - req.getBeginYear()) * 10);
+            line.put("companyName", entry.getKey());
+            line.put("industry", entry.getValue().get(0).getIndustry());
+            line.put("region", entry.getValue().get(0).getRegion());
+            int yearNum = 0;
+            for (EvaluateResult evaluateResult : entry.getValue()) {
+                try {
+                    Map<String, Object> currentMap = FieldInject.getFieldMap(EvaluateResult.class, evaluateResult, fileds);
+                    for (String field : fileds) {
+                        line.put(field + yearNum, currentMap.get(field));
+                    }
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
+                yearNum++;
+            }
+            result.add(line);
+        }
+
+        return result;
+    }
+
+    @Override
     public EvaluateDetailTable getEvaluateDetailTable() {
         List<String> titles = new ArrayList<>(100);
         List<String> head  = Arrays.asList("公司名称", "所在行业", "所在地区");
         titles.addAll(head);
         titles.add("综合指标");
-        List<String> companyFields = TableUtil.getFieldNames(CompanyInput.class);
-        Map<String, String> map = getCompanyInfoDictMap();
-        List<String> figureV3List = new ArrayList<>(companyFields.size());
-        for (int i = 6; i < companyFields.size(); i++) {
-            figureV3List.add(map.get(companyFields.get(i)));
-        }
+        List<String> figureV3List = getFigureV3List();
         List<FigureDict> figureV1DictList = figureDictDao.findFigureDictByLevel(1);
         List<FigureDict> figureV2DictList = figureDictDao.findFigureDictByLevel(2);
         Iterator<FigureDict> iteratorV1 = figureV1DictList.iterator();
@@ -188,6 +239,81 @@ public class FingerServiceImpl implements FingerService {
         return table;
     }
 
+    @Override
+    public List<TreeData<String>> getFigureWeightTree() {
+        List<TreeData<String>> list = new ArrayList<>(9);
+        List<FigureDict> figureV1DictList = figureDictDao.findFigureDictByLevel(1);
+        List<FigureDict> figureV2DictList = figureDictDao.findFigureDictByLevel(2);
+        List<String> figureV3List = getFigureV3List();
+        List<String> fieldList = TableUtil.getFieldNames(FigureWeight.class);
+        List<String> valueList = TableUtil.getFieldValues(FigureWeight.class, figureWeightDao.getFigureWeight(1l), "0");
+        // remove id
+        fieldList.remove(0);
+        valueList.remove(0);
+
+        // 遍历加入
+        Iterator<FigureDict> iteratorV1 = figureV1DictList.iterator();
+        Iterator<FigureDict> iteratorV2 = figureV2DictList.iterator();
+        Iterator<String> iteratorV3 = figureV3List.iterator();
+        int index = 0;
+        while (iteratorV1.hasNext()) {
+            FigureDict figureDict = iteratorV1.next();
+            TreeData<String> root = new TreeData<>(figureDict.getFigureName(), fieldList.get(index), valueList.get(index));
+            index++;
+            if (figureDict.getSubFigureNum() == 0) {
+                list.add(root);
+                continue;
+            }
+            List<TreeData<String>> childrenV2 = new ArrayList<>(figureDict.getSubFigureNum()/2);
+            FigureDict figureDictV2 = iteratorV2.next();
+            TreeData<String> child = new TreeData<>(figureDictV2.getFigureName(), fieldList.get(index), valueList.get(index));
+            index++;
+            List<TreeData<String>> childrendV3 = new ArrayList<>(figureDictV2.getSubFigureNum());
+            int totalNum = 0, currentNum = 0;
+            while (iteratorV3.hasNext() && totalNum < figureDict.getSubFigureNum()) {
+                if (currentNum == figureDictV2.getSubFigureNum()) {
+                    child.setChildren(childrendV3);
+                    childrenV2.add(child);
+                    figureDictV2 = iteratorV2.next();
+                    childrendV3 = new ArrayList<>(figureDictV2.getSubFigureNum());
+                    child = new TreeData<>(figureDictV2.getFigureName(), fieldList.get(index), valueList.get(index));
+                    index++;
+                    currentNum = 0;
+                }
+                childrendV3.add(new TreeData<>(iteratorV3.next(), fieldList.get(index), valueList.get(index)));
+                index++; totalNum++; currentNum++;
+            }
+            child.setChildren(childrendV3);
+            childrenV2.add(child);
+            root.setChildren(childrenV2);
+            list.add(root);
+        }
+        return list;
+    }
+
+    @Override
+    public boolean addFigureWeight(FigureWeight figureWeight) {
+        return figureWeightDao.addFigureWeight(figureWeight);
+    }
+
+    /**
+     * 获取三级指标的所有title(中文名称)
+     * @return
+     */
+    private List<String> getFigureV3List() {
+        List<String> companyFields = TableUtil.getFieldNames(CompanyInput.class);
+        Map<String, String> map = getCompanyInfoDictMap();
+        List<String> figureV3List = new ArrayList<>(companyFields.size());
+        for (int i = 6; i < companyFields.size(); i++) {
+            figureV3List.add(map.get(companyFields.get(i)));
+        }
+        return figureV3List;
+    }
+
+    /**
+     * 获取公司属性的对应中文表
+     * @return
+     */
     private Map<String, String> getCompanyInfoDictMap() {
         List<CompanyInputDict> list = companyInputDictDao.findAllCompanyInputDict();
         Map<String, String> map = new HashMap<>(list.size());
@@ -385,13 +511,13 @@ public class FingerServiceImpl implements FingerService {
         result.setFigureHrFulltimeDev((double) companyInput.getDevelopment() / (double) base.getDevelopment());
         result.setFigureHrFulltimeSenior((double) companyInput.getManamger() / (double) base.getManamger());
         result.setFigureHrFulltimeAdmin((double) companyInput.getAdministrator() / (double) base.getAdministrator());
-        result.setFigureHrPartimeSaler((double) companyInput.getSell() / (double) base.getSell());
+        result.setFigureHrFulltimeSaler((double) companyInput.getSell() / (double) base.getSell());
         // 二级指标：高学历员工
         result.setFigureHrEducatedDoc((double) companyInput.getDoctor() / (double) base.getDoctor());
         result.setFigureHrEducatedMaster((double) companyInput.getMaster() / (double) base.getMaster());
         result.setFigureHrBachelor((double) companyInput.getBachelor() / (double) base.getBachelor());
         // 二级指标：申请专利
-        result.setFigureInnovatePatentGrantInvention((double) companyInput.getApplypatentinvent() / (double) base.getApplypatentinvent());
+        result.setFigureInnovatePatentApplyInvention((double) companyInput.getApplypatentinvent() / (double) base.getApplypatentinvent());
         result.setFigureInnovatePatentApplyUtility((double) companyInput.getApplypatentindustry() / (double) base.getApplypatentindustry());
         result.setFigureInnovatePatentApplyAppear((double) companyInput.getApplypatentdesign() / (double) base.getApplypatentdesign());
         // 二级指标：授权专利
@@ -425,7 +551,7 @@ public class FingerServiceImpl implements FingerService {
         result.setFigureLearnConsltedSkill((double) companyInput.getConsultskill() / (double) base.getConsultskill());
         // 二级指标：企业获奖
         result.setFigureBrandRewardArea((double) companyInput.getAwarddistrict() / (double) base.getAwarddistrict());
-        result.setFigureBrandRecognitionCity((double) companyInput.getAwardcity() / (double) base.getAwardcity());
+        result.setFigureBrandRewardCity((double) companyInput.getAwardcity() / (double) base.getAwardcity());
         result.setFigureBrandRewardProvince((double) companyInput.getAwardprovince() / (double) base.getAwardprovince());
         result.setFigureBrandRewardCountry((double) companyInput.getAwardnation() / (double) base.getAwardnation());
         // 二级指标：企业认定
@@ -438,6 +564,20 @@ public class FingerServiceImpl implements FingerService {
         result.setFigureBrandTalentCity((double) companyInput.getSupportcity() / (double) base.getSupportcity());
         result.setFigureBrandTalentProvince((double) companyInput.getSupportprovince() / (double) base.getSupportprovince());
         result.setFigureBrandTalentCountry((double) companyInput.getSupportnation() / (double) base.getSupportnation());
+
+        Field[] fields = EvaluateResult.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getGenericType() == Double.class) {
+                field.setAccessible(true);
+                try {
+                    if (field.get(result) != null && Double.isNaN((double)field.get(result))) {
+                        field.set(result, 0.0);
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         return result;
     }
 }

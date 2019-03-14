@@ -1,9 +1,11 @@
 package com.swu.ai.request;
 
+import com.swu.ai.entity.EvaluateResult;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
 /**
  * @author: godder
@@ -11,7 +13,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-public class EvaluateResultReq extends CompanyInputReq implements Serializable {
+public class EvaluateResultReq extends CompanyInputReq implements Serializable, Cloneable {
 //    private String industry;
 //    private String region;
 //    private Integer beginYear;
@@ -22,4 +24,19 @@ public class EvaluateResultReq extends CompanyInputReq implements Serializable {
     private Long companyId;
     private Long figureId;
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        EvaluateResultReq result = new EvaluateResultReq();
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                field.set(result, field.get(this));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                return super.clone();
+            }
+        }
+        return result;
+    }
 }

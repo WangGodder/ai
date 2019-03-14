@@ -19,4 +19,9 @@ public class FigureWeightDaoImpl implements FigureWeightDao {
     public FigureWeight getFigureWeight(Long id) {
         return figureWeightMapper.getFigureWeight(id);
     }
+
+    @Override
+    public boolean addFigureWeight(FigureWeight figureWeight) {
+        return figureWeightMapper.addFigureWeight(figureWeight);
+    }
 }

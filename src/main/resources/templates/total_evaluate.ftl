@@ -14,6 +14,9 @@
     <script type="text/javascript" src="/js/vue/vue.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="/js/home/DataShow.js"></script>
+    <script type = text/javascript src="/js/utils.js"></script>
+    <script type = text/javascript src="/js/layui/layui.all.js"></script>
+    <script type = text/javascript src="/js/common/sv2.js"></script>
 </head>
 <body>
 <div id="app">

@@ -43,3 +43,18 @@
     /*margin-top: 2%;*/
     margin-bottom: 2%;
 }
+
+.tree {
+    text-align: left;
+    list-style-type: none;
+    font-size: large;
+}
+.tree ul li{
+    list-style-type: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.tree span {
+    margin-left: 20px;
+    margin-right: 20px;
+}

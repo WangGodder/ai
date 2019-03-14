@@ -9,4 +9,5 @@ import com.swu.ai.entity.FigureWeight;
 public interface FigureWeightDao {
     FigureWeight getFigureWeight(Long id);
 
+    boolean addFigureWeight(FigureWeight figureWeight);
 }

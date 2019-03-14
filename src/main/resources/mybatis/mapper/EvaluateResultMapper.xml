@@ -136,16 +136,16 @@
       (select company_name, max(evaluate_date) as maxtime from evaluate_result
     <where>
       <if test="beginYear != null">
-        #{beginYear} &lt;= year
+        and #{beginYear} = begin_year
       </if>
       <if test="endYear != null">
-        year &lt;= #{endYear}
+        and #{endYear} = end_year
       </if>
       <if test="beginQuarter != null">
-        and #{beginQuarter} &lt;= quarter
+        and #{beginQuarter} = begin_quarter
       </if>
       <if test="endQuarter != null">
-        and quarter &lt;= #{endQuarter}
+        and end_quarter = #{endQuarter}
       </if>
       <if test="industry != null and industry != ''">
         and industry = #{industry}
