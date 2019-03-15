@@ -1,12 +1,14 @@
 package com.swu.ai.service.Impl;
 
 import com.alibaba.fastjson.JSON;
+import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.EvaluateDetailTable;
 import com.swu.ai.Result.TreeData;
 import com.swu.ai.Util.FieldInject;
 import com.swu.ai.Util.TableUtil;
 import com.swu.ai.dao.*;
 import com.swu.ai.entity.*;
+import com.swu.ai.request.ChartReq;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.request.EvaluateResultReq;
@@ -289,6 +291,74 @@ public class FingerServiceImpl implements FingerService {
             list.add(root);
         }
         return list;
+    }
+
+    @Override
+    public BaseData<Number> baseDataTime(ChartReq req) {
+        List<Map<String, Object>> mapList = evaluateCompanyTotal(req);
+        BaseData<Number> baseData = new BaseData<>();
+        List<String> labels = new ArrayList<>(req.getEndYear() - req.getBeginYear() + 1);
+        for (int i = req.getBeginYear(); i <= req.getEndYear(); i++) {
+            labels.add(Integer.toString(i));
+        }
+        List<String> datasetLabels = new ArrayList<>(mapList.size());
+        List<List<Number>> datas = new ArrayList<>(mapList.size());
+        for (Map<String, Object> map : mapList) {
+            datasetLabels.add((String) map.get("companyName"));
+            List<Number> data = new ArrayList<>(req.getEndYear() - req.getBeginYear() + 1);
+            for (int i = 0; i <= req.getEndYear() - req.getBeginYear(); i++) {
+                if (map.get(req.getFigureShow() + i) == null) {
+                    data.add(0.0);
+                } else {
+                    data.add((Number) map.get(req.getFigureShow() + i));
+                }
+            }
+            datas.add(data);
+        }
+        baseData.setDatasetLabels(datasetLabels);
+        baseData.setLabels(labels);
+        baseData.setDatas(datas);
+        return baseData;
+    }
+
+    @Override
+    public BaseData<Number> baseDataTotal(EvaluateResultReq req) {
+        List<EvaluateResult> list = evaluateCompany(req);
+        BaseData<Number> baseData = new BaseData<>();
+        String[] fieldNames = {"figureAll", "figureSale", "figureTax", "figureFinance", "figureValuation", "figureHr", "figureInnovate", "figureSalary", "figureLearn", "figureBrand"};
+        List<String> labels = new ArrayList<>(10);
+        labels.add("综合指标");
+        List<FigureDict> figureDicts = figureDictDao.findFigureDictByLevel(1);
+        for (FigureDict figureDict : figureDicts) {
+            labels.add(figureDict.getFigureName());
+        }
+        List<String> datasetLabels = new ArrayList<>(list.size());
+        List<List<Number>> datas = new ArrayList<>(list.size());
+        for (EvaluateResult evaluateResult : list) {
+            datasetLabels.add(evaluateResult.getCompanyName());
+            Map<String, Object> fieldMap = null;
+            try {
+                fieldMap = FieldInject.getFieldMap(EvaluateResult.class, evaluateResult);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+            if (fieldMap == null) {
+                continue;
+            }
+            List<Number> data = new ArrayList<>(fieldNames.length);
+            for (String fieldName : fieldNames) {
+                if (fieldMap.get(fieldName) == null) {
+                    data.add(0.);
+                } else {
+                    data.add((Number) fieldMap.get(fieldName));
+                }
+            }
+            datas.add(data);
+        }
+        baseData.setDatas(datas);
+        baseData.setLabels(labels);
+        baseData.setDatasetLabels(datasetLabels);
+        return baseData;
     }
 
     @Override

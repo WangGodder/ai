@@ -2,6 +2,7 @@ package com.swu.ai.Util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -55,5 +56,39 @@ public class FieldInject {
             }
         }
         return obj;
+    }
+
+    /**
+     * 根据指定field名称返回对应的key-value
+     * @param clz 对象的类型
+     * @param obj 取值对象
+     * @param fields 取值的field, 如果为空则返回全部的key-value
+     * @param <T> 对象的类型
+     * @return map<String, Object>
+     * @throws NoSuchFieldException 当field中的值不存在于对象类型中
+     */
+    public static <T> Map<String, Object> getFieldMap(Class<T> clz, T obj, String ... fields) throws NoSuchFieldException {
+        Map<String, Object> map = new HashMap<>();
+        if (fields == null || fields.length == 0) {
+            for (Field field : clz.getDeclaredFields()) {
+                field.setAccessible(true);
+                try {
+                    map.put(field.getName(), field.get(obj));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            return map;
+        }
+        for (String filed : fields) {
+            Field f = clz.getDeclaredField(filed);
+            f.setAccessible(true);
+            try {
+                map.put(filed, f.get(obj));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return map;
     }
 }

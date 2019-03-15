@@ -1,11 +1,13 @@
 package com.swu.ai.service;
 
+import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.EvaluateDetailTable;
 import com.swu.ai.Result.TreeData;
 import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.entity.FigureWeight;
 import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.request.ChartReq;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.request.EvaluateResultReq;
@@ -47,6 +49,10 @@ public interface FingerService {
     EvaluateDetailTable getEvaluateDetailTable();
 
     List<TreeData<String>> getFigureWeightTree();
+
+    BaseData<Number> baseDataTime(ChartReq req);
+
+    BaseData<Number> baseDataTotal(EvaluateResultReq req);
 
     boolean addFigureWeight(FigureWeight figureWeight);
 

@@ -7,7 +7,6 @@ WeightQuery = {
         }
     },
     created() {
-        // this.trees = [{title: '1', field:'field1', value: 1, children: [{title: '1-1', children: [{title: '1-1-1'}]}]},{title: '2',value:2, children: [{title: '2-1', children: [{title: '2-1-1'}]}]}];
         let getData = [];
         $.ajax({
             url: '../figureWeightTree/',
@@ -31,7 +30,6 @@ WeightQuery = {
             }
         });
         this.trees = getData;
-        console.log(this.trees)
     },
     methods: {
         change_weight: function () {

@@ -11,6 +11,7 @@ import com.swu.ai.entity.CompanyInput;
 import com.swu.ai.entity.EvaluateResult;
 import com.swu.ai.entity.FigureWeight;
 import com.swu.ai.entity.FingerResultV0;
+import com.swu.ai.request.ChartReq;
 import com.swu.ai.request.CompanyFigureReq;
 import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.request.EvaluateResultReq;
@@ -317,6 +318,22 @@ public class FingerResultController {
     @ResponseBody
     public List<Map<String, Object>> evaluateTotal(EvaluateResultReq req) {
         return fingerService.evaluateCompanyTotal(req);
+    }
+
+    @RequestMapping(value = "baseDataTime/")
+    @ResponseBody
+    public JsonResult baseDataTime(ChartReq req) {
+        req.setFigureId(1L);
+        BaseData<Number> baseData = fingerService.baseDataTime(req);
+        return JsonResult.success(baseData);
+    }
+
+    @RequestMapping(value = "baseDataTotal/")
+    @ResponseBody
+    public JsonResult baseDataTotal(EvaluateResultReq req) {
+        req.setFigureId(1L);
+        BaseData<Number> baseData = fingerService.baseDataTotal(req);
+        return JsonResult.success(baseData);
     }
 
     @RequestMapping(value = "figureWeightTree/")

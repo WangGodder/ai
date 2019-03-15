@@ -60,6 +60,10 @@
                     pie: 'pieChart',
                     doughnut: 'doughnutChart'
                 },
+                // 像后台请求的url
+                ajax_url: '',
+                // 像后台传输的内容
+                param: {},
                 // 数据信息，prop传给子控件
                 base_data: null
             }
@@ -114,12 +118,28 @@
             // this.base_data = getBaseData('http://localhost:9666/random_data');
             // 临时测试使用随机生成的数据
             this.base_data = getRandomBaseData(3, 10);
+            let localStorage = window.localStorage;
+            const figureShow = localStorage.getItem('figureShow');
+            let paramKeyList;
+            if (figureShow != null && figureShow != '') {
+                paramKeyList = ['figureShow', 'beginYear', 'endYear', 'Industry', 'region', 'evaluateType'];
+                this.ajax_url = '/user/baseDataTime/'
+            } else {
+                paramKeyList = ['beginYear', 'endYear', 'beginQuarter', 'endQuarter', 'industry', 'region', 'evaluateType'];
+                this.ajax_url = '/user/baseDataTotal/';
+            }
+            for (let i = 0; i < paramKeyList.length; i++){
+                const key = paramKeyList[i];
+                this.param[key] = localStorage.getItem(key);
+                localStorage.removeItem(key);
+            }
         },
         mounted() {
             let ajax_data;
             $.ajax({
-                url: '/user/getAllCompanyInfo/',
+                url: this.ajax_url,
                 type: 'post',
+                data: this.param,
                 async: false,
                 dataType: 'json',
                 success: function (data) {
