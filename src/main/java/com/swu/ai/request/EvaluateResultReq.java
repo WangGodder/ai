@@ -25,7 +25,7 @@ public class EvaluateResultReq extends CompanyInputReq implements Serializable, 
     private Long figureId;
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public EvaluateResultReq clone() throws CloneNotSupportedException {
         EvaluateResultReq result = new EvaluateResultReq();
         Field[] fields = this.getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -34,7 +34,6 @@ public class EvaluateResultReq extends CompanyInputReq implements Serializable, 
                 field.set(result, field.get(this));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-                return super.clone();
             }
         }
         return result;

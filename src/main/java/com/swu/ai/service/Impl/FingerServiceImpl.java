@@ -2,6 +2,7 @@ package com.swu.ai.service.Impl;
 
 import com.alibaba.fastjson.JSON;
 import com.swu.ai.Result.BaseData;
+import com.swu.ai.Result.CompanyInputBase;
 import com.swu.ai.Result.EvaluateDetailTable;
 import com.swu.ai.Result.TreeData;
 import com.swu.ai.Util.FieldInject;
@@ -81,43 +82,52 @@ public class FingerServiceImpl implements FingerService {
     @Override
     public List<EvaluateResult> evaluateCompany(EvaluateResultReq req) {
         // 查找数据库内是否有存放的已算出结果
-        List<EvaluateResult> results = evaluateResultDao.findEvaluateResultByReq(req);
-        if (results != null && results.size() > 0) {
-            // 判断获取数据是否在有效期内
-            long timeGas = System.currentTimeMillis() - results.get(0).getEvaluateDate().getTime();
-            if (timeGas < RESULT_INDATE * 1000 * 60 * 60) {
+//        List<EvaluateResult> results = evaluateResultDao.findEvaluateResultByReq(req);
+//        if (results != null && results.size() > 0) {
+//            // 判断获取数据是否在有效期内
+//            long timeGas = System.currentTimeMillis() - results.get(0).getEvaluateDate().getTime();
+//            if (timeGas < RESULT_INDATE * 1000 * 60 * 60) {
+//                return results;
+//            }
+//        }
+
+        // 获取范围内所有的数据
+        List<CompanyInput> companyInputs = null;
+        CompanyInputBase base = null;
+        // 获取查询请求在redis上保留的对应结果
+        String keyRedis = calcIdByCompanyInputReq(req);
+//        String keyRedisBase = "base" + keyRedis;
+        // 如果redis连接失败，则直接计算
+        boolean saveEvaluate = true;
+        try {
+            String resultStr = redisUtil.get(keyRedis);
+            if (resultStr != null && !resultStr.isEmpty()) {
+                List<EvaluateResult> results = JSON.parseArray(resultStr, EvaluateResult.class);
                 return results;
             }
-        }
-        // 计算结果
-        // 获取范围内所有的数据
-        List<CompanyInput> companyInputs = companyInputDao.findCompanyInputSumByReq(req);
-        // 从reids上寻找基数
-        String keyRedisBase = calcIdByCompanyInputReq(req);
-        CompanyInput base = null;
-        // 如果redis连接失败，则直接计算
-        try {
-            String redisBase = redisUtil.get(keyRedisBase);
-            // 判断redis上是否存有基数,若没有则生成并存入redis
-            if (redisBase == null || redisBase.isEmpty()) {
-                calcBaseAndStore(companyInputs, req);
-            }
-            base = JSON.parseObject(redisUtil.get(keyRedisBase), CompanyInput.class);
+//            String redisBase = redisUtil.get(keyRedisBase);
+//            // 判断redis上是否存有基数,若没有则生成并存入redis
+//            if (redisBase == null || redisBase.isEmpty()) {
+//                calcBaseAndStore(companyInputs, req);
+//            }
+//            base = JSON.parseObject(redisUtil.get(keyRedisBase), CompanyInput.class);
         } catch (Exception e) {
-            System.err.println("redis 连接错误");
-            switch (req.getEvaluateType()) {
-                case "avg": base = calcBase(companyInputs).get(AVG); break;
-                case "max":
-                    base = calcBase(companyInputs).get(MAX); break;
-                case "min":
-                    base = calcBase(companyInputs).get(MIN); break;
-                case "firstQ":
-                    base = calcBase(companyInputs).get(FIRST_QUARTILE); break;
-                case "median":
-                    base = calcBase(companyInputs).get(MEDIAN); break;
-                case "thirdQ":
-                    base = calcBase(companyInputs).get(THIRD_QUARTILE); break;
-            }
+            System.err.println("redis 连接错误, 无法获取redis中数据");
+            saveEvaluate = false;
+        }
+        companyInputs = companyInputDao.findCompanyInputSumByReq(req);
+        switch (req.getEvaluateType()) {
+            case "avg": base = calcBase(companyInputs).get(AVG); break;
+            case "max":
+                base = calcBase(companyInputs).get(MAX); break;
+            case "min":
+                base = calcBase(companyInputs).get(MIN); break;
+            case "firstQ":
+                base = calcBase(companyInputs).get(FIRST_QUARTILE); break;
+            case "median":
+                base = calcBase(companyInputs).get(MEDIAN); break;
+            case "thirdQ":
+                base = calcBase(companyInputs).get(THIRD_QUARTILE); break;
         }
         // 计算获取数据的三级指标的得分
         List<EvaluateResult> evaluateResultList = new ArrayList<>(companyInputs.size());
@@ -134,19 +144,19 @@ public class FingerServiceImpl implements FingerService {
             evaluateResult.setIndustry(req.getIndustry());
             evaluateResult.setRegion(req.getRegion());
             // 存入数据库
-            evaluateResultDao.addEvaluateResult(evaluateResult);
+//            evaluateResultDao.addEvaluateResult(evaluateResult);
             // 展示结果中显示实际公司的所在行业和地区
             evaluateResult.setIndustry(companyInput.getIndustry());
             evaluateResult.setRegion(companyInput.getRegion());
             evaluateResultList.add(evaluateResult);
         }
         // 按照总分降序排列
-        evaluateResultList.sort(new Comparator<EvaluateResult>() {
-            @Override
-            public int compare(EvaluateResult o1, EvaluateResult o2) {
-                return o1.getFigureAll() - o2.getFigureAll() < 0? 1 : -1;
-            }
-        });
+        evaluateResultList.sort((o1, o2) -> o1.getFigureAll() - o2.getFigureAll() < 0? 1 : -1);
+        if (saveEvaluate) {
+            String resultStr = JSON.toJSONString(evaluateResultList);
+            // 将结果保存至redis，保存时间为1天
+            redisUtil.set(keyRedis, resultStr, 1000 * 60 * 60 * 24);
+        }
         return evaluateResultList;
     }
 
@@ -164,6 +174,7 @@ public class FingerServiceImpl implements FingerService {
             }
             currentReq.setEndYear(i);
             currentReq.setBeginYear(i);
+            currentReq.setEvaluateType(req.getEvaluateType());
             // 获取该年的所有公司的评估结果
             List<EvaluateResult> evaluateResultList = this.evaluateCompany(currentReq);
             for (EvaluateResult evaluateResult : evaluateResultList) {
@@ -399,7 +410,7 @@ public class FingerServiceImpl implements FingerService {
      * @param req 评估结果请求，用于生成key
      */
     private void calcBaseAndStore(List<CompanyInput> inputs, EvaluateResultReq req) {
-        List<CompanyInput> baseList = calcBase(inputs);
+        List<CompanyInputBase> baseList = calcBase(inputs);
         for (int i = 0; i < baseList.size(); i++) {
             EvaluateResultReq resultReq = req;
             switch (i) {
@@ -439,13 +450,12 @@ public class FingerServiceImpl implements FingerService {
     private String calcIdByCompanyInputReq(EvaluateResultReq req) {
         StringBuilder sb = new StringBuilder();
         sb.append(req.getEvaluateType());
-        sb.append(req.getIndustry() == null  || req.getIndustry().isEmpty() ? " " : req.getIndustry());
-        sb.append(req.getBeginYear() == null ? "0000" : req.getBeginYear());
-        sb.append(req.getEndYear() == null ? "0000" : req.getEndYear());
-        sb.append(req.getRegion() == null || req.getRegion().isEmpty() ? " " : req.getRegion());
-        sb.append(req.getBeginQuarter() == null ? "0" : req.getBeginQuarter());
-        sb.append(req.getEndYear() == null ? "0" : req.getEndQuarter());
-        return sb.toString();
+        sb.append(req.getIndustry());
+        sb.append(req.getBeginYear());
+        sb.append(req.getEndYear());
+        sb.append(req.getBeginQuarter());
+        sb.append(req.getEndQuarter());
+        return Integer.toString(sb.toString().hashCode());
     }
 
     /**
@@ -453,10 +463,10 @@ public class FingerServiceImpl implements FingerService {
      * @param companyInputs 评估范围内所有值
      * @return 按照均值、最大值、最小值、1分位、中位、3分位返回
      */
-    private List<CompanyInput> calcBase(List<CompanyInput> companyInputs) {
-        List<CompanyInput> list = new ArrayList<>(6);
+    private List<CompanyInputBase> calcBase(List<CompanyInput> companyInputs) {
+        List<CompanyInputBase> list = new ArrayList<>(6);
         for (int i = 0; i < 6; i++) {
-            list.add(new CompanyInput());
+            list.add(new CompanyInputBase());
         }
         Field[] fields = CompanyInput.class.getDeclaredFields();
         int index = 0;
@@ -465,45 +475,41 @@ public class FingerServiceImpl implements FingerService {
                 Field field = fields[i];
                 field.setAccessible(true);
                 try {
-                    Object read = field.get(companyInput);
+                    Object r= field.get(companyInput);
+                    Double read = null;
+                    if (field.getGenericType() == Integer.class) {
+                        read = Double.parseDouble(Integer.toString((int)r));
+                    } else {
+                        read = (double) r;
+                    }
+                    Field baseField = CompanyInputBase.class.getDeclaredField(field.getName());
+                    baseField.setAccessible(true);
                     // first-quartile
                     if (index == companyInputs.size() / 4 - 1) {
-                        field.set(list.get(3), read);
+                        baseField.set(list.get(3), read);
                     }
                     // median
                     if (index == companyInputs.size() / 2 - 1) {
-                        field.set(list.get(4), read);
+                        baseField.set(list.get(4), read);
                     }
                     // third-quartile
                     if (index == companyInputs.size() / 4 * 3 - 1) {
-                        field.set(list.get(5), read);
+                        baseField.set(list.get(5), read);
                     }
-                    // type classify
-                    if (field.getGenericType() == Integer.class) {
-                        // sum
-                        field.set(list.get(0), (int)field.get(list.get(0)) + (int)read);
-                        // max
-                        if ((int)field.get(list.get(1)) < (int)read) {
-                            field.set(list.get(1), read);
-                        }
-                        // min
-                        if ((int)field.get(list.get(2)) > (int)read) {
-                            field.set(list.get(2), read);
-                        }
+                    // sum
+                    baseField.set(list.get(0), (double)baseField.get(list.get(0)) + (double)read);
+                    // max
+                    if ((double)baseField.get(list.get(1)) < (double)read) {
+                        baseField.set(list.get(1), read);
                     }
-                    else if (field.getGenericType() == Double.class) {
-                        // sum
-                        field.set(list.get(0), (double)field.get(list.get(0)) + (double)read);
-                        // max
-                        if ((double)field.get(list.get(1)) < (double)read) {
-                            field.set(list.get(1), read);
-                        }
-                        // min
-                        if ((double)field.get(list.get(2)) > (double)read) {
-                            field.set(list.get(2), read);
-                        }
+                    // min
+                    if ((double)baseField.get(list.get(2)) > (double)read) {
+                        baseField.set(list.get(2), read);
                     }
+
                 } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchFieldException e) {
                     e.printStackTrace();
                 }
             }
@@ -513,13 +519,14 @@ public class FingerServiceImpl implements FingerService {
         for (int i = 6; i < fields.length; i++) {
             Field field = fields[i];
             try {
-                if (field.getGenericType() == Integer.class) {
-                    field.set(list.get(0), (int)field.get(list.get(0)) / companyInputs.size());
-                } else if (field.getGenericType() == Double.class) {
-                    field.set(list.get(0), (double)field.get(list.get(0)) / companyInputs.size());
-                }
+                Field baseField = CompanyInputBase.class.getDeclaredField(field.getName());
+                baseField.setAccessible(true);
+                baseField.set(list.get(0), (double)baseField.get(list.get(0)) / companyInputs.size());
+
                 field.setAccessible(false);
             } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (NoSuchFieldException e) {
                 e.printStackTrace();
             }
         }
@@ -532,7 +539,7 @@ public class FingerServiceImpl implements FingerService {
      * @param base 得分相除数据的基数(需要通过其他函数获取，并计算)
      * @return 包含最低级指标的评估结果 （不含高级指标，请调用EvaluateResult.evaluate方法获取完整评估结果）
      */
-    private EvaluateResult evaluteFigure(CompanyInput companyInput, CompanyInput base) {
+    private EvaluateResult evaluteFigure(CompanyInput companyInput, CompanyInputBase base) {
         EvaluateResult result = new EvaluateResult();
         result.setCompanyName(companyInput.getCompanyname());
         // 二级指标：已开票的收入
