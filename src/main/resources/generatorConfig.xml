@@ -36,7 +36,9 @@
                              targetProject="src/main/java">
         </javaClientGenerator>
 
-        <table schema="" tableName="figure_weight"></table>
+        <!--<table schema="" tableName="user_role"></table>-->
+        <!--<table tableName="user_auth"/>-->
+        <table schema="" tableName="user"></table>
 
     </context>
 </generatorConfiguration>

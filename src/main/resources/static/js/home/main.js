@@ -18,11 +18,14 @@
                 timer: null,  // 定时刷新时间
                 page_index: ['index-page','upload-page', 'data-page', 'evaluate-page'],
                 page_show: [true, false, false, false],
-
+                user: JSON.parse(window.sessionStorage.getItem("user")),
             }
         },
         mounted() {
             setInterval(this.flushTime, 1000);
+            if (this.user['roleId'] === 1) {
+                $("#evaluate-page-btn").addClass('disabled');
+            }
         },
         methods: {
             flushTime: function () {
@@ -44,6 +47,24 @@
                 active_btn.addClass('btn-success');
                 this.$set(this.page_show, page_index, true);
 
+            },
+            logout: function () {
+                $.ajax({
+                    url: '/user/logout/',
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        if (data.status == 1) {
+                            window.sessionStorage.removeItem("user");
+                            window.location = "/user/login/";
+                        } else {
+                            sv2.warn(data.message);
+                        }
+                    },
+                    error: function () {
+                        sv2.warn("服务器连接错误");
+                    }
+                })
             }
         },
 

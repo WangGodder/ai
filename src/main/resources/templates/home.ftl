@@ -52,7 +52,7 @@
                 <div class="row">
                     <img id="user-avater" src="/img/user-avater.png" class="img-responsive img-circle col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-left">
-                        <p>, 你好</p>
+                        <p>{{user['userName']}}, 你好</p>
                         <p></p>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                         <div class="btn btn-block btn-primary">查看消息 <span class="badge">4</span></div>
                         <div class="btn btn-block btn-primary">帮助</div>
                         <div class="btn btn-block btn-primary">用户管理</div>
-                        <div class="btn btn-block btn-primary">退出登录</div>
+                        <div class="btn btn-block btn-primary" @click="logout()">退出登录</div>
                     </div>
 
                 </div>
@@ -84,7 +84,7 @@
     <div id="pages">
         <index-page v-if="this.page_show[0]"></index-page>
         <upload-page v-show="this.page_show[1]"></upload-page>
-        <data-page v-show="this.page_show[2]" v-bind:user_type="1"></data-page>
+        <data-page v-show="this.page_show[2]" v-bind:user="this.user"></data-page>
         <evaluate-page v-show="this.page_show[3]"></evaluate-page>
     </div>
 

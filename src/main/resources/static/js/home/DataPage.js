@@ -8,19 +8,20 @@ let DataPage = {
         }
     },
     props: {
-        user_type: {
-            type: Number,
+        user: {
             required: true
         }
     },
     created() {
-        if (this.user_type === 1 || this.user_type === 2 || this.user_type === 3) {
+
+        if (this.user['roleId'] === 2 || this.user['roleId'] === 3) {
             this.function_show[0] = true;
+            this.function_show[1] = true;
         }
-        if (this.user_type === 4) {
+        if (this.user['roleId'] === 1) {
             this.function_show[2] = true;
         }
-        if (this.user_type === 5) {
+        if (this.user['roleId'] === 4) {
             this.function_show[3] = true;
         }
     },
@@ -45,17 +46,17 @@ let DataPage = {
         "        <div id=\"side-nav\" class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2\" style=\"padding-right: 0%\">\n" +
         "            <h3>数据查看页面</h3>\n" +
         "            <div>\n" +
-        "                <!--政府人员、专家、投资人操作-->\n" +
-        "                <div v-if=\"this.user_type === 1 || this.user_type === 2 || this.user_type === 3\">\n" +
+        "                <!--政府人员-->\n" +
+        "                <div v-if=\"this.user['roleId'] == 2 || this.user['roleId'] == 3\">\n" +
         "                    <div id=\"show-self-region-btn\" v-on:click=\"change_function(0)\" class=\"btn btn-block btn-default btn-lg active\">查看公司信息</div>\n" +
         "                    <div id=\"show-weight-btn\" v-on:click=\"change_function(1)\" class=\"btn btn-block btn-default btn-lg\">查看权重信息</div>\n" +
         "                </div>\n" +
         "                <!--公司用户操作-->\n" +
-        "                <div v-if=\"this.user_type === 4\">\n" +
+        "                <div v-if=\"this.user['roleId'] == 1\">\n" +
         "                    <div id=\"show-self-company-btn\" v-on:click=\"change_function(2)\" class=\"btn btn-block btn-default btn-lg active\">查看本公司信息</div>\n" +
         "                </div>\n" +
         "                <!--管理员操作-->\n" +
-        "                <div v-if=\"this.user_type === 5\">\n" +
+        "                <div v-if=\"this.user['roleId'] == 4\">\n" +
         "                    <div id=\"show-user-btn\" v-on:click=\"change_function(3)\" class=\"btn btn-block btn-default btn-lg\">查看用户信息</div>\n" +
         "                </div>\n" +
         "            </div>\n" +

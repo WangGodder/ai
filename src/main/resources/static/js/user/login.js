@@ -21,7 +21,11 @@
             },
 
             initResult: function (json) {
-                var user = json.data.userid;
+                var user = json.data;
+                let session = win.sessionStorage;
+                session.setItem("user", JSON.stringify(user));
+                console.log(user);
+                console.log(JSON.stringify(user));
                 if (user != null) {
                     window.location = "/user/index/";
                 }

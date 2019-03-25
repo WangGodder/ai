@@ -1,4 +1,4 @@
-let App = {
+ let App = {
     name: 'app',
     el: '#app',
     components: {

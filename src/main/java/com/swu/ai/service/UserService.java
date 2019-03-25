@@ -1,5 +1,6 @@
 package com.swu.ai.service;
 
+import com.swu.ai.entity.User;
 import com.swu.ai.entity.UserTk;
 
 /**
@@ -8,4 +9,6 @@ import com.swu.ai.entity.UserTk;
  */
 public interface UserService {
     UserTk getUserByUserIdAndPwd(String userId,String pwd);
+
+    User getUserByUserTk(UserTk userTk);
 }

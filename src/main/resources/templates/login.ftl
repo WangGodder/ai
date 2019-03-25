@@ -31,7 +31,7 @@
             </div>
         </form>
     </div>
-    <div class="copyright">
+    <div class="navbar-fixed-bottom copyright">
         <span style="width: 33%;text-align: left">版权：上海万事登信息科技有限公司版权所有</span>
         <span style="width: 33%;text-align: center">地址：上海市杨浦区加嘴路3805号3093室</span>
         <span style="width: 33%;text-align: right">邮编：200434</span>
