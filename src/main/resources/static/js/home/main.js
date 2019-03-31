@@ -56,7 +56,7 @@
                     success: function (data) {
                         if (data.status == 1) {
                             window.sessionStorage.removeItem("user");
-                            window.location = "/user/login/";
+                            window.location = "/";
                         } else {
                             sv2.warn(data.message);
                         }

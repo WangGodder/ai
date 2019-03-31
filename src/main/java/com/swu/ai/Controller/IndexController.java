@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/user/")
 public class IndexController {
-    @RequestMapping(value = "index/")
+    @RequestMapping(value = "/")
     public String index(){
-        return "home";
+        return "login";
     }
 }

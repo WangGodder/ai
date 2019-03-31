@@ -57,11 +57,11 @@ public class HelloWorld {
     }
 
 
-    @RequestMapping("/")
-    String home(Model model) {
-        model.addAttribute("name", "pengjb");
-        return "hello";
-    }
+//    @RequestMapping("/")
+//    String home(Model model) {
+//        model.addAttribute("name", "pengjb");
+//        return "hello";
+//    }
 
     @RequestMapping("/json")
     @ResponseBody

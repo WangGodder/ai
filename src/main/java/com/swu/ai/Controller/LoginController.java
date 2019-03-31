@@ -31,9 +31,14 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @RequestMapping("login/")
-    public String index(){
-        return "login";
+//    @RequestMapping("login/")
+//    public String index(){
+//        return "login";
+//    }
+
+    @RequestMapping(value = "/index/")
+    public String index() {
+        return "home";
     }
 
     @PostMapping(value = "checkLogin/")

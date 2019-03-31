@@ -5,23 +5,19 @@ import com.swu.ai.Result.BaseData;
 import com.swu.ai.Result.CompanyInputBase;
 import com.swu.ai.Result.EvaluateDetailTable;
 import com.swu.ai.Result.TreeData;
-import com.swu.ai.Util.FieldInject;
-import com.swu.ai.Util.TableUtil;
+import com.swu.ai.util.FieldInject;
+import com.swu.ai.util.TableUtil;
 import com.swu.ai.dao.*;
 import com.swu.ai.entity.*;
 import com.swu.ai.request.ChartReq;
 import com.swu.ai.request.CompanyFigureReq;
-import com.swu.ai.request.CompanyInputReq;
 import com.swu.ai.request.EvaluateResultReq;
 import com.swu.ai.service.FingerService;
 import com.swu.ai.vo.VoFingerResult;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import sun.reflect.generics.tree.Tree;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
-import java.net.ConnectException;
 import java.util.*;
 
 /**

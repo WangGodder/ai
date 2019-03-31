@@ -1,7 +1,7 @@
 package com.swu.ai.service.Impl;
 
 import com.swu.ai.Result.CompanyInfoTableColumn;
-import com.swu.ai.Util.TableUtil;
+import com.swu.ai.util.TableUtil;
 import com.swu.ai.dao.CompanyInputDao;
 import com.swu.ai.dao.CompanyInputDictDao;
 import com.swu.ai.dao.FigureDictDao;

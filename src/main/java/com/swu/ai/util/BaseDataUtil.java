@@ -1,4 +1,4 @@
-package com.swu.ai.Util;
+package com.swu.ai.util;
 
 import com.swu.ai.Result.BaseData;
 import com.swu.ai.entity.CompanyInput;
