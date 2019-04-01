@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @EnableAutoConfiguration
 public class IndexController {
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/iii")
     public String index(){
         return "login";
     }
+
 }

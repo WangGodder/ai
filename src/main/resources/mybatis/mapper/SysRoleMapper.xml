@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swu.ai.mapper.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="com.swu.ai.entity.SysRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+
+  	<select id="selectRolesByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select r.* from sys_role r,sys_role_user ru,sys_user u
+		where u.username = #{username} and u.id = ru.userId and ru.roleId = r.id
+	</select>
+</mapper>

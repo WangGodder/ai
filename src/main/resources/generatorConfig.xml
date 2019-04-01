@@ -38,7 +38,10 @@
 
         <!--<table schema="" tableName="user_role"></table>-->
         <!--<table tableName="user_auth"/>-->
-        <table schema="" tableName="user"></table>
+        <!--<table schema="" tableName="user"></table>-->
+        <table schema="" tableName="sys_user"></table>
+        <table schema="" tableName="sys_role"></table>
+        <table schema="" tableName="sys_role_user"></table>
 
     </context>
 </generatorConfiguration>

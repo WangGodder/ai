@@ -65,4 +65,6 @@ public class LoginController {
             return JsonResult.fail("session 没有user对象");
         }
     }
+
+
 }

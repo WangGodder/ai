@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swu.ai.mapper.SysRoleUserMapper">
+  <resultMap id="BaseResultMap" type="com.swu.ai.entity.SysRoleUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <id column="roleId" jdbcType="INTEGER" property="roleid" />
+  </resultMap>
+</mapper>

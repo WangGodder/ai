@@ -1,7 +1,6 @@
 package com.swu.ai.dao;
 
 import com.swu.ai.entity.User;
-import com.swu.ai.entity.UserRole;
 
 /**
  * @author: godder
@@ -10,5 +9,5 @@ import com.swu.ai.entity.UserRole;
 public interface UserDao {
     User findUserById(Long id);
 
-    UserRole findUserRoleById(Long id);
+//    UserRole findUserRoleById(Long id);
 }
